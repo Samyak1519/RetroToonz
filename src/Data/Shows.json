@@ -1,0 +1,33 @@
+{
+  "allShows": [
+    { "title": "Chhota Bheem", "year": "2021", "thumbnail": "chootabheem.jpg" },
+    {
+      "title": "Courage: The Cowardly Dog",
+      "year": "2024",
+      "thumbnail": "courageTheCowardlyDog.jpg"
+    },
+    { "title": "Doraemon", "year": "2022", "thumbnail": "doraemon_poster.jpg" },
+    { "title": "Motu Patlu", "year": "2020", "thumbnail": "motupatlu.jpg" },
+    {
+      "title": "Ninja Hattori",
+      "year": "2022",
+      "thumbnail": "ninjahattori.png"
+    },
+    {
+      "title": "Oggy and the Cockroaches",
+      "year": "2024",
+      "thumbnail": "OggyAndTheCockroaches.jpg"
+    },
+    { "title": "Oswald", "year": "2018", "thumbnail": "oswald.jpg" },
+    { "title": "Perman", "year": "2019", "thumbnail": "perman.jpg" },
+    { "title": "Pokemon", "year": "2023", "thumbnail": "pokemon_poster.jpg" },
+    { "title": "Roll No 21", "year": "2023", "thumbnail": "rollno21.jpg" },
+    { "title": "Shinchan", "year": "2020", "thumbnail": "shinchan.jpg" },
+    { "title": "Spiderman", "year": "2021", "thumbnail": "spiderman.jpeg" },
+    {
+      "title": "Tom and Jerry",
+      "year": "2021",
+      "thumbnail": "tomAndJerry_poster.jpg"
+    }
+  ]
+}

@@ -2,9 +2,9 @@ import defaultPoster from "../Assets/pokemon_poster.jpg";
 
 function ShowCard({ title, year, thumbnail }) {
   return (
-    <div className="flex flex-col justify-center m-2 w-40 sm:w-48 md:w-56 lg:w-64 border border-gray-300 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white">
-      {/* 16:9 Aspect Ratio without plugin */}
-      <div className="relative w-full pt-[56.25%] overflow-hidden rounded-xl">
+    <div className="flex flex-col justify-center m-2 w-36 sm:w-44 md:w-48 lg:w-56 xl:w-64 border border-gray-300 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white flex-shrink-0">
+      {/* Responsive Aspect Ratio Wrapper: 4:3 on mobile/tablet, 16:9 on desktop */}
+      <div className="relative w-full pt-[75%] lg:pt-[56.25%] overflow-hidden rounded-xl">
         <img
           src={thumbnail}
           alt={title}
@@ -14,8 +14,8 @@ function ShowCard({ title, year, thumbnail }) {
 
       {/* Text Info */}
       <div className="mt-2 px-2 pb-3 text-black">
-        <h3 className="font-semibold text-sm sm:text-base truncate">{title}</h3>
-        <p className="text-xs sm:text-sm truncate">{year}</p>
+        <h3 className="font-semibold text-xs sm:text-sm truncate">{title}</h3>
+        <p className="text-[10px] sm:text-xs truncate">{year}</p>
       </div>
     </div>
   );
