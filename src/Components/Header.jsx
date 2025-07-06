@@ -50,7 +50,7 @@ function Header() {
         >
           <img className="rounded-full border w-8 h-8 sm:w-10 sm:h-10" />
           <div className="text-sm sm:text-base font-semibold hidden sm:block">
-            Akshika Desai
+            UserName
           </div>
         </div>
       </div>
