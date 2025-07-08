@@ -11,9 +11,11 @@ module.exports = {
       backgroundImage: {
         "space-galaxy": "linear-gradient(135deg,#0d1b2a, #1c1132, #082e38)",
       },
+      fontFamily: {
+        sans: ['"Nunito"', "sans-serif"], // ✅ Set as global default
+        nunito: ['"Nunito"', "sans-serif"], // ✅ Optional class
+      },
     },
   },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"), // ✅ Add this line
-  ],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };

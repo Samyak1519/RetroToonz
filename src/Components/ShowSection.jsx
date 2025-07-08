@@ -2,16 +2,18 @@ import ShowCard from "./ShowCard";
 
 function ShowSection({ sectionTitle, shows }) {
   return (
-    <section className="my-4 px-4">
-      <h2 className="text-xl font-bold text-white mb-3 pl-3">{sectionTitle}</h2>
+    <section className="my-4 px-4 sm:px-8">
+      <h2 className="text-lg sm:text-xl font-bold text-white mb-2 pl-0.5 sm:pl-2">
+        {sectionTitle}
+      </h2>
 
-      <div className="flex overflow-x-auto space-x-4 scrollbar-hide pb-2">
+      <div className="flex overflow-x-auto space-x-3 scrollbar-hide pb-2">
         {shows.map((show, index) => (
           <ShowCard
             key={index}
             title={show.title}
             year={show.year}
-            thumbnail={show.thumbnail} // ✅ Image now passed
+            thumbnail={show.thumbnail}
           />
         ))}
       </div>

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom"; // ✅ Import Link
 import SearchBar from "./SearchBar";
 
 function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showSearchMobile, setShowSearchMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,42 +22,62 @@ function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
-    <div
-      className={`fixed w-full top-0 z-50 transition-transform duration-300 ${
-        showHeader ? "translate-y-0" : "-translate-y-full"
-      } bg-gray-800/50 backdrop-blur-md backdrop-saturate-150 text-white`}
-    >
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 py-3">
-        {/* Brand Logo */}
-        <div
-          id="brandLogo"
-          className="text-3xl pl-5 text-white font-bold cursor-pointer"
-        >
-          RetroToonz
-        </div>
+    <>
+      <div
+        className={`fixed w-full top-0 z-50 transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        } bg-gray-800/50 backdrop-blur-md backdrop-saturate-150 text-white`}
+      >
+        <div className="flex items-center justify-between px-5  py-3">
+          {/* Brand Logo - Link to home */}
+          <Link to="/" className=" text-3xl font-bold cursor-pointer">
+            RetroToonz
+          </Link>
 
-        {/* Search Bar */}
-        <div className="w-full sm:max-w-xl">
-          <SearchBar />
-        </div>
+          {/* Search Bar for Desktop/Tablet */}
+          <div className="hidden sm:flex flex-1 justify-center">
+            <div className="mx-5 w-full max-w-xl">
+              <SearchBar />
+            </div>
+          </div>
 
-        {/* Profile Icon */}
-        <div
-          id="profileIcon"
-          className="flex items-center gap-2 border border-cyan-200 p-2 px-4 rounded-full text-sm hover:bg-gray-700 cursor-pointer"
-        >
-          <img className="rounded-full border w-8 h-8 sm:w-10 sm:h-10" />
-          <div className="text-sm sm:text-base font-semibold hidden sm:block">
-            UserName
+          {/* Right section */}
+          <div className="flex items-center gap-3">
+            {/* Mobile Search Icon */}
+            <button
+              className="sm:hidden text-white"
+              onClick={() => setShowSearchMobile((prev) => !prev)}
+              title="Search"
+            >
+              <FaSearch size={18} />
+            </button>
+
+            {/* Profile Icon Link */}
+            <Link
+              to="/profile"
+              id="profileIcon"
+              className="flex items-center gap-2 p-2 px-3 rounded-full text-sm hover:bg-gray-700 cursor-pointer"
+            >
+              <FaUserCircle className="text-2xl sm:text-3xl" />
+              <div className="text-sm sm:text-base font-semibold hidden lg:block">
+                Samyak
+              </div>
+            </Link>
           </div>
         </div>
+
+        {/* Mobile-only SearchBar */}
+        {showSearchMobile && (
+          <div className="w-full sm:hidden px-4 pb-3">
+            <SearchBar />
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 
