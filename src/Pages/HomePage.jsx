@@ -9,46 +9,16 @@ import RandomPlayButton from "../Components/RandomPlayButton";
 // JSON Data
 import showsData from "../Data/Shows.json";
 
-// Image Assets
-import chootaBheemImg from "../Assets/chootabheem.jpg";
-import courageImg from "../Assets/courageTheCowardlyDog.jpg";
-import doraemonImg from "../Assets/doraemon_poster.jpg";
-import motuPatluImg from "../Assets/motupatlu.jpg";
-import ninjaHattoriImg from "../Assets/ninjahattori.png";
-import oggyImg from "../Assets/OggyAndTheCockroaches.jpg";
-import oswaldImg from "../Assets/oswald.jpg";
-import permanImg from "../Assets/perman.jpg";
-import pokemonImg from "../Assets/pokemon_poster.jpg";
-import rollNo21Img from "../Assets/rollno21.jpg";
-import shinchanImg from "../Assets/shinchan.jpg";
-import tomAndJerryImg from "../Assets/tomAndJerry_poster.jpg";
-import spidermanImg from "../Assets/spiderman.jpg";
-
-// Map filenames from JSON to actual imported image modules
-const imageMap = {
-  "pokemon_poster.jpg": pokemonImg,
-  "doraemon_poster.jpg": doraemonImg,
-  "tomAndJerry_poster.jpg": tomAndJerryImg,
-  "shinchan.jpg": shinchanImg,
-  "chootabheem.jpg": chootaBheemImg,
-  "ninjahattori.png": ninjaHattoriImg,
-  "perman.jpg": permanImg,
-  "oswald.jpg": oswaldImg,
-  "motupatlu.jpg": motuPatluImg,
-  "courageTheCowardlyDog.jpg": courageImg,
-  "rollno21.jpg": rollNo21Img,
-  "OggyAndTheCockroaches.jpg": oggyImg,
-  "spiderman.jpg": spidermanImg,
-};
-
-// Enrich show data with image imports
+// Automatically map thumbnails from public/Assets with fallback
 const enrich = (arr) =>
   arr.map((show) => ({
     ...show,
-    thumbnail: imageMap[show.thumbnail] || "",
+    thumbnail: show.thumbnail
+      ? `/Assets/${show.thumbnail}`
+      : "/Assets/default.jpg",
   }));
 
-// Manual selection of unique shows per section (avoid repetition)
+// Sections (manual selection of shows per section)
 const trendingShows = enrich([
   showsData.allShows.find((s) => s.id === "shinchan"),
   showsData.allShows.find((s) => s.id === "pokemon"),
@@ -88,7 +58,7 @@ const newlyAdded = enrich([
 
 function HomePage() {
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen bg-black text-white">
       <Header />
       <HeroBanner shows={trendingShows} />
 

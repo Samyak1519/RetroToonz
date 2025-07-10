@@ -10,10 +10,12 @@ function ShowSection({ sectionTitle, shows }) {
       <div className="flex overflow-x-auto space-x-3 scrollbar-hide pb-2">
         {shows.map((show, index) => (
           <ShowCard
-            key={index}
+            key={show.id}
+            id={show.id} // ✅ Add this
             title={show.title}
             year={show.year}
             thumbnail={show.thumbnail}
+            tags={show.tags}
           />
         ))}
       </div>

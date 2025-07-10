@@ -1,33 +1,97 @@
-// src/Pages/ShowDetailsPage.jsx
-import { useParams } from "react-router-dom";
+import { FaArrowLeft, FaPlay, FaStar } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import EpisodeSection from "../Components/EpisodeSection";
+import Header from "../Components/Header";
 import showsData from "../Data/Shows.json";
 
 function ShowDetailsPage() {
-  const { title } = useParams();
-  const show = showsData.allShows.find(
-    (s) => s.title.toLowerCase().replace(/\s+/g, "-") === title
-  );
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const show = showsData.allShows.find((s) => s.id === id);
 
   if (!show) {
-    return (
-      <div className="min-h-screen flex justify-center items-center text-white">
-        <p>Show not found 😢</p>
-      </div>
-    );
+    return <p className="text-white p-4">Show not found.</p>;
   }
 
   return (
-    <div className="min-h-screen text-white p-6">
-      <h1 className="text-3xl font-bold mb-2">{show.title}</h1>
-      <p className="text-lg mb-4">Year: {show.year}</p>
-      <img
-        src={`/Assets/${show.thumbnail}`}
-        alt={show.title}
-        className="rounded-lg max-w-md shadow-lg"
-      />
-      <p className="mt-6 text-gray-300">
-        This is a placeholder for episode list or player.
-      </p>
+    <div className="bg-black text-white min-h-screen">
+      {/* ✅ Sticky Header */}
+      <Header />
+
+      {/* ✅ Poster with back button */}
+      <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden mt-14 sm:mt-16">
+        <img
+          src={`/Assets/${show.thumbnail}`}
+          alt={show.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+        {/* ✅ Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl z-20 transition"
+        >
+          <FaArrowLeft />
+        </button>
+      </div>
+
+      {/* ✅ Show Info */}
+      <div className="px-4 pb-10 mt-5 sm:px-40 sm:pr-48">
+        <div className="flex items-start justify-between gap-4 mb-5">
+          {/* Left: Info Block */}
+          <div className="flex-1">
+            <h1 className="text-2xl sm:text-3xl font-extrabold">
+              {show.title}
+            </h1>
+
+            <div className="flex items-center gap-2 text-yellow-400 text-sm sm:text-base mt-1">
+              <FaStar className="text-base sm:text-lg" />
+              <span>{show.rating || "9.1"}</span>
+              <span className="text-xs text-gray-400">
+                ({show.views || "35k"} views)
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm text-gray-400 mt-1">
+              {show.duration || "2 hr"} | {show.language || "Hindi"} |{" "}
+              {show.year}
+            </p>
+          </div>
+
+          {/* Right: Circular Play Button */}
+          <div className="shrink-0">
+            <button
+              className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 mr-5 rounded-full text-white shadow-md transition"
+              title="Watch Now"
+            >
+              <FaPlay className="text-lg" />
+            </button>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {show.tags?.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 text-xs rounded-full bg-white text-black font-semibold"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Description */}
+        <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
+          {show.description ||
+            "This is a placeholder description. Add something meaningful here about characters, story or nostalgia!"}
+        </p>
+
+        {/* ✅ Episodes */}
+        <EpisodeSection poster={`/Assets/${show.thumbnail}`} />
+      </div>
     </div>
   );
 }

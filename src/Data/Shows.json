@@ -4,79 +4,157 @@
       "id": "chhota-bheem",
       "title": "Chhota Bheem",
       "year": "2021",
-      "thumbnail": "chootabheem.jpg"
+      "thumbnail": "chootabheem.jpg",
+      "tags": ["Adventure"],
+      "description": "Bheem, a brave and strong boy from Dholakpur, takes on villains and saves the day using wisdom and strength.",
+      "duration": "1 hr 32 min",
+      "language": "Hindi",
+      "rating": "8.2",
+      "views": "20k"
     },
     {
       "id": "courage",
       "title": "Courage: The Cowardly Dog",
       "year": "2024",
-      "thumbnail": "courageTheCowardlyDog.jpg"
+      "thumbnail": "courageTheCowardlyDog.jpg",
+      "tags": ["Comedy", "Horror"],
+      "description": "A timid dog named Courage fights supernatural forces to protect his owners in the middle of Nowhere.",
+      "duration": "1 hr 45 min",
+      "language": "English",
+      "rating": "9.0",
+      "views": "18k"
     },
     {
       "id": "doraemon",
       "title": "Doraemon",
       "year": "2022",
-      "thumbnail": "doraemon_poster.jpg"
+      "thumbnail": "doraemon_poster.jpg",
+      "tags": ["Sci-Fi", "Comedy"],
+      "description": "A robotic cat from the future helps Nobita tackle everyday problems with futuristic gadgets.",
+      "duration": "2 hr 5 min",
+      "language": "Hindi",
+      "rating": "8.8",
+      "views": "25k"
     },
     {
       "id": "motu-patlu",
       "title": "Motu Patlu",
       "year": "2020",
-      "thumbnail": "motupatlu.jpg"
+      "thumbnail": "motupatlu.jpg",
+      "tags": ["Comedy"],
+      "description": "Two friends, Motlu and Patlu, find themselves in hilarious situations while solving problems in Furfuri Nagar.",
+      "duration": "1 hr 20 min",
+      "language": "Hindi",
+      "rating": "7.9",
+      "views": "19k"
     },
     {
       "id": "ninja-hattori",
       "title": "Ninja Hattori",
       "year": "2022",
-      "thumbnail": "ninjahattori.png"
+      "thumbnail": "ninjahattori.png",
+      "tags": ["Adventure", "Action"],
+      "description": "A skilled ninja boy helps Kenichi navigate school and life, while fighting evil ninjas.",
+      "duration": "1 hr 38 min",
+      "language": "Hindi",
+      "rating": "8.3",
+      "views": "22k"
     },
     {
       "id": "oggy",
       "title": "Oggy and the Cockroaches",
       "year": "2024",
-      "thumbnail": "OggyAndTheCockroaches.jpg"
+      "thumbnail": "OggyAndTheCockroaches.jpg",
+      "tags": ["Comedy"],
+      "description": "Oggy the cat battles three mischievous cockroaches in a never-ending war of slapstick comedy.",
+      "duration": "1 hr 18 min",
+      "language": "Hindi",
+      "rating": "8.0",
+      "views": "14k"
     },
     {
       "id": "oswald",
       "title": "Oswald",
       "year": "2018",
-      "thumbnail": "oswald.jpg"
+      "thumbnail": "oswald.jpg",
+      "tags": ["Educational", "Calm"],
+      "description": "A gentle octopus named Oswald teaches kindness, patience, and friendship through his daily life.",
+      "duration": "55 min",
+      "language": "English",
+      "rating": "7.5",
+      "views": "9k"
     },
     {
       "id": "perman",
       "title": "Perman",
       "year": "2019",
-      "thumbnail": "perman.jpg"
+      "thumbnail": "perman.jpg",
+      "tags": ["Superhero", "Action"],
+      "description": "Mitsuo transforms into Perman to fight crime, save people, and live a double life as a student.",
+      "duration": "1 hr 50 min",
+      "language": "Hindi",
+      "rating": "8.5",
+      "views": "13k"
     },
     {
       "id": "pokemon",
       "title": "Pokemon",
       "year": "2023",
-      "thumbnail": "pokemon_poster.jpg"
+      "thumbnail": "pokemon_poster.jpg",
+      "tags": ["Adventure", "Fantasy"],
+      "description": "Follow Ash and Pikachu on their journey to become Pokémon Masters while battling rivals and discovering new species.",
+      "duration": "2 hr 10 min",
+      "language": "Hindi",
+      "rating": "9.1",
+      "views": "35k"
     },
     {
       "id": "roll-no-21",
       "title": "Roll No 21",
       "year": "2023",
-      "thumbnail": "rollno21.jpg"
+      "thumbnail": "rollno21.jpg",
+      "tags": ["Action", "Comedy"],
+      "description": "Kris, an avatar of Lord Krishna, defeats evil with clever tactics in the modern-day school setting.",
+      "duration": "1 hr 25 min",
+      "language": "Hindi",
+      "rating": "8.4",
+      "views": "16k"
     },
     {
       "id": "shinchan",
       "title": "Shinchan",
       "year": "2020",
-      "thumbnail": "shinchan.jpg"
+      "thumbnail": "shinchan.jpg",
+      "tags": ["Comedy"],
+      "description": "A mischievous 5-year-old boy causes chaos at home and school with his unpredictable antics.",
+      "duration": "1 hr 35 min",
+      "language": "Hindi",
+      "rating": "8.9",
+      "views": "30k"
     },
     {
       "id": "spiderman",
       "title": "Spiderman",
       "year": "2021",
-      "thumbnail": "spiderman.jpg"
+      "thumbnail": "spiderman.jpg",
+      "tags": ["Action", "Superhero"],
+      "description": "Peter Parker battles villains while juggling high school and keeping his superhero identity secret.",
+      "duration": "2 hr 15 min",
+      "language": "English",
+      "rating": "9.2",
+      "views": "28k"
     },
     {
       "id": "tom-and-jerry",
       "title": "Tom and Jerry",
       "year": "2021",
-      "thumbnail": "tomAndJerry_poster.jpg"
+      "thumbnail": "tomAndJerry_poster.jpg",
+      "tags": ["Comedy", "Classic"],
+      "description": "A classic rivalry between cat and mouse with endless comic chases and slapstick moments.",
+      "duration": "1 hr 40 min",
+      "language": "English",
+      "rating": "9.5",
+      "views": "40k"
     }
   ]
 }
