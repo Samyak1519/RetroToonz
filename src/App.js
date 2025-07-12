@@ -6,6 +6,7 @@ import Login from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import WatchlistPage from "./Pages/WatchlistPage";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/show/:id" element={<ShowDetailsPage />} />
         </Routes>
+
+        {/* 🔍 Speed Insights for Vercel Core Web Vitals */}
+        <SpeedInsights />
       </BrowserRouter>
     </div>
   );
