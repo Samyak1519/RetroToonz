@@ -1,3 +1,5 @@
+// src/Components/HeroBanner.jsx
+
 function HeroBanner({ shows = [] }) {
   if (!shows.length) return null;
 
@@ -5,21 +7,32 @@ function HeroBanner({ shows = [] }) {
   const show = shows[randomIndex];
 
   return (
-    <div className="relative w-full overflow-hidden bg-black text-white">
-      {/* Aspect Ratio:
-          - Mobile: 4:3 (pt-[75%])
-          - Tablet & Desktop: 25:9 (pt-[36%])
-      */}
+    <div
+      className="relative w-full overflow-hidden text-white mb-0.5 md:mb-2"
+      style={{ backgroundColor: "#0F0A24" }}
+    >
       <div className="relative w-full pt-[75%] sm:pt-[36%]">
         {/* Background Image */}
         <img
           src={show.thumbnail}
           alt={show.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* Overlay Content - Bottom Left */}
-        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-12 pb-6 sm:pb-8 z-10">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <div
+            className="w-full h-full bg-gradient-to-b 
+              from-transparent 
+              via-[#0F0A24]/70 
+              via-[55%] 
+              to-[#0F0A24] 
+              to-[100%]"
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-12 pb-10 sm:pb-12 md:pb-16 z-20">
           <h1 className="text-lg sm:text-3xl md:text-5xl font-bold mb-1 sm:mb-4">
             Watch {show.title} Now
           </h1>

@@ -1,69 +1,89 @@
+import React, { useState } from "react";
 import Header from "../Components/Header";
 import { FaUserCircle } from "react-icons/fa";
 
-function ProfilePage() {
+const ProfilePage = () => {
+  // Track active tab
+  const [activeTab, setActiveTab] = useState("Movies");
+
   return (
     <>
       <Header />
 
-      {/* Top padding so content isn't hidden behind the fixed header */}
-      <div className="pt-24 min-h-screen bg-gradient-to-b from-gray-900 to-black text-white px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="max-w-2xl mx-auto bg-gray-800 rounded-xl p-6 sm:p-8 shadow-md">
-          {/* Profile Header */}
-          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-6">
-            {/* Avatar */}
-            <div className="w-24 h-24 rounded-full border-4 border-cyan-500 flex items-center justify-center bg-gray-700 text-cyan-400">
-              <FaUserCircle className="text-[96px]" />
-            </div>
-
-            {/* Info */}
-            <div className="text-center sm:text-left">
-              <h1 className="text-2xl font-bold">Samyak Nimsarkar</h1>
-              <p className="text-sm text-gray-300">samyak@example.com</p>
-            </div>
+      <div className="text-white font-sans pt-12 sm:pt-28 px-6 sm:px-24">
+        {/* Profile Information Section */}
+        <section className="flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row sm:space-x-6 mt-6 sm:mt-12">
+          {/* Profile Image */}
+          <div>
+            <img
+              src="profile-image.jpg" // Replace with actual dynamic image URL
+              alt="Profile"
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-yellow-500 object-cover"
+            />
           </div>
 
-          {/* Divider */}
-          <hr className="my-6 border-gray-700" />
-
-          {/* Form Fields */}
-          <div className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-400 mb-1">
-                Username
-              </label>
-              <input
-                type="text"
-                defaultValue="Samyak Nimsarkar"
-                className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-400 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                defaultValue="samyak@example.com"
-                className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              />
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
-            <button className="w-full sm:w-auto bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-6 rounded-lg">
-              View Watchlist
-            </button>
-            <button className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg">
-              Logout
+          {/* Profile Details */}
+          <div className="text-center sm:text-left">
+            <h1 className="text-xl sm:text-2xl font-semibold">
+              Samyak Nimsarkar
+            </h1>
+            <h2 className="text-base sm:text-xl font-normal">@samyak005</h2>
+            <button className="mt-4 text-yellow-500 hover:underline">
+              Edit Profile
             </button>
           </div>
+        </section>
+
+        {/* Navigation Tabs Section */}
+        <div className="mt-6 sm:mt-14 px-4 sm:px-20">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 overflow-x-auto sm:overflow-x-visible">
+            {["Favourites", "History", "Watch Later", "About"].map((tab) => (
+              <div
+                key={tab}
+                className={`cursor-pointer py-2 px-4 transition-colors text-center sm:text-left ${
+                  activeTab === tab
+                    ? "text-yellow-500 font-semibold tracking-wider" // Active tab style
+                    : "text-gray-400 hover:text-yellow-500 font-semibold tracking-wide" // Inactive tab style with hover
+                }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </div>
+            ))}
+          </div>
+
+          {/* Active Tab Underline */}
+          <div
+            className="h-0.5 bg-slate-500 w-full mt-2"
+            style={{
+              width:
+                activeTab === "Favourites"
+                  ? "100%"
+                  : activeTab === "History"
+                  ? "100%"
+                  : activeTab === "Watch Later"
+                  ? "100%"
+                  : activeTab === "About"
+                  ? "100%"
+                  : "100%",
+              transition: "width 0.3s ease-in-out",
+            }}
+          />
+        </div>
+
+        {/* Shows Section */}
+        <div className="mt-8 sm:mt-14 px-4 sm:px-20">
+          <h3 className="text-2xl sm:text-3xl font-bold text-yellow-500">
+            Shows
+          </h3>
+          <p className="text-lg sm:text-xl text-gray-300 mt-4">
+            Explore your favorite shows here.
+          </p>
+          {/* Add dynamic show cards or content here */}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default ProfilePage;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaHeart, FaRegHeart, FaUserCircle } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom"; // ✅ import useLocation
 import SearchBar from "./SearchBar";
 
 function Header() {
@@ -8,16 +9,13 @@ function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showSearchMobile, setShowSearchMobile] = useState(false);
 
+  const location = useLocation(); // ✅ Get current location
+  const isWatchlistActive = location.pathname === "/watchlist"; // ✅ Check if watchlist page
+
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-
-      if (currentY < 50 || currentY < lastScrollY) {
-        setShowHeader(true);
-      } else {
-        setShowHeader(false);
-      }
-
+      setShowHeader(currentY < 50 || currentY < lastScrollY);
       setLastScrollY(currentY);
     };
 
@@ -33,41 +31,57 @@ function Header() {
         } bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white`}
       >
         <div className="flex items-center justify-between px-5 py-3">
-          {/* Brand Logo */}
-          <Link to="/" className="text-3xl font-bold cursor-pointer">
+          {/* Logo */}
+          <Link to="/" className="text-3xl font-bold">
             RetroToonz
           </Link>
 
-          {/* Search Bar - Desktop/Tablet */}
+          {/* Desktop Search */}
           <div className="hidden sm:flex flex-1 justify-center">
             <div className="mx-5 w-full max-w-xl">
               <SearchBar />
             </div>
           </div>
 
-          {/* Right - Profile and Mobile Search */}
-          <div className="flex items-center gap-3">
+          {/* Right Side Icons */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Search Icon - Mobile */}
             <button
-              className="sm:hidden text-white"
               onClick={() => setShowSearchMobile((prev) => !prev)}
               title="Search"
+              className="text-white p-2 rounded-full hover:bg-gray-700 transition sm:hidden"
             >
-              <FaSearch size={18} />
+              <FiSearch size={20} />
             </button>
 
+            {/* ✅ Watchlist Icon */}
+            <Link
+              to="/watchlist"
+              title="Watchlist"
+              className="text-white hover:text-cyan-400"
+            >
+              {isWatchlistActive ? (
+                <FaHeart size={20} className="text-cyan-400" />
+              ) : (
+                <FaRegHeart size={20} />
+              )}
+            </Link>
+
+            {/* Profile Icon */}
             <Link
               to="/profile"
-              className="flex items-center gap-2 p-2 px-3 rounded-full hover:bg-gray-700 cursor-pointer"
+              title="Profile"
+              className="flex items-center gap-2 p-2 rounded-full hover:bg-gray-700 transition"
             >
-              <FaUserCircle className="text-2xl sm:text-3xl" />
-              <span className="text-sm sm:text-base font-semibold hidden lg:block">
+              <FaUserCircle size={24} />
+              <span className="hidden lg:block font-semibold text-sm sm:text-base">
                 Samyak
               </span>
             </Link>
           </div>
         </div>
 
-        {/* Mobile SearchBar */}
+        {/* SearchBar for Mobile */}
         {showSearchMobile && (
           <div className="w-full sm:hidden px-4 pb-3">
             <SearchBar />

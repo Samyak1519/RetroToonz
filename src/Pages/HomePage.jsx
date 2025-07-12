@@ -18,7 +18,7 @@ const enrich = (arr) =>
       : "/Assets/default.jpg",
   }));
 
-// Sections (manual selection of shows per section)
+// Sections
 const trendingShows = enrich([
   showsData.allShows.find((s) => s.id === "shinchan"),
   showsData.allShows.find((s) => s.id === "pokemon"),
@@ -58,17 +58,30 @@ const newlyAdded = enrich([
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#0F0A24] text-white">
       <Header />
       <HeroBanner shows={trendingShows} />
 
-      <ShowSection sectionTitle="Trending Now" shows={trendingShows} />
-      <ShowSection sectionTitle="Continue Watching" shows={continueWatching} />
+      <ShowSection
+        sectionTitle="Trending Now"
+        shows={trendingShows}
+        bgColor="#0F0A24"
+      />
+      <ShowSection
+        sectionTitle="Continue Watching"
+        shows={continueWatching}
+        bgColor="#0F0A24"
+      />
       <ShowSection
         sectionTitle="Because You Watched..."
         shows={becauseYouWatched}
+        bgColor="#0F0A24"
       />
-      <ShowSection sectionTitle="Newly Added" shows={newlyAdded} />
+      <ShowSection
+        sectionTitle="Newly Added"
+        shows={newlyAdded}
+        bgColor="#0F0A24"
+      />
 
       <RandomPlayButton shows={enrich(showsData.allShows)} />
       <Footer />
