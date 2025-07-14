@@ -12,7 +12,7 @@ const ProfilePage = () => {
 
       <div className="text-white font-sans pt-12 sm:pt-28 px-6 sm:px-24">
         {/* Profile Information Section */}
-        <section className="flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row sm:space-x-6 mt-6 sm:mt-12">
+        <section className="flex flex-col items-center space-y-4 sm:ml-20 sm:space-y-0 sm:flex-row sm:space-x-6 mt-6 sm:mt-12">
           {/* Profile Image */}
           <div>
             <img
@@ -37,7 +37,7 @@ const ProfilePage = () => {
         {/* Navigation Tabs Section */}
         <div className="mt-6 sm:mt-14 px-4 sm:px-20">
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 overflow-x-auto sm:overflow-x-visible">
-            {["Favourites", "History", "Watch Later", "About"].map((tab) => (
+            {["History", "About"].map((tab) => (
               <div
                 key={tab}
                 className={`cursor-pointer py-2 px-4 transition-colors text-center sm:text-left ${
@@ -57,11 +57,7 @@ const ProfilePage = () => {
             className="h-0.5 bg-slate-500 w-full mt-2"
             style={{
               width:
-                activeTab === "Favourites"
-                  ? "100%"
-                  : activeTab === "History"
-                  ? "100%"
-                  : activeTab === "Watch Later"
+                activeTab === "History"
                   ? "100%"
                   : activeTab === "About"
                   ? "100%"

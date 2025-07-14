@@ -1,11 +1,22 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { VscHeart } from "react-icons/vsc";
+import { AiFillHeart } from "react-icons/ai"; // for filled heart
 
 const defaultPoster = "/Assets/default.jpg";
 
 function ShowCard({ id, title, year, thumbnail, tags = [] }) {
+  const [isShortlisted, setIsShortlisted] = useState(false);
+
+  const toggleShortlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsShortlisted((prev) => !prev);
+  };
+
   return (
     <Link to={`/show/${id}`}>
-      <div className="flex flex-col justify-center w-[42vw] sm:w-44 md:w-48 lg:w-56 xl:w-64 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition duration-300 flex-shrink-0">
+      <div className="relative flex flex-col justify-center w-[42vw] sm:w-44 md:w-48 lg:w-56 xl:w-64 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition duration-300 flex-shrink-0">
         {/* Image */}
         <div className="relative w-full pt-[75%] lg:pt-[56.25%] overflow-hidden rounded-t-lg">
           <img
@@ -19,9 +30,21 @@ function ShowCard({ id, title, year, thumbnail, tags = [] }) {
           />
         </div>
 
-        {/* Title, Year, and Tags */}
-        <div className="mt-1 px-2 pb-2 text-black leading-tight">
-          <h3 className="font-medium text-xs sm:text-sm truncate">{title}</h3>
+        {/* Title, Heart Icon, Year, and Tags */}
+        <div className="mt-1 pl-2.5 px-2 pb-2 text-black leading-tight">
+          <div className="flex items-center justify-between">
+            <h3 className="font-medium text-xs sm:text-sm truncate">{title}</h3>
+            <button
+              onClick={toggleShortlist}
+              className="text-red-500 text-xl  sm:text-xl hover:scale-110 transition-transform"
+              title={
+                isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
+              }
+            >
+              {isShortlisted ? <AiFillHeart /> : <VscHeart />}
+            </button>
+          </div>
+
           <p className="text-[10px] sm:text-xs text-gray-600">{year}</p>
 
           <div className="flex flex-wrap gap-1 mt-1">

@@ -18,6 +18,8 @@ const enrich = (arr) =>
       : "/Assets/default.jpg",
   }));
 
+const allShows = enrich(showsData.allShows);
+
 // Sections
 const trendingShows = enrich([
   showsData.allShows.find((s) => s.id === "shinchan"),
@@ -60,7 +62,9 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-[#0F0A24] text-white">
       <Header />
-      <HeroBanner shows={trendingShows} />
+
+      {/* 🔄 All Shows used in rotating HeroBanner */}
+      <HeroBanner shows={allShows} />
 
       <ShowSection
         sectionTitle="Trending Now"
@@ -83,7 +87,7 @@ function HomePage() {
         bgColor="#0F0A24"
       />
 
-      <RandomPlayButton shows={enrich(showsData.allShows)} />
+      <RandomPlayButton shows={allShows} />
       <Footer />
     </div>
   );

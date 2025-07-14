@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { FaArrowLeft, FaPlay, FaStar } from "react-icons/fa";
+import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { useNavigate, useParams } from "react-router-dom";
 import EpisodeSection from "../Components/EpisodeSection";
 import Header from "../Components/Header";
@@ -9,6 +11,11 @@ function ShowDetailsPage() {
   const navigate = useNavigate();
 
   const show = showsData.allShows.find((s) => s.id === id);
+  const [isShortlisted, setIsShortlisted] = useState(false);
+
+  const toggleShortlist = () => {
+    setIsShortlisted((prev) => !prev);
+  };
 
   if (!show) {
     return <p className="text-white p-4">Show not found.</p>;
@@ -19,7 +26,7 @@ function ShowDetailsPage() {
       {/* ✅ Sticky Header */}
       <Header />
 
-      {/* ✅ Poster with back button */}
+      {/* ✅ Poster with Back Button */}
       <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden mt-14 sm:mt-16">
         <img
           src={`/Assets/${show.thumbnail}`}
@@ -60,13 +67,27 @@ function ShowDetailsPage() {
             </p>
           </div>
 
-          {/* Right: Circular Play Button */}
-          <div className="shrink-0">
+          {/* ✅ Right: Heart + Play Button */}
+          <div className="flex items-center gap-4 mr-2 sm:mr-5">
             <button
-              className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 mr-5 rounded-full text-white shadow-md transition"
+              onClick={toggleShortlist}
+              className="text-4xl sm:text-5xl mr-3 sm:mr-5 hover:scale-110 transition-transform"
+              title={
+                isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
+              }
+            >
+              {isShortlisted ? (
+                <VscHeartFilled className="text-red-600" />
+              ) : (
+                <VscHeart className="text-white" />
+              )}
+            </button>
+
+            <button
+              className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 rounded-full text-white shadow-md transition"
               title="Watch Now"
             >
-              <FaPlay className="text-lg" />
+              <FaPlay className="text-lg sm:text-xl" />
             </button>
           </div>
         </div>
