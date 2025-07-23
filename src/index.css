@@ -1,0 +1,19 @@
+/* ✅ Import Nunito from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Apply Nunito globally using Tailwind */
+body {
+    @apply font-sans;
+}
+
+/* ✅ Optional: Custom class if not using Tailwind utility */
+.nunito-regular {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
