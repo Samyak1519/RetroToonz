@@ -8,6 +8,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/watchlist" element={<WatchlistPage />} />
           <Route path="/show/:id" element={<ShowDetailsPage />} />
           <Route path="/watch/:id" element={<VideoPlayerPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
 
         {/* 🔍 Speed Insights for Vercel Core Web Vitals */}
