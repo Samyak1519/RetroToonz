@@ -16,22 +16,26 @@ function RandomPlayButton({ shows }) {
   const handlePlay = () => {
     if (randomShow) {
       const slug = randomShow.title.toLowerCase().replace(/\s+/g, "-");
-      navigate(`/show/${slug}`);
+      navigate(`/watch/${slug}`);
     }
   };
 
   return (
     <button
       onClick={handlePlay}
-      className="fixed bottom-10 right-6 z-50 group
-        bg-white text-cyan-600 hover:text-white hover:bg-cyan-600
-        border border-cyan-500 
-        p-4 rounded-full shadow-2xl overflow-hidden"
-      title="Play Random Show"
+      className="fixed mr-5 mb-2 bottom-10 right-6 z-50 group 
+        bg-gradient-to-r from-cyan-500 to-blue-600
+        hover:from-blue-600 hover:to-cyan-500
+        text-white border-none shadow-xl
+        px-6 py-4 rounded-full flex items-center gap-2 
+        animate-bounce hover:animate-none transition-all duration-300"
+      title="Play a random cartoon"
     >
-      {/* Ring ping effect */}
-      <span className="absolute inline-flex h-12 w-12 rounded-full bg-cyan-400 opacity-20 group-hover:animate-ping"></span>
-      <FaRandom className="relative z-10 text-xl" />
+      {/* Ping ring */}
+      <span className="absolute inline-flex h-14 w-14 rounded-full bg-cyan-400 opacity-30 group-hover:animate-ping -z-10"></span>
+
+      <FaRandom className="text-xl animate-spin-slow" />
+      <span className="font-semibold hidden sm:block">Surprise Me!</span>
     </button>
   );
 }
