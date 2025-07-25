@@ -128,15 +128,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
       {/* Top Bar */}
       {showControls && (
         <div className="absolute top-0 left-0 w-full flex items-center p-4 text-white z-10 bg-gradient-to-b from-black via-transparent">
+          
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (location.key !== "default") {
-                navigate(-1);
-              } else {
-                navigate("/");
-              }
-            }}
+            onClick={() => navigate("/")}
             className="text-white text-xl cursor-pointer"
           >
             <FaArrowLeft />
@@ -183,9 +177,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
       {/* Bottom Controls */}
       {showControls && (
-        <div className="absolute bottom-0 left-0 w-full p-4 z-10 text-white bg-gradient-to-t from-black via-transparent">
+        <div className="absolute bottom-0 left-0 w-full p-5 z-10 text-white bg-gradient-to-t from-black via-transparent px-10">
           {/* Time & Progress Bar */}
-          <div className="flex items-center justify-between text-xs mb-1">
+          <div className="flex items-center justify-between text-s mb-2">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

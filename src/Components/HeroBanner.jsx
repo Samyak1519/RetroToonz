@@ -17,7 +17,7 @@ function HeroBanner({ shows = [] }) {
   const show = shows[index];
 
   const handleStartWatching = () => {
-    navigate(`/show/${show.id}`);
+    navigate(`/watch/${show.id}`); // updated to direct play route
   };
 
   return (
