@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import {
   FaArrowLeft,
-  FaPause,
-  FaPlay,
   FaBackward,
   FaExpand,
   FaForward,
+  FaPause,
+  FaPlay,
   FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ fixed ESLint issue
+  
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
@@ -125,19 +125,24 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
         controls={false}
       />
 
-      {/* Top Bar */}
       {showControls && (
-        <div className="absolute top-0 left-0 w-full flex items-center p-4 text-white z-10 bg-gradient-to-b from-black via-transparent">
-          
-          <button
-            onClick={() => navigate("/")}
-            className="text-white text-xl cursor-pointer"
-          >
-            <FaArrowLeft />
-          </button>
+        <div className="fixed top-0 w-full z-50 transition-transform duration-300 bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white">
+          <div className="flex items-center justify-between px-4 py-3.5 relative">
+            {/* Back Button */}
+            <button
+              onClick={() => navigate(-1)}
+              className="text-white text-xl z-10 sm:ml-4 border-yellow-50 rounded-full p-2 hover:bg-gray-700 transition"
+            >
+              <FaArrowLeft />
+            </button>
 
-          <div className="absolute left-1/2 transform -translate-x-1/2 text-xl font-semibold text-center px-2">
-            {currentShow?.title}
+            {/* Title */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-lg font-semibold text-center px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[70%]">
+              {currentShow?.title}
+            </div>
+
+            {/* Spacer to balance layout */}
+            <div className="w-6" />
           </div>
         </div>
       )}
