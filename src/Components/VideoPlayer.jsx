@@ -191,7 +191,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
       {/* Bottom Controls */}
       {showControls && (
-        <div className="fixed bottom-0 left-0 w-full z-50 px-6 py-4 pb-6 bg-gradient-to-t from-black/70 to-gray-700/30 backdrop-blur-md text-white">
+        <div className="fixed bottom-0 left-0 w-full z-50 px-10 py-4 pb-6 bg-gradient-to-t from-black/70 to-gray-700/30 backdrop-blur-md text-white">
           <div className="flex items-center justify-between text-sm mb-2">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
@@ -208,8 +208,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
           />
 
           <div className="flex justify-between items-center mt-2 text-sm">
-            {/* Desktop Volume */}
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <button onClick={toggleMute}>
                 {isMuted || volume === 0 ? (
                   <FaVolumeMute size={18} />
@@ -234,33 +233,11 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
           </div>
         </div>
       )}
-
-      {/* Mobile Volume (right-side floating) */}
-      {showControls && (
-        <div className="sm:hidden fixed right-3 top-1/2 transform -translate-y-1/2 z-50 flex flex-col items-center gap-2 bg-black/60 p-2 rounded-xl">
-          <button onClick={toggleMute} className="text-white">
-            {isMuted || volume === 0 ? (
-              <FaVolumeMute size={20} />
-            ) : (
-              <FaVolumeUp size={20} />
-            )}
-          </button>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.05"
-            value={isMuted ? 0 : volume}
-            onChange={handleVolumeChange}
-            className="w-24 rotate-[-90deg] origin-center accent-red-600"
-          />
-        </div>
-      )}
     </div>
   );
 };
 
-// Format time helper
+// Helper function
 const formatTime = (time) => {
   const minutes = Math.floor(time / 60)
     .toString()
