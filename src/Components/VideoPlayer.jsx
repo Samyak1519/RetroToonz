@@ -7,9 +7,12 @@ import {
   FaForward,
   FaPause,
   FaPlay,
+  FaTimes,
   FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
+
+
 import { useNavigate } from "react-router-dom";
 
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
@@ -68,15 +71,33 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     resetControlsTimer();
   };
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     const container = containerRef.current;
+    const video = videoRef.current;
+
     if (document.fullscreenElement) {
-      document.exitFullscreen();
+      await document.exitFullscreen();
+      setIsFullscreen(false);
     } else {
-      container
-        .requestFullscreen()
-        .catch((err) => console.error("Fullscreen error:", err));
+      try {
+        await container.requestFullscreen();
+        setIsFullscreen(true);
+
+        // Try locking to landscape on mobile
+        if (
+          typeof window !== "undefined" &&
+          window.screen.orientation &&
+          window.screen.orientation.lock
+        ) {
+          await window.screen.orientation.lock("landscape").catch((err) => {
+            console.warn("Orientation lock failed:", err);
+          });
+        }
+      } catch (err) {
+        console.error("Fullscreen error:", err);
+      }
     }
+
     resetControlsTimer();
   };
 
@@ -137,21 +158,22 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
       />
 
       {/* Top Bar */}
+
       {showControls && (
         <div className="fixed top-0 w-full z-50 transition duration-300 bg-gradient-to-r from-black/70 to-gray-700/30 backdrop-blur-md text-white">
-          <div className="flex items-center justify-between px-4 py-3.5 relative">
-            <button
-              onClick={() => navigate(-1)}
-              className="text-white text-xl z-10 sm:ml-4 rounded-full p-2 hover:bg-gray-700 transition"
-            >
-              <FaArrowLeft />
-            </button>
-
+          <div className="flex items-center justify-end px-5 py-3.5 relative">
+            {/* Title - stays centered */}
             <div className="absolute left-1/2 transform -translate-x-1/2 text-lg font-semibold text-center px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[70%]">
               {currentShow?.title}
             </div>
 
-            <div className="w-6" />
+            {/* Close Button - top-right */}
+            <button
+              onClick={() => navigate("/")}
+              className="text-white text-xl z-10 rounded-full p-2 hover:bg-gray-700 transition"
+            >
+              <FaTimes />
+            </button>
           </div>
         </div>
       )}
@@ -191,8 +213,8 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
       {/* Bottom Controls */}
       {showControls && (
-        <div className="fixed bottom-0 left-0 w-full z-50 px-10 py-4 pb-6 bg-gradient-to-t from-black/70 to-gray-700/30 backdrop-blur-md text-white">
-          <div className="flex items-center justify-between text-sm mb-2">
+        <div className="fixed bottom-0 left-0 w-full z-50 px-10 py-4 bg-gradient-to-t from-black/70 to-gray-700/30 backdrop-blur-md text-white">
+          <div className="flex items-center justify-between text-sm my-0.5">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
@@ -204,7 +226,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
             value={currentTime}
             step="0.1"
             onChange={handleProgressChange}
-            className="w-full accent-red-600"
+            className="w-full accent-cyan-500 h-1 cursor-pointer mb-3"
           />
 
           <div className="flex justify-between items-center mt-2 text-sm">
@@ -223,7 +245,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                 step="0.05"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-24 accent-red-600"
+                className="w-full accent-red-600 h-1 cursor-pointer"
               />
             </div>
 
@@ -237,7 +259,6 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   );
 };
 
-// Helper function
 const formatTime = (time) => {
   const minutes = Math.floor(time / 60)
     .toString()
