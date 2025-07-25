@@ -1,50 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  FaCompress,
-  FaExpand,
+  FaArrowLeft,
   FaPause,
   FaPlay,
-  FaRedo,
-  FaStepBackward,
-  FaStepForward,
+  FaBackward,
+  FaExpand,
+  FaForward,
   FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const formatTime = (seconds) => {
-  if (isNaN(seconds)) return "00:00";
-  const m = Math.floor(seconds / 60)
-    .toString()
-    .padStart(2, "0");
-  const s = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
-  return `${m}:${s}`;
-};
-
-const VideoPlayer = ({ src, poster, title, showId, nextId }) => {
+const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ fixed ESLint issue
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showControls, setShowControls] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [duration, setDuration] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isBuffering, setIsBuffering] = useState(true);
-  const [hasEnded, setHasEnded] = useState(false);
-  const [countdown, setCountdown] = useState(5);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const controlsTimeoutRef = useRef(null);
 
-  const hideTimeout = useRef(null);
-  const countdownInterval = useRef(null);
-
-  const togglePlay = () => {
+  const togglePlayPause = () => {
     const video = videoRef.current;
-    if (!video) return;
     if (video.paused) {
       video.play();
       setIsPlaying(true);
@@ -52,255 +34,211 @@ const VideoPlayer = ({ src, poster, title, showId, nextId }) => {
       video.pause();
       setIsPlaying(false);
     }
+    resetControlsTimer();
   };
 
-  const skipTime = (sec) => {
-    if (videoRef.current) {
-      videoRef.current.currentTime += sec;
-    }
+  const handleTimeUpdate = () => {
+    setCurrentTime(videoRef.current.currentTime);
   };
 
-  const handleSeek = (e) => {
-    const time = parseFloat(e.target.value);
-    videoRef.current.currentTime = time;
-    setCurrentTime(time);
+  const handleLoadedMetadata = () => {
+    setDuration(videoRef.current.duration);
   };
 
-  const handleVolume = (e) => {
-    const vol = parseFloat(e.target.value);
-    videoRef.current.volume = vol;
-    setVolume(vol);
-    setIsMuted(vol === 0);
+  const handleProgressChange = (e) => {
+    const newTime = parseFloat(e.target.value);
+    videoRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+    resetControlsTimer();
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    videoRef.current.volume = newVolume;
+    setIsMuted(newVolume === 0);
+    resetControlsTimer();
   };
 
   const toggleMute = () => {
     const video = videoRef.current;
-    video.muted = !isMuted;
-    setIsMuted(!isMuted);
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+    resetControlsTimer();
   };
 
   const toggleFullscreen = () => {
     const container = containerRef.current;
-    if (!container) return;
-
-    if (!document.fullscreenElement) {
-      container.requestFullscreen?.();
-      setIsFullscreen(true);
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
     } else {
-      document.exitFullscreen?.();
-      setIsFullscreen(false);
+      container
+        .requestFullscreen()
+        .catch((err) => console.error("Fullscreen error:", err));
     }
+    resetControlsTimer();
   };
 
-  const resetHideTimer = () => {
+  const handleVideoEnd = () => {
+    goToNextShow();
+  };
+
+  const resetControlsTimer = () => {
     setShowControls(true);
-    clearTimeout(hideTimeout.current);
-    hideTimeout.current = setTimeout(() => setShowControls(false), 3000);
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
   };
 
-  // ⌨️ Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === " ") {
-        e.preventDefault();
-        togglePlay();
-      }
-      if (e.key === "ArrowRight") skipTime(10);
-      if (e.key === "ArrowLeft") skipTime(-10);
-      if (e.key.toLowerCase() === "m") toggleMute();
-      if (e.key.toLowerCase() === "f") toggleFullscreen();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMuted, isFullscreen]);
+  const handleOverlayClick = () => {
+    resetControlsTimer();
+  };
 
-  // Resume playback from last position
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
-
-    const saved = localStorage.getItem(`progress-${showId}`);
-    if (saved) {
-      video.currentTime = parseFloat(saved);
+    if (video) {
+      video.play().catch(() => setIsPlaying(false));
+      video.volume = volume;
     }
-
-    const updateProgress = () => {
-      setCurrentTime(video.currentTime);
-      localStorage.setItem(`progress-${showId}`, video.currentTime);
-    };
-
-    const onLoadedMetadata = () => {
-      setDuration(video.duration);
-      setIsBuffering(false);
-    };
-
-    const onWaiting = () => setIsBuffering(true);
-    const onPlaying = () => setIsBuffering(false);
-
-    const onEnded = () => {
-      setHasEnded(true);
-      countdownInterval.current = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(countdownInterval.current);
-            navigate(`/watch/${nextId}`);
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    };
-
-    video.addEventListener("timeupdate", updateProgress);
-    video.addEventListener("loadedmetadata", onLoadedMetadata);
-    video.addEventListener("waiting", onWaiting);
-    video.addEventListener("playing", onPlaying);
-    video.addEventListener("ended", onEnded);
-
-    return () => {
-      video.removeEventListener("timeupdate", updateProgress);
-      video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      video.removeEventListener("waiting", onWaiting);
-      video.removeEventListener("playing", onPlaying);
-      video.removeEventListener("ended", onEnded);
-      clearInterval(countdownInterval.current);
-    };
-  }, [showId, nextId]);
-
-  // Auto-hide controls
-  useEffect(() => {
-    resetHideTimer();
-    const handleMouseMove = () => resetHideTimer();
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearTimeout(hideTimeout.current);
-    };
-  }, []);
+    resetControlsTimer();
+  }, [currentShow]);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full max-w-6xl aspect-video mx-auto overflow-hidden bg-black rounded-lg shadow-xl"
+      className="relative w-full h-screen bg-black"
+      onMouseMove={resetControlsTimer}
+      onClick={handleOverlayClick}
     >
       {/* Video */}
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
-        preload="auto"
-        className="w-full h-full object-cover"
-        onClick={togglePlay}
+        src={currentShow?.videoUrl}
+        className="w-full h-full object-contain"
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleVideoEnd}
         autoPlay
+        controls={false}
       />
 
-      {/* Loader */}
-      {isBuffering && (
-        <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xl z-40">
-          Loading...
+      {/* Top Bar */}
+      {showControls && (
+        <div className="absolute top-0 left-0 w-full flex items-center p-4 text-white z-10 bg-gradient-to-b from-black via-transparent">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (location.key !== "default") {
+                navigate(-1);
+              } else {
+                navigate("/");
+              }
+            }}
+            className="text-white text-xl cursor-pointer"
+          >
+            <FaArrowLeft />
+          </button>
+
+          <div className="absolute left-1/2 transform -translate-x-1/2 text-xl font-semibold text-center px-2">
+            {currentShow?.title}
+          </div>
         </div>
       )}
 
-      {/* Controls */}
-      {!hasEnded && (
-        <div
-          className={`absolute inset-0 bg-black/70 text-white flex flex-col justify-between transition-opacity duration-500 ${
-            showControls ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          {/* Title */}
-          <div className="absolute top-4 left-0 right-0 text-center z-20">
-            <h2 className="text-lg sm:text-xl font-bold">
-              Now Playing: {title}
-            </h2>
+      {/* Center Controls */}
+      {showControls && (
+        <div className="absolute inset-0 flex items-center justify-center space-x-6 z-10">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPreviousShow();
+            }}
+            className="bg-black bg-opacity-60 p-3 rounded-full text-white"
+          >
+            <FaBackward size={20} />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              togglePlayPause();
+            }}
+            className="bg-black bg-opacity-60 p-4 rounded-full text-white"
+          >
+            {isPlaying ? <FaPause size={24} /> : <FaPlay size={24} />}
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNextShow();
+            }}
+            className="bg-black bg-opacity-60 p-3 rounded-full text-white"
+          >
+            <FaForward size={20} />
+          </button>
+        </div>
+      )}
+
+      {/* Bottom Controls */}
+      {showControls && (
+        <div className="absolute bottom-0 left-0 w-full p-4 z-10 text-white bg-gradient-to-t from-black via-transparent">
+          {/* Time & Progress Bar */}
+          <div className="flex items-center justify-between text-xs mb-1">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
+          <input
+            type="range"
+            min="0"
+            max={duration}
+            value={currentTime}
+            step="0.1"
+            onChange={handleProgressChange}
+            className="w-full accent-red-600"
+          />
 
-          {/* Center Controls */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-6 z-20">
-            <button onClick={() => skipTime(-10)} className="text-3xl">
-              <FaStepBackward />
-            </button>
-            <button
-              onClick={togglePlay}
-              className="bg-white text-black p-4 rounded-full text-2xl"
-            >
-              {isPlaying ? <FaPause /> : <FaPlay />}
-            </button>
-            <button onClick={() => skipTime(10)} className="text-3xl">
-              <FaStepForward />
-            </button>
-          </div>
-
-          {/* Bottom Controls */}
-          <div className="absolute bottom-4 left-0 right-0 px-6 flex flex-col gap-3 z-20">
-            {/* Time */}
-            <div className="flex justify-between text-sm text-gray-300">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-
-            {/* Progress */}
-            <input
-              type="range"
-              min="0"
-              max={duration}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full h-1 bg-white appearance-none"
-            />
-
-            {/* Volume + Fullscreen */}
-            <div className="flex items-center justify-between text-xl pt-1">
-              <div className="flex items-center gap-3">
-                <button onClick={toggleMute}>
-                  {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-                </button>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={handleVolume}
-                  className="w-24 h-1"
-                />
-              </div>
-              <button onClick={toggleFullscreen}>
-                {isFullscreen ? <FaCompress /> : <FaExpand />}
+          {/* Volume & Fullscreen */}
+          <div className="flex justify-between items-center mt-2 text-sm">
+            <div className="flex items-center gap-2">
+              <button onClick={toggleMute}>
+                {isMuted || volume === 0 ? (
+                  <FaVolumeMute size={18} />
+                ) : (
+                  <FaVolumeUp size={18} />
+                )}
               </button>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={isMuted ? 0 : volume}
+                onChange={handleVolumeChange}
+                className="w-24 accent-red-600"
+              />
             </div>
-          </div>
-        </div>
-      )}
 
-      {/* End Screen */}
-      {hasEnded && (
-        <div className="absolute inset-0 bg-black/90 text-white flex flex-col items-center justify-center gap-4 text-center z-50">
-          <h2 className="text-2xl font-bold">
-            Next episode in {countdown} seconds...
-          </h2>
-          <div className="flex gap-4 text-xl">
-            <button
-              onClick={() => {
-                videoRef.current.currentTime = 0;
-                setHasEnded(false);
-                videoRef.current.play();
-                setIsPlaying(true);
-              }}
-              className="bg-white text-black px-4 py-2 rounded shadow"
-            >
-              <FaRedo className="inline mr-2" /> Replay
-            </button>
-            <button
-              onClick={() => navigate(`/watch/${nextId}`)}
-              className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white shadow"
-            >
-              Next Episode →
+            <button onClick={toggleFullscreen}>
+              <FaExpand size={18} />
             </button>
           </div>
         </div>
       )}
     </div>
   );
+};
+
+// Helper function
+const formatTime = (time) => {
+  const minutes = Math.floor(time / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = Math.floor(time % 60)
+    .toString()
+    .padStart(2, "0");
+  return `${minutes}:${seconds}`;
 };
 
 export default VideoPlayer;
