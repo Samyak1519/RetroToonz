@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  FaArrowLeft,
   FaBackward,
   FaCompress,
   FaExpand,
@@ -11,7 +10,6 @@ import {
   FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
-
 
 import { useNavigate } from "react-router-dom";
 

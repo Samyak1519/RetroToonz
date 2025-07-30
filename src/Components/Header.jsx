@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Header() {
@@ -10,8 +10,10 @@ function Header() {
   const [showSearchMobile, setShowSearchMobile] = useState(false);
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const [clickTimer, setClickTimer] = useState(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const isWatchlistActive = location.pathname === "/watchlist";
 
   // Scroll Hide Header
@@ -25,17 +27,27 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Easter Egg logic
+  // Easter Egg & Home Redirect logic
   const handleLogoClick = () => {
     const newCount = logoClickCount + 1;
+    setLogoClickCount(newCount);
+
+    // Reset counter after 5 seconds of inactivity
+    if (clickTimer) clearTimeout(clickTimer);
+    setClickTimer(
+      setTimeout(() => {
+        setLogoClickCount(0);
+      }, 5000)
+    );
+
     if (newCount === 13) {
       setShowEasterEgg(true);
       setLogoClickCount(0);
       setTimeout(() => {
         setShowEasterEgg(false);
       }, 5000); // auto-hide after 5s
-    } else {
-      setLogoClickCount(newCount);
+    } else if (newCount === 1) {
+      navigate("/");
     }
   };
 
@@ -52,7 +64,7 @@ function Header() {
         } bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white`}
       >
         <div className="flex items-center justify-between px-5 py-3 cursor-pointer">
-          {/* Logo with easter egg click */}
+          {/* Logo with Easter Egg click */}
           <div
             onClick={handleLogoClick}
             className="text-3xl font-bold cursor-pointer"
