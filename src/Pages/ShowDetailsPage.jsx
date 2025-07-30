@@ -4,6 +4,7 @@ import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { useNavigate, useParams } from "react-router-dom";
 import EpisodeSection from "../Components/EpisodeSection";
 import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import showsData from "../Data/Shows.json";
 
 function ShowDetailsPage() {
@@ -115,6 +116,8 @@ function ShowDetailsPage() {
         {/* ✅ Episodes */}
         <EpisodeSection poster={`/Assets/${show.thumbnail}`} />
       </div>
+
+      <Footer />
     </div>
   );
 }

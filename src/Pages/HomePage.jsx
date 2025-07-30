@@ -9,7 +9,7 @@ import ShowSection from "../Components/ShowSection";
 // JSON Data
 import showsData from "../Data/Shows.json";
 
-// Automatically map thumbnails from public/Assets with fallback
+// Add full image path if missing
 const enrich = (arr) =>
   arr.map((show) => ({
     ...show,
@@ -18,52 +18,30 @@ const enrich = (arr) =>
       : "/Assets/default.jpg",
   }));
 
+// Utility to get N random shows
+function getRandomShows(showList, count) {
+  const shuffled = [...showList].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+// Enriched shows
 const allShows = enrich(showsData.allShows);
 
-// Sections
-const trendingShows = enrich([
-  showsData.allShows.find((s) => s.id === "shinchan"),
-  showsData.allShows.find((s) => s.id === "pokemon"),
-  showsData.allShows.find((s) => s.id === "tom-and-jerry"),
-  showsData.allShows.find((s) => s.id === "doraemon"),
-  showsData.allShows.find((s) => s.id === "courage"),
-  showsData.allShows.find((s) => s.id === "chhota-bheem"),
-]);
-
-const continueWatching = enrich([
-  showsData.allShows.find((s) => s.id === "perman"),
-  showsData.allShows.find((s) => s.id === "ninja-hattori"),
-  showsData.allShows.find((s) => s.id === "oswald"),
-  showsData.allShows.find((s) => s.id === "oggy"),
-  showsData.allShows.find((s) => s.id === "motu-patlu"),
-  showsData.allShows.find((s) => s.id === "roll-no-21"),
-]);
-
-const becauseYouWatched = enrich([
-  showsData.allShows.find((s) => s.id === "tom-and-jerry"),
-  showsData.allShows.find((s) => s.id === "oswald"),
-  showsData.allShows.find((s) => s.id === "ninja-hattori"),
-  showsData.allShows.find((s) => s.id === "chhota-bheem"),
-  showsData.allShows.find((s) => s.id === "doraemon"),
-  showsData.allShows.find((s) => s.id === "roll-no-21"),
-]);
-
-const newlyAdded = enrich([
-  showsData.allShows.find((s) => s.id === "pokemon"),
-  showsData.allShows.find((s) => s.id === "ninja-hattori"),
-  showsData.allShows.find((s) => s.id === "oggy"),
-  showsData.allShows.find((s) => s.id === "courage"),
-  showsData.allShows.find((s) => s.id === "shinchan"),
-]);
+// Randomized Sections
+const trendingShows = getRandomShows(allShows, 6);
+const continueWatching = getRandomShows(allShows, 6);
+const becauseYouWatched = getRandomShows(allShows, 6);
+const newlyAdded = getRandomShows(allShows, 6);
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-[#0F0A24] text-white">
       <Header />
 
-      {/* 🔄 All Shows used in rotating HeroBanner */}
+      {/* Hero Banner with all shows */}
       <HeroBanner shows={allShows} />
 
+      {/* Randomized Sections */}
       <ShowSection
         sectionTitle="Trending Now"
         shows={trendingShows}

@@ -4,11 +4,17 @@ import { useNavigate } from "react-router-dom";
 function HeroBanner({ shows = [] }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % shows.length);
-    }, 7000);
+      setFade(false); // start fade-out
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % shows.length);
+        setFade(true); // start fade-in
+      }, 400); // fade-out duration
+    }, 5000); // 5 seconds interval
+
     return () => clearInterval(interval);
   }, [shows.length]);
 
@@ -17,7 +23,7 @@ function HeroBanner({ shows = [] }) {
   const show = shows[index];
 
   const handleStartWatching = () => {
-    navigate(`/watch/${show.id}`); // updated to direct play route
+    navigate(`/watch/${show.id}`);
   };
 
   return (
@@ -31,7 +37,9 @@ function HeroBanner({ shows = [] }) {
           key={show.id}
           src={show.thumbnail}
           alt={show.title}
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+            fade ? "opacity-100" : "opacity-0"
+          }`}
         />
 
         {/* Gradient Overlay */}
@@ -71,15 +79,20 @@ function HeroBanner({ shows = [] }) {
           <button
             onClick={handleStartWatching}
             className="
-              text-xs sm:text-sm 
-              md:text-xs 
-              lg:text-base 
-              bg-cyan-500 hover:bg-cyan-600 text-white font-semibold 
-              px-4 py-2 sm:px-5 sm:py-2.5 md:px-4 md:py-2 lg:px-6 lg:py-3 
-              rounded-lg transition-all
-            "
+    relative group inline-flex items-center
+    text-white text-sm sm:text-base md:text-base font-medium
+    px-6 py-3
+    bg-cyan-600 hover:bg-cyan-500
+    rounded-full shadow-md shadow-cyan-800/30
+    transition-all duration-300 ease-in-out
+    focus:outline-none
+  "
           >
-            Start Watching
+            <span className="relative z-10">Start Watching</span>
+            <span
+              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 
+      bg-white/10"
+            ></span>
           </button>
         </div>
       </div>

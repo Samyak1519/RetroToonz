@@ -37,7 +37,7 @@
       "language": "Hindi",
       "rating": "8.8",
       "views": "25k",
-      "videoUrl": "/Videos/doraemon.mkv"
+      "videoUrl": "/Videos/doraemon.mp4"
     },
     {
       "id": "motu-patlu",
@@ -143,7 +143,19 @@
       "views": "30k",
       "videoUrl": "/Videos/shinchan.mp4"
     },
-
+    {
+      "id": "strawberry-shortcake",
+      "title": "Strawberry Shortcake",
+      "year": "2009",
+      "thumbnail": "strawberryShortcake.jpg",
+      "tags": ["Adventure", "Friendship"],
+      "description": "Strawberry Shortcake and her friends go on sweet adventures filled with fun, friendship, and positivity in their colorful world.",
+      "duration": "1 hr 25 min",
+      "language": "English",
+      "rating": "8.2",
+      "views": "18k",
+      "videoUrl": "/Videos/strawberry_shortcake.mp4"
+    },
     {
       "id": "tom-and-jerry",
       "title": "Tom and Jerry",
