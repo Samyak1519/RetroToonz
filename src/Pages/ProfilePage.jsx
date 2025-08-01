@@ -1,6 +1,11 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import Foooter from "../Components/Footer";
 import Header from "../Components/Header";
+=======
+import Header from "../Components/Header";
+import Foooter from "../Components/Footer";
+>>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("Movies");

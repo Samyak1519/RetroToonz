@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+=======
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+>>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
 
 function ErrorPage() {
   const navigate = useNavigate();

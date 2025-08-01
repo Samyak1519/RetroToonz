@@ -3,8 +3,13 @@ import { FaArrowLeft, FaPlay, FaStar } from "react-icons/fa";
 import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { useNavigate, useParams } from "react-router-dom";
 import EpisodeSection from "../Components/EpisodeSection";
+<<<<<<< HEAD
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+=======
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+>>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
 import showsData from "../Data/Shows.json";
 
 function ShowDetailsPage() {

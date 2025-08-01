@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/react";
+<<<<<<< HEAD
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
@@ -11,6 +12,15 @@ import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
+=======
+import HomePage from "./Pages/HomePage";
+import Login from "./Pages/LoginPage";
+import ProfilePage from "./Pages/ProfilePage";
+import ShowDetailsPage from "./Pages/ShowDetailsPage";
+import VideoPlayerPage from "./Pages/VideoPlayerPage";
+import WatchlistPage from "./Pages/WatchlistPage";
+import ErrorPage from "./Pages/ErrorPage";
+>>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
 
 function App() {
   return (
@@ -23,8 +33,11 @@ function App() {
           <Route path="/watchlist" element={<WatchlistPage />} />
           <Route path="/show/:id" element={<ShowDetailsPage />} />
           <Route path="/watch/:id" element={<VideoPlayerPage />} />
+<<<<<<< HEAD
           <Route path="/comingsoon" element={<ComingSoon />} />
           <Route path="/search" element={<SearchResultsPage />} />
+=======
+>>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
           <Route path="*" element={<ErrorPage />} />
         </Routes>
 
