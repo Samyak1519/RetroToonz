@@ -37,9 +37,8 @@ function HeroBanner({ shows = [] }) {
           key={show.id}
           src={show.thumbnail}
           alt={show.title}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-            fade ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${fade ? "opacity-100" : "opacity-0"
+            }`}
         />
 
         {/* Gradient Overlay */}
