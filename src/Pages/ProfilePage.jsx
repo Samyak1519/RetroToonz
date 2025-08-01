@@ -1,11 +1,6 @@
 import { useState } from "react";
-<<<<<<< HEAD
-import Foooter from "../Components/Footer";
-import Header from "../Components/Header";
-=======
 import Header from "../Components/Header";
 import Foooter from "../Components/Footer";
->>>>>>> 3ea8f468a04a22cbae3c34b1da6d24830d81c8ba
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("Movies");
@@ -41,11 +36,10 @@ const ProfilePage = () => {
             {["History", "About"].map((tab) => (
               <div
                 key={tab}
-                className={`cursor-pointer py-2 px-4 transition-colors text-center sm:text-left ${
-                  activeTab === tab
+                className={`cursor-pointer py-2 px-4 transition-colors text-center sm:text-left ${activeTab === tab
                     ? "text-yellow-500 font-semibold tracking-wider"
                     : "text-gray-400 hover:text-yellow-500 font-semibold tracking-wide"
-                }`}
+                  }`}
                 onClick={() => setActiveTab(tab)}
               >
                 {tab}
