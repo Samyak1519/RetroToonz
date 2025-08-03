@@ -29,9 +29,9 @@ const allShows = enrich(showsData.allShows);
 
 // Randomized Sections
 const trendingShows = getRandomShows(allShows, 6);
-const continueWatching = getRandomShows(allShows, 6);
+const continueWatching = getRandomShows(allShows, 5);
 const becauseYouWatched = getRandomShows(allShows, 6);
-const newlyAdded = getRandomShows(allShows, 6);
+const newlyAdded = getRandomShows(allShows, 4);
 
 function HomePage() {
   return (
@@ -42,6 +42,11 @@ function HomePage() {
       <HeroBanner shows={allShows} />
 
       {/* Randomized Sections */}
+      <ShowSection
+        sectionTitle="Newly Added"
+        shows={newlyAdded}
+        bgColor="#0F0A24"
+      />
       <ShowSection
         sectionTitle="Trending Now"
         shows={trendingShows}
@@ -55,11 +60,6 @@ function HomePage() {
       <ShowSection
         sectionTitle="Because You Watched..."
         shows={becauseYouWatched}
-        bgColor="#0F0A24"
-      />
-      <ShowSection
-        sectionTitle="Newly Added"
-        shows={newlyAdded}
         bgColor="#0F0A24"
       />
 

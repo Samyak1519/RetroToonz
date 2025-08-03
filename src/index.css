@@ -17,3 +17,15 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
+/* Hide all scrollbars globally */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
