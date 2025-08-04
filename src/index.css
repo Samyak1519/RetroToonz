@@ -8,7 +8,11 @@
 /* ✅ Apply Nunito globally using Tailwind */
 body {
     @apply font-sans;
+    background: linear-gradient(135deg, #0d1b2a, #1c1132, #082e38);
+    margin: 0;
 }
+
+
 
 /* ✅ Optional: Custom class if not using Tailwind utility */
 .nunito-regular {
