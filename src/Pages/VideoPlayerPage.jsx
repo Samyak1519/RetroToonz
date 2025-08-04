@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import VideoPlayer from "../Components/VideoPlayer";
 import showsData from "../Data/Shows.json";
+import PageWrapper from "../Components/PageWrapper";
 
 function VideoPlayerPage() {
   const { id } = useParams();
@@ -28,11 +29,15 @@ function VideoPlayerPage() {
   }
 
   return (
-    <VideoPlayer
-      currentShow={currentShow}
-      goToNextShow={goToNextShow}
-      goToPreviousShow={goToPreviousShow}
-    />
+    <>
+      <PageWrapper>
+        <VideoPlayer
+          currentShow={currentShow}
+          goToNextShow={goToNextShow}
+          goToPreviousShow={goToPreviousShow}
+        />
+      </PageWrapper>
+    </>
   );
 }
 
