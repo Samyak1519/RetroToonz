@@ -1,5 +1,3 @@
-// src/Pages/HomePage.jsx
-
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import HeroBanner from "../Components/HeroBanner";
@@ -35,35 +33,37 @@ const newlyAdded = getRandomShows(allShows, 4);
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-[#0F0A24] text-white">
+    <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
       <Header />
 
-      {/* Hero Banner with all shows */}
-      <HeroBanner shows={allShows} />
+      {/* Main content grows to push footer down if short */}
+      <main className="flex-grow">
+        <HeroBanner shows={allShows} />
 
-      {/* Randomized Sections */}
-      <ShowSection
-        sectionTitle="Newly Added"
-        shows={newlyAdded}
-        bgColor="#0F0A24"
-      />
-      <ShowSection
-        sectionTitle="Trending Now"
-        shows={trendingShows}
-        bgColor="#0F0A24"
-      />
-      <ShowSection
-        sectionTitle="Continue Watching"
-        shows={continueWatching}
-        bgColor="#0F0A24"
-      />
-      <ShowSection
-        sectionTitle="Because You Watched..."
-        shows={becauseYouWatched}
-        bgColor="#0F0A24"
-      />
+        <ShowSection
+          sectionTitle="Newly Added"
+          shows={newlyAdded}
+          bgColor="#0F0A24"
+        />
+        <ShowSection
+          sectionTitle="Trending Now"
+          shows={trendingShows}
+          bgColor="#0F0A24"
+        />
+        <ShowSection
+          sectionTitle="Continue Watching"
+          shows={continueWatching}
+          bgColor="#0F0A24"
+        />
+        <ShowSection
+          sectionTitle="Because You Watched..."
+          shows={becauseYouWatched}
+          bgColor="#0F0A24"
+        />
 
-      <RandomPlayButton shows={allShows} />
+        <RandomPlayButton shows={allShows} />
+      </main>
+
       <Footer />
     </div>
   );
