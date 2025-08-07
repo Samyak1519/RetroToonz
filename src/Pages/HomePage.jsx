@@ -30,6 +30,7 @@ const allShows = enrich(showsData.allShows);
 const newlyAddedTitles = [
   "Ben 10",
   "Kid vs Kat",
+  "Kiteretsu",
   "Mr. Bean",
   "Phineas and Ferb",
   "SpongeBob Square Pants",

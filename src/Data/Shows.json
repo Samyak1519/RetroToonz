@@ -66,6 +66,19 @@
       "videoUrl": "/Videos/kid_vs_kat.mp4"
     },
     {
+      "id": "kiteretsu",
+      "title": "Kiteretsu",
+      "year": "1988",
+      "thumbnail": "Kiteretsu.jpg",
+      "tags": ["Comedy", "Adventure"],
+      "description": "A genius boy invents amazing gadgets with his robot friend Korosuke.",
+      "duration": "22 min",
+      "language": "Hindi",
+      "rating": "8.4",
+      "views": "12k",
+      "videoUrl": "/Videos/kiteretsu.mp4"
+    },
+    {
       "id": "mr-bean",
       "title": "Mr. Bean",
       "year": "1990",
