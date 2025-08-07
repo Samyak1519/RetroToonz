@@ -5,7 +5,6 @@ import PageWrapper from "../Components/PageWrapper";
 import RandomPlayButton from "../Components/RandomPlayButton";
 import ShowSection from "../Components/ShowSection";
 
-
 // JSON Data
 import showsData from "../Data/Shows.json";
 
@@ -27,11 +26,24 @@ function getRandomShows(showList, count) {
 // Enriched shows
 const allShows = enrich(showsData.allShows);
 
+// Specific "Newly Added" show titles
+const newlyAddedTitles = [
+  "Ben 10",
+  "Kid vs Kat",
+  "Mr. Bean",
+  "Phineas and Ferb",
+  "SpongeBob Square Pants",
+];
+
+// Get only those shows and sort alphabetically by title
+const newlyAdded = allShows
+  .filter((show) => newlyAddedTitles.includes(show.title))
+  .sort((a, b) => a.title.localeCompare(b.title));
+
 // Randomized Sections
 const trendingShows = getRandomShows(allShows, 6);
 const continueWatching = getRandomShows(allShows, 5);
 const becauseYouWatched = getRandomShows(allShows, 6);
-const newlyAdded = getRandomShows(allShows, 4);
 
 function HomePage() {
   return (
