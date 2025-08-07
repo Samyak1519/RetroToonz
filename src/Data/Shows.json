@@ -1,10 +1,23 @@
 {
   "allShows": [
     {
+      "id": "ben10",
+      "title": "Ben 10",
+      "year": "2005",
+      "thumbnail": "Ben_10.jpg",
+      "tags": ["Action", "Sci-Fi"],
+      "description": "A young boy uses a mysterious watch to transform into alien heroes and save the world from evil threats.",
+      "duration": "1 hr 45 min",
+      "language": "English",
+      "rating": "8.7",
+      "views": "28k",
+      "videoUrl": "/Videos/ben_10.mp4"
+    },
+    {
       "id": "chhota-bheem",
       "title": "Chhota Bheem",
       "year": "2008",
-      "thumbnail": "chootabheem.jpg",
+      "thumbnail": "Choota_Bheem.jpg",
       "tags": ["Adventure"],
       "description": "Bheem, a brave and strong boy from Dholakpur, takes on villains and saves the day using wisdom and strength.",
       "duration": "1 hr 32 min",
@@ -17,7 +30,7 @@
       "id": "courage",
       "title": "Courage: The Cowardly Dog",
       "year": "1994",
-      "thumbnail": "courageTheCowardlyDog.jpg",
+      "thumbnail": "Courage_The_Cowardly_Dog.jpg",
       "tags": ["Comedy", "Horror"],
       "description": "A timid dog named Courage fights supernatural forces to protect his owners in the middle of Nowhere.",
       "duration": "1 hr 45 min",
@@ -30,7 +43,7 @@
       "id": "doraemon",
       "title": "Doraemon",
       "year": "2005",
-      "thumbnail": "doraemon_poster.jpg",
+      "thumbnail": "Doraemon.jpg",
       "tags": ["Sci-Fi", "Comedy"],
       "description": "A robotic cat from the future helps Nobita tackle everyday problems with futuristic gadgets.",
       "duration": "2 hr 5 min",
@@ -40,17 +53,30 @@
       "videoUrl": "/Videos/doraemon.mp4"
     },
     {
-      "id": "motu-patlu",
-      "title": "Motu Patlu",
-      "year": "2012",
-      "thumbnail": "motupatlu.jpg",
-      "tags": ["Comedy"],
-      "description": "Two friends, Motlu and Patlu, find themselves in hilarious situations while solving problems in Furfuri Nagar.",
+      "id": "kid-vs-kat",
+      "title": "Kid vs Kat",
+      "year": "2008",
+      "thumbnail": "kid_vs_kat.jpg",
+      "tags": ["Action", "Comedy", "Sci-Fi"],
+      "description": "When Coop's little sister adopts a mysterious hairless cat, he discovers it's actually an evil alien, and a battle of wits begins.",
       "duration": "1 hr 20 min",
-      "language": "Hindi",
-      "rating": "7.9",
-      "views": "19k",
-      "videoUrl": "/Videos/motuPatlu.mp4"
+      "language": "English",
+      "rating": "8.1",
+      "views": "21k",
+      "videoUrl": "/Videos/kid_vs_kat.mp4"
+    },
+    {
+      "id": "mr-bean",
+      "title": "Mr. Bean",
+      "year": "1990",
+      "thumbnail": "mrBean.jpg",
+      "tags": ["Comedy", "Classic"],
+      "description": "The eccentric and childlike Mr. Bean turns everyday tasks into hilarious challenges with minimal dialogue.",
+      "duration": "1 hr 30 min",
+      "language": "English",
+      "rating": "8.9",
+      "views": "26k",
+      "videoUrl": "/Videos/mrBean.mp4"
     },
     {
       "id": "ninja-hattori",
@@ -105,6 +131,19 @@
       "videoUrl": "/Videos/perman.mp4"
     },
     {
+      "id": "phineas-and-ferb",
+      "title": "Phineas and Ferb",
+      "year": "2007",
+      "thumbnail": "Phineas_And_Ferb.jpg",
+      "tags": ["Comedy", "Adventure"],
+      "description": "Stepbrothers Phineas and Ferb invent wild projects while their sister tries to bust them and their pet platypus fights evil.",
+      "duration": "1 hr 42 min",
+      "language": "English",
+      "rating": "8.6",
+      "views": "24k",
+      "videoUrl": "/Videos/phineas_and_ferb.mp4"
+    },
+    {
       "id": "pokemon",
       "title": "Pokemon",
       "year": "2003",
@@ -144,6 +183,19 @@
       "videoUrl": "/Videos/shinchan.mp4"
     },
     {
+      "id": "spongebob-squarepants",
+      "title": "SpongeBob SquarePants",
+      "year": "1999",
+      "thumbnail": "spongebob_squarepants.jpg",
+      "tags": ["Comedy", "Adventure"],
+      "description": "In the underwater city of Bikini Bottom, SpongeBob and his quirky friends embark on hilarious and absurd adventures.",
+      "duration": "1 hr 28 min",
+      "language": "English",
+      "rating": "9.0",
+      "views": "32k",
+      "videoUrl": "/Videos/spongebob_squarepants.mp4"
+    },
+    {
       "id": "strawberry-shortcake",
       "title": "Strawberry Shortcake",
       "year": "2009",
@@ -160,7 +212,7 @@
       "id": "tom-and-jerry",
       "title": "Tom and Jerry",
       "year": "1995",
-      "thumbnail": "tomAndJerry_poster.jpg",
+      "thumbnail": "tom_and_jerry.jpg",
       "tags": ["Comedy", "Classic"],
       "description": "A classic rivalry between cat and mouse with endless comic chases and slapstick moments.",
       "duration": "1 hr 40 min",
