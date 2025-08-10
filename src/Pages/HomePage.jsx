@@ -29,10 +29,14 @@ const allShows = enrich(showsData.allShows);
 // Specific "Newly Added" show titles
 const newlyAddedTitles = [
   "Ben 10",
+  "Jake and the Never Land Pirates",
+  "Kick Buttowski",
   "Kid vs Kat",
   "Kiteretsu",
+  "Mickey Mouse Clubhouse",
   "Mr. Bean",
   "Phineas and Ferb",
+  "Shaun the Sheep",
   "SpongeBob Square Pants",
 ];
 
@@ -55,28 +59,23 @@ function HomePage() {
         {/* Main content grows to push footer down if short */}
         <main className="flex-grow">
           <HeroBanner shows={allShows} />
-
-          <ShowSection
-            sectionTitle="Newly Added"
-            shows={newlyAdded}
-            bgColor="#0F0A24"
-          />
-          <ShowSection
-            sectionTitle="Trending Now"
-            shows={trendingShows}
-            bgColor="#0F0A24"
-          />
-          <ShowSection
-            sectionTitle="Continue Watching"
-            shows={continueWatching}
-            bgColor="#0F0A24"
-          />
-          <ShowSection
-            sectionTitle="Because You Watched..."
-            shows={becauseYouWatched}
-            bgColor="#0F0A24"
-          />
-
+          
+            <ShowSection
+              sectionTitle="Newly Added"
+              shows={newlyAdded}
+              bgColor="#0F0A24"
+            />
+            <ShowSection
+              sectionTitle="Trending Now"
+              shows={trendingShows}
+              bgColor="#0F0A24"
+            />
+            <ShowSection
+              sectionTitle="Because You Watched..."
+              shows={becauseYouWatched}
+              bgColor="#0F0A24"
+            />
+          
           <RandomPlayButton shows={allShows} />
         </main>
 

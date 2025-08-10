@@ -3,7 +3,7 @@ import ShowCard from "./ShowCard";
 function ShowSection({ sectionTitle, shows, bgColor = "#0F0A24" }) {
   return (
     <section
-      className="px-4 sm:px-8 py-3 sm:py-3"
+      className="px-4 sm:px-10 py-3 sm:py-3"
       style={{ backgroundColor: bgColor }}
     >
       <h2 className="text-lg sm:text-xl font-bold text-white mb-3 pl-0.5">

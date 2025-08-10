@@ -29,7 +29,7 @@ function HeroBanner({ shows = [] }) {
 
   return (
     <div
-      className="relative w-full overflow-hidden text-white mb-0.5 md:mb-2"
+      className="relative w-full overflow-hidden text-white "
       style={{ backgroundColor: "#0F0A24" }}
     >
       <div className="relative w-full pt-[75%] sm:pt-[36%]">

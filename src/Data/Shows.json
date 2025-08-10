@@ -53,6 +53,32 @@
       "videoUrl": "/Videos/doraemon.mp4"
     },
     {
+      "id": "jake-and-the-never-land-pirates",
+      "title": "Jake and the Never Land Pirates",
+      "year": "2011",
+      "thumbnail": "jake-and-the-never-land-pirates.jpg",
+      "tags": ["Adventure", "Fantasy"],
+      "description": "Jake and his crew of young pirates explore Never Land and face off against Captain Hook.",
+      "duration": "1 hr 20 min",
+      "language": "English",
+      "rating": "8.0",
+      "views": "12k",
+      "videoUrl": "/Videos/jake-and-the-never-land-pirates.mp4"
+    },
+    {
+      "id": "kick-buttowski",
+      "title": "Kick Buttowski",
+      "year": "2010",
+      "thumbnail": "kick-buttowski.jpg",
+      "tags": ["Action", "Comedy"],
+      "description": "Clarence 'Kick' Buttowski is an amateur stuntman who lives to push limits and take on extreme challenges.",
+      "duration": "1 hr 10 min",
+      "language": "English",
+      "rating": "8.4",
+      "views": "14k",
+      "videoUrl": "/Videos/kick-buttowski.mp4"
+    },
+    {
       "id": "kid-vs-kat",
       "title": "Kid vs Kat",
       "year": "2008",
@@ -77,6 +103,19 @@
       "rating": "8.4",
       "views": "12k",
       "videoUrl": "/Videos/kiteretsu.mp4"
+    },
+    {
+      "id": "mickey-mouse",
+      "title": "Mickey Mouse Clubhouse",
+      "year": "1928",
+      "thumbnail": "mickey-mouse-clubhouse.jpg",
+      "tags": ["Classic", "Family"],
+      "description": "The adventures of Mickey Mouse, Disney's iconic character, along with his friends in fun-filled stories.",
+      "duration": "1 hr 30 min",
+      "language": "English",
+      "rating": "9.2",
+      "views": "35k",
+      "videoUrl": "/Videos/mickey-mouse-clubhouse.mp4"
     },
     {
       "id": "mr-bean",
@@ -160,7 +199,7 @@
       "id": "pokemon",
       "title": "Pokemon",
       "year": "2003",
-      "thumbnail": "pokemon_poster.jpg",
+      "thumbnail": "pokemon.jpg",
       "tags": ["Adventure", "Fantasy"],
       "description": "Follow Ash and Pikachu on their journey to become Pokémon Masters while battling rivals and discovering new species.",
       "duration": "2 hr 10 min",
@@ -181,6 +220,19 @@
       "rating": "8.4",
       "views": "16k",
       "videoUrl": "/Videos/rollno21.mp4"
+    },
+    {
+      "id": "shaun-the-sheep",
+      "title": "Shaun the Sheep",
+      "year": "2007",
+      "thumbnail": "shaun-the-sheep.jpg",
+      "tags": ["Comedy", "Stop-Motion"],
+      "description": "Shaun, a clever sheep, leads his flock into mischief and adventures on a small farm.",
+      "duration": "1 hr 15 min",
+      "language": "English",
+      "rating": "8.8",
+      "views": "15k",
+      "videoUrl": "/Videos/shaun-the-sheep.mp4"
     },
     {
       "id": "shinchan",
