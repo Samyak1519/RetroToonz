@@ -47,16 +47,16 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        {/* Gradient Overlay — always at bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-[40%] z-10 pointer-events-none">
           <div
-            className="w-full h-full bg-gradient-to-b 
-              from-transparent 
-              via-[#0F0A24]/70 
-              via-[55%] 
-              to-[#0F0A24] 
-              to-[100%]"
+            className="w-full h-full bg-gradient-to-t 
+      from-[#0F0A24] 
+      via-[#0F0A24]/70 
+      to-transparent"
           />
         </div>
+
 
         {/* Text Content */}
         <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-8 pb-8 sm:pb-10 md:pb-12 z-20 transition-all duration-500">
