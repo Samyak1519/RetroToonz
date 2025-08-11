@@ -59,11 +59,10 @@ function Header() {
     <>
       {/* Header Bar */}
       <div
-        className={`fixed w-full top-0 z-50 transition-transform duration-300 ${
-          showHeader ? "translate-y-0" : "-translate-y-full"
-        } bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white`}
+        className={`fixed w-full top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
+          } bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white`}
       >
-        <div className="flex items-center justify-between px-5 py-3 cursor-pointer">
+        <div className="flex items-center justify-between px-5 py-3 cursor-pointer h-20">
           {/* Logo with Easter Egg click */}
           <div
             onClick={handleLogoClick}
@@ -124,6 +123,9 @@ function Header() {
           </div>
         )}
       </div>
+
+      {/* Spacer to prevent content overlap */}
+      <div className="h-20"></div>
 
       {/* Easter Egg Overlay */}
       {showEasterEgg && (

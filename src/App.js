@@ -5,6 +5,7 @@ import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/LoginPage";
+import AddShowPage from "./Pages/AddShowPage";
 import ProfilePage from "./Pages/ProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
@@ -27,6 +28,7 @@ function AnimatedRoutes() {
         <Route path="/watch/:id" element={<VideoPlayerPage />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
         <Route path="/search" element={<SearchResultsPage />} />
+        <Route path="/addshow" element={<AddShowPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </AnimatePresence>

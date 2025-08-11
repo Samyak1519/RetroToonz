@@ -32,7 +32,7 @@ function HeroBanner({ shows = [] }) {
       className="relative w-full overflow-hidden text-white "
       style={{ backgroundColor: "#0F0A24" }}
     >
-      <div className="relative w-full pt-[75%] sm:pt-[36%]">
+      <div className="relative w-full pt-[60%] sm:pt-[33%]">
         {/* Background Image with slide transition */}
         <div
           key={show.id}

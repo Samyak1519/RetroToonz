@@ -1,13 +1,14 @@
 import { UserIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Foooter from "../Components/Footer";
 import Header from "../Components/Header";
 import PageWrapper from "../Components/PageWrapper";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("Movies");
+  const navigate = useNavigate();
 
   // Set profileImage to null or empty string to simulate no image
   const profileImage = ""; // Set to image URL if available
@@ -16,7 +17,7 @@ const ProfilePage = () => {
     <PageWrapper>
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow text-white font-sans pt-12 sm:pt-28 px-6 sm:px-24">
+        <main className="flex-grow text-white font-sans  px-6 sm:px-24">
           <section className="flex flex-col items-center space-y-4 sm:ml-20 sm:space-y-0 sm:flex-row sm:space-x-6 mt-6 sm:mt-12">
             <div>
               {profileImage ? (
@@ -29,8 +30,6 @@ const ProfilePage = () => {
                 <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-cyan-400 bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
                   <HugeiconsIcon icon={UserIcon} className="w-16 h-16 sm:w-20 sm:h-20 text-white" />
                 </div>
-
-
               )}
             </div>
 
@@ -38,12 +37,23 @@ const ProfilePage = () => {
               <h1 className="text-xl sm:text-2xl font-semibold">
                 Samyak Nimsarkar
               </h1>
-              <h2 className="text-base sm:text-xl font-normal ">@samyak005</h2>
-              <button className="mt-4 font-semibold underline bg-gradient-to-r from-white to-blue-600 bg-clip-text text-transparent hover:font-bold decoration-white">
-                Edit Profile
-              </button>
+              <h2 className="text-base sm:text-xl font-normal">@samyak005</h2>
 
+              {/* Control Buttons*/}
+              <div className='mt-2 flex flex-col sm:flex-row sm:space-x-4'>
+                {/* Edit Profile Button */}
+                <button className="mt-4 font-semibold  text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 hover:underline hover:text-white transition-colors duration-200">
+                  Edit Profile
+                </button>
 
+                {/* Add Show Button */}
+                <button
+                  onClick={() => navigate("/addshow")}
+                  className="mt-4 font-semibold  text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 hover:underline  hover:text-white transition-colors duration-200"
+                >
+                  Add Show
+                </button>
+              </div>
             </div>
           </section>
 

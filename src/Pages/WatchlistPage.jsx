@@ -12,18 +12,20 @@ function WatchlistPage() {
       <div className="flex flex-col min-h-screen text-white">
         <Header />
 
-        {/* Back Button and Title */}
-        <div className="pt-20 px-4 sm:px-6 flex items-center gap-3">
+        {/* Back Button + Heading */}
+        <div className="px-4 md:px-8 flex items-center gap-4 mt-5 mb-6">
           <button
             onClick={() => navigate(-1)}
             className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl transition"
           >
             <FaArrowLeft />
           </button>
-          <h1 className="text-2xl sm:text-3xl font-semibold leading-none">
+
+          <h2 className="text-2xl font-semibold">
             Your Watchlist
-          </h1>
+          </h2>
         </div>
+
 
         {/* Centered Message */}
         <div className="flex-1 flex items-center justify-center px-4 text-center">

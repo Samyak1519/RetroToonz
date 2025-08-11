@@ -33,7 +33,7 @@ function ShowDetailsPage() {
         {/* ✅ Main Content Area */}
         <main className="flex-grow">
           {/* ✅ Poster with Back Button */}
-          <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden mt-14 sm:mt-16">
+          <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden ">
             <img
               src={`/Assets/${show.thumbnail}`}
               alt={show.title}

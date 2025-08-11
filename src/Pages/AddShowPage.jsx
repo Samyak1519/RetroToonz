@@ -1,0 +1,159 @@
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+import { useState } from "react";
+import { FaUpload, FaImage, FaPlay } from "react-icons/fa";
+
+export default function AddShowPage() {
+    const [form, setForm] = useState({
+        title: "",
+        description: "",
+        thumbnail: null,
+        thumbnailPreview: "",
+        color: "#6d28d9",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleThumbnailUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setForm((prev) => ({
+                ...prev,
+                thumbnail: file,
+                thumbnailPreview: URL.createObjectURL(file),
+            }));
+        }
+    };
+
+    return (
+        <>
+            <Header />
+            <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6 sm:p-10">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                    {/* Form - first on mobile, second on desktop */}
+                    <div className="order-1 lg:order-2">
+                        <h1 className="text-3xl font-bold mb-6">🎬 Add a New Show</h1>
+
+                        {/* Title */}
+                        <label className="block mb-4">
+                            <span className="block text-sm font-semibold mb-1">Show Title</span>
+                            <input
+                                type="text"
+                                name="title"
+                                value={form.title}
+                                onChange={handleChange}
+                                className="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500"
+                                placeholder="Enter show title"
+                            />
+                        </label>
+
+                        {/* Description */}
+                        <label className="block mb-4">
+                            <span className="block text-sm font-semibold mb-1">Description</span>
+                            <textarea
+                                name="description"
+                                value={form.description}
+                                onChange={handleChange}
+                                rows="4"
+                                className="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500"
+                                placeholder="Enter show description"
+                            />
+                        </label>
+
+                        {/* Thumbnail Upload */}
+                        <label className="block mb-4">
+                            <span className="block text-sm font-semibold mb-1">Thumbnail Image</span>
+                            <div className="flex items-center justify-center w-full">
+                                <label
+                                    htmlFor="thumbnail"
+                                    className="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer hover:bg-gray-800 transition"
+                                >
+                                    {form.thumbnailPreview ? (
+                                        <img
+                                            src={form.thumbnailPreview}
+                                            alt="Preview"
+                                            className="w-full h-full object-cover rounded-lg"
+                                        />
+                                    ) : (
+                                        <>
+                                            <FaUpload className="text-3xl text-gray-400 mb-2" />
+                                            <span className="text-sm text-gray-400">
+                                                Click or drag to upload
+                                            </span>
+                                        </>
+                                    )}
+                                    <input
+                                        id="thumbnail"
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={handleThumbnailUpload}
+                                    />
+                                </label>
+                            </div>
+                        </label>
+
+                        {/* Theme Color */}
+                        <label className="block mb-6">
+                            <span className="block text-sm font-semibold mb-1">Banner Theme Color</span>
+                            <input
+                                type="color"
+                                name="color"
+                                value={form.color}
+                                onChange={handleChange}
+                                className="w-16 h-10 p-1 rounded cursor-pointer border border-gray-700"
+                            />
+                        </label>
+
+                        {/* Submit */}
+                        <button className="w-full bg-purple-600 hover:bg-purple-700 p-3 rounded-lg text-lg font-semibold shadow-lg transition">
+                            Add Show
+                        </button>
+                    </div>
+
+                    {/* Live Preview - second on mobile, first on desktop */}
+                    <div className="order-2 lg:order-1">
+                        <h2 className="text-2xl font-bold mb-4">📺 Live Preview</h2>
+                        <div
+                            className="rounded-lg overflow-hidden shadow-lg"
+                            style={{ backgroundColor: form.color }}
+                        >
+                            {/* Thumbnail */}
+                            <div className="relative w-full h-60">
+                                {form.thumbnailPreview ? (
+                                    <img
+                                        src={form.thumbnailPreview}
+                                        alt="Show Thumbnail"
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full bg-gray-800 text-gray-500">
+                                        <FaImage className="text-4xl" />
+                                    </div>
+                                )}
+                                <button className="absolute bottom-3 right-3 bg-purple-600 hover:bg-purple-700 p-3 rounded-full shadow-lg">
+                                    <FaPlay />
+                                </button>
+                            </div>
+
+                            {/* Info */}
+                            <div className="p-4 bg-black/70">
+                                <h3 className="text-xl font-bold mb-1">
+                                    {form.title || "Untitled Show"}
+                                </h3>
+                                <p className="text-sm text-gray-300">
+                                    {form.description || "No description provided yet."}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </>
+    );
+}
