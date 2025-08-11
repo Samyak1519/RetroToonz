@@ -1,55 +1,65 @@
-import { UserIcon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
+import { UserIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Foooter from "../Components/Footer";
+import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import PageWrapper from "../Components/PageWrapper";
 
 const ProfilePage = () => {
-  const [activeTab, setActiveTab] = useState("Movies");
+  const [activeTab, setActiveTab] = useState("History");
   const navigate = useNavigate();
 
-  // Set profileImage to null or empty string to simulate no image
-  const profileImage = ""; // Set to image URL if available
+  const profileImage = ""; // URL if available
 
   return (
     <PageWrapper>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#050b14] via-[#0a1528] to-[#04080f] text-white">
         <Header />
-        <main className="flex-grow text-white font-sans  px-6 sm:px-24">
-          <section className="flex flex-col items-center space-y-4 sm:ml-20 sm:space-y-0 sm:flex-row sm:space-x-6 mt-6 sm:mt-12">
-            <div>
-              {profileImage ? (
-                <img
-                  src={profileImage}
-                  alt="Profile"
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-yellow-500 object-cover"
-                />
-              ) : (
-                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-cyan-400 bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
-                  <HugeiconsIcon icon={UserIcon} className="w-16 h-16 sm:w-20 sm:h-20 text-white" />
-                </div>
-              )}
-            </div>
 
-            <div className="text-center sm:text-left">
-              <h1 className="text-xl sm:text-2xl font-semibold">
+        <main className="flex-grow font-sans px-6 sm:px-24">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl mt-4 transition"
+          >
+            <FaArrowLeft />
+          </button>
+          {/* Profile Header */}
+          <section className="flex flex-col items-center sm:flex-row sm:items-center sm:space-x-8 mt-5 sm:pl-20">
+            {/* Profile Picture */}
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-cyan-400 object-cover shadow-[0_0_20px_rgba(0,255,255,0.4)]"
+              />
+            ) : (
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-cyan-400 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.3)]">
+                <HugeiconsIcon
+                  icon={UserIcon}
+                  className="w-16 h-16 sm:w-20 sm:h-20 text-white"
+                />
+              </div>
+            )}
+
+            {/* Profile Info */}
+            <div className="mt-6 sm:mt-0 text-center sm:text-left">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-wide">
                 Samyak Nimsarkar
               </h1>
-              <h2 className="text-base sm:text-xl font-normal">@samyak005</h2>
+              <h2 className="text-base sm:text-lg text-cyan-300">
+                @samyak005
+              </h2>
 
-              {/* Control Buttons*/}
-              <div className='mt-2 flex flex-col sm:flex-row sm:space-x-4'>
-                {/* Edit Profile Button */}
-                <button className="mt-4 font-semibold  text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 hover:underline hover:text-white transition-colors duration-200">
+              {/* Action Buttons */}
+              <div className="mt-4 flex flex-col sm:flex-row sm:space-x-4 gap-3">
+                <button className="px-5 py-2 rounded-lg border border-cyan-500 text-cyan-300 hover:bg-cyan-500/10 hover:shadow-[0_0_12px_rgba(0,255,255,0.3)] transition-all">
                   Edit Profile
                 </button>
-
-                {/* Add Show Button */}
                 <button
                   onClick={() => navigate("/addshow")}
-                  className="mt-4 font-semibold  text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 hover:underline  hover:text-white transition-colors duration-200"
+                  className="px-5 py-2 rounded-lg border border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 hover:shadow-[0_0_12px_rgba(255,215,0,0.3)] transition-all"
                 >
                   Add Show
                 </button>
@@ -57,15 +67,15 @@ const ProfilePage = () => {
             </div>
           </section>
 
-          {/* Navigation Tabs Section */}
-          <div className="mt-6 sm:mt-14 px-4 sm:px-20">
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 overflow-x-auto sm:overflow-x-visible">
+          {/* Tabs */}
+          <div className="mt-10 sm:mt-14 px-4 sm:px-20">
+            <div className="flex space-x-8 overflow-x-auto no-scrollbar pb-2 border-b border-gray-700">
               {["History", "About"].map((tab) => (
                 <div
                   key={tab}
-                  className={`cursor-pointer py-2 px-4 transition-colors text-center sm:text-left ${activeTab === tab
-                    ? "text-yellow-500 font-semibold tracking-wider"
-                    : "text-gray-400 hover:text-yellow-500 font-semibold tracking-wide"
+                  className={`cursor-pointer pb-2 transition-all ${activeTab === tab
+                    ? "text-yellow-400 border-b-2 border-yellow-400"
+                    : "text-gray-400 hover:text-yellow-400"
                     }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -73,23 +83,30 @@ const ProfilePage = () => {
                 </div>
               ))}
             </div>
-            <div
-              className="h-0.5 bg-slate-500 w-full mt-2"
-              style={{ transition: "width 0.3s ease-in-out", width: "100%" }}
-            />
           </div>
 
           {/* Shows Section */}
-          <div className="mt-8 sm:mt-14 px-4 sm:px-20">
-            <h3 className="text-2xl sm:text-3xl font-bold text-yellow-500">
+          <div className="mt-5 sm:mt-5 mb-10 px-4 sm:px-20">
+            <h3 className="text-2xl sm:text-3xl font-bold text-yellow-400 mb-2">
               Shows
             </h3>
-            <p className="text-lg sm:text-xl text-gray-300 mt-4">
+            <p className="text-lg text-gray-300">
               Explore your favorite shows here.
             </p>
+            {/* Placeholder for Show Cards */}
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {/* Example Card */}
+              <div className="bg-gray-800/60 p-4 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all">
+                <div className="h-40 bg-gray-700 rounded-lg mb-3"></div>
+                <h4 className="text-lg font-semibold">Show Title</h4>
+                <p className="text-sm text-gray-400">
+                  Short description goes here...
+                </p>
+              </div>
+            </div>
           </div>
         </main>
-        <Foooter />
+        <Footer />
       </div>
     </PageWrapper>
   );

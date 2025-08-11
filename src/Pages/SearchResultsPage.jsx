@@ -31,6 +31,7 @@ function SearchResultsPage() {
         {/* Sticky Header */}
         <Header />
 
+
         {/* Back Button + Heading */}
         <div className="px-4 md:px-8 flex items-center gap-4 mt-5 mb-6">
           <button

@@ -1,9 +1,13 @@
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
 import { useState } from "react";
-import { FaUpload, FaImage, FaPlay } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+import { FaArrowLeft, FaImage, FaPlay, FaUpload } from "react-icons/fa";
+import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 
 export default function AddShowPage() {
+
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         title: "",
         description: "",
@@ -55,7 +59,14 @@ export default function AddShowPage() {
     return (
         <>
             <Header />
-            <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6 sm:p-10">
+
+            <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 sm:px-10 pb-10">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl pb-5 transition"
+                >
+                    <FaArrowLeft />
+                </button>
                 <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                     {/* Form */}
@@ -88,7 +99,7 @@ export default function AddShowPage() {
                             />
                         </label>
 
-                        
+
                         {/* Tags */}
                         <label className="block mb-4">
                             <span className="block text-sm font-semibold mb-1">Tags (Categories)</span>
