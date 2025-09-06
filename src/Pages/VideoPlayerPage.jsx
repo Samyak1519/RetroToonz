@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import VideoPlayer from "../Components/VideoPlayer";
 import showsData from "../Data/Shows.json";
 
@@ -28,14 +29,22 @@ function VideoPlayerPage() {
   }
 
   return (
-    <>
-      <VideoPlayer
-        currentShow={currentShow}
-        goToNextShow={goToNextShow}
-        goToPreviousShow={goToPreviousShow}
-      />
-
-    </>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentShow.id} // key ensures re-animation on show change
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.98 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="w-full h-full"
+      >
+        <VideoPlayer
+          currentShow={currentShow}
+          goToNextShow={goToNextShow}
+          goToPreviousShow={goToPreviousShow}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
