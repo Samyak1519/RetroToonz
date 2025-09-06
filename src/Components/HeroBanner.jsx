@@ -29,10 +29,12 @@ function HeroBanner({ shows = [] }) {
 
   return (
     <div
-      className="relative w-full overflow-hidden text-white "
+      className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: "#0F0A24" }}
     >
-      <div className="relative w-full pt-[60%] sm:pt-[33%]">
+      {/* Responsive Aspect Ratio */}
+      <div className="relative w-full aspect-[15/9] sm:aspect-[27/9]">
+
         {/* Background Image with slide transition */}
         <div
           key={show.id}
@@ -47,14 +49,9 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Gradient Overlay */}
-        {/* Gradient Overlay — always at bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-[40%] z-10 pointer-events-none">
-          <div
-            className="w-full h-full bg-gradient-to-t 
-      from-[#0F0A24] 
-      via-[#0F0A24]/70 
-      to-transparent"
-          />
+        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-t from-[#0F0A24] via-[#0F0A24]/70 to-transparent" />
+          <div className="absolute bottom-0 w-full h-6 bg-[#0F0A24]" />
         </div>
 
 
@@ -66,7 +63,6 @@ function HeroBanner({ shows = [] }) {
           <p className="text-sm sm:text-lg md:text-base lg:text-xl text-gray-200 mb-2 sm:mb-4">
             Still iconic. Still unforgettable. Since {show.year}.
           </p>
-
 
           <button
             onClick={handleStartWatching}
@@ -82,10 +78,6 @@ function HeroBanner({ shows = [] }) {
               Start Watching
             </span>
           </button>
-
-
-
-
         </div>
       </div>
     </div>
