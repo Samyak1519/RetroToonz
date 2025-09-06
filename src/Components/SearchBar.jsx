@@ -1,38 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && query.trim()) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
-    }
-  };
-
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     if (query.trim()) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
 
   return (
-    <div className="flex w-full">
+    <form
+      onSubmit={handleSearch}
+      role="search"
+      className="relative flex w-full max-w-lg mx-auto"
+    >
+      {/* Lucide Icon inside input */}
+      <Search
+        className="absolute left-3 top-1/2 -translate-y-1/2 
+                   text-cyan-400 
+                   w-5 h-5 md:w-4 md:h-4
+                   pointer-events-none"
+      />
+
+      {/* Input field */}
       <input
+        type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Search your favourite cartoon here..."
-        className="flex-grow border placeholder-opacity-50 placeholder-cyan-500 pl-3.5 border-cyan-700 rounded-l-3xl p-2 bg-transparent text-white outline-none"
+        placeholder="Search your favourite cartoon..."
+        aria-label="Search cartoons"
+        className="w-full rounded-3xl pl-10 pr-24 
+                   py-2.5 md:py-1.5
+                   text-sm md:text-base
+                   bg-gray-900/70 border border-cyan-700 
+                   text-white placeholder-cyan-400/70
+                   outline-none transition-all duration-200
+                   focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500
+                   hover:bg-gray-900"
       />
+
+      {/* Gradient Search button */}
       <button
-        onClick={handleSearch}
-        className="p-2 px-3 text-cyan-500 border border-l-0 border-cyan-700 rounded-r-3xl hover:bg-gray-700"
+        type="submit"
+        className="absolute right-1.5 top-1/2 -translate-y-1/2 
+                   px-4 py-1.5 md:py-1 
+                   text-sm font-semibold
+                   rounded-2xl text-white
+                   bg-gradient-to-r from-cyan-500 to-blue-600
+                   hover:from-blue-600 hover:to-cyan-500
+                   shadow-md transition-all duration-300"
       >
         Search
       </button>
-    </div>
+    </form>
   );
 }
 
