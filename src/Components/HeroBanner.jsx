@@ -1,6 +1,7 @@
+// src/Components/HeroBanner.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPlay } from "react-icons/fa"; // Optional icon
+import { FaPlay } from "react-icons/fa";
 
 function HeroBanner({ shows = [] }) {
   const navigate = useNavigate();
@@ -8,11 +9,12 @@ function HeroBanner({ shows = [] }) {
   const [slideIn, setSlideIn] = useState(true);
 
   useEffect(() => {
+    if (!shows.length) return;
     const interval = setInterval(() => {
-      setSlideIn(false); // start slide-out
+      setSlideIn(false);
       setTimeout(() => {
         setIndex((prev) => (prev + 1) % shows.length);
-        setSlideIn(true); // start slide-in
+        setSlideIn(true);
       }, 400);
     }, 5000);
 
@@ -28,13 +30,8 @@ function HeroBanner({ shows = [] }) {
   };
 
   return (
-    <div
-      className="relative w-full overflow-hidden text-white"
-      style={{ backgroundColor: "#0F0A24" }}
-    >
-      {/* Responsive Aspect Ratio */}
-      <div className="relative w-full aspect-[15/9] sm:aspect-[27/9]">
-
+    <div className="relative w-full overflow-hidden text-white">
+      <div className="relative w-full aspect-[15/9] sm:aspect-[21/9]">
         {/* Background Image with slide transition */}
         <div
           key={show.id}
@@ -48,15 +45,17 @@ function HeroBanner({ shows = [] }) {
           />
         </div>
 
+        {/* Tint Overlay */}
+        <div className="absolute inset-0 bg-black/30 sm:bg-black/20 z-10" />
+
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+        <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
           <div className="w-full h-full bg-gradient-to-t from-[#0F0A24] via-[#0F0A24]/70 to-transparent" />
           <div className="absolute bottom-0 w-full h-6 bg-[#0F0A24]" />
         </div>
 
-
         {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-8 pb-8 sm:pb-10 md:pb-12 z-20 transition-all duration-500">
+        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-8 pb-8 sm:pb-10 md:pb-12 z-30 transition-all duration-500">
           <h1 className="text-lg sm:text-3xl md:text-xl md:leading-tight lg:text-5xl font-bold mb-1 sm:mb-4">
             Watch {show.title} Now
           </h1>
@@ -68,12 +67,8 @@ function HeroBanner({ shows = [] }) {
             onClick={handleStartWatching}
             className="group relative flex items-center gap-2 text-white px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 shadow-md transition-all duration-300"
           >
-            {/* Pulse ring effect */}
             <span className="absolute inline-flex h-12 w-12 rounded-full bg-cyan-400 opacity-30 group-hover:animate-ping -z-10"></span>
-
-            {/* Play icon */}
             <FaPlay className="text-sm sm:text-base" />
-
             <span className="font-medium text-sm sm:text-base">
               Start Watching
             </span>

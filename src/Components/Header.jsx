@@ -1,3 +1,5 @@
+// src/Components/Header.jsx
+
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
@@ -16,14 +18,14 @@ function Header() {
   const navigate = useNavigate();
   const isWatchlistActive = location.pathname === "/watchlist";
 
-  // Scroll Hide Header
+  // Scroll Hide Header + lastScrollY tracking
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       setShowHeader(currentY < 50 || currentY < lastScrollY);
       setLastScrollY(currentY);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -32,7 +34,6 @@ function Header() {
     const newCount = logoClickCount + 1;
     setLogoClickCount(newCount);
 
-    // Reset counter after 5 seconds of inactivity
     if (clickTimer) clearTimeout(clickTimer);
     setClickTimer(
       setTimeout(() => {
@@ -43,30 +44,41 @@ function Header() {
     if (newCount === 13) {
       setShowEasterEgg(true);
       setLogoClickCount(0);
-      setTimeout(() => {
-        setShowEasterEgg(false);
-      }, 5000); // auto-hide after 5s
+      setTimeout(() => setShowEasterEgg(false), 5000);
     } else if (newCount === 1) {
       navigate("/");
     }
   };
 
-  const closeEasterEgg = () => {
-    setShowEasterEgg(false);
-  };
+  const closeEasterEgg = () => setShowEasterEgg(false);
+
+  const headerHeightClass = "h-16";
 
   return (
     <>
-      {/* Header Bar */}
-      <div
-        className={`fixed w-full top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
-          } bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md text-white`}
+      <header
+        className={`fixed w-full top-0 left-0 z-50 ${headerHeightClass} pointer-events-auto transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
+          }`}
+        aria-label="Main header"
       >
-        <div className="flex items-center justify-between px-7 py-3  h-16">
+        {/* Gradient background layer (fades in/out via opacity) */}
+        <div
+          className="absolute inset-0 transition-opacity duration-400 pointer-events-none"
+          style={{
+            opacity: lastScrollY > 0 ? 1 : 0,
+          }}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-20 flex items-center justify-between px-10 py-10 h-full text-white">
           {/* Logo with Easter Egg click */}
           <div
             onClick={handleLogoClick}
-            className="text-3xl font-bold cursor-pointer"
+            className="text-4xl font-bold cursor-pointer select-none"
+            role="button"
+            aria-label="RetroToonz home"
           >
             RetroToonz
           </div>
@@ -118,21 +130,18 @@ function Header() {
 
         {/* Mobile Search Expanded */}
         {showSearchMobile && (
-          <div className="w-full sm:hidden px-4 pb-3">
+          <div className="w-full sm:hidden px-4 pb-3 relative z-20 bg-transparent">
             <SearchBar />
           </div>
         )}
-      </div>
-
-      {/* Spacer to prevent content overlap */}
-      <div className="h-16"></div>
+      </header>
 
       {/* Easter Egg Overlay */}
       {showEasterEgg && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
           <img
             src="/Assets/easteregg.gif"
-            alt="Easter Egg Chicken"
+            alt="Easter Egg"
             className="w-[90%] max-w-md rounded-xl shadow-lg"
           />
           <button

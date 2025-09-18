@@ -1,3 +1,5 @@
+// src/Pages/HomePage.jsx
+
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import HeroBanner from "../Components/HeroBanner";
@@ -54,12 +56,17 @@ function HomePage() {
   return (
     <PageWrapper>
       <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
+        {/* Fixed Header */}
         <Header />
 
-        {/* Main content grows to push footer down if short */}
         <main className="flex-grow">
-          <HeroBanner shows={allShows} />
-          
+          {/* ✅ HeroBanner overlaps behind header only on HomePage */}
+          <div className="-mt-16">
+            <HeroBanner shows={allShows} />
+          </div>
+
+          {/* ✅ Push other content below header to avoid overlap */}
+          <div className="pt-16">
             <ShowSection
               sectionTitle="Newly Added"
               shows={newlyAdded}
@@ -75,7 +82,8 @@ function HomePage() {
               shows={becauseYouWatched}
               bgColor="#0F0A24"
             />
-          
+          </div>
+
           <RandomPlayButton shows={allShows} />
         </main>
 
