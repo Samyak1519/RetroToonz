@@ -1,3 +1,4 @@
+// src/Components/Header.jsx
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
@@ -15,6 +16,9 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const isWatchlistActive = location.pathname === "/watchlist";
+
+  // whether we're on the homepage (exact path '/')
+  const isHome = location.pathname === "/";
 
   // Scroll Hide Header + track last scroll position
   useEffect(() => {
@@ -48,10 +52,12 @@ function Header() {
 
   // Taller on mobile for breathing space
   const headerHeightClasses = "h-14 sm:h-16";
+  // Useful: corresponding spacer classes to push content down (same sizes)
+  const spacerClasses = "h-14 sm:h-16";
 
   return (
     <>
-      {/* Header wrapper */}
+      {/* Header wrapper (fixed) */}
       <header
         className={`fixed w-full top-0 left-0 z-50 ${headerHeightClasses} pointer-events-auto transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
           }`}
@@ -66,11 +72,11 @@ function Header() {
         </div>
 
         {/* Content row */}
-        <div className="relative z-20 flex items-center justify-between px-4 sm:px-7 py-3 sm:py-4 h-full text-white">
+        <div className="relative z-20 flex items-center justify-between px-5 sm:px-7 py-4 sm:py-4 h-full text-white">
           {/* Logo */}
           <div
             onClick={handleLogoClick}
-            className="text-2xl sm:text-3xl font-bold cursor-pointer select-none"
+            className="text-3xl sm:text-3xl font-bold cursor-pointer select-none"
             role="button"
             aria-label="RetroToonz home"
           >
@@ -129,6 +135,9 @@ function Header() {
           </div>
         )}
       </header>
+
+
+      {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
       {/* Easter Egg */}
       {showEasterEgg && (

@@ -14,9 +14,7 @@ import showsData from "../Data/Shows.json";
 const enrich = (arr) =>
   arr.map((show) => ({
     ...show,
-    thumbnail: show.thumbnail
-      ? `/Assets/${show.thumbnail}`
-      : "/Assets/default.jpg",
+    thumbnail: show.thumbnail ? `/Assets/${show.thumbnail}` : "/Assets/default.jpg",
   }));
 
 // Utility to get N random shows
@@ -60,13 +58,14 @@ function HomePage() {
         <Header />
 
         <main className="flex-grow">
-          {/* ✅ HeroBanner overlaps behind header only on HomePage */}
-          <div className="-mt-16">
+          {/* HeroBanner overlaps behind header only on HomePage
+              responsive negative margin: -mt-14 on mobile, -mt-16 on sm+ */}
+          <div className="-mt-14 sm:-mt-16">
             <HeroBanner shows={allShows} />
           </div>
 
-          {/* ✅ Push other content below header to avoid overlap */}
-          <div className="pt-16">
+          {/* Sections start immediately after the hero (no extra pt-16) */}
+          <div>
             <ShowSection
               sectionTitle="Newly Added"
               shows={newlyAdded}

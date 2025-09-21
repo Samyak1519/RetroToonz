@@ -32,7 +32,8 @@ function HeroBanner({ shows = [] }) {
         {/* Background image with slide transitions */}
         <div
           key={show.id}
-          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform ${slideIn ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
+          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform ${slideIn ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+            }`}
         >
           <img src={show.thumbnail} alt={show.title} className="w-full h-full object-cover" />
         </div>
