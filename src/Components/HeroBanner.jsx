@@ -3,6 +3,18 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
+const DEFAULT_POSTER = "/Assets/default.jpg";
+
+/**
+ * Normalize a poster path coming from JSON:
+ * - if already absolute (starts with "/"), return as-is
+ * - otherwise prepend "/Assets/" so "Mobile_Posters/..." and "Ben_10.jpg" work
+ */
+const normalizePath = (p) => {
+  if (!p) return DEFAULT_POSTER;
+  return p.startsWith("/") ? p : `/Assets/${p}`;
+};
+
 function HeroBanner({ shows = [] }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
@@ -17,7 +29,7 @@ function HeroBanner({ shows = [] }) {
     const m = window.matchMedia("(max-width: 640px)");
     const onChange = (e) => setIsMobile(e.matches);
     m.addEventListener?.("change", onChange);
-    // fallback to older browsers
+    // fallback for older browsers
     if (!m.addEventListener) m.addListener(onChange);
     return () => {
       m.removeEventListener?.("change", onChange);
@@ -69,7 +81,6 @@ function HeroBanner({ shows = [] }) {
 
       // If it's the last allowed line and there are still more words, add "..."
       if (i === maxLines - 1 && words.length > end) {
-        // place ellipsis at the end of the last word
         const lastIdx = lineWords.length - 1;
         lineWords[lastIdx] = `${lineWords[lastIdx]}...`;
       }
@@ -97,9 +108,20 @@ function HeroBanner({ shows = [] }) {
         >
           <picture>
             {show.thumbnailMobile && (
-              <source srcSet={show.thumbnailMobile} media="(max-width: 640px)" />
+              <source
+                srcSet={normalizePath(show.thumbnailMobile)}
+                media="(max-width: 640px)"
+              />
             )}
-            <img src={show.thumbnail} alt={show.title} className="w-full h-full object-cover" />
+            <img
+              src={normalizePath(show.thumbnail)}
+              alt={show.title}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = DEFAULT_POSTER;
+              }}
+            />
           </picture>
         </div>
 
@@ -127,7 +149,6 @@ function HeroBanner({ shows = [] }) {
               </span>
             </div>
           </h1>
-
 
           {/* Tags / categories */}
           {show.tags && show.tags.length > 0 && (

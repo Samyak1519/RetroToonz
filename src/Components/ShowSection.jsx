@@ -1,11 +1,5 @@
-// src/Components/ShowSection.jsx
 import ShowCard from "./ShowCard";
 
-/**
- * ShowSection
- * - Mobile: horizontal snap carousel (one row, swipeable)
- * - sm+: responsive grid with dense columns so many cards show per row
- */
 function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
   const id = `section-${sectionTitle.replace(/\s+/g, "-").toLowerCase()}`;
 
@@ -20,7 +14,7 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
         {sectionTitle}
       </h2>
 
-      {/* MOBILE: horizontal scroll row */}
+      {/* MOBILE: horizontal carousel */}
       <div className="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory sm:hidden">
         <div className="w-3 flex-shrink-0" aria-hidden />
         {shows.map((s) => (
@@ -38,8 +32,8 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
         <div className="w-3 flex-shrink-0" aria-hidden />
       </div>
 
-      {/* DESKTOP+: grid layout (dense) */}
-      <div className="hidden sm:grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+      {/* DESKTOP+: grid with bigger cards */}
+      <div className="hidden sm:grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {shows.map((s) => (
           <ShowCard
             key={s.id}
