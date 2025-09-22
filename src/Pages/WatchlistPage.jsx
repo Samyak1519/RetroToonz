@@ -1,3 +1,5 @@
+// src/Pages/WatchlistPage.jsx
+
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
