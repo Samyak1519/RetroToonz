@@ -58,14 +58,11 @@ function HomePage() {
         <Header />
 
         <main className="flex-grow">
-          {/* HeroBanner overlaps behind header only on HomePage
-              responsive negative margin: -mt-14 on mobile, -mt-16 on sm+ */}
           <div className="-mt-14 sm:-mt-16">
             <HeroBanner shows={allShows} />
           </div>
 
-          {/* Sections start immediately after the hero (no extra pt-16) */}
-          <div>
+          <div className="px-5 pb-5">
             <ShowSection
               sectionTitle="Newly Added"
               shows={newlyAdded}
