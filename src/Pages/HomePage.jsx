@@ -62,7 +62,7 @@ function HomePage() {
             <HeroBanner shows={allShows} />
           </div>
 
-          <div className="px-5 pb-5">
+          <div className="pb-5 sm:px-5">
             <ShowSection
               sectionTitle="Newly Added"
               shows={newlyAdded}

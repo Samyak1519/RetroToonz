@@ -8,6 +8,23 @@ function HeroBanner({ shows = [] }) {
   const [index, setIndex] = useState(0);
   const [slideIn, setSlideIn] = useState(true);
 
+  // track whether we're on a mobile-width viewport
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 640px)").matches : false
+  );
+
+  useEffect(() => {
+    const m = window.matchMedia("(max-width: 640px)");
+    const onChange = (e) => setIsMobile(e.matches);
+    m.addEventListener?.("change", onChange);
+    // fallback to older browsers
+    if (!m.addEventListener) m.addListener(onChange);
+    return () => {
+      m.removeEventListener?.("change", onChange);
+      if (!m.removeEventListener) m.removeListener(onChange);
+    };
+  }, []);
+
   useEffect(() => {
     if (!shows.length) return;
     const interval = setInterval(() => {
@@ -27,21 +44,34 @@ function HeroBanner({ shows = [] }) {
   const handleStartWatching = () => navigate(`/watch/${show.id}`);
   const handleMoreInfo = () => navigate(`/show/${show.id}`);
 
-  // Format description: 10 words per line, max 3 lines (30 words)
-  const formatDescription = (text = "") => {
-    const words = text.split(" ");
+  /**
+   * Format description into N lines with M words per line.
+   * If more words remain after the last line, append "..." to the last word.
+   *
+   * @param {string} text
+   * @param {number} wordsPerLine
+   * @param {number} maxLines
+   * @returns {string[]} array of lines
+   */
+  const formatDescription = (text = "", wordsPerLine = 10, maxLines = 3) => {
+    const words = text
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
     const lines = [];
 
-    for (let i = 0; i < 3; i++) {
-      const start = i * 10;
-      const end = start + 10;
+    for (let i = 0; i < maxLines; i++) {
+      const start = i * wordsPerLine;
+      const end = start + wordsPerLine;
       if (start >= words.length) break;
 
       let lineWords = words.slice(start, end);
 
-      // If it's the 3rd line and there are still more words, add "..."
-      if (i === 2 && words.length > end) {
-        lineWords[lineWords.length - 1] += "...";
+      // If it's the last allowed line and there are still more words, add "..."
+      if (i === maxLines - 1 && words.length > end) {
+        // place ellipsis at the end of the last word
+        const lastIdx = lineWords.length - 1;
+        lineWords[lastIdx] = `${lineWords[lastIdx]}...`;
       }
 
       lines.push(lineWords.join(" "));
@@ -50,13 +80,15 @@ function HeroBanner({ shows = [] }) {
     return lines;
   };
 
-  const descriptionLines = formatDescription(show.description);
+  // If mobile: 2 lines * 8 words. Otherwise keep previous (3 lines * 10 words).
+  const descriptionLines = isMobile
+    ? formatDescription(show.description, 8, 2)
+    : formatDescription(show.description, 10, 3);
 
   return (
     <div className="relative w-full overflow-hidden text-white">
       {/* Responsive aspect ratios: mobile portrait poster, wider on larger screens */}
       <div className="relative w-full aspect-[3/4] sm:aspect-[15/9] lg:aspect-[21/9]">
-
         {/* Background image with slide transitions */}
         <div
           key={show.id}
@@ -67,11 +99,7 @@ function HeroBanner({ shows = [] }) {
             {show.thumbnailMobile && (
               <source srcSet={show.thumbnailMobile} media="(max-width: 640px)" />
             )}
-            <img
-              src={show.thumbnail}
-              alt={show.title}
-              className="w-full h-full object-cover"
-            />
+            <img src={show.thumbnail} alt={show.title} className="w-full h-full object-cover" />
           </picture>
         </div>
 
@@ -87,19 +115,23 @@ function HeroBanner({ shows = [] }) {
         {/* content */}
         <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-14 pb-6 sm:pb-10 md:pb-12 z-30 transition-all duration-500">
           {/* Title: Watch / Show Name */}
-          <h1 className="font-extrabold mb-2 sm:mb-3 leading-snug">
-            <span className="block sm:inline text-lg sm:text-2xl md:text-3xl lg:text-2xl font-semibold tracking-tight">
-              Watch
-            </span>
-            <br />
-            <span className="block sm:inline sm:ml-3 text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight">
-              {show.title}
-            </span>
+          <h1 className="font-extrabold mb-1 sm:mb-3 leading-snug w-full">
+            <div className="flex flex-col gap-0.5">
+              <span className="text-base sm:text-xl md:text-2xl font-semibold tracking-tight">
+                Watch
+              </span>
+
+              {/* increased mobile title by 1 step: text-2xl on mobile */}
+              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight">
+                {show.title}
+              </span>
+            </div>
           </h1>
+
 
           {/* Tags / categories */}
           {show.tags && show.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4 sm:mb-5 ">
+            <div className="flex flex-wrap gap-2 mb-3 sm:mb-5">
               {show.tags.map((tag, i) => (
                 <span
                   key={i}
@@ -113,9 +145,13 @@ function HeroBanner({ shows = [] }) {
 
           {/* Subtitle / description */}
           {descriptionLines.length > 0 && (
-            <div className="text-xs sm:text-sm md:text-base lg:text-base text-gray-200 mb-5 sm:mb-5">
+            <div
+              className={`text-xs ${isMobile ? "leading-5" : "sm:text-sm md:text-base lg:text-base"} text-gray-200 mb-5 sm:mb-5`}
+            >
               {descriptionLines.map((line, idx) => (
-                <p key={idx}>{line}</p>
+                <p key={idx} className="m-0">
+                  {line}
+                </p>
               ))}
             </div>
           )}
