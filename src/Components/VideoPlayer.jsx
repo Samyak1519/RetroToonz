@@ -1,3 +1,4 @@
+// src/Components/VideoPlayer.jsx
 import { useEffect, useRef, useState } from "react";
 import {
   FaBackward,
@@ -11,15 +12,16 @@ import {
 } from "react-icons/fa";
 
 import { FaArrowLeft } from "react-icons/fa";
-
 import { RiForward10Line, RiReplay10Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 /**
  * VideoPlayer
- * - Video is placed in a responsive aspect container (mobile 3:4, sm+ 16:9)
- * - All controls are absolutely positioned OVER the video (top/center/bottom)
- * - Controls auto-hide after a short delay. Clicking the video toggles them.
+ * - Normal mode: video container uses an aspect ratio (16:9)
+ * - Fullscreen mode: container becomes full screen (h-screen w-full) so video fills screen
+ * - Controls are overlaid on the video (top/center/bottom)
+ * - Auto-hide controls with timer, click/tap toggles
+ * - Keyboard shortcuts: Space (play/pause), Left/Right seek, F toggle fullscreen, M mute
  */
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const videoRef = useRef(null);
@@ -35,6 +37,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
   const [showControls, setShowControls] = useState(true);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const clearControlsTimeout = () => {
     if (controlsTimeoutRef.current) {
@@ -108,6 +111,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     resetControlsTimer();
   };
 
+  // Fullscreen: use containerRef. Keep isFullscreen state in sync.
   const toggleFullscreen = async (e) => {
     if (e) e.stopPropagation();
     const container = containerRef.current;
@@ -116,9 +120,10 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
+        // isFullscreen will be updated by fullscreenchange listener
       } else {
         await container.requestFullscreen();
-        // try lock orientation on supported browsers
+        // try lock orientation on supported browsers (best-effort)
         if (window.screen?.orientation?.lock) {
           window.screen.orientation.lock("landscape").catch(() => { });
         }
@@ -131,11 +136,15 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
   const handleVideoEnd = () => goToNextShow();
 
+  // Play new video when `currentShow` changes
   useEffect(() => {
-    // play new video if possible, reset timers
     const v = videoRef.current;
     if (v) {
-      v.play().catch(() => setIsPlaying(false));
+      v.pause();
+      // small timeout to ensure src change registers in some browsers
+      setTimeout(() => {
+        v.play().catch(() => setIsPlaying(false));
+      }, 50);
       v.volume = volume;
     }
     setShowControls(true);
@@ -149,16 +158,64 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentShow]);
 
+  // fullscreenchange -> update isFullscreen and reset timer
   useEffect(() => {
-    const onFullChange = () => resetControlsTimer();
+    const onFullChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+      resetControlsTimer();
+    };
     document.addEventListener("fullscreenchange", onFullChange);
     return () => document.removeEventListener("fullscreenchange", onFullChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keyboard shortcuts when the container is focused
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!containerRef.current) return;
+      // ignore when not fullscreen *and* the container doesn't have focus
+      // but still allow when any input is focused? simple approach: always respond
+      if (e.code === "Space") {
+        e.preventDefault();
+        togglePlayPause();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (videoRef.current) {
+          videoRef.current.currentTime = Math.max(0, (videoRef.current.currentTime || 0) - 10);
+          setCurrentTime(videoRef.current.currentTime);
+        }
+        resetControlsTimer();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (videoRef.current) {
+          videoRef.current.currentTime = Math.min(
+            duration || Infinity,
+            (videoRef.current.currentTime || 0) + 10
+          );
+          setCurrentTime(videoRef.current.currentTime);
+        }
+        resetControlsTimer();
+      } else if (e.key.toLowerCase() === "f") {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key.toLowerCase() === "m") {
+        e.preventDefault();
+        toggleMute();
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [duration]);
 
   return (
     <div ref={containerRef} className="w-full text-white">
-
-      <div className="relative w-full aspect-[16/9] sm:aspect-[27/9] bg-black rounded-md overflow-hidden">
+      {/* Container switches between aspect box (normal) and full screen (when `isFullscreen` true) */}
+      <div
+        className={`relative w-full bg-black rounded-md overflow-hidden ${isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"
+          }`}
+      >
         <video
           ref={videoRef}
           src={currentShow?.videoUrl}
@@ -171,8 +228,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
           onClick={toggleControls}
         />
 
-        {/* OVERLAY CONTROLS (all absolute inside video area) */}
-        {/* Top bar - REPLACED: Back button to show details page */}
+        {/* OVERLAY CONTROLS */}
+
+        {/* Top bar - Back button to show details page (or go back) */}
         {showControls && (
           <div
             data-controls
@@ -181,22 +239,19 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                // navigate back to the show's details page
                 if (currentShow?.id) {
                   navigate(`/show/${currentShow.id}`);
                 } else {
                   navigate(-1);
                 }
               }}
-              className="p-3.5 ml-5 mt-2 rounded-full hover:bg-white/10 transition flex items-center gap-2"
+              className="p-3.5 ml-3 rounded-full hover:bg-white/10 transition flex items-center gap-2"
               aria-label="Back to show"
             >
               <FaArrowLeft className="text-xl" />
-
             </button>
           </div>
         )}
-
 
         {/* Center controls */}
         {showControls && (
@@ -266,12 +321,14 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
             <div className="mt-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="text-sm">{formatTime(currentTime)}</div>
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     goToPreviousShow();
                   }}
                   className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
+                  aria-label="Previous show"
                 >
                   <FaBackward /> <span className="hidden sm:inline">Previous</span>
                 </button>
@@ -282,6 +339,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     goToNextShow();
                   }}
                   className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
+                  aria-label="Next show"
                 >
                   <span className="hidden sm:inline">Next</span> <FaForward />
                 </button>
@@ -297,6 +355,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     }}
                     className="p-1"
                     title={isMuted ? "Unmute" : "Mute"}
+                    aria-label={isMuted ? "Unmute" : "Mute"}
                   >
                     {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
                   </button>
@@ -324,8 +383,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     toggleFullscreen(e);
                   }}
                   aria-label="Toggle fullscreen"
+                  title="Toggle fullscreen (F)"
                 >
-                  {document.fullscreenElement ? <FaCompress /> : <FaExpand />}
+                  {isFullscreen ? <FaCompress /> : <FaExpand />}
                 </button>
 
                 <div className="text-sm">{formatTime(duration)}</div>
