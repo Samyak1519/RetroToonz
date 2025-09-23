@@ -55,10 +55,10 @@ function VideoPlayerPage() {
           <div className="px-4 sm:px-8 md:px-12 py-6">
             <h1 className="text-2xl md:text-3xl font-bold mb-2">{currentShow.title}</h1>
             <div className="flex flex-wrap gap-2 text-sm text-gray-300 mb-4">
-              <span>{currentShow.year}</span>
-              {currentShow.language && <span>{currentShow.language}</span>}
-              {currentShow.rating && <span>⭐ {currentShow.rating}</span>}
-              {currentShow.duration && <span>{currentShow.duration}</span>}
+              <span>{currentShow.year} |</span>
+              {currentShow.language && <span>{currentShow.language} | </span>}
+              {currentShow.rating && <span>⭐ {currentShow.rating} | </span>}
+              {currentShow.duration && <span>{currentShow.duration} </span>}
             </div>
 
             {/* Tags */}
@@ -80,7 +80,7 @@ function VideoPlayerPage() {
             <p className="text-gray-200 max-w-3xl leading-relaxed">{currentShow.description}</p>
           </div>
 
-          
+
 
           {/* Episodes (placeholder; replace with real seasons/episodes if you add them to JSON) */}
           <div className="px-4 sm:px-8 md:px-12 mb-10">

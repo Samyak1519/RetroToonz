@@ -1,4 +1,3 @@
-// src/Components/VideoPlayer.jsx
 import { useEffect, useRef, useState } from "react";
 import {
   FaBackward,
@@ -9,20 +8,26 @@ import {
   FaPlay,
   FaVolumeMute,
   FaVolumeUp,
+  FaCog,
+  FaArrowLeft,
 } from "react-icons/fa";
-
-import { FaArrowLeft } from "react-icons/fa";
 import { RiForward10Line, RiReplay10Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 /**
- * VideoPlayer
- * - Normal mode: video container uses an aspect ratio (16:9)
- * - Fullscreen mode: container becomes full screen (h-screen w-full) so video fills screen
- * - Controls are overlaid on the video (top/center/bottom)
- * - Auto-hide controls with timer, click/tap toggles
- * - Keyboard shortcuts: Space (play/pause), Left/Right seek, F toggle fullscreen, M mute
+ * VideoPlayer (JavaScript + React)
+ * - settings dropdown now shows a main list (Playback Speed / Quality)
+ *   and drills down to the chosen submenu with a Back option.
+ * - progress bar shows buffered ranges/played portion via gradient
+ * - reduced top spacing for back/settings on mobile
+ *
+ * Notes:
+ * - currentShow.qualities (optional) should be an array:
+ *   [{ label: "1080p", url: "..." }, { label: "720p", url: "..." }, ...]
  */
+
+const DEFAULT_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
@@ -39,6 +44,21 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Settings dropdown + drilldown view
+  const [showSettings, setShowSettings] = useState(false);
+  const [settingsView, setSettingsView] = useState("main"); // "main" | "speed" | "quality"
+  const [speedOptions] = useState(DEFAULT_SPEEDS);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+
+  // Qualities: fallback to Auto if none provided
+  const [qualities, setQualities] = useState(
+    currentShow?.qualities ?? [{ label: "Auto", url: currentShow?.videoUrl }]
+  );
+  const [selectedQuality, setSelectedQuality] = useState(qualities[0]?.label ?? "Auto");
+
+  // progress styling (gradient)
+  const [progressBackground, setProgressBackground] = useState("");
+
   const clearControlsTimeout = () => {
     if (controlsTimeoutRef.current) {
       clearTimeout(controlsTimeoutRef.current);
@@ -52,10 +72,12 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     controlsTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
       controlsTimeoutRef.current = null;
+      setShowSettings(false);
+      setShowVolumeSlider(false);
+      setSettingsView("main");
     }, 3000);
   };
 
-  // clicking the video toggles controls (but not when interacting with controls)
   const toggleControls = (e) => {
     const clickedInsideControls = e?.target?.closest?.("[data-controls]") ?? false;
     if (clickedInsideControls) return;
@@ -85,8 +107,17 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     resetControlsTimer();
   };
 
-  const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime || 0);
-  const handleLoadedMetadata = () => setDuration(videoRef.current.duration || 0);
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    setCurrentTime(videoRef.current.currentTime || 0);
+    updateProgressBackground();
+  };
+
+  const handleLoadedMetadata = () => {
+    if (!videoRef.current) return;
+    setDuration(videoRef.current.duration || 0);
+    updateProgressBackground();
+  };
 
   const handleProgressChange = (e) => {
     const newTime = parseFloat(e.target.value);
@@ -111,7 +142,6 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     resetControlsTimer();
   };
 
-  // Fullscreen: use containerRef. Keep isFullscreen state in sync.
   const toggleFullscreen = async (e) => {
     if (e) e.stopPropagation();
     const container = containerRef.current;
@@ -120,10 +150,8 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
-        // isFullscreen will be updated by fullscreenchange listener
       } else {
         await container.requestFullscreen();
-        // try lock orientation on supported browsers (best-effort)
         if (window.screen?.orientation?.lock) {
           window.screen.orientation.lock("landscape").catch(() => { });
         }
@@ -136,29 +164,31 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
   const handleVideoEnd = () => goToNextShow();
 
-  // Play new video when `currentShow` changes
+  // Update qualities when currentShow changes
   useEffect(() => {
+    const q = currentShow?.qualities ?? [{ label: "Auto", url: currentShow?.videoUrl }];
+    setQualities(q);
+    setSelectedQuality(q[0]?.label ?? "Auto");
+    // set video source to selected quality (first)
     const v = videoRef.current;
-    if (v) {
-      v.pause();
-      // small timeout to ensure src change registers in some browsers
+    if (v && q[0]?.url) {
+      v.src = q[0].url;
       setTimeout(() => {
         v.play().catch(() => setIsPlaying(false));
       }, 50);
-      v.volume = volume;
     }
+    // reset UI state
+    setCurrentTime(0);
+    setDuration(0);
     setShowControls(true);
     clearControlsTimeout();
     controlsTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
       controlsTimeoutRef.current = null;
     }, 1500);
-
-    return () => clearControlsTimeout();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentShow]);
 
-  // fullscreenchange -> update isFullscreen and reset timer
   useEffect(() => {
     const onFullChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -166,15 +196,11 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     };
     document.addEventListener("fullscreenchange", onFullChange);
     return () => document.removeEventListener("fullscreenchange", onFullChange);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Keyboard shortcuts when the container is focused
   useEffect(() => {
     const onKey = (e) => {
       if (!containerRef.current) return;
-      // ignore when not fullscreen *and* the container doesn't have focus
-      // but still allow when any input is focused? simple approach: always respond
       if (e.code === "Space") {
         e.preventDefault();
         togglePlayPause();
@@ -206,19 +232,87 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [duration]);
+
+  // apply playback speed to the video element when changed
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = playbackSpeed;
+  }, [playbackSpeed]);
+
+  // When selectedQuality changes, switch video.src and try to preserve currentTime
+  const changeQuality = (label) => {
+    const q = qualities.find((x) => x.label === label);
+    if (!q || !videoRef.current) {
+      setSelectedQuality(label);
+      return;
+    }
+    const v = videoRef.current;
+    const time = v.currentTime || 0;
+    const wasPlaying = !v.paused;
+    v.pause();
+    v.src = q.url;
+    setSelectedQuality(q.label);
+    // reload & seek to previous time (best-effort)
+    v.load();
+    v.currentTime = Math.min(time, q.url ? Infinity : time);
+    if (wasPlaying) {
+      v.play().catch(() => setIsPlaying(false));
+    }
+    resetControlsTimer();
+  };
+
+  // Build progress gradient string: played portion (accent), buffered portion (muted), remainder (dark)
+  const updateProgressBackground = () => {
+    const v = videoRef.current;
+    if (!v || !duration || duration === 0) {
+      setProgressBackground("");
+      return;
+    }
+    const playedPct = Math.min(100, (v.currentTime / duration) * 100);
+    // compute buffered end (furthest buffered range)
+    let bufferedEnd = 0;
+    try {
+      for (let i = 0; i < v.buffered.length; i++) {
+        bufferedEnd = Math.max(bufferedEnd, v.buffered.end(i));
+      }
+    } catch (err) {
+      bufferedEnd = 0;
+    }
+    const bufferedPct = Math.min(100, (bufferedEnd / duration) * 100);
+
+    // gradient: played (cyan) -> buffered (gray) -> remainder (semi-transparent dark)
+    const accent = "rgba(34,211,238,1)"; // cyan-like
+    const bufferedColor = "rgba(255,255,255,0.2)";
+    const remainder = "rgba(255,255,255,0.06)";
+
+    // ensure ordering: played <= buffered
+    const played = Math.max(0, Math.min(playedPct, bufferedPct));
+    const buffered = Math.max(playedPct, bufferedPct);
+
+    const gradient = `linear-gradient(90deg, ${accent} 0% ${played}%, ${bufferedColor} ${played}% ${buffered}%, ${remainder} ${buffered}% 100%)`;
+    setProgressBackground(gradient);
+  };
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      updateProgressBackground();
+    }, 250);
+    return () => clearInterval(ticker);
+  }, [duration, currentTime]);
+
+  useEffect(() => {
+    updateProgressBackground();
   }, [duration]);
 
   return (
     <div ref={containerRef} className="w-full text-white">
-      {/* Container switches between aspect box (normal) and full screen (when `isFullscreen` true) */}
       <div
         className={`relative w-full bg-black rounded-md overflow-hidden ${isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"
           }`}
       >
         <video
           ref={videoRef}
-          src={currentShow?.videoUrl}
+          src={qualities && qualities[0] ? qualities[0].url : currentShow?.videoUrl}
           className="absolute inset-0 w-full h-full object-contain"
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
@@ -228,32 +322,163 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
           onClick={toggleControls}
         />
 
-        {/* OVERLAY CONTROLS */}
-
-        {/* Top bar - Back button to show details page (or go back) */}
+        {/* TOP BAR */}
         {showControls && (
           <div
             data-controls
-            className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-black/70 to-transparent px-4 py-2 flex items-center"
+            className="absolute top-0 left-0 right-0 z-40 bg-gradient-to-b from-black/70 to-transparent px-4 py-2 flex items-center justify-between"
           >
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (currentShow?.id) {
-                  navigate(`/show/${currentShow.id}`);
-                } else {
-                  navigate(-1);
-                }
-              }}
-              className="p-3.5 ml-3 rounded-full hover:bg-white/10 transition flex items-center gap-2"
-              aria-label="Back to show"
-            >
-              <FaArrowLeft className="text-xl" />
-            </button>
+            <div className="flex items-center">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (currentShow?.id) {
+                    navigate(`/show/${currentShow.id}`);
+                  } else {
+                    navigate(-1);
+                  }
+                }}
+                className="p-2 sm:p-3.5 ml-2 sm:ml-3 rounded-full hover:bg-white/10 transition flex items-center gap-2"
+                aria-label="Back to show"
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                <FaArrowLeft className="text-lg sm:text-xl" />
+              </button>
+            </div>
+
+            {/* Settings icon: reduced padding on mobile */}
+            <div className="flex items-center relative">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSettings((s) => {
+                    const next = !s;
+                    if (next) setSettingsView("main");
+                    return next;
+                  });
+                  resetControlsTimer();
+                }}
+                className="p-2 sm:p-3.5 mr-2 sm:mr-3 rounded-full hover:bg-white/10 transition"
+                aria-label="Settings"
+                title="Settings"
+              >
+                <FaCog className="text-lg sm:text-xl" />
+              </button>
+
+              {/* Settings dropdown (MAIN + drilldowns) */}
+              {showSettings && (
+                <div
+                  data-controls
+                  className="absolute right-0 mt-12 sm:mt-14 mr-2 w-48 bg-black/90 border border-white/10 rounded-md p-2 z-50"
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  {/* MAIN LIST */}
+                  {settingsView === "main" && (
+                    <div className="flex flex-col gap-1 p-1">
+                      <button
+                        className="text-left px-3 py-2 rounded text-sm bg-white/5 hover:bg-white/10"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSettingsView("speed");
+                          resetControlsTimer();
+                        }}
+                      >
+                        Playback Speed
+                      </button>
+
+                      <button
+                        className="text-left px-3 py-2 rounded text-sm bg-white/5 hover:bg-white/10"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSettingsView("quality");
+                          resetControlsTimer();
+                        }}
+                      >
+                        Quality
+                      </button>
+                    </div>
+                  )}
+
+                  {/* SPEED SUBMENU - HORIZONTAL */}
+                  {settingsView === "speed" && (
+                    <div className="p-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <button
+                          className="text-sm text-white/60 px-2 py-1"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSettingsView("main");
+                            resetControlsTimer();
+                          }}
+                        >
+                          ← Back
+                        </button>
+                        <div className="text-xs text-white/80">Speed</div>
+                        <div style={{ width: 40 }} />
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {speedOptions.map((s) => (
+                          <button
+                            key={s}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setPlaybackSpeed(s);
+                              resetControlsTimer();
+                            }}
+                            className={`px-2 py-1 rounded text-sm ${playbackSpeed === s ? "bg-white/20" : "bg-white/5"
+                              }`}
+                          >
+                            {s}x
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* QUALITY SUBMENU */}
+                  {settingsView === "quality" && (
+                    <div className="p-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <button
+                          className="text-sm text-white/60 px-2 py-1"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSettingsView("main");
+                            resetControlsTimer();
+                          }}
+                        >
+                          ← Back
+                        </button>
+                        <div className="text-xs text-white/80">Quality</div>
+                        <div style={{ width: 40 }} />
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        {qualities.map((q) => (
+                          <button
+                            key={q.label}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              changeQuality(q.label);
+                              resetControlsTimer();
+                            }}
+                            className={`text-left px-3 py-2 rounded text-sm ${selectedQuality === q.label ? "bg-white/10" : "bg-white/5"
+                              }`}
+                          >
+                            {q.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         )}
 
-        {/* Center controls */}
+        {/* CENTER CONTROLS */}
         {showControls && (
           <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
             <div className="pointer-events-auto flex items-center gap-10">
@@ -285,10 +510,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                 onClick={(e) => {
                   e.stopPropagation();
                   if (videoRef.current)
-                    videoRef.current.currentTime = Math.min(
-                      duration,
-                      videoRef.current.currentTime + 10
-                    );
+                    videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
                   resetControlsTimer();
                 }}
                 className="bg-black/60 p-3 rounded-full text-white"
@@ -300,37 +522,46 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
           </div>
         )}
 
-        {/* Bottom bar (progress + actions) */}
+        {/* BOTTOM BAR: progress + actions */}
         {showControls && (
           <div
             data-controls
             className="absolute left-0 right-0 bottom-0 z-30 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent"
           >
-            <input
-              type="range"
-              min="0"
-              max={duration || 0}
-              step="0.1"
-              value={currentTime}
-              onChange={handleProgressChange}
-              className="w-full accent-cyan-500 h-1 cursor-pointer"
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-            />
+            {/* Progress row: current time - progress - duration (inline) */}
+            <div className="flex items-center gap-3">
+              <div className="text-sm w-12 text-left">{formatTime(currentTime)}</div>
+
+              {/* Range input with dynamic gradient background showing played + buffered */}
+              <input
+                type="range"
+                min="0"
+                max={duration || 0}
+                step="0.1"
+                value={currentTime}
+                onChange={handleProgressChange}
+                className="flex-1 h-1 cursor-pointer appearance-none"
+                style={{
+                  background: progressBackground || undefined,
+                }}
+                onMouseDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
+              />
+
+              <div className="text-sm w-12 text-right">{formatTime(duration)}</div>
+            </div>
 
             <div className="mt-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="text-sm">{formatTime(currentTime)}</div>
-
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     goToPreviousShow();
                   }}
-                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
+                  className="px-2 py-1 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-1 text-xs"
                   aria-label="Previous show"
                 >
-                  <FaBackward /> <span className="hidden sm:inline">Previous</span>
+                  <FaBackward size={14} /> <span className="hidden sm:inline">Previous</span>
                 </button>
 
                 <button
@@ -338,10 +569,10 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     e.stopPropagation();
                     goToNextShow();
                   }}
-                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
+                  className="px-2 py-1 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-1 text-xs"
                   aria-label="Next show"
                 >
-                  <span className="hidden sm:inline">Next</span> <FaForward />
+                  <span className="hidden sm:inline">Next</span> <FaForward size={14} />
                 </button>
               </div>
 
@@ -387,8 +618,6 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                 >
                   {isFullscreen ? <FaCompress /> : <FaExpand />}
                 </button>
-
-                <div className="text-sm">{formatTime(duration)}</div>
               </div>
             </div>
           </div>
@@ -398,14 +627,16 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   );
 };
 
-const formatTime = (time = 0) => {
-  const m = Math.floor(time / 60)
+function formatTime(time = 0) {
+  if (!isFinite(time) || time <= 0) return "00:00";
+  const h = Math.floor(time / 3600);
+  const m = Math.floor((time % 3600) / 60)
     .toString()
     .padStart(2, "0");
   const s = Math.floor(time % 60)
     .toString()
     .padStart(2, "0");
-  return `${m}:${s}`;
-};
+  return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
+}
 
 export default VideoPlayer;
