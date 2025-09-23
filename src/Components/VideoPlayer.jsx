@@ -1,4 +1,3 @@
-// src/Components/VideoPlayer.jsx
 import { useEffect, useRef, useState } from "react";
 import {
   FaBackward,
@@ -7,14 +6,21 @@ import {
   FaForward,
   FaPause,
   FaPlay,
-  FaTimes,
   FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
+
+import { FaArrowLeft } from "react-icons/fa";
+
 import { RiForward10Line, RiReplay10Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 
+/**
+ * VideoPlayer
+ * - Video is placed in a responsive aspect container (mobile 3:4, sm+ 16:9)
+ * - All controls are absolutely positioned OVER the video (top/center/bottom)
+ * - Controls auto-hide after a short delay. Clicking the video toggles them.
+ */
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
@@ -27,12 +33,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
 
-  // Controls visibility state
   const [showControls, setShowControls] = useState(true);
-  // Volume slider visibility state
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
-  // Helper to clear timeout
   const clearControlsTimeout = () => {
     if (controlsTimeoutRef.current) {
       clearTimeout(controlsTimeoutRef.current);
@@ -40,7 +43,6 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     }
   };
 
-  // Auto-hide timer (3s)
   const resetControlsTimer = () => {
     setShowControls(true);
     clearControlsTimeout();
@@ -50,12 +52,10 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     }, 3000);
   };
 
-  // Toggle controls (used on tap/click)
+  // clicking the video toggles controls (but not when interacting with controls)
   const toggleControls = (e) => {
-    // prevent toggling when clicking inside controls
     const clickedInsideControls = e?.target?.closest?.("[data-controls]") ?? false;
     if (clickedInsideControls) return;
-
     setShowControls((s) => {
       const next = !s;
       clearControlsTimeout();
@@ -69,35 +69,25 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     });
   };
 
-  // Mouse move handler (desktop): show controls and reset timer
-  const handleMouseMove = () => {
-    resetControlsTimer();
-  };
-
   const togglePlayPause = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      video.play();
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch(() => { });
       setIsPlaying(true);
     } else {
-      video.pause();
+      v.pause();
       setIsPlaying(false);
     }
     resetControlsTimer();
   };
 
-  const handleTimeUpdate = () => {
-    setCurrentTime(videoRef.current.currentTime);
-  };
-
-  const handleLoadedMetadata = () => {
-    setDuration(videoRef.current.duration);
-  };
+  const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime || 0);
+  const handleLoadedMetadata = () => setDuration(videoRef.current.duration || 0);
 
   const handleProgressChange = (e) => {
     const newTime = parseFloat(e.target.value);
-    videoRef.current.currentTime = newTime;
+    if (videoRef.current) videoRef.current.currentTime = newTime;
     setCurrentTime(newTime);
     resetControlsTimer();
   };
@@ -112,10 +102,9 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
 
   const toggleMute = (e) => {
     if (e) e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
     resetControlsTimer();
   };
 
@@ -124,47 +113,31 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
     const container = containerRef.current;
     if (!container) return;
 
-    if (document.fullscreenElement) {
-      await document.exitFullscreen();
-    } else {
-      try {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
         await container.requestFullscreen();
-        if (
-          typeof window !== "undefined" &&
-          window.screen.orientation &&
-          window.screen.orientation.lock
-        ) {
-          await window.screen.orientation.lock("landscape").catch((err) =>
-            console.warn("Orientation lock failed:", err)
-          );
+        // try lock orientation on supported browsers
+        if (window.screen?.orientation?.lock) {
+          window.screen.orientation.lock("landscape").catch(() => { });
         }
-      } catch (err) {
-        console.error("Fullscreen error:", err);
       }
+    } catch (err) {
+      console.warn("Fullscreen error", err);
     }
     resetControlsTimer();
   };
 
-  const handleFullscreenChange = () => {
-    resetControlsTimer();
-  };
-
-  const handleVideoEnd = () => {
-    goToNextShow();
-  };
-
-  // overlay click handler: used to avoid hiding/showing when interacting with controls
-  const handleOverlayClick = (e) => {
-    toggleControls(e);
-  };
+  const handleVideoEnd = () => goToNextShow();
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch(() => setIsPlaying(false));
-      video.volume = volume;
+    // play new video if possible, reset timers
+    const v = videoRef.current;
+    if (v) {
+      v.play().catch(() => setIsPlaying(false));
+      v.volume = volume;
     }
-    // show controls briefly on new video then auto-hide
     setShowControls(true);
     clearControlsTimeout();
     controlsTimeoutRef.current = setTimeout(() => {
@@ -172,186 +145,135 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
       controlsTimeoutRef.current = null;
     }, 1500);
 
-    return () => {
-      clearControlsTimeout();
-    };
+    return () => clearControlsTimeout();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentShow]);
 
   useEffect(() => {
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      clearControlsTimeout();
-    };
+    const onFullChange = () => resetControlsTimer();
+    document.addEventListener("fullscreenchange", onFullChange);
+    return () => document.removeEventListener("fullscreenchange", onFullChange);
   }, []);
 
-  // small helper to respect reduced motion preference (optional)
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Motion variants for top/bottom bars (subtle)
-  const topBarVariants = {
-    hidden: { opacity: 0, y: -8 },
-    visible: { opacity: 1, y: 0 },
-  };
-  const bottomBarVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-screen bg-black"
-      onMouseMove={handleMouseMove}
-      onClick={handleOverlayClick}
-      onTouchStart={(e) => {
-        // prevent default to avoid delayed click on some mobile browsers
-        e.preventDefault();
-        toggleControls(e);
-      }}
-    >
-      <video
-        ref={videoRef}
-        src={currentShow?.videoUrl}
-        className="w-full h-full object-contain"
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onEnded={handleVideoEnd}
-        autoPlay
-        controls={false}
-      />
+    <div ref={containerRef} className="w-full text-white">
 
-      {/* Top Bar */}
-      <AnimatePresence initial={false}>
+      <div className="relative w-full aspect-[16/9] sm:aspect-[27/9] bg-black rounded-md overflow-hidden">
+        <video
+          ref={videoRef}
+          src={currentShow?.videoUrl}
+          className="absolute inset-0 w-full h-full object-contain"
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={handleVideoEnd}
+          autoPlay
+          controls={false}
+          onClick={toggleControls}
+        />
+
+        {/* OVERLAY CONTROLS (all absolute inside video area) */}
+        {/* Top bar - REPLACED: Back button to show details page */}
         {showControls && (
-          <motion.div
+          <div
             data-controls
-            key="topbar"
-            initial={prefersReducedMotion ? "visible" : "hidden"}
-            animate="visible"
-            exit={prefersReducedMotion ? "visible" : "hidden"}
-            variants={prefersReducedMotion ? {} : topBarVariants}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            style={{ willChange: "transform, opacity" }}
-            className="fixed top-0 w-full z-50 bg-gradient-to-r from-black/70 to-gray-700/30 backdrop-blur-md text-white"
+            className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-black/70 to-transparent px-4 py-2 flex items-center"
           >
-            <div className="flex items-center justify-end px-5 py-2.5 md:px-6 md:py-2 relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 text-lg font-semibold text-center px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[70%]">
-                {currentShow?.title}
-              </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                // navigate back to the show's details page
+                if (currentShow?.id) {
+                  navigate(`/show/${currentShow.id}`);
+                } else {
+                  navigate(-1);
+                }
+              }}
+              className="p-3.5 ml-5 mt-2 rounded-full hover:bg-white/10 transition flex items-center gap-2"
+              aria-label="Back to show"
+            >
+              <FaArrowLeft className="text-xl" />
+
+            </button>
+          </div>
+        )}
+
+
+        {/* Center controls */}
+        {showControls && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+            <div className="pointer-events-auto flex items-center gap-10">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigate("/");
+                  if (videoRef.current)
+                    videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
+                  resetControlsTimer();
                 }}
-                className="text-white text-xl z-10 rounded-full p-2 hover:bg-gray-700 transition"
+                className="bg-black/60 p-3 rounded-full text-white"
+                aria-label="Rewind 10s"
               >
-                <FaTimes />
+                <RiReplay10Line size={20} />
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePlayPause();
+                }}
+                className="bg-black/60 p-4 rounded-full text-white"
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (videoRef.current)
+                    videoRef.current.currentTime = Math.min(
+                      duration,
+                      videoRef.current.currentTime + 10
+                    );
+                  resetControlsTimer();
+                }}
+                className="bg-black/60 p-3 rounded-full text-white"
+                aria-label="Forward 10s"
+              >
+                <RiForward10Line size={20} />
               </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Center Controls */}
-      {showControls && (
-        <div
-          data-controls
-          className="absolute inset-0 flex items-center justify-center space-x-7 z-10 pointer-events-none"
-        >
-          <div className="pointer-events-auto flex items-center gap-4">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (videoRef.current) {
-                  videoRef.current.currentTime = Math.max(
-                    0,
-                    videoRef.current.currentTime - 10
-                  );
-                }
-                resetControlsTimer();
-              }}
-              className="bg-black bg-opacity-60 p-3 rounded-full text-white"
-            >
-              <RiReplay10Line size={20} />
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                togglePlayPause();
-              }}
-              className="bg-black bg-opacity-60 p-4 rounded-full text-white"
-            >
-              {isPlaying ? <FaPause size={24} /> : <FaPlay size={24} />}
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (videoRef.current) {
-                  videoRef.current.currentTime = Math.min(
-                    duration,
-                    videoRef.current.currentTime + 10
-                  );
-                }
-                resetControlsTimer();
-              }}
-              className="bg-black bg-opacity-60 p-3 rounded-full text-white"
-            >
-              <RiForward10Line size={20} />
-            </button>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Bottom Controls */}
-      <AnimatePresence initial={false}>
+        {/* Bottom bar (progress + actions) */}
         {showControls && (
-          <motion.div
+          <div
             data-controls
-            key="bottombar"
-            initial={prefersReducedMotion ? "visible" : "hidden"}
-            animate="visible"
-            exit={prefersReducedMotion ? "visible" : "hidden"}
-            variants={prefersReducedMotion ? {} : bottomBarVariants}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            style={{ willChange: "transform, opacity" }}
-            className="fixed bottom-0 left-0 w-full z-50 px-7 py-4 md:py-3 md:px-5 bg-gradient-to-t from-black/70 to-gray-700/30 backdrop-blur-md text-white"
+            className="absolute left-0 right-0 bottom-0 z-30 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent"
           >
-            <div className="flex items-center justify-between text-sm my-0.5">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-
             <input
               type="range"
               min="0"
-              max={duration}
-              value={currentTime}
+              max={duration || 0}
               step="0.1"
+              value={currentTime}
               onChange={handleProgressChange}
-              className="w-full accent-cyan-500 h-1 cursor-pointer mb-3"
+              className="w-full accent-cyan-500 h-1 cursor-pointer"
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
             />
 
-            <div className="flex justify-between items-center mt-1 gap-5 text-sm">
-              {/* Prev / Next */}
-              <div className="flex items-center gap-4">
+            <div className="mt-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="text-sm">{formatTime(currentTime)}</div>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     goToPreviousShow();
                   }}
-                  className="flex items-center gap-2 px-4 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all"
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
                 >
-                  <FaBackward size={14} />
-                  <span className="text-sm font-medium">Previous</span>
+                  <FaBackward /> <span className="hidden sm:inline">Previous</span>
                 </button>
 
                 <button
@@ -359,33 +281,30 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     e.stopPropagation();
                     goToNextShow();
                   }}
-                  className="flex items-center gap-2 px-4 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all"
+                  className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full flex items-center gap-2"
                 >
-                  <span className="text-sm font-medium">Next</span>
-                  <FaForward size={14} />
+                  <span className="hidden sm:inline">Next</span> <FaForward />
                 </button>
               </div>
 
-              {/* Volume + Fullscreen */}
-              <div className="flex items-center gap-5">
-                <div className="relative flex items-center">
+              <div className="flex items-center gap-4">
+                <div className="relative">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleMute(e);
-                      setShowVolumeSlider((prev) => !prev);
+                      setShowVolumeSlider((p) => !p);
                     }}
+                    className="p-1"
+                    title={isMuted ? "Unmute" : "Mute"}
                   >
-                    {isMuted || volume === 0 ? (
-                      <FaVolumeMute size={18} />
-                    ) : (
-                      <FaVolumeUp size={18} />
-                    )}
+                    {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
                   </button>
 
                   <div
-                    className={`absolute right-8 transition-all duration-300 overflow-hidden ${showVolumeSlider ? "w-24 opacity-100" : "w-0 opacity-0"
+                    className={`absolute -right-0 top-0 mt-8 transition-all ${showVolumeSlider ? "opacity-100 w-28" : "opacity-0 w-0 overflow-hidden"
                       }`}
+                    onMouseDown={(e) => e.stopPropagation()}
                   >
                     <input
                       type="range"
@@ -394,9 +313,7 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                       step="0.05"
                       value={isMuted ? 0 : volume}
                       onChange={handleVolumeChange}
-                      className="ml-2 w-full accent-red-600 h-1 cursor-pointer"
-                      onMouseDown={(e) => e.stopPropagation()}
-                      onTouchStart={(e) => e.stopPropagation()}
+                      className="w-full accent-cyan-500"
                     />
                   </div>
                 </div>
@@ -406,30 +323,29 @@ const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {
                     e.stopPropagation();
                     toggleFullscreen(e);
                   }}
+                  aria-label="Toggle fullscreen"
                 >
-                  {document.fullscreenElement ? (
-                    <FaCompress size={18} />
-                  ) : (
-                    <FaExpand size={18} />
-                  )}
+                  {document.fullscreenElement ? <FaCompress /> : <FaExpand />}
                 </button>
+
+                <div className="text-sm">{formatTime(duration)}</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 };
 
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60)
+const formatTime = (time = 0) => {
+  const m = Math.floor(time / 60)
     .toString()
     .padStart(2, "0");
-  const seconds = Math.floor(time % 60)
+  const s = Math.floor(time % 60)
     .toString()
     .padStart(2, "0");
-  return `${minutes}:${seconds}`;
+  return `${m}:${s}`;
 };
 
 export default VideoPlayer;
