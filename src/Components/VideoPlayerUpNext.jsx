@@ -1,7 +1,12 @@
-// src/Components/VideoPlayerUpNext.jsx
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const defaultPoster = "/Assets/default.jpg";
+const normalizePath = (p) => {
+    if (!p) return null;
+    return p.startsWith("/") ? p : `/Assets/${p}`;
+};
 
 export default function VideoPlayerUpNext({ allShows, currentIndex }) {
     const scrollerRef = useRef(null);
@@ -46,7 +51,8 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                         style={{ scrollSnapType: "x mandatory", paddingBottom: 8 }}
                     >
                         {upcoming.map((show, i) => {
-                            const src = show.thumbnailMobile || show.thumbnail || "";
+                            const desktopSrc = normalizePath(show.thumbnail) || "";
+                            const mobileSrc = normalizePath(show.thumbnailMobile) || "";
                             return (
                                 <Link
                                     key={show.id || i}
@@ -60,21 +66,21 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                                 >
                                     {/* 2:3 aspect on mobile (pt-[150%]), 16:9 on sm+ (sm:pt-[56.25%]) */}
                                     <div className="pt-[150%] sm:pt-[56.25%] relative bg-gray-800 rounded-lg overflow-hidden shadow-sm">
-                                        {src ? (
+                                        <picture>
+                                            <source
+                                                srcSet={desktopSrc || mobileSrc || defaultPoster}
+                                                media="(min-width:640px)"
+                                            />
                                             <img
-                                                src={src}
-                                                alt={show.title}
+                                                src={mobileSrc || desktopSrc || defaultPoster}
+                                                alt={show.title || ""}
                                                 className="absolute inset-0 w-full h-full object-cover"
                                                 onError={(e) => {
                                                     e.target.onerror = null;
-                                                    e.target.src = ""; // fallback handled by CSS background if desired
+                                                    e.target.src = defaultPoster;
                                                 }}
                                             />
-                                        ) : (
-                                            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center text-gray-400">
-                                                No image
-                                            </div>
-                                        )}
+                                        </picture>
                                     </div>
                                 </Link>
                             );
