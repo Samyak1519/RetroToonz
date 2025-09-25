@@ -3,7 +3,6 @@
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import HeroBanner from "../Components/HeroBanner";
-import PageWrapper from "../Components/PageWrapper";
 import RandomPlayButton from "../Components/RandomPlayButton";
 import ShowSection from "../Components/ShowSection";
 
@@ -52,7 +51,7 @@ const becauseYouWatched = getRandomShows(allShows, 6);
 
 function HomePage() {
   return (
-    <PageWrapper>
+    
       <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
         {/* Fixed Header */}
         <Header />
@@ -85,7 +84,7 @@ function HomePage() {
 
         <Footer />
       </div>
-    </PageWrapper>
+    
   );
 }
 

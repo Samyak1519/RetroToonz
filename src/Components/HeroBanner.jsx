@@ -5,11 +5,7 @@ import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
 const DEFAULT_POSTER = "/Assets/default.jpg";
 
-/**
- * Normalize a poster path coming from JSON:
- * - if already absolute (starts with "/"), return as-is
- * - otherwise prepend "/Assets/" so "Mobile_Posters/..." and "Ben_10.jpg" work
- */
+
 const normalizePath = (p) => {
   if (!p) return DEFAULT_POSTER;
   return p.startsWith("/") ? p : `/Assets/${p}`;

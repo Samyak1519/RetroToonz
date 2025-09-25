@@ -1,6 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { AnimatePresence } from "framer-motion";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
@@ -14,35 +13,30 @@ import WatchlistPage from "./Pages/WatchlistPage";
 
 import "./App.css";
 
-function AnimatedRoutes() {
-  const location = useLocation();
-
+function AppRoutes() {
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/watchlist" element={<WatchlistPage />} />
-        <Route path="/show/:id" element={<ShowDetailsPage />} />
-        <Route path="/watch/:id" element={<VideoPlayerPage />} />
-        <Route path="/comingsoon" element={<ComingSoon />} />
-        <Route path="/search" element={<SearchResultsPage />} />
-        <Route path="/addshow" element={<AddShowPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </AnimatePresence>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/watchlist" element={<WatchlistPage />} />
+      <Route path="/show/:id" element={<ShowDetailsPage />} />
+      <Route path="/watch/:id" element={<VideoPlayerPage />} />
+      <Route path="/comingsoon" element={<ComingSoon />} />
+      <Route path="/search" element={<SearchResultsPage />} />
+      <Route path="/addshow" element={<AddShowPage />} />
+      <Route path="*" element={<ErrorPage />} />
+    </Routes>
   );
 }
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-space-galaxy text-white transition-all duration-500 ease-in-out">
+    <div className="min-h-screen bg-space-galaxy text-white">
       <BrowserRouter>
-        <AnimatedRoutes />
+        <AppRoutes />
         <SpeedInsights />
       </BrowserRouter>
     </div>
   );
 }
-

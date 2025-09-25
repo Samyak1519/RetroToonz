@@ -14,18 +14,6 @@ import {
 import { RiForward10Line, RiReplay10Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-/**
- * VideoPlayer (JavaScript + React)
- * - settings dropdown now shows a main list (Playback Speed / Quality)
- *   and drills down to the chosen submenu with a Back option.
- * - progress bar shows buffered ranges/played portion via gradient
- * - reduced top spacing for back/settings on mobile
- *
- * Notes:
- * - currentShow.qualities (optional) should be an array:
- *   [{ label: "1080p", url: "..." }, { label: "720p", url: "..." }, ...]
- */
-
 const DEFAULT_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
 const VideoPlayer = ({ currentShow, goToNextShow, goToPreviousShow }) => {

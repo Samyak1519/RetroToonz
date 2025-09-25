@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import PageWrapper from "../Components/PageWrapper";
 
 const ComingSoonPage = () => {
   return (
-    <PageWrapper>
+    
       <div className="min-h-screen flex flex-col bg-gray-900 text-white">
         <Header />
 
@@ -29,7 +28,7 @@ const ComingSoonPage = () => {
 
         <Footer />
       </div>
-    </PageWrapper>
+    
   );
 };
 
