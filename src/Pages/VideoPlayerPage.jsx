@@ -34,43 +34,67 @@ function VideoPlayerPage() {
     return <div className="text-white p-4">Video not found</div>;
   }
 
+  // Public path (file should exist at public/Assets/bullseye-gradient.svg)
+  const bgUrl = "/Assets/bullseye-gradient.svg";
+
   return (
-    <div className="min-h-screen bg-[#0F0A24] text-white">
+    <div className="min-h-screen bg-[#0F0A24] text-white overflow-hidden">
+      {/* ✅ Header stays clean */}
       <Header />
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentShow.id}
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="w-full"
-        >
-          <VideoPlayer
-            currentShow={currentShow}
-            goToNextShow={goToNextShow}
-            goToPreviousShow={goToPreviousShow}
-          />
+      {/* Main content area with static background */}
+      <div className="relative">
+        {/* Static bullseye background */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url('${bgUrl}')`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundAttachment: "fixed",
+            opacity: 0.3,
+          }}
+        />
 
-          <ShowInfo currentShow={currentShow} />
+        {/* Foreground content */}
+        <div className="relative z-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentShow.id}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="w-full"
+            >
+              <VideoPlayer
+                currentShow={currentShow}
+                goToNextShow={goToNextShow}
+                goToPreviousShow={goToPreviousShow}
+              />
 
-          <div className="px-4 sm:px-8 md:px-12 mb-10">
-            <Episodes
-              seasons={currentShow.seasons}
-              currentShowId={currentShow.id}
-            />
-          </div>
+              <ShowInfo currentShow={currentShow} />
 
-          <div className="px-4 sm:px-8 md:px-12">
-            <UpNext
-              allShows={allShows}
-              currentIndex={currentIndex}
-              currentShow={currentShow}
-            />
-          </div>
-        </motion.div>
-      </AnimatePresence>
+              <div className="px-4 sm:px-8 md:px-12 mb-10">
+                <Episodes
+                  seasons={currentShow.seasons}
+                  currentShowId={currentShow.id}
+                />
+              </div>
+
+              <div className="px-4 sm:px-8 md:px-12">
+                <UpNext
+                  allShows={allShows}
+                  currentIndex={currentIndex}
+                  currentShow={currentShow}
+                />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 }

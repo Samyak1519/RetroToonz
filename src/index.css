@@ -1,35 +1,32 @@
-/* ✅ Import Nunito from Google Fonts */
+/* src/index.css */
+
+/* Import Nunito */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ✅ Apply Nunito globally using Tailwind */
+/* Apply base font and background gradient */
 body {
     @apply font-sans;
-    background: linear-gradient(135deg, #0d1b2a, #1c1132, #082e38);
     margin: 0;
+    background: linear-gradient(135deg, #0d1b2a, #1c1132, #082e38);
+    color: #ffffff;
 }
 
-
-
-/* ✅ Optional: Custom class if not using Tailwind utility */
+/* Optional helper classes */
 .nunito-regular {
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;
 }
 
-/* Hide all scrollbars globally */
+/* Hide scrollbars globally (optional) */
 *::-webkit-scrollbar {
     display: none;
 }
 
 * {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
 }
