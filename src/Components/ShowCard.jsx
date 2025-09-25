@@ -20,27 +20,30 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile, tags = [] }) {
     setIsShortlisted((s) => !s);
   };
 
-  // Prefer mobile poster, then desktop poster, else fallback
-  const posterSrc =
-    normalizePath(thumbnailMobile) || normalizePath(thumbnail) || defaultPoster;
+  const desktopPoster = normalizePath(thumbnail) || defaultPoster;
+  const mobilePoster = normalizePath(thumbnailMobile) || desktopPoster;
 
   return (
     <Link to={`/show/${id}`} aria-label={`Open ${title}`}>
       <article className="group relative rounded-lg overflow-hidden flex-shrink-0">
-        {/* MOBILE: larger posters (~2.5 per viewport). DESKTOP: full width controlled by grid */}
         <div className="w-[35vw] sm:w-full">
-          {/* 2:3 aspect on mobile (pt-[150%]), 16:9 on sm+ (sm:pt-[56.25%]) */}
+          {/* 2:3 aspect on mobile, 16:9 on desktop */}
           <div className="pt-[150%] sm:pt-[56.25%] relative bg-gray-800 rounded-lg overflow-hidden shadow-sm">
-            <img
-              src={posterSrc}
-              alt={title}
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = defaultPoster;
-              }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+            <picture>
+              {/* Desktop / tablet (≥640px): use wide poster */}
+              <source media="(min-width: 640px)" srcSet={desktopPoster} />
+              {/* Mobile fallback: portrait poster */}
+              <img
+                src={mobilePoster}
+                alt={title}
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = defaultPoster;
+                }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </picture>
 
             {/* Heart button */}
             <button

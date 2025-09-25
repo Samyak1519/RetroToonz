@@ -27,14 +27,12 @@ function WatchlistPage() {
         </h2>
       </div>
 
-
       {/* Centered Message */}
       <div className="flex-1 flex items-center justify-center px-4 text-center">
         <p className="text-gray-400 text-base sm:text-lg">
           Your saved shows will appear here.
         </p>
       </div>
-
       <Footer />
     </div>
   );

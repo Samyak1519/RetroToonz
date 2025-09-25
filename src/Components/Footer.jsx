@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="relative mt-5 bg-gradient-to-b from-[#0a1628] via-[#0f1f38] to-[#081120] text-white/90 py-10 backdrop-blur-md border-t border-white/10 ">
       {/* Subtle Gradient Top Border */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400/70 via-blue-400/70 to-cyan-400/70"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyan-400/70 via-blue-400/70 to-cyan-400/70"></div>
 
       <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-8">
         {/* Left: Logo */}

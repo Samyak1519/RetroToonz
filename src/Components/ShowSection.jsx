@@ -32,19 +32,44 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
         <div className="w-3 flex-shrink-0" aria-hidden />
       </div>
 
-      {/* DESKTOP+: grid with bigger cards */}
-      <div className="hidden sm:grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      {/* DESKTOP+: horizontal carousel (replaces the grid) */}
+      <div
+        className="
+          hidden
+          sm:flex
+          gap-5
+          overflow-x-auto
+          pb-3
+          snap-x
+          snap-mandatory
+          scrollbar-hide
+          -mx-3 sm:-mx-10
+        "
+        role="list"
+      >
+        {/* left spacer so first card can center nicely on desktop */}
+        <div className="w-6 flex-shrink-0" aria-hidden />
+
         {shows.map((s) => (
-          <ShowCard
+          // width choices: tweak w-56 / sm:w-64 / md:w-72 etc to control how many cards show
+          <div
             key={s.id}
-            id={s.id}
-            title={s.title}
-            year={s.year}
-            thumbnail={s.thumbnail}
-            thumbnailMobile={s.thumbnailMobile}
-            tags={s.tags}
-          />
+            className="snap-start w-56 sm:w-60 md:w-64 lg:w-72 flex-shrink-0"
+            role="listitem"
+          >
+            <ShowCard
+              id={s.id}
+              title={s.title}
+              year={s.year}
+              thumbnail={s.thumbnail}
+              thumbnailMobile={s.thumbnailMobile}
+              tags={s.tags}
+            />
+          </div>
         ))}
+
+        {/* right spacer */}
+        <div className="w-6 flex-shrink-0" aria-hidden />
       </div>
     </section>
   );
