@@ -16,16 +16,25 @@ const enrich = (arr) =>
     thumbnail: show.thumbnail ? `/Assets/${show.thumbnail}` : "/Assets/default.jpg",
   }));
 
-// Utility to get N random shows
-function getRandomShows(showList, count) {
-  const shuffled = [...showList].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+// Utility: random shuffle
+function shuffle(arr) {
+  return [...arr].sort(() => 0.5 - Math.random());
+}
+
+// Utility: pick shows with soft uniqueness (max 2 appearances)
+function pickShows(pool, usedCounts, count) {
+  const available = shuffle(pool).filter((show) => (usedCounts[show.id] || 0) < 2);
+  const selected = available.slice(0, count);
+  selected.forEach((s) => {
+    usedCounts[s.id] = (usedCounts[s.id] || 0) + 1;
+  });
+  return selected;
 }
 
 // Enriched shows
 const allShows = enrich(showsData.allShows);
 
-// Specific "Newly Added" show titles
+// Specific "Newly Added" curated titles
 const newlyAddedTitles = [
   "Ben 10",
   "Jake and the Never Land Pirates",
@@ -39,52 +48,51 @@ const newlyAddedTitles = [
   "SpongeBob Square Pants",
 ];
 
-// Get only those shows and sort alphabetically by title
+// Track usage across rows
+const usedCounts = {};
+
+// Rows
+const trendingShows = pickShows(allShows, usedCounts, 6);
+
 const newlyAdded = allShows
   .filter((show) => newlyAddedTitles.includes(show.title))
-  .sort((a, b) => a.title.localeCompare(b.title));
+  .slice(0, 6);
+newlyAdded.forEach((s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1));
 
-// Randomized Sections
-const trendingShows = getRandomShows(allShows, 6);
-const continueWatching = getRandomShows(allShows, 5);
-const becauseYouWatched = getRandomShows(allShows, 6);
+const retroClassics = allShows
+  .filter((show) => show.year && parseInt(show.year) < 2000)
+  .slice(0, 6);
+retroClassics.forEach((s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1));
+
+const cartoonComedy = pickShows(
+  allShows.filter((show) => show.tags?.includes("Comedy")),
+  usedCounts,
+  6
+);
 
 function HomePage() {
   return (
-    
-      <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
-        {/* Fixed Header */}
-        <Header />
+    <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
+      {/* Fixed Header */}
+      <Header />
 
-        <main className="flex-grow">
-          <div className="-mt-14 sm:-mt-16">
-            <HeroBanner shows={allShows} />
-          </div>
+      <main className="flex-grow">
+        <div className="-mt-14 sm:-mt-16">
+          <HeroBanner shows={allShows} />
+        </div>
 
-          <div className="pb-5 sm:px-5">
-            <ShowSection
-              sectionTitle="Newly Added"
-              shows={newlyAdded}
-              bgColor="#0F0A24"
-            />
-            <ShowSection
-              sectionTitle="Trending Now"
-              shows={trendingShows}
-              bgColor="#0F0A24"
-            />
-            <ShowSection
-              sectionTitle="Because You Watched..."
-              shows={becauseYouWatched}
-              bgColor="#0F0A24"
-            />
-          </div>
+        <div className="pb-5 sm:px-5">
+          <ShowSection sectionTitle="Trending Now" shows={trendingShows} bgColor="#0F0A24" />
+          <ShowSection sectionTitle="Newly Added" shows={newlyAdded} bgColor="#0F0A24" />
+          <ShowSection sectionTitle="Retro Classics" shows={retroClassics} bgColor="#0F0A24" />
+          <ShowSection sectionTitle="Cartoon Comedy" shows={cartoonComedy} bgColor="#0F0A24" />
+        </div>
 
-          <RandomPlayButton shows={allShows} />
-        </main>
+        <RandomPlayButton shows={allShows} />
+      </main>
 
-        <Footer />
-      </div>
-    
+      <Footer />
+    </div>
   );
 }
 
