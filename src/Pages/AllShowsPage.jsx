@@ -211,7 +211,7 @@ export default function AllShowsPage() {
           </div>
 
           {/* GROUPED SHOWS */}
-          <div className="space-y-10 mb-16">
+          <div className="space-y-10 mb-16 px-3 lg:px-0">
             {grouped.length === 0 && (
               <div className="py-12 text-center text-gray-400">No shows match your filters.</div>
             )}
