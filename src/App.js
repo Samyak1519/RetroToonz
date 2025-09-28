@@ -1,10 +1,12 @@
+// src/App.js (or wherever your AppRoutes are)
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddShowPage from "./Pages/AddShowPage";
+import AllShowsPage from "./Pages/AllShowsPage"; // <-- NEW
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/LoginPage";
-import AddShowPage from "./Pages/AddShowPage";
 import ProfilePage from "./Pages/ProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
@@ -20,6 +22,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
+      <Route path="/all-shows" element={<AllShowsPage />} /> {/* <-- NEW */}
       <Route path="/show/:id" element={<ShowDetailsPage />} />
       <Route path="/watch/:id" element={<VideoPlayerPage />} />
       <Route path="/comingsoon" element={<ComingSoon />} />

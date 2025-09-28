@@ -1,3 +1,4 @@
+// src/Components/Header.jsx
 import React, { useEffect, useRef, useState } from "react";
 import {
   FaUserCircle,
@@ -157,6 +158,7 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
+            {/* Search desktop */}
             <button
               onClick={() => {
                 setSearchOpen((s) => !s);
@@ -172,6 +174,7 @@ export default function Header() {
               <FaSearch size={16} />
             </button>
 
+            {/* Search mobile */}
             <button
               onClick={() => {
                 setShowSearchMobile((prev) => !prev);
@@ -227,7 +230,7 @@ export default function Header() {
 
       {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
-      {/* Profile menu via portal (same style for desktop + mobile) */}
+      {/* Profile menu via portal */}
       {profileOpen &&
         createPortal(
           <div
@@ -259,7 +262,7 @@ export default function Header() {
             <div
               role="menu"
               aria-label="Profile menu"
-              className="w-56 rounded-2xl bg-gradient-to-b from-black/40 to-black/60 backdrop-blur-md border border-white/10 shadow-xl overflow-hidden transform origin-top-right"
+              className="w-56 rounded-2xl bg-gradient-to-b from-black/40 to-black/70 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden transform origin-top-right"
               style={{
                 animation: "rtFadeInScale 200ms cubic-bezier(.2,.9,.2,1) forwards",
               }}
@@ -286,8 +289,14 @@ export default function Header() {
 }
 
 function MenuItems({ firstItemRef, onNavigate, onClose }) {
+  const location = useLocation();
+  const activePath = location.pathname;
+  const isActive = (path) => activePath === path;
+
   const itemBase =
-    "flex items-center gap-3 px-5 py-3 text-sm sm:text-base hover:bg-white/10 focus:bg-white/10 focus:outline-none transition text-white";
+    "flex items-center gap-3 px-5 py-3 text-sm sm:text-base transition focus:outline-none " +
+    "hover:bg-white/10 focus:bg-white/10 text-white";
+
   return (
     <div className="py-2">
       <Link
@@ -295,7 +304,7 @@ function MenuItems({ firstItemRef, onNavigate, onClose }) {
         role="menuitem"
         ref={firstItemRef}
         tabIndex={0}
-        className={itemBase}
+        className={`${itemBase} ${isActive("/profile") ? "bg-white/10" : ""}`}
         onClick={() => onNavigate("/profile")}
       >
         <FaUser className="text-cyan-300" />
@@ -305,7 +314,7 @@ function MenuItems({ firstItemRef, onNavigate, onClose }) {
       <Link
         to="/all-shows"
         role="menuitem"
-        className={itemBase}
+        className={`${itemBase} ${isActive("/all-shows") ? "bg-white/10" : ""}`}
         onClick={() => onNavigate("/all-shows")}
       >
         <FaList className="text-cyan-300" />
@@ -315,7 +324,7 @@ function MenuItems({ firstItemRef, onNavigate, onClose }) {
       <Link
         to="/watchlist"
         role="menuitem"
-        className={itemBase}
+        className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""}`}
         onClick={() => onNavigate("/watchlist")}
       >
         <FaHeart className="text-cyan-300" />
