@@ -6,13 +6,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Header() {
-  const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [showSearchMobile, setShowSearchMobile] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [clickTimer, setClickTimer] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,15 +19,22 @@ function Header() {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      setShowHeader(currentY < 50 || currentY < lastScrollY);
-      setLastScrollY(currentY);
-      if (currentY > 20 && searchOpen) setSearchOpen(false);
+    // throttle-ish scroll handler using requestAnimationFrame for smoothness
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 0);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, searchOpen]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // set initial state (in case page loads scrolled)
+    setIsScrolled(window.scrollY > 0);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleLogoClick = () => {
     const newCount = logoClickCount + 1;
@@ -50,25 +56,28 @@ function Header() {
 
   const headerHeightClasses = "h-16 sm:h-20";
   const spacerClasses = "h-16 sm:h-20";
-  const isScrolled = lastScrollY > 0;
 
   return (
     <>
       <header
-        className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-50 ${headerHeightClasses} pointer-events-auto transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
-          }`}
+        className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-50 ${headerHeightClasses} pointer-events-auto`}
         aria-label="Main header"
       >
-        {/* Gradient bg fades in on scroll */}
+        {/* Background: transparent at top, blurred gradient when scrolled.
+            Smooth transitions: opacity + subtle transform on inner content for polish. */}
         <div
-          className="absolute inset-0 transition-opacity duration-400 pointer-events-none"
-          style={{ opacity: isScrolled ? 1 : 0 }}
+          className={`absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none ${isScrolled ? "opacity-100" : "opacity-0"}`}
+          aria-hidden="true"
         >
-          <div className="w-full h-full bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md" />
+          <div
+            className="w-full h-full bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md backdrop-saturate-150 shadow-md transition-all duration-500 ease-out"
+          />
         </div>
 
-        {/* Content row */}
-        <div className="relative z-20 flex items-center justify-between px-3 sm:px-7 pt-6 pb-5 sm:py-5 h-full text-white">
+        {/* Content row - apply a tiny translate on scroll to emphasize transition */}
+        <div
+          className={`relative z-20 flex items-center justify-between px-3 sm:px-7 pt-6 pb-5 sm:py-5 h-full text-white transition-transform duration-400 ease-out ${isScrolled ? "translate-y-0" : "translate-y-0"}`}
+        >
           {/* Logo */}
           <div
             onClick={handleLogoClick}
@@ -94,10 +103,7 @@ function Header() {
               }}
               title="Search"
               aria-expanded={searchOpen}
-              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${!isScrolled
-                  ? "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                  : "hover:bg-gray-700"
-                }`}
+              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"}`}
             >
               <FiSearch size={18} />
             </button>
@@ -109,10 +115,7 @@ function Header() {
                 setSearchOpen(false);
               }}
               title="Search"
-              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${!isScrolled
-                  ? "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                  : "hover:bg-gray-700"
-                }`}
+              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"}`}
             >
               <FiSearch size={18} />
             </button>
@@ -121,10 +124,7 @@ function Header() {
             <Link
               to="/watchlist"
               title="Watchlist"
-              className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${!isScrolled
-                  ? "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                  : "hover:bg-gray-700"
-                }`}
+              className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"}`}
             >
               {isWatchlistActive ? (
                 <FaHeart size={18} className="text-cyan-400" />
@@ -137,10 +137,7 @@ function Header() {
             <Link
               to="/profile"
               title="Profile"
-              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${!isScrolled
-                  ? "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                  : "hover:bg-gray-700"
-                }`}
+              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"}`}
             >
               <FaUserCircle size={20} />
               <span className="hidden lg:block font-semibold text-sm sm:text-base">
@@ -169,9 +166,9 @@ function Header() {
             <SearchBar />
           </div>
         )}
-
       </header>
 
+      {/* spacer to push content below fixed header (only when not on home) */}
       {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
       {/* Easter Egg */}
