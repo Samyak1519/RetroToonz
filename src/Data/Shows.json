@@ -4,309 +4,1628 @@
       "id": "ben10",
       "title": "Ben 10",
       "year": "2005",
-      "thumbnail": "Ben_10.jpg",
-      "thumbnailMobile": "Mobile_Posters/ben-10-original.jpeg",
+      "thumbnail": "/Assets/Posters/Ben_10.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/ben-10-original.jpeg",
       "tags": ["Action", "Sci-Fi"],
       "description": "A young boy named Ben discovers a mysterious alien watch that lets him transform into ten different heroes. With each form offering unique powers, Ben battles villains, saves the world from galactic threats, and learns the true meaning of responsibility.",
       "duration": "1 hr 45 min",
       "language": "Hindi",
       "rating": "8.7",
       "views": "28k",
-      "videoUrl": "/Videos/Ben10.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2005",
+          "episodes": [
+            {
+              "episodeId": "ben10-s1-e1",
+              "episodeNumber": 1,
+              "title": "The Day of the Omnitrix",
+              "synopsis": "Ben discovers the Omnitrix and transforms into his first alien.",
+              "duration": "22:10",
+              "thumbnail": "/Assets/Posters/ben10_s1e1.jpg",
+              "videoUrl": "/Videos/ben10/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ben10-s1-e2",
+              "episodeNumber": 2,
+              "title": "Welcome to the Tennyson Family",
+              "synopsis": "Ben learns more about the Omnitrix and his new responsibilities.",
+              "duration": "21:40",
+              "thumbnail": "/Assets/Posters/ben10_s1e2.jpg",
+              "videoUrl": "/Videos/ben10/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2006",
+          "episodes": [
+            {
+              "episodeId": "ben10-s2-e1",
+              "episodeNumber": 1,
+              "title": "A New Threat",
+              "synopsis": "A new villain forces Ben to push his powers further.",
+              "duration": "23:05",
+              "thumbnail": "/Assets/Posters/ben10_s2e1.jpg",
+              "videoUrl": "/Videos/ben10/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ben10-s2-e2",
+              "episodeNumber": 2,
+              "title": "Allies & Enemies",
+              "synopsis": "Allies arrive, and Ben must choose who to trust.",
+              "duration": "22:50",
+              "thumbnail": "/Assets/Posters/ben10_s2e2.jpg",
+              "videoUrl": "/Videos/ben10/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "chhota-bheem",
       "title": "Chhota Bheem",
       "year": "2008",
-      "thumbnail": "Choota_Bheem.jpg",
-      "thumbnailMobile": "Mobile_Posters/chhota-bheem.jpeg",
+      "thumbnail": "/Assets/Posters/Choota_Bheem.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/chhota-bheem.jpeg",
       "tags": ["Adventure"],
       "description": "In the kingdom of Dholakpur, Bheem is a brave and kind-hearted boy with incredible strength. Along with his friends, he takes on villains, monsters, and tricky situations, proving that wisdom and courage always win the day.",
       "duration": "1 hr 32 min",
       "language": "Hindi",
       "rating": "8.2",
       "views": "20k",
-      "videoUrl": "/Videos/chhotaBheem.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2008",
+          "episodes": [
+            {
+              "episodeId": "chhota-bheem-s1-e1",
+              "episodeNumber": 1,
+              "title": "The Festival Trouble",
+              "synopsis": "Bheem and friends save the village festival from mischief.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/chhota-bheem_s1e1.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "chhota-bheem-s1-e2",
+              "episodeNumber": 2,
+              "title": "The Stolen Treasure",
+              "synopsis": "An ancient treasure goes missing and Bheem leads the search.",
+              "duration": "21:50",
+              "thumbnail": "/Assets/Posters/chhota-bheem_s1e2.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2009",
+          "episodes": [
+            {
+              "episodeId": "chhota-bheem-s2-e1",
+              "episodeNumber": 1,
+              "title": "The Forest Guardian",
+              "synopsis": "Bheem meets a guardian spirit protecting the forest.",
+              "duration": "23:10",
+              "thumbnail": "/Assets/Posters/chhota-bheem_s2e1.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "chhota-bheem-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Giant Ganesha",
+              "synopsis": "A giant mechanical Ganesha threatens the town and Bheem must stop it.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/chhota-bheem_s2e2.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "courage",
       "title": "Courage: The Cowardly Dog",
       "year": "1994",
-      "thumbnail": "Courage_The_Cowardly_Dog.jpg",
-      "thumbnailMobile": "Mobile_Posters/courage-the-cowardly-dog.jpeg",
+      "thumbnail": "/Assets/Posters/Courage_The_Cowardly_Dog.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/courage-the-cowardly-dog.jpeg",
       "tags": ["Comedy", "Horror"],
       "description": "Courage may be timid, but when supernatural forces threaten his owners Muriel and Eustace, he finds the bravery to fight back. From creepy monsters to bizarre aliens, Courage protects his home in the middle of Nowhere with hilarious yet spooky encounters.",
       "duration": "1 hr 45 min",
       "language": "Hindi",
       "rating": "9.0",
       "views": "18k",
-      "videoUrl": "/Videos/courageTheCowardlyDog.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1994",
+          "episodes": [
+            {
+              "episodeId": "courage-s1-e1",
+              "episodeNumber": 1,
+              "title": "A New Strange Neighbor",
+              "synopsis": "Courage encounters a strange neighbor with mysterious powers.",
+              "duration": "24:00",
+              "thumbnail": "/Assets/Posters/courage_s1e1.jpg",
+              "videoUrl": "/Videos/courage/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "courage-s1-e2",
+              "episodeNumber": 2,
+              "title": "The Phantom of Nowhere",
+              "synopsis": "Phantoms haunt the farmhouse and Courage must protect his family.",
+              "duration": "22:15",
+              "thumbnail": "/Assets/Posters/courage_s1e2.jpg",
+              "videoUrl": "/Videos/courage/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1995",
+          "episodes": [
+            {
+              "episodeId": "courage-s2-e1",
+              "episodeNumber": 1,
+              "title": "Alien Intrusion",
+              "synopsis": "A spaceship lands nearby and Courage must save Muriel.",
+              "duration": "23:30",
+              "thumbnail": "/Assets/Posters/courage_s2e1.jpg",
+              "videoUrl": "/Videos/courage/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "courage-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Curse of the Mask",
+              "synopsis": "A cursed mask brings nightmares to the farmhouse.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/courage_s2e2.jpg",
+              "videoUrl": "/Videos/courage/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "doraemon",
       "title": "Doraemon",
       "year": "2005",
-      "thumbnail": "Doraemon.jpg",
-      "thumbnailMobile": "Mobile_Posters/doraemon.jpeg",
+      "thumbnail": "/Assets/Posters/Doraemon.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/doraemon.jpeg",
       "tags": ["Sci-Fi", "Comedy"],
       "description": "A robotic cat from the 22nd century, Doraemon, travels back in time to help Nobita. Using futuristic gadgets, he tries to fix Nobita’s everyday problems, but often ends up in funny and chaotic adventures with his friends.",
       "duration": "2 hr 5 min",
       "language": "Hindi",
       "rating": "8.8",
       "views": "25k",
-      "videoUrl": "/Videos/doraemon.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2005",
+          "episodes": [
+            {
+              "episodeId": "doraemon-s1-e1",
+              "episodeNumber": 1,
+              "title": "Gadget Troubles",
+              "synopsis": "Doraemon uses a new gadget and things go haywire.",
+              "duration": "24:20",
+              "thumbnail": "/Assets/Posters/doraemon_s1e1.jpg",
+              "videoUrl": "/Videos/doraemon/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s1-e2",
+              "episodeNumber": 2,
+              "title": "Time Travel Trouble",
+              "synopsis": "A time-travel mistake sends Nobita into the past.",
+              "duration": "23:05",
+              "thumbnail": "/Assets/Posters/doraemon_s1e2.jpg",
+              "videoUrl": "/Videos/doraemon/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2006",
+          "episodes": [
+            {
+              "episodeId": "doraemon-s2-e1",
+              "episodeNumber": 1,
+              "title": "The Lost Robot",
+              "synopsis": "Doraemon's memory card goes missing and chaos ensues.",
+              "duration": "23:40",
+              "thumbnail": "/Assets/Posters/doraemon_s2e1.jpg",
+              "videoUrl": "/Videos/doraemon/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s2-e2",
+              "episodeNumber": 2,
+              "title": "Gadget Carnival",
+              "synopsis": "A gadget festival gets out of hand with crazy inventions.",
+              "duration": "22:55",
+              "thumbnail": "/Assets/Posters/doraemon_s2e2.jpg",
+              "videoUrl": "/Videos/doraemon/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "jake-and-the-never-land-pirates",
       "title": "Jake and the Never Land Pirates",
       "year": "2011",
-      "thumbnail": "jake-and-the-never-land-pirates.jpg",
-      "thumbnailMobile": "Mobile_Posters/jake-and-never-land-pirates.jpeg",
+      "thumbnail": "/Assets/Posters/jake-and-the-never-land-pirates.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/jake-and-never-land-pirates.jpeg",
       "tags": ["Adventure", "Fantasy"],
       "description": "Jake and his crew of young pirates set sail across Never Land, facing challenges and collecting treasures. Together they outsmart the mischievous Captain Hook, proving that teamwork and friendship make them true pirates of adventure.",
       "duration": "1 hr 20 min",
       "language": "Hindi",
       "rating": "8.0",
       "views": "12k",
-      "videoUrl": "/Videos/jake-and-the-never-land-pirates.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2011",
+          "episodes": [
+            {
+              "episodeId": "jake-s1-e1",
+              "episodeNumber": 1,
+              "title": "Treasure Hunt",
+              "synopsis": "Jake's crew hunts for a hidden treasure on Never Land.",
+              "duration": "21:50",
+              "thumbnail": "/Assets/Posters/jake_s1e1.jpg",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "jake-s1-e2",
+              "episodeNumber": 2,
+              "title": "Captain Hook's Return",
+              "synopsis": "Captain Hook plots a new scheme to steal Jake's treasure map.",
+              "duration": "22:10",
+              "thumbnail": "/Assets/Posters/jake_s1e2.jpg",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2012",
+          "episodes": [
+            {
+              "episodeId": "jake-s2-e1",
+              "episodeNumber": 1,
+              "title": "Island Rescue",
+              "synopsis": "Jake rescues a stranded friend from a spooky island.",
+              "duration": "23:00",
+              "thumbnail": "/Assets/Posters/jake_s2e1.jpg",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "jake-s2-e2",
+              "episodeNumber": 2,
+              "title": "Treasure Map Riddle",
+              "synopsis": "A clever riddle reveals the next treasure location.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/jake_s2e2.jpg",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "kick-buttowski",
       "title": "Kick Buttowski",
       "year": "2010",
-      "thumbnail": "kick-buttowski.jpg",
-      "thumbnailMobile": "Mobile_Posters/kick-buttowski.jpeg",
+      "thumbnail": "/Assets/Posters/kick-buttowski.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/kick-buttowski.jpeg",
       "tags": ["Action", "Comedy"],
       "description": "Clarence “Kick” Buttowski dreams of being the world’s greatest daredevil. With fearless stunts, wild challenges, and endless determination, Kick constantly pushes the limits of danger and comedy in his small suburban town.",
       "duration": "1 hr 10 min",
       "language": "Hindi",
       "rating": "8.4",
       "views": "14k",
-      "videoUrl": "/Videos/kick-buttowski.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2010",
+          "episodes": [
+            {
+              "episodeId": "kick-s1-e1",
+              "episodeNumber": 1,
+              "title": "Daredevil Debut",
+              "synopsis": "Kick attempts a daring stunt to impress the town.",
+              "duration": "22:05",
+              "thumbnail": "/Assets/Posters/kick_s1e1.jpg",
+              "videoUrl": "/Videos/kick-buttowski/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kick-s1-e2",
+              "episodeNumber": 2,
+              "title": "Ramp of Doom",
+              "synopsis": "A crazy ramp challenge puts Kick to the test.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/kick_s1e2.jpg",
+              "videoUrl": "/Videos/kick-buttowski/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2011",
+          "episodes": [
+            {
+              "episodeId": "kick-s2-e1",
+              "episodeNumber": 1,
+              "title": "Extreme Weekend",
+              "synopsis": "Kick enters an extreme sports weekend competition.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/kick_s2e1.jpg",
+              "videoUrl": "/Videos/kick-buttowski/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kick-s2-e2",
+              "episodeNumber": 2,
+              "title": "Neighborhood Showdown",
+              "synopsis": "A hometown showdown determines who is the bravest.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/kick_s2e2.jpg",
+              "videoUrl": "/Videos/kick-buttowski/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "kid-vs-kat",
       "title": "Kid vs Kat",
       "year": "2008",
-      "thumbnail": "Kid_Vs_Kat.jpg",
-      "thumbnailMobile": "Mobile_Posters/kid-vs-kat.jpeg",
+      "thumbnail": "/Assets/Posters/Kid_Vs_Kat.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/kid-vs-kat.jpeg",
       "tags": ["Action", "Comedy", "Sci-Fi"],
       "description": "When Coop’s sister adopts a strange hairless cat, life takes a turn for chaos. The cat is actually an evil alien plotting world domination, and Coop becomes the only one who knows the truth—leading to a never-ending battle of wits.",
       "duration": "1 hr 20 min",
       "language": "Hindi",
       "rating": "8.1",
       "views": "21k",
-      "videoUrl": "/Videos/kid_vs_kat.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2008",
+          "episodes": [
+            {
+              "episodeId": "kidvk-s1-e1",
+              "episodeNumber": 1,
+              "title": "Alien Pet",
+              "synopsis": "Coop discovers Kat's alien origins.",
+              "duration": "22:00",
+              "thumbnail": "/Assets/Posters/kidvk_s1e1.jpg",
+              "videoUrl": "/Videos/kid-vs-kat/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kidvk-s1-e2",
+              "episodeNumber": 2,
+              "title": "Gadget Mayhem",
+              "synopsis": "Kat's gadgets create chaos in the neighborhood.",
+              "duration": "21:30",
+              "thumbnail": "/Assets/Posters/kidvk_s1e2.jpg",
+              "videoUrl": "/Videos/kid-vs-kat/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2009",
+          "episodes": [
+            {
+              "episodeId": "kidvk-s2-e1",
+              "episodeNumber": 1,
+              "title": "Coop's Revenge",
+              "synopsis": "Coop fights back using clever traps.",
+              "duration": "22:15",
+              "thumbnail": "/Assets/Posters/kidvk_s2e1.jpg",
+              "videoUrl": "/Videos/kid-vs-kat/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kidvk-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Great Escape",
+              "synopsis": "Kat escapes and Coop must capture him again.",
+              "duration": "22:50",
+              "thumbnail": "/Assets/Posters/kidvk_s2e2.jpg",
+              "videoUrl": "/Videos/kid-vs-kat/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "kiteretsu",
       "title": "Kiteretsu",
       "year": "1988",
-      "thumbnail": "Kiteretsu.jpg",
-      "thumbnailMobile": "Mobile_Posters/kitretsu.jpeg",
+      "thumbnail": "/Assets/Posters/Kiteretsu.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/kitretsu.jpeg",
       "tags": ["Comedy", "Adventure"],
       "description": "Kiteretsu is a boy genius who builds amazing inventions inspired by his ancestor’s encyclopedia. Along with his robot friend Korosuke, he explores science, friendship, and wild adventures that mix comedy with clever problem-solving.",
       "duration": "22 min",
       "language": "Hindi",
       "rating": "8.4",
       "views": "12k",
-      "videoUrl": "/Videos/kiteretsu.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1988",
+          "episodes": [
+            {
+              "episodeId": "kiteretsu-s1-e1",
+              "episodeNumber": 1,
+              "title": "Invention #1",
+              "synopsis": "Kiteretsu builds a helpful invention.",
+              "duration": "22:00",
+              "thumbnail": "/Assets/Posters/kiteretsu_s1e1.jpg",
+              "videoUrl": "/Videos/kiteretsu/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kiteretsu-s1-e2",
+              "episodeNumber": 2,
+              "title": "Robot Friend",
+              "synopsis": "Kiteretsu meets and repairs a robot friend.",
+              "duration": "21:45",
+              "thumbnail": "/Assets/Posters/kiteretsu_s1e2.jpg",
+              "videoUrl": "/Videos/kiteretsu/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1989",
+          "episodes": [
+            {
+              "episodeId": "kiteretsu-s2-e1",
+              "episodeNumber": 1,
+              "title": "Treasure of Science",
+              "synopsis": "A scientific treasure hunt begins.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/kiteretsu_s2e1.jpg",
+              "videoUrl": "/Videos/kiteretsu/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kiteretsu-s2-e2",
+              "episodeNumber": 2,
+              "title": "Time Machine",
+              "synopsis": "Kiteretsu experiments with a time device.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/kiteretsu_s2e2.jpg",
+              "videoUrl": "/Videos/kiteretsu/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "mickey-mouse",
       "title": "Mickey Mouse Clubhouse",
       "year": "1928",
-      "thumbnail": "mickey-mouse-clubhouse.jpg",
-      "thumbnailMobile": "Mobile_Posters/mickey-mouse-clubhouse.jpeg",
+      "thumbnail": "/Assets/Posters/mickey-mouse-clubhouse.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/mickey-mouse-clubhouse.jpeg",
       "tags": ["Classic", "Family"],
       "description": "Mickey and his friends invite kids into a colorful clubhouse filled with fun, friendship, and problem-solving. Together with Minnie, Donald, Daisy, Goofy, and Pluto, Mickey uses teamwork and creativity to solve everyday challenges in magical ways.",
       "duration": "1 hr 30 min",
       "language": "Hindi",
       "rating": "9.2",
       "views": "35k",
-      "videoUrl": "/Videos/mickey-mouse-clubhouse.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1928",
+          "episodes": [
+            {
+              "episodeId": "mickey-s1-e1",
+              "episodeNumber": 1,
+              "title": "Clubhouse Adventure",
+              "synopsis": "Mickey and friends solve a puzzle at the clubhouse.",
+              "duration": "22:05",
+              "thumbnail": "/Assets/Posters/mickey_s1e1.jpg",
+              "videoUrl": "/Videos/mickey-mouse/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mickey-s1-e2",
+              "episodeNumber": 2,
+              "title": "The Missing Map",
+              "synopsis": "A treasure map goes missing and teamwork saves the day.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/mickey_s1e2.jpg",
+              "videoUrl": "/Videos/mickey-mouse/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1929",
+          "episodes": [
+            {
+              "episodeId": "mickey-s2-e1",
+              "episodeNumber": 1,
+              "title": "Goofy's Big Plan",
+              "synopsis": "Goofy leads a big plan that almost fails but succeeds.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/mickey_s2e1.jpg",
+              "videoUrl": "/Videos/mickey-mouse/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mickey-s2-e2",
+              "episodeNumber": 2,
+              "title": "Donald's Surprise",
+              "synopsis": "Donald prepares a surprise that becomes a lesson in patience.",
+              "duration": "22:15",
+              "thumbnail": "/Assets/Posters/mickey_s2e2.jpg",
+              "videoUrl": "/Videos/mickey-mouse/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "mr-bean",
       "title": "Mr. Bean",
       "year": "1990",
-      "thumbnail": "mrBean.jpg",
-      "thumbnailMobile": "Mobile_Posters/mr-bean.jpeg",
+      "thumbnail": "/Assets/Posters/mrBean.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/mr-bean.jpeg",
       "tags": ["Comedy", "Classic"],
       "description": "Mr. Bean is eccentric, childlike, and hilariously unpredictable. With little dialogue and plenty of slapstick, he stumbles into ordinary situations that quickly spiral into chaotic misadventures, leaving laughter in his wake.",
       "duration": "1 hr 30 min",
       "language": "Hindi",
       "rating": "8.9",
       "views": "26k",
-      "videoUrl": "/Videos/mrBean.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1990",
+          "episodes": [
+            {
+              "episodeId": "mrbean-s1-e1",
+              "episodeNumber": 1,
+              "title": "Bean's Trouble",
+              "synopsis": "Mr. Bean faces everyday trouble with hilarious solutions.",
+              "duration": "24:05",
+              "thumbnail": "/Assets/Posters/mrbean_s1e1.jpg",
+              "videoUrl": "/Videos/mr-bean/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mrbean-s1-e2",
+              "episodeNumber": 2,
+              "title": "Vacuum Incident",
+              "synopsis": "A vacuum cleaner causes chaos in Mr. Bean's flat.",
+              "duration": "22:35",
+              "thumbnail": "/Assets/Posters/mrbean_s1e2.jpg",
+              "videoUrl": "/Videos/mr-bean/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1991",
+          "episodes": [
+            {
+              "episodeId": "mrbean-s2-e1",
+              "episodeNumber": 1,
+              "title": "Cinema Chaos",
+              "synopsis": "Bean's trip to the cinema turns into a disaster.",
+              "duration": "23:40",
+              "thumbnail": "/Assets/Posters/mrbean_s2e1.jpg",
+              "videoUrl": "/Videos/mr-bean/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mrbean-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Accident",
+              "synopsis": "A small accident leads to a domino of misfortunes.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/mrbean_s2e2.jpg",
+              "videoUrl": "/Videos/mr-bean/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "ninja-hattori",
       "title": "Ninja Hattori",
       "year": "1981",
-      "thumbnail": "ninjahattori.png",
-      "thumbnailMobile": "Mobile_Posters/ninja-hattori.jpeg",
+      "thumbnail": "/Assets/Posters/ninjahattori.png",
+      "thumbnailMobile": "/Assets/Mobile_Posters/ninja-hattori.jpeg",
       "tags": ["Adventure", "Action"],
       "description": "Hattori is a skilled young ninja who comes to live with Kenichi, a mischievous schoolboy. Using his ninja skills, Hattori helps Kenichi with school, friends, and life’s problems, while also battling rival ninjas who threaten peace.",
       "duration": "1 hr 38 min",
       "language": "Hindi",
       "rating": "8.3",
       "views": "22k",
-      "videoUrl": "/Videos/ninjahattori.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1981",
+          "episodes": [
+            {
+              "episodeId": "ninjahattori-s1-e1",
+              "episodeNumber": 1,
+              "title": "The New Ninja",
+              "synopsis": "Hattori arrives and teaches Kenichi a lesson.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/ninjahattori_s1e1.jpg",
+              "videoUrl": "/Videos/ninja-hattori/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ninjahattori-s1-e2",
+              "episodeNumber": 2,
+              "title": "Training Day",
+              "synopsis": "Kenichi learns basic ninja techniques.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/ninjahattori_s1e2.jpg",
+              "videoUrl": "/Videos/ninja-hattori/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1982",
+          "episodes": [
+            {
+              "episodeId": "ninjahattori-s2-e1",
+              "episodeNumber": 1,
+              "title": "Rival Ninja",
+              "synopsis": "A rival threatens the town and a duel is set.",
+              "duration": "23:05",
+              "thumbnail": "/Assets/Posters/ninjahattori_s2e1.jpg",
+              "videoUrl": "/Videos/ninja-hattori/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ninjahattori-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Lost Scroll",
+              "synopsis": "A scroll containing secret techniques is stolen.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/ninjahattori_s2e2.jpg",
+              "videoUrl": "/Videos/ninja-hattori/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "oggy",
       "title": "Oggy and the Cockroaches",
       "year": "1998",
-      "thumbnail": "OggyAndTheCockroaches.jpg",
-      "thumbnailMobile": "Mobile_Posters/oggy-and-the-cockroaches.jpeg",
+      "thumbnail": "/Assets/Posters/OggyAndTheCockroaches.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/oggy-and-the-cockroaches.jpeg",
       "tags": ["Comedy"],
       "description": "Oggy, a lazy cat, just wants to relax and enjoy life, but three pesky cockroaches—Joey, Dee Dee, and Marky—never let him. Their endless pranks lead to hilarious chases, over-the-top chaos, and slapstick comedy in every episode.",
       "duration": "1 hr 18 min",
       "language": "Hindi",
       "rating": "8.0",
       "views": "14k",
-      "videoUrl": "/Videos/oggyandthecockroaches.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1998",
+          "episodes": [
+            {
+              "episodeId": "oggy-s1-e1",
+              "episodeNumber": 1,
+              "title": "Cockroach Mayhem",
+              "synopsis": "Oggy battles the cockroaches in comedic fashion.",
+              "duration": "22:10",
+              "thumbnail": "/Assets/Posters/oggy_s1e1.jpg",
+              "videoUrl": "/Videos/oggy/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oggy-s1-e2",
+              "episodeNumber": 2,
+              "title": "Kitchen Chaos",
+              "synopsis": "The kitchen becomes a battleground for food and pranks.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/oggy_s1e2.jpg",
+              "videoUrl": "/Videos/oggy/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1999",
+          "episodes": [
+            {
+              "episodeId": "oggy-s2-e1",
+              "episodeNumber": 1,
+              "title": "Holiday Havoc",
+              "synopsis": "A holiday special ends up in disaster for Oggy.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/oggy_s2e1.jpg",
+              "videoUrl": "/Videos/oggy/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oggy-s2-e2",
+              "episodeNumber": 2,
+              "title": "Giant Roach",
+              "synopsis": "A giant cockroach causes panic across town.",
+              "duration": "22:50",
+              "thumbnail": "/Assets/Posters/oggy_s2e2.jpg",
+              "videoUrl": "/Videos/oggy/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "oswald",
       "title": "Oswald",
       "year": "2001",
-      "thumbnail": "oswald.jpg",
-      "thumbnailMobile": "Mobile_Posters/oswald.jpeg",
+      "thumbnail": "/Assets/Posters/oswald.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/oswald.jpeg",
       "tags": ["Educational", "Calm"],
       "description": "Oswald the gentle octopus lives in Big City with his pet dog, Weenie. His calm and kind nature brings life lessons of patience, friendship, and positivity as he faces small adventures in everyday life.",
       "duration": "55 min",
       "language": "Hindi",
       "rating": "7.5",
       "views": "9k",
-      "videoUrl": "/Videos/oswald.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2001",
+          "episodes": [
+            {
+              "episodeId": "oswald-s1-e1",
+              "episodeNumber": 1,
+              "title": "Big City Day",
+              "synopsis": "Oswald explores Big City and helps a friend.",
+              "duration": "22:00",
+              "thumbnail": "/Assets/Posters/oswald_s1e1.jpg",
+              "videoUrl": "/Videos/oswald/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oswald-s1-e2",
+              "episodeNumber": 2,
+              "title": "Weenie's Adventure",
+              "synopsis": "Weenie gets lost and Oswald must find him.",
+              "duration": "21:50",
+              "thumbnail": "/Assets/Posters/oswald_s1e2.jpg",
+              "videoUrl": "/Videos/oswald/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2002",
+          "episodes": [
+            {
+              "episodeId": "oswald-s2-e1",
+              "episodeNumber": 1,
+              "title": "The Garden",
+              "synopsis": "Oswald helps grow a garden for the neighborhood.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/oswald_s2e1.jpg",
+              "videoUrl": "/Videos/oswald/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oswald-s2-e2",
+              "episodeNumber": 2,
+              "title": "Music Day",
+              "synopsis": "A music festival brings friends together.",
+              "duration": "22:35",
+              "thumbnail": "/Assets/Posters/oswald_s2e2.jpg",
+              "videoUrl": "/Videos/oswald/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "perman",
       "title": "Perman",
       "year": "1983",
-      "thumbnail": "perman.jpg",
-      "thumbnailMobile": "Mobile_Posters/perman.jpeg",
+      "thumbnail": "/Assets/Posters/perman.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/perman.jpeg",
       "tags": ["Superhero", "Action"],
       "description": "Mitsuo, a young boy, is chosen to become “Perman,” a superhero who fights crime with special gadgets and powers. Balancing his double life as both a student and a hero, Mitsuo learns the importance of responsibility and courage.",
       "duration": "1 hr 50 min",
       "language": "Hindi",
       "rating": "8.5",
       "views": "13k",
-      "videoUrl": "/Videos/perman.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1983",
+          "episodes": [
+            {
+              "episodeId": "perman-s1-e1",
+              "episodeNumber": 1,
+              "title": "Becoming Perman",
+              "synopsis": "Mitsuo receives powers and learns his duty.",
+              "duration": "23:00",
+              "thumbnail": "/Assets/Posters/perman_s1e1.jpg",
+              "videoUrl": "/Videos/perman/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "perman-s1-e2",
+              "episodeNumber": 2,
+              "title": "Secret Identity",
+              "synopsis": "Mitsuo struggles to keep his identity secret.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/perman_s1e2.jpg",
+              "videoUrl": "/Videos/perman/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1984",
+          "episodes": [
+            {
+              "episodeId": "perman-s2-e1",
+              "episodeNumber": 1,
+              "title": "Robot Menace",
+              "synopsis": "Robots threaten the city and Perman intervenes.",
+              "duration": "22:55",
+              "thumbnail": "/Assets/Posters/perman_s2e1.jpg",
+              "videoUrl": "/Videos/perman/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "perman-s2-e2",
+              "episodeNumber": 2,
+              "title": "Power Test",
+              "synopsis": "Perman's powers are tested by a cunning foe.",
+              "duration": "23:10",
+              "thumbnail": "/Assets/Posters/perman_s2e2.jpg",
+              "videoUrl": "/Videos/perman/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "phineas-and-ferb",
       "title": "Phineas and Ferb",
       "year": "2007",
-      "thumbnail": "Phineas_And_Ferb.jpg",
-      "thumbnailMobile": "Mobile_Posters/phineas-and-ferb.jpeg",
+      "thumbnail": "/Assets/Posters/Phineas_And_Ferb.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/phineas-and-ferb.jpeg",
       "tags": ["Comedy", "Adventure"],
       "description": "Stepbrothers Phineas and Ferb spend every summer day creating outrageous inventions and wild projects. Meanwhile, their sister Candace tries to expose them, and their pet platypus Perry secretly lives a double life as a spy fighting evil Dr. Doofenshmirtz.",
       "duration": "1 hr 42 min",
       "language": "Hindi",
       "rating": "8.6",
       "views": "24k",
-      "videoUrl": "/Videos/phineas_and_ferb.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2007",
+          "episodes": [
+            {
+              "episodeId": "phineas-s1-e1",
+              "episodeNumber": 1,
+              "title": "The Big Invention",
+              "synopsis": "Phineas and Ferb build an incredible invention.",
+              "duration": "23:00",
+              "thumbnail": "/Assets/Posters/phineas_s1e1.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "phineas-s1-e2",
+              "episodeNumber": 2,
+              "title": "Summer Concert",
+              "synopsis": "They put on a huge concert for the neighborhood.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/phineas_s1e2.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2008",
+          "episodes": [
+            {
+              "episodeId": "phineas-s2-e1",
+              "episodeNumber": 1,
+              "title": "Roller Coaster Day",
+              "synopsis": "A massive roller coaster takes Phineas and Ferb's fun to new heights.",
+              "duration": "22:55",
+              "thumbnail": "/Assets/Posters/phineas_s2e1.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "phineas-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Great Escape",
+              "synopsis": "An escape plan goes hilariously wrong.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/phineas_s2e2.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "pokemon",
       "title": "Pokemon",
       "year": "2003",
-      "thumbnail": "pokemon.jpg",
-      "thumbnailMobile": "Mobile_Posters/pokemon.jpeg",
+      "thumbnail": "/Assets/Posters/pokemon.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/pokemon.jpeg",
       "tags": ["Adventure", "Fantasy"],
       "description": "Join Ash Ketchum and his loyal Pikachu as they travel across regions to become Pokémon Masters. Along the way, they meet new friends, battle rivals, discover legendary creatures, and learn that true strength comes from friendship and teamwork.",
       "duration": "2 hr 10 min",
       "language": "Hindi",
       "rating": "9.1",
       "views": "35k",
-      "videoUrl": "/Videos/pokemon.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1 - Kanto",
+          "year": "2003",
+          "episodes": [
+            {
+              "episodeId": "pokemon-s1-e1",
+              "episodeNumber": 1,
+              "title": "Pallet Town Begins",
+              "synopsis": "Ash gets Pikachu and begins his journey.",
+              "duration": "23:10",
+              "thumbnail": "/Assets/Posters/pokemon_s1e1.jpg",
+              "videoUrl": "/Videos/pokemon/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "pokemon-s1-e2",
+              "episodeNumber": 2,
+              "title": "First Gym Battle",
+              "synopsis": "Ash faces his first gym challenge.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/pokemon_s1e2.jpg",
+              "videoUrl": "/Videos/pokemon/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2 - Johto",
+          "year": "2004",
+          "episodes": [
+            {
+              "episodeId": "pokemon-s2-e1",
+              "episodeNumber": 1,
+              "title": "New Regions",
+              "synopsis": "Ash heads to new regions and meets new friends.",
+              "duration": "23:20",
+              "thumbnail": "/Assets/Posters/pokemon_s2e1.jpg",
+              "videoUrl": "/Videos/pokemon/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "pokemon-s2-e2",
+              "episodeNumber": 2,
+              "title": "Rival Encounter",
+              "synopsis": "Ash faces a tough rival trainer.",
+              "duration": "22:50",
+              "thumbnail": "/Assets/Posters/pokemon_s2e2.jpg",
+              "videoUrl": "/Videos/pokemon/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "roll-no-21",
       "title": "Roll No 21",
       "year": "2010",
-      "thumbnail": "rollno21.jpg",
-      "thumbnailMobile": "Mobile_Posters/roll-no-21.jpeg",
+      "thumbnail": "/Assets/Posters/rollno21.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/roll-no-21.jpeg",
       "tags": ["Action", "Comedy"],
       "description": "Kris, the modern-day avatar of Lord Krishna, battles evil in his school while disguising himself as an ordinary student. With clever tricks and divine wisdom, he defeats his enemy Kanishk and proves that good always triumphs over evil.",
       "duration": "1 hr 25 min",
       "language": "Hindi",
       "rating": "8.4",
       "views": "16k",
-      "videoUrl": "/Videos/rollno21.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2010",
+          "episodes": [
+            {
+              "episodeId": "rollno-s1-e1",
+              "episodeNumber": 1,
+              "title": "New Student Kris",
+              "synopsis": "Kris reveals his divine side to protect classmates.",
+              "duration": "22:35",
+              "thumbnail": "/Assets/Posters/rollno_s1e1.jpg",
+              "videoUrl": "/Videos/roll-no-21/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "rollno-s1-e2",
+              "episodeNumber": 2,
+              "title": "Kanishk's Scheme",
+              "synopsis": "Kanishk plots mischief and Kris intervenes.",
+              "duration": "22:00",
+              "thumbnail": "/Assets/Posters/rollno_s1e2.jpg",
+              "videoUrl": "/Videos/roll-no-21/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2011",
+          "episodes": [
+            {
+              "episodeId": "rollno-s2-e1",
+              "episodeNumber": 1,
+              "title": "School Fair",
+              "synopsis": "Kris uses tricks to save the school fair.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/rollno_s2e1.jpg",
+              "videoUrl": "/Videos/roll-no-21/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "rollno-s2-e2",
+              "episodeNumber": 2,
+              "title": "Divine Challenge",
+              "synopsis": "A difficult challenge tests Kris' faith and cunning.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/rollno_s2e2.jpg",
+              "videoUrl": "/Videos/roll-no-21/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "shaun-the-sheep",
       "title": "Shaun the Sheep",
       "year": "2007",
-      "thumbnail": "shaun-the-sheep.jpg",
-      "thumbnailMobile": "Mobile_Posters/shaun-the-sheep.jpeg",
+      "thumbnail": "/Assets/Posters/shaun-the-sheep.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/shaun-the-sheep.jpeg",
       "tags": ["Comedy", "Stop-Motion"],
       "description": "Shaun is a clever sheep who leads his flock into comical adventures on a quiet farm. From mischievous tricks to clever escapes, Shaun’s leadership often drags the farmer and the sheepdog Bitzer into lighthearted chaos.",
       "duration": "1 hr 15 min",
       "language": "Hindi",
       "rating": "8.8",
       "views": "15k",
-      "videoUrl": "/Videos/shaun-the-sheep.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2007",
+          "episodes": [
+            {
+              "episodeId": "shaun-s1-e1",
+              "episodeNumber": 1,
+              "title": "Farm Follies",
+              "synopsis": "Shaun leads the flock into a comedic adventure.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/shaun_s1e1.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shaun-s1-e2",
+              "episodeNumber": 2,
+              "title": "Shepherd Shenanigans",
+              "synopsis": "A day of mischief for the farmer and Shaun.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/shaun_s1e2.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2008",
+          "episodes": [
+            {
+              "episodeId": "shaun-s2-e1",
+              "episodeNumber": 1,
+              "title": "Holiday Hijinks",
+              "synopsis": "Shaun prepares a holiday surprise with chaotic results.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/shaun_s2e1.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shaun-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Big Escape",
+              "synopsis": "A daring escape plan tests Shaun's leadership.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/shaun_s2e2.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "shinchan",
       "title": "Shinchan",
       "year": "2006",
-      "thumbnail": "shinchan.jpg",
-      "thumbnailMobile": "Mobile_Posters/shinchan.jpeg",
+      "thumbnail": "/Assets/Posters/shinchan.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/shinchan.jpeg",
       "tags": ["Comedy"],
       "description": "Shinchan is a mischievous five-year-old whose wild antics drive his parents, teachers, and neighbors crazy. With cheeky humor, silly jokes, and unpredictable adventures, he manages to turn every ordinary day into pure comedy.",
       "duration": "1 hr 35 min",
       "language": "Hindi",
       "rating": "8.9",
       "views": "30k",
-      "videoUrl": "/Videos/shinchan.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2006",
+          "episodes": [
+            {
+              "episodeId": "shinchan-s1-e1",
+              "episodeNumber": 1,
+              "title": "Classroom Chaos",
+              "synopsis": "Shinchan causes hilarity at school.",
+              "duration": "22:05",
+              "thumbnail": "/Assets/Posters/shinchan_s1e1.jpg",
+              "videoUrl": "/Videos/shinchan/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e2",
+              "episodeNumber": 2,
+              "title": "Playground Pranks",
+              "synopsis": "A day of pranks leads to consequences.",
+              "duration": "21:50",
+              "thumbnail": "/Assets/Posters/shinchan_s1e2.jpg",
+              "videoUrl": "/Videos/shinchan/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2007",
+          "episodes": [
+            {
+              "episodeId": "shinchan-s2-e1",
+              "episodeNumber": 1,
+              "title": "Holiday Trouble",
+              "synopsis": "Shinchan ruins a family holiday in typical fashion.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/shinchan_s2e1.jpg",
+              "videoUrl": "/Videos/shinchan/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s2-e2",
+              "episodeNumber": 2,
+              "title": "Neighborhood Show",
+              "synopsis": "Shinchan performs in a neighborhood show with unexpected results.",
+              "duration": "22:25",
+              "thumbnail": "/Assets/Posters/shinchan_s2e2.jpg",
+              "videoUrl": "/Videos/shinchan/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "spongebob-squarepants",
       "title": "SpongeBob Square Pants",
       "year": "1999",
-      "thumbnail": "spongebob_squarepants.jpg",
-      "thumbnailMobile": "Mobile_Posters/spongebob-square-pants.jpeg",
+      "thumbnail": "/Assets/Posters/spongebob_squarepants.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/spongebob-square-pants.jpeg",
       "tags": ["Comedy", "Adventure"],
       "description": "In the underwater city of Bikini Bottom, SpongeBob works at the Krusty Krab and goes on absurd adventures with his best friend Patrick. From jellyfishing to facing Plankton’s schemes, SpongeBob’s endless optimism makes every day hilariously unpredictable.",
       "duration": "1 hr 28 min",
       "language": "Hindi",
       "rating": "9.0",
       "views": "32k",
-      "videoUrl": "/Videos/spongebob_squarepants.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1999",
+          "episodes": [
+            {
+              "episodeId": "spongebob-s1-e1",
+              "episodeNumber": 1,
+              "title": "First Day at Work",
+              "synopsis": "SpongeBob starts working at the Krusty Krab.",
+              "duration": "22:15",
+              "thumbnail": "/Assets/Posters/spongebob_s1e1.jpg",
+              "videoUrl": "/Videos/spongebob-squarepants/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "spongebob-s1-e2",
+              "episodeNumber": 2,
+              "title": "Jellyfishing Fun",
+              "synopsis": "SpongeBob and Patrick go jellyfishing with chaotic results.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/spongebob_s1e2.jpg",
+              "videoUrl": "/Videos/spongebob-squarepants/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2000",
+          "episodes": [
+            {
+              "episodeId": "spongebob-s2-e1",
+              "episodeNumber": 1,
+              "title": "Plankton's Plan",
+              "synopsis": "Plankton tries a new scheme to steal the Krabby Patty secret formula.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/spongebob_s2e1.jpg",
+              "videoUrl": "/Videos/spongebob-squarepants/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "spongebob-s2-e2",
+              "episodeNumber": 2,
+              "title": "Sandy's Invention",
+              "synopsis": "Sandy introduces a new invention for Bikini Bottom.",
+              "duration": "22:35",
+              "thumbnail": "/Assets/Posters/spongebob_s2e2.jpg",
+              "videoUrl": "/Videos/spongebob-squarepants/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "strawberry-shortcake",
       "title": "Strawberry Shortcake",
       "year": "2009",
-      "thumbnail": "strawberryShortcake.jpg",
-      "thumbnailMobile": "Mobile_Posters/strawberry-shortcake.jpeg",
+      "thumbnail": "/Assets/Posters/strawberryShortcake.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/strawberry-shortcake.jpeg",
       "tags": ["Adventure", "Friendship"],
       "description": "In the sweet and colorful world of Strawberryland, Strawberry Shortcake and her friends go on heartwarming adventures. With lessons in kindness, friendship, and positivity, their journeys are as delightful as the desserts they love.",
       "duration": "1 hr 25 min",
       "language": "Hindi",
       "rating": "8.2",
       "views": "18k",
-      "videoUrl": "/Videos/strawberry_shortcake.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2009",
+          "episodes": [
+            {
+              "episodeId": "strawberry-s1-e1",
+              "episodeNumber": 1,
+              "title": "Strawberry Day",
+              "synopsis": "Strawberry Shortcake organizes a festival for friends.",
+              "duration": "22:20",
+              "thumbnail": "/Assets/Posters/strawberry_s1e1.jpg",
+              "videoUrl": "/Videos/strawberry-shortcake/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "strawberry-s1-e2",
+              "episodeNumber": 2,
+              "title": "Cake Delight",
+              "synopsis": "A baking contest brings laughter and lessons.",
+              "duration": "21:50",
+              "thumbnail": "/Assets/Posters/strawberry_s1e2.jpg",
+              "videoUrl": "/Videos/strawberry-shortcake/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "2010",
+          "episodes": [
+            {
+              "episodeId": "strawberry-s2-e1",
+              "episodeNumber": 1,
+              "title": "Friendship Picnic",
+              "synopsis": "A picnic strengthens friendships and solves problems.",
+              "duration": "22:45",
+              "thumbnail": "/Assets/Posters/strawberry_s2e1.jpg",
+              "videoUrl": "/Videos/strawberry-shortcake/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "strawberry-s2-e2",
+              "episodeNumber": 2,
+              "title": "Berry Rescue",
+              "synopsis": "A rescue mission brings the town together.",
+              "duration": "22:30",
+              "thumbnail": "/Assets/Posters/strawberry_s2e2.jpg",
+              "videoUrl": "/Videos/strawberry-shortcake/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     },
+
     {
       "id": "tom-and-jerry",
       "title": "Tom and Jerry",
       "year": "1995",
-      "thumbnail": "tom_and_jerry.jpg",
-      "thumbnailMobile": "Mobile_Posters/tom-and-jerry.jpeg",
+      "thumbnail": "/Assets/Posters/tom_and_jerry.jpg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/tom-and-jerry.jpeg",
       "tags": ["Comedy", "Classic"],
       "description": "One of the most iconic rivalries in animation, Tom the cat and Jerry the mouse engage in endless chases, traps, and slapstick comedy. Their timeless battles, filled with clever gags and explosive humor, remain a classic for all ages.",
       "duration": "1 hr 40 min",
       "language": "Hindi",
       "rating": "9.5",
       "views": "40k",
-      "videoUrl": "/Videos/tom_and_jerry.mp4"
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1995",
+          "episodes": [
+            {
+              "episodeId": "tomjerry-s1-e1",
+              "episodeNumber": 1,
+              "title": "Cat & Mouse Chaos",
+              "synopsis": "Tom chases Jerry through a classic mishap.",
+              "duration": "22:10",
+              "thumbnail": "/Assets/Posters/tomjerry_s1e1.jpg",
+              "videoUrl": "/Videos/tom-and-jerry/season1/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomjerry-s1-e2",
+              "episodeNumber": 2,
+              "title": "The Great Chase",
+              "synopsis": "A chase sequence escalates to ridiculous extremes.",
+              "duration": "21:55",
+              "thumbnail": "/Assets/Posters/tomjerry_s1e2.jpg",
+              "videoUrl": "/Videos/tom-and-jerry/season1/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 2,
+          "title": "Season 2",
+          "year": "1996",
+          "episodes": [
+            {
+              "episodeId": "tomjerry-s2-e1",
+              "episodeNumber": 1,
+              "title": "Mischief Mansion",
+              "synopsis": "Tom's antics cause trouble at a grand mansion.",
+              "duration": "23:05",
+              "thumbnail": "/Assets/Posters/tomjerry_s2e1.jpg",
+              "videoUrl": "/Videos/tom-and-jerry/season2/ep1-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomjerry-s2-e2",
+              "episodeNumber": 2,
+              "title": "The Big Trap",
+              "synopsis": "A massive trap scheme backfires spectacularly.",
+              "duration": "22:40",
+              "thumbnail": "/Assets/Posters/tomjerry_s2e2.jpg",
+              "videoUrl": "/Videos/tom-and-jerry/season2/ep2-master.m3u8",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }
