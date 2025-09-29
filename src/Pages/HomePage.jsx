@@ -9,12 +9,56 @@ import ShowSection from "../Components/ShowSection";
 // JSON Data
 import showsData from "../Data/Shows.json";
 
-// Add full image path if missing
+// --- media dirs (match your public/media layout) ---
+const posterDesktopDir = "/media/posters-desktop";
+const posterMobileDir = "/media/posters-mobile";   // ✅ updated to plural
+const extrasDir = "/media/extras";
+
+/**
+ * Normalize a poster-like value to the media folder.
+ * - keep if already starts with /media/
+ * - otherwise map to posters-desktop or posters-mobile
+ */
+const normalizePosterPath = (value, preferMobile = false) => {
+  if (!value) return null;
+  if (typeof value === "string" && value.startsWith("/media/")) return value;
+
+  // strip leading slashes and get filename
+  const cleaned = value.replace(/^\/+/, "");
+  const parts = cleaned.split("/");
+  const fileName = parts[parts.length - 1];
+
+  const targetDir = preferMobile ? posterMobileDir : posterDesktopDir;
+  return `${targetDir}/${fileName}`;
+};
+
 const enrich = (arr) =>
-  arr.map((show) => ({
-    ...show,
-    thumbnail: show.thumbnail ? `/Assets/${show.thumbnail}` : "/Assets/default.jpg",
-  }));
+  arr.map((show) => {
+    // desktop poster
+    let thumbnail = null;
+    if (show.thumbnail) {
+      thumbnail = show.thumbnail.startsWith("/media/")
+        ? show.thumbnail
+        : normalizePosterPath(show.thumbnail, false);
+    }
+
+    // mobile poster
+    let thumbnailMobile = null;
+    if (show.thumbnailMobile) {
+      thumbnailMobile = show.thumbnailMobile.startsWith("/media/")
+        ? show.thumbnailMobile
+        : normalizePosterPath(show.thumbnailMobile, true);
+    } else if (thumbnail) {
+      const filename = thumbnail.split("/").pop();
+      thumbnailMobile = `${posterMobileDir}/${filename}`;
+    }
+
+    return {
+      ...show,
+      thumbnail: thumbnail || `${extrasDir}/default.jpg`,
+      thumbnailMobile: thumbnailMobile || `${extrasDir}/default.jpg`,
+    };
+  });
 
 // Utility: random shuffle
 function shuffle(arr) {

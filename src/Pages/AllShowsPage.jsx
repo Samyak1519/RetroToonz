@@ -7,13 +7,57 @@ import Footer from "../Components/Footer";
 import ShowCard from "../Components/ShowCard";
 import showsDataRaw from "../Data/Shows.json"; // ensure path/casing matches
 
-// normalize show data
+// --- media dirs (match your public/media layout) ---
+const posterDesktopDir = "/media/posters-desktop";
+const posterMobileDir = "/media/posters-mobile";
+const extrasDir = "/media/extras";
+
+/**
+ * Normalize a poster-like value to the media folder.
+ * - keep if already starts with /media/
+ * - otherwise map to posters-desktop or posters-mobile
+ */
+const normalizePosterPath = (value, preferMobile = false) => {
+  if (!value) return null;
+  if (typeof value === "string" && value.startsWith("/media/")) return value;
+
+  // strip leading slashes and get filename
+  const cleaned = value.replace(/^\/+/, "");
+  const parts = cleaned.split("/");
+  const fileName = parts[parts.length - 1];
+
+  const targetDir = preferMobile ? posterMobileDir : posterDesktopDir;
+  return `${targetDir}/${fileName}`;
+};
+
+// normalize show data (keeps other fields intact)
 const normalizeShows = (arr) =>
-  (arr || []).map((s) => ({
-    ...s,
-    title: s.title || "Untitled",
-    thumbnail: s.thumbnail ? `/Assets/${s.thumbnail}` : "/Assets/default.jpg",
-  }));
+  (arr || []).map((s) => {
+    const desktopThumb = s.thumbnail
+      ? s.thumbnail.startsWith("/media/")
+        ? s.thumbnail
+        : normalizePosterPath(s.thumbnail, false)
+      : null;
+
+    // mobile prefers explicit thumbnailMobile, else derive from desktop filename
+    let mobileThumb = null;
+    if (s.thumbnailMobile) {
+      mobileThumb = s.thumbnailMobile.startsWith("/media/")
+        ? s.thumbnailMobile
+        : normalizePosterPath(s.thumbnailMobile, true);
+    } else if (desktopThumb) {
+      // derive mobile name from desktop file name
+      const filename = desktopThumb.split("/").pop();
+      mobileThumb = `${posterMobileDir}/${filename}`;
+    }
+
+    return {
+      ...s,
+      title: s.title || "Untitled",
+      thumbnail: desktopThumb || `${extrasDir}/default.jpg`,
+      thumbnailMobile: mobileThumb || `${extrasDir}/default.jpg`,
+    };
+  });
 
 const allShows = normalizeShows(showsDataRaw.allShows || []);
 
@@ -98,7 +142,6 @@ export default function AllShowsPage() {
         <div className="px-4 sm:px-7 md:px-8 lg:px-12 py-6 max-w-screen-2xl mx-auto relative">
           {/* HEADING ROW - Back button included inline for mobile */}
           <div className="flex items-center gap-3 mb-3 sm:mb-6">
-            {/* Back button - visible everywhere but styled to sit inline on mobile */}
             <button
               onClick={() => navigate(-1)}
               className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-lg transition z-20"
@@ -109,10 +152,8 @@ export default function AllShowsPage() {
 
             <h1 className="text-2xl sm:text-3xl font-extrabold">All Shows</h1>
 
-            {/* spacer to keep top row comfortable */}
             <div className="flex-1" />
 
-            {/* Desktop-only sort (kept at top right for wider screens) */}
             <div className="hidden sm:block">
               <div className="relative">
                 <select
@@ -134,16 +175,13 @@ export default function AllShowsPage() {
             </div>
           </div>
 
-          {/* Description */}
           <div className="text-gray-400 mb-4 text-sm sm:text-base">
             <div>Browse the full catalog by tag or sort.</div>
             <div>Grouped alphabetically.</div>
           </div>
 
-          {/* FILTERS ROW */}
           <div className="mb-3">
             <div className="flex items-center justify-between gap-4">
-              {/* Tags: horizontally scrollable */}
               <div className="flex-1 overflow-x-auto hide-scrollbar">
                 <div className="flex gap-2 pb-2 w-max">
                   {tags.map((t) => (
@@ -161,12 +199,8 @@ export default function AllShowsPage() {
                   ))}
                 </div>
               </div>
-
-              {/* on sm+ keep sort at top right (already rendered in heading row for sm+) */}
-              {/* nothing needed here for desktop */}
             </div>
 
-            {/* Showing count + mobile sort inline */}
             <div className="mt-4 flex items-center justify-between gap-3 flex-wrap">
               <div className="text-sm text-gray-400">
                 Showing{" "}
@@ -174,7 +208,6 @@ export default function AllShowsPage() {
                 <span className="text-white font-medium">{allShows.length}</span> shows
               </div>
 
-              {/* Mobile sort select (visible only on mobile) */}
               <div className="sm:hidden">
                 <div className="relative">
                   <select
@@ -194,7 +227,6 @@ export default function AllShowsPage() {
                 </div>
               </div>
 
-              {/* Desktop inline tag indicator */}
               <div className="hidden sm:block text-gray-400">
                 {activeTag !== "All" && (
                   <>· tag: <span className="text-cyan-300">{activeTag}</span></>
@@ -202,7 +234,6 @@ export default function AllShowsPage() {
               </div>
             </div>
 
-            {/* Selected tag (always below showing row on mobile; on desktop keep small gap) */}
             {activeTag !== "All" && (
               <div className="mt-2 sm:mt-1 text-sm text-cyan-300">
                 Tag: <span className="font-medium">{activeTag}</span>
@@ -210,7 +241,6 @@ export default function AllShowsPage() {
             )}
           </div>
 
-          {/* GROUPED SHOWS */}
           <div className="space-y-10 mb-16 px-3 lg:px-0">
             {grouped.length === 0 && (
               <div className="py-12 text-center text-gray-400">No shows match your filters.</div>
@@ -227,10 +257,6 @@ export default function AllShowsPage() {
                   <div className="text-sm text-gray-400">{shows.length}</div>
                 </div>
 
-                {/* Grid:
-                    - mobile: 2 cols with smaller gaps
-                    - tablet+: more columns and bigger gaps
-                */}
                 <div
                   className="grid grid-cols-2 gap-x-3 gap-y-4
                              sm:grid-cols-3 sm:gap-x-4 sm:gap-y-5
@@ -261,10 +287,8 @@ export default function AllShowsPage() {
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* ensure dropdown list is readable on some browsers by giving select a darker internal background when opened */
         select { background-clip: padding-box; }
 
-        /* tighten the poster cards vertically on mobile a bit more (ShowCard should support fluid sizing) */
         @media (max-width: 640px) {
           .card-wrapper, .grid > div > * { margin: 0; }
         }

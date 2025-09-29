@@ -23,9 +23,9 @@
               "episodeNumber": 1,
               "title": "The Day of the Omnitrix",
               "synopsis": "Ben discovers the Omnitrix and transforms into his first alien.",
-              "duration": "22:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ben10_s1e1.jpg",
-              "videoUrl": "/Videos/ben10/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/ben10/season1/ben10-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -34,9 +34,20 @@
               "episodeNumber": 2,
               "title": "Welcome to the Tennyson Family",
               "synopsis": "Ben learns more about the Omnitrix and his new responsibilities.",
-              "duration": "21:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ben10_s1e2.jpg",
-              "videoUrl": "/Videos/ben10/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/ben10/season1/ben10-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ben10-s1-e3",
+              "episodeNumber": 3,
+              "title": "First Big Battle",
+              "synopsis": "Ben faces a dangerous rival in his first big fight.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/ben10_s1e3.jpg",
+              "videoUrl": "/Videos/ben10/season1/ben10-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -52,9 +63,9 @@
               "episodeNumber": 1,
               "title": "A New Threat",
               "synopsis": "A new villain forces Ben to push his powers further.",
-              "duration": "23:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ben10_s2e1.jpg",
-              "videoUrl": "/Videos/ben10/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/ben10/season2/ben10-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -63,9 +74,9 @@
               "episodeNumber": 2,
               "title": "Allies & Enemies",
               "synopsis": "Allies arrive, and Ben must choose who to trust.",
-              "duration": "22:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ben10_s2e2.jpg",
-              "videoUrl": "/Videos/ben10/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/ben10/season2/ben10-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -97,9 +108,9 @@
               "episodeNumber": 1,
               "title": "The Festival Trouble",
               "synopsis": "Bheem and friends save the village festival from mischief.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s1e1.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -108,9 +119,9 @@
               "episodeNumber": 2,
               "title": "The Stolen Treasure",
               "synopsis": "An ancient treasure goes missing and Bheem leads the search.",
-              "duration": "21:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s1e2.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -126,9 +137,9 @@
               "episodeNumber": 1,
               "title": "The Forest Guardian",
               "synopsis": "Bheem meets a guardian spirit protecting the forest.",
-              "duration": "23:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s2e1.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -137,9 +148,9 @@
               "episodeNumber": 2,
               "title": "The Giant Ganesha",
               "synopsis": "A giant mechanical Ganesha threatens the town and Bheem must stop it.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s2e2.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -171,9 +182,9 @@
               "episodeNumber": 1,
               "title": "A New Strange Neighbor",
               "synopsis": "Courage encounters a strange neighbor with mysterious powers.",
-              "duration": "24:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/courage_s1e1.jpg",
-              "videoUrl": "/Videos/courage/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/courage/season1/courage-the-cowardly-dog-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -182,9 +193,9 @@
               "episodeNumber": 2,
               "title": "The Phantom of Nowhere",
               "synopsis": "Phantoms haunt the farmhouse and Courage must protect his family.",
-              "duration": "22:15",
+              "duration": null,
               "thumbnail": "/Assets/Posters/courage_s1e2.jpg",
-              "videoUrl": "/Videos/courage/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/courage/season1/courage-the-cowardly-dog-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -200,9 +211,9 @@
               "episodeNumber": 1,
               "title": "Alien Intrusion",
               "synopsis": "A spaceship lands nearby and Courage must save Muriel.",
-              "duration": "23:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/courage_s2e1.jpg",
-              "videoUrl": "/Videos/courage/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/courage/season2/courage-the-cowardly-dog-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -211,9 +222,9 @@
               "episodeNumber": 2,
               "title": "The Curse of the Mask",
               "synopsis": "A cursed mask brings nightmares to the farmhouse.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/courage_s2e2.jpg",
-              "videoUrl": "/Videos/courage/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/courage/season2/courage-the-cowardly-dog-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -245,9 +256,9 @@
               "episodeNumber": 1,
               "title": "Gadget Troubles",
               "synopsis": "Doraemon uses a new gadget and things go haywire.",
-              "duration": "24:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/doraemon_s1e1.jpg",
-              "videoUrl": "/Videos/doraemon/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/doraemon/season1/doraemon-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -256,9 +267,20 @@
               "episodeNumber": 2,
               "title": "Time Travel Trouble",
               "synopsis": "A time-travel mistake sends Nobita into the past.",
-              "duration": "23:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/doraemon_s1e2.jpg",
-              "videoUrl": "/Videos/doraemon/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/doraemon/season1/doraemon-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s1-e3",
+              "episodeNumber": 3,
+              "title": "Gadget Mixup",
+              "synopsis": "A gadget swap causes unexpected chaos.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/doraemon_s1e3.jpg",
+              "videoUrl": "/Videos/doraemon/season1/doraemon-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -274,9 +296,9 @@
               "episodeNumber": 1,
               "title": "The Lost Robot",
               "synopsis": "Doraemon's memory card goes missing and chaos ensues.",
-              "duration": "23:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/doraemon_s2e1.jpg",
-              "videoUrl": "/Videos/doraemon/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/doraemon/season2/doraemon-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -285,9 +307,9 @@
               "episodeNumber": 2,
               "title": "Gadget Carnival",
               "synopsis": "A gadget festival gets out of hand with crazy inventions.",
-              "duration": "22:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/doraemon_s2e2.jpg",
-              "videoUrl": "/Videos/doraemon/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/doraemon/season2/doraemon-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -319,9 +341,9 @@
               "episodeNumber": 1,
               "title": "Treasure Hunt",
               "synopsis": "Jake's crew hunts for a hidden treasure on Never Land.",
-              "duration": "21:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/jake_s1e1.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/jake-and-the-never-land-pirates-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -330,9 +352,9 @@
               "episodeNumber": 2,
               "title": "Captain Hook's Return",
               "synopsis": "Captain Hook plots a new scheme to steal Jake's treasure map.",
-              "duration": "22:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/jake_s1e2.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/jake-and-the-never-land-pirates-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -348,9 +370,9 @@
               "episodeNumber": 1,
               "title": "Island Rescue",
               "synopsis": "Jake rescues a stranded friend from a spooky island.",
-              "duration": "23:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/jake_s2e1.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/jake-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -359,9 +381,9 @@
               "episodeNumber": 2,
               "title": "Treasure Map Riddle",
               "synopsis": "A clever riddle reveals the next treasure location.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/jake_s2e2.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/jake-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -393,9 +415,9 @@
               "episodeNumber": 1,
               "title": "Daredevil Debut",
               "synopsis": "Kick attempts a daring stunt to impress the town.",
-              "duration": "22:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kick_s1e1.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/kick-buttowski/season1/kick-buttowski-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -404,9 +426,9 @@
               "episodeNumber": 2,
               "title": "Ramp of Doom",
               "synopsis": "A crazy ramp challenge puts Kick to the test.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kick_s1e2.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/kick-buttowski/season1/kick-buttowski-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -422,9 +444,9 @@
               "episodeNumber": 1,
               "title": "Extreme Weekend",
               "synopsis": "Kick enters an extreme sports weekend competition.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kick_s2e1.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/kick-buttowski/season2/kick-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -433,9 +455,9 @@
               "episodeNumber": 2,
               "title": "Neighborhood Showdown",
               "synopsis": "A hometown showdown determines who is the bravest.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kick_s2e2.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/kick-buttowski/season2/kick-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -467,9 +489,9 @@
               "episodeNumber": 1,
               "title": "Alien Pet",
               "synopsis": "Coop discovers Kat's alien origins.",
-              "duration": "22:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s1e1.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/kid-vs-kat/season1/kid_vs_kat-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -478,9 +500,9 @@
               "episodeNumber": 2,
               "title": "Gadget Mayhem",
               "synopsis": "Kat's gadgets create chaos in the neighborhood.",
-              "duration": "21:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s1e2.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/kid-vs-kat/season1/kid_vs_kat-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -496,9 +518,9 @@
               "episodeNumber": 1,
               "title": "Coop's Revenge",
               "synopsis": "Coop fights back using clever traps.",
-              "duration": "22:15",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s2e1.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/kid-vs-kat/season2/kidvk-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -507,9 +529,9 @@
               "episodeNumber": 2,
               "title": "The Great Escape",
               "synopsis": "Kat escapes and Coop must capture him again.",
-              "duration": "22:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s2e2.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/kid-vs-kat/season2/kidvk-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -541,9 +563,9 @@
               "episodeNumber": 1,
               "title": "Invention #1",
               "synopsis": "Kiteretsu builds a helpful invention.",
-              "duration": "22:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s1e1.jpg",
-              "videoUrl": "/Videos/kiteretsu/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/kiteretsu/season1/kiteretsu-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -552,9 +574,9 @@
               "episodeNumber": 2,
               "title": "Robot Friend",
               "synopsis": "Kiteretsu meets and repairs a robot friend.",
-              "duration": "21:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s1e2.jpg",
-              "videoUrl": "/Videos/kiteretsu/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/kiteretsu/season1/kiteretsu-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -570,9 +592,9 @@
               "episodeNumber": 1,
               "title": "Treasure of Science",
               "synopsis": "A scientific treasure hunt begins.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s2e1.jpg",
-              "videoUrl": "/Videos/kiteretsu/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/kiteretsu/season2/kiteretsu-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -581,9 +603,9 @@
               "episodeNumber": 2,
               "title": "Time Machine",
               "synopsis": "Kiteretsu experiments with a time device.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s2e2.jpg",
-              "videoUrl": "/Videos/kiteretsu/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/kiteretsu/season2/kiteretsu-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -615,9 +637,9 @@
               "episodeNumber": 1,
               "title": "Clubhouse Adventure",
               "synopsis": "Mickey and friends solve a puzzle at the clubhouse.",
-              "duration": "22:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s1e1.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/mickey-mouse/season1/mickey-mouse-clubhouse-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -626,9 +648,9 @@
               "episodeNumber": 2,
               "title": "The Missing Map",
               "synopsis": "A treasure map goes missing and teamwork saves the day.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s1e2.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/mickey-mouse/season1/mickey-mouse-clubhouse-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -644,9 +666,9 @@
               "episodeNumber": 1,
               "title": "Goofy's Big Plan",
               "synopsis": "Goofy leads a big plan that almost fails but succeeds.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s2e1.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/mickey-mouse/season2/mickey-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -655,9 +677,9 @@
               "episodeNumber": 2,
               "title": "Donald's Surprise",
               "synopsis": "Donald prepares a surprise that becomes a lesson in patience.",
-              "duration": "22:15",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s2e2.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/mickey-mouse/season2/mickey-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -689,20 +711,9 @@
               "episodeNumber": 1,
               "title": "Bean's Trouble",
               "synopsis": "Mr. Bean faces everyday trouble with hilarious solutions.",
-              "duration": "24:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s1e1.jpg",
-              "videoUrl": "/Videos/mr-bean/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "mrbean-s1-e2",
-              "episodeNumber": 2,
-              "title": "Vacuum Incident",
-              "synopsis": "A vacuum cleaner causes chaos in Mr. Bean's flat.",
-              "duration": "22:35",
-              "thumbnail": "/Assets/Posters/mrbean_s1e2.jpg",
-              "videoUrl": "/Videos/mr-bean/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/mr-bean/season1/mr-bean-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -718,9 +729,9 @@
               "episodeNumber": 1,
               "title": "Cinema Chaos",
               "synopsis": "Bean's trip to the cinema turns into a disaster.",
-              "duration": "23:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s2e1.jpg",
-              "videoUrl": "/Videos/mr-bean/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/mr-bean/season2/mrbean-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -729,9 +740,9 @@
               "episodeNumber": 2,
               "title": "The Accident",
               "synopsis": "A small accident leads to a domino of misfortunes.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s2e2.jpg",
-              "videoUrl": "/Videos/mr-bean/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/mr-bean/season2/mrbean-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -763,9 +774,9 @@
               "episodeNumber": 1,
               "title": "The New Ninja",
               "synopsis": "Hattori arrives and teaches Kenichi a lesson.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ninjahattori_s1e1.jpg",
-              "videoUrl": "/Videos/ninja-hattori/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/ninja-hattori/season1/ninja-hattori-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -774,9 +785,20 @@
               "episodeNumber": 2,
               "title": "Training Day",
               "synopsis": "Kenichi learns basic ninja techniques.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ninjahattori_s1e2.jpg",
-              "videoUrl": "/Videos/ninja-hattori/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/ninja-hattori/season1/ninja-hattori-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "ninjahattori-s1-e3",
+              "episodeNumber": 3,
+              "title": "Small Mission",
+              "synopsis": "Hattori completes a small mission for a neighbor.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/ninjahattori_s1e3.jpg",
+              "videoUrl": "/Videos/ninja-hattori/season1/ninja-hattori-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -792,9 +814,9 @@
               "episodeNumber": 1,
               "title": "Rival Ninja",
               "synopsis": "A rival threatens the town and a duel is set.",
-              "duration": "23:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ninjahattori_s2e1.jpg",
-              "videoUrl": "/Videos/ninja-hattori/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/ninja-hattori/season2/ninja-hattori-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -803,9 +825,9 @@
               "episodeNumber": 2,
               "title": "The Lost Scroll",
               "synopsis": "A scroll containing secret techniques is stolen.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/ninjahattori_s2e2.jpg",
-              "videoUrl": "/Videos/ninja-hattori/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/ninja-hattori/season2/ninja-hattori-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -837,9 +859,9 @@
               "episodeNumber": 1,
               "title": "Cockroach Mayhem",
               "synopsis": "Oggy battles the cockroaches in comedic fashion.",
-              "duration": "22:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oggy_s1e1.jpg",
-              "videoUrl": "/Videos/oggy/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/oggy/season1/oggy-and-the-cockroaches-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -848,9 +870,9 @@
               "episodeNumber": 2,
               "title": "Kitchen Chaos",
               "synopsis": "The kitchen becomes a battleground for food and pranks.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oggy_s1e2.jpg",
-              "videoUrl": "/Videos/oggy/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/oggy/season1/oggy-and-the-cockroaches-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -866,9 +888,9 @@
               "episodeNumber": 1,
               "title": "Holiday Havoc",
               "synopsis": "A holiday special ends up in disaster for Oggy.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oggy_s2e1.jpg",
-              "videoUrl": "/Videos/oggy/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/oggy/season2/oggy-and-the-cockroaches-S02E01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -877,9 +899,9 @@
               "episodeNumber": 2,
               "title": "Giant Roach",
               "synopsis": "A giant cockroach causes panic across town.",
-              "duration": "22:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oggy_s2e2.jpg",
-              "videoUrl": "/Videos/oggy/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/oggy/season2/oggy-and-the-cockroaches-S02E02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -911,20 +933,9 @@
               "episodeNumber": 1,
               "title": "Big City Day",
               "synopsis": "Oswald explores Big City and helps a friend.",
-              "duration": "22:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oswald_s1e1.jpg",
-              "videoUrl": "/Videos/oswald/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "oswald-s1-e2",
-              "episodeNumber": 2,
-              "title": "Weenie's Adventure",
-              "synopsis": "Weenie gets lost and Oswald must find him.",
-              "duration": "21:50",
-              "thumbnail": "/Assets/Posters/oswald_s1e2.jpg",
-              "videoUrl": "/Videos/oswald/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/oswald/season1/oswald-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -940,9 +951,9 @@
               "episodeNumber": 1,
               "title": "The Garden",
               "synopsis": "Oswald helps grow a garden for the neighborhood.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oswald_s2e1.jpg",
-              "videoUrl": "/Videos/oswald/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/oswald/season2/oswald-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -951,9 +962,9 @@
               "episodeNumber": 2,
               "title": "Music Day",
               "synopsis": "A music festival brings friends together.",
-              "duration": "22:35",
+              "duration": null,
               "thumbnail": "/Assets/Posters/oswald_s2e2.jpg",
-              "videoUrl": "/Videos/oswald/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/oswald/season2/oswald-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -985,20 +996,9 @@
               "episodeNumber": 1,
               "title": "Becoming Perman",
               "synopsis": "Mitsuo receives powers and learns his duty.",
-              "duration": "23:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/perman_s1e1.jpg",
-              "videoUrl": "/Videos/perman/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "perman-s1-e2",
-              "episodeNumber": 2,
-              "title": "Secret Identity",
-              "synopsis": "Mitsuo struggles to keep his identity secret.",
-              "duration": "22:20",
-              "thumbnail": "/Assets/Posters/perman_s1e2.jpg",
-              "videoUrl": "/Videos/perman/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/perman/season1/perman-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1014,9 +1014,9 @@
               "episodeNumber": 1,
               "title": "Robot Menace",
               "synopsis": "Robots threaten the city and Perman intervenes.",
-              "duration": "22:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/perman_s2e1.jpg",
-              "videoUrl": "/Videos/perman/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/perman/season2/perman-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1025,9 +1025,9 @@
               "episodeNumber": 2,
               "title": "Power Test",
               "synopsis": "Perman's powers are tested by a cunning foe.",
-              "duration": "23:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/perman_s2e2.jpg",
-              "videoUrl": "/Videos/perman/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/perman/season2/perman-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1059,20 +1059,9 @@
               "episodeNumber": 1,
               "title": "The Big Invention",
               "synopsis": "Phineas and Ferb build an incredible invention.",
-              "duration": "23:00",
+              "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s1e1.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "phineas-s1-e2",
-              "episodeNumber": 2,
-              "title": "Summer Concert",
-              "synopsis": "They put on a huge concert for the neighborhood.",
-              "duration": "22:20",
-              "thumbnail": "/Assets/Posters/phineas_s1e2.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/phineas-and-ferb/season1/phineas-and-ferb-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1088,9 +1077,9 @@
               "episodeNumber": 1,
               "title": "Roller Coaster Day",
               "synopsis": "A massive roller coaster takes Phineas and Ferb's fun to new heights.",
-              "duration": "22:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s2e1.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/phineas-and-ferb/season2/phineas-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1099,9 +1088,9 @@
               "episodeNumber": 2,
               "title": "The Great Escape",
               "synopsis": "An escape plan goes hilariously wrong.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s2e2.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/phineas-and-ferb/season2/phineas-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1133,20 +1122,9 @@
               "episodeNumber": 1,
               "title": "Pallet Town Begins",
               "synopsis": "Ash gets Pikachu and begins his journey.",
-              "duration": "23:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s1e1.jpg",
-              "videoUrl": "/Videos/pokemon/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "pokemon-s1-e2",
-              "episodeNumber": 2,
-              "title": "First Gym Battle",
-              "synopsis": "Ash faces his first gym challenge.",
-              "duration": "22:45",
-              "thumbnail": "/Assets/Posters/pokemon_s1e2.jpg",
-              "videoUrl": "/Videos/pokemon/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/pokemon/season1/pokemon-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1162,9 +1140,9 @@
               "episodeNumber": 1,
               "title": "New Regions",
               "synopsis": "Ash heads to new regions and meets new friends.",
-              "duration": "23:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s2e1.jpg",
-              "videoUrl": "/Videos/pokemon/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/pokemon/season2/pokemon-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1173,9 +1151,9 @@
               "episodeNumber": 2,
               "title": "Rival Encounter",
               "synopsis": "Ash faces a tough rival trainer.",
-              "duration": "22:50",
+              "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s2e2.jpg",
-              "videoUrl": "/Videos/pokemon/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/pokemon/season2/pokemon-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1207,20 +1185,9 @@
               "episodeNumber": 1,
               "title": "New Student Kris",
               "synopsis": "Kris reveals his divine side to protect classmates.",
-              "duration": "22:35",
+              "duration": null,
               "thumbnail": "/Assets/Posters/rollno_s1e1.jpg",
-              "videoUrl": "/Videos/roll-no-21/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "rollno-s1-e2",
-              "episodeNumber": 2,
-              "title": "Kanishk's Scheme",
-              "synopsis": "Kanishk plots mischief and Kris intervenes.",
-              "duration": "22:00",
-              "thumbnail": "/Assets/Posters/rollno_s1e2.jpg",
-              "videoUrl": "/Videos/roll-no-21/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/roll-no-21/season1/roll-no-21-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1236,9 +1203,9 @@
               "episodeNumber": 1,
               "title": "School Fair",
               "synopsis": "Kris uses tricks to save the school fair.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/rollno_s2e1.jpg",
-              "videoUrl": "/Videos/roll-no-21/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/roll-no-21/season2/roll-no-21-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1247,9 +1214,9 @@
               "episodeNumber": 2,
               "title": "Divine Challenge",
               "synopsis": "A difficult challenge tests Kris' faith and cunning.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/rollno_s2e2.jpg",
-              "videoUrl": "/Videos/roll-no-21/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/roll-no-21/season2/roll-no-21-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1281,20 +1248,9 @@
               "episodeNumber": 1,
               "title": "Farm Follies",
               "synopsis": "Shaun leads the flock into a comedic adventure.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s1e1.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shaun-s1-e2",
-              "episodeNumber": 2,
-              "title": "Shepherd Shenanigans",
-              "synopsis": "A day of mischief for the farmer and Shaun.",
-              "duration": "21:55",
-              "thumbnail": "/Assets/Posters/shaun_s1e2.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/shaun-the-sheep/season1/shaun-the-sheep-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1310,9 +1266,9 @@
               "episodeNumber": 1,
               "title": "Holiday Hijinks",
               "synopsis": "Shaun prepares a holiday surprise with chaotic results.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s2e1.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/shaun-the-sheep/season2/shaun-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1321,9 +1277,9 @@
               "episodeNumber": 2,
               "title": "The Big Escape",
               "synopsis": "A daring escape plan tests Shaun's leadership.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s2e2.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/shaun-the-sheep/season2/shaun-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1355,20 +1311,9 @@
               "episodeNumber": 1,
               "title": "Classroom Chaos",
               "synopsis": "Shinchan causes hilarity at school.",
-              "duration": "22:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shinchan_s1e1.jpg",
-              "videoUrl": "/Videos/shinchan/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s1-e2",
-              "episodeNumber": 2,
-              "title": "Playground Pranks",
-              "synopsis": "A day of pranks leads to consequences.",
-              "duration": "21:50",
-              "thumbnail": "/Assets/Posters/shinchan_s1e2.jpg",
-              "videoUrl": "/Videos/shinchan/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/shinchan/season1/shinchan-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1384,9 +1329,9 @@
               "episodeNumber": 1,
               "title": "Holiday Trouble",
               "synopsis": "Shinchan ruins a family holiday in typical fashion.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shinchan_s2e1.jpg",
-              "videoUrl": "/Videos/shinchan/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/shinchan/season2/shinchan-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1395,9 +1340,9 @@
               "episodeNumber": 2,
               "title": "Neighborhood Show",
               "synopsis": "Shinchan performs in a neighborhood show with unexpected results.",
-              "duration": "22:25",
+              "duration": null,
               "thumbnail": "/Assets/Posters/shinchan_s2e2.jpg",
-              "videoUrl": "/Videos/shinchan/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/shinchan/season2/shinchan-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1429,9 +1374,9 @@
               "episodeNumber": 1,
               "title": "First Day at Work",
               "synopsis": "SpongeBob starts working at the Krusty Krab.",
-              "duration": "22:15",
+              "duration": null,
               "thumbnail": "/Assets/Posters/spongebob_s1e1.jpg",
-              "videoUrl": "/Videos/spongebob-squarepants/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/spongebob-squarepants/season1/spongebob-squarepants-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1440,9 +1385,20 @@
               "episodeNumber": 2,
               "title": "Jellyfishing Fun",
               "synopsis": "SpongeBob and Patrick go jellyfishing with chaotic results.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/spongebob_s1e2.jpg",
-              "videoUrl": "/Videos/spongebob-squarepants/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/spongebob-squarepants/season1/spongebob-squarepants-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "spongebob-s1-e3",
+              "episodeNumber": 3,
+              "title": "Bubble Trouble",
+              "synopsis": "A playful bubble contest gets out of hand.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/spongebob_s1e3.jpg",
+              "videoUrl": "/Videos/spongebob-squarepants/season1/spongebob-squarepants-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1458,9 +1414,9 @@
               "episodeNumber": 1,
               "title": "Plankton's Plan",
               "synopsis": "Plankton tries a new scheme to steal the Krabby Patty secret formula.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/spongebob_s2e1.jpg",
-              "videoUrl": "/Videos/spongebob-squarepants/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/spongebob-squarepants/season2/spongebob-squarepants-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1469,9 +1425,9 @@
               "episodeNumber": 2,
               "title": "Sandy's Invention",
               "synopsis": "Sandy introduces a new invention for Bikini Bottom.",
-              "duration": "22:35",
+              "duration": null,
               "thumbnail": "/Assets/Posters/spongebob_s2e2.jpg",
-              "videoUrl": "/Videos/spongebob-squarepants/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/spongebob-squarepants/season2/spongebob-squarepants-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1503,20 +1459,9 @@
               "episodeNumber": 1,
               "title": "Strawberry Day",
               "synopsis": "Strawberry Shortcake organizes a festival for friends.",
-              "duration": "22:20",
+              "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s1e1.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season1/ep1-master.m3u8",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "strawberry-s1-e2",
-              "episodeNumber": 2,
-              "title": "Cake Delight",
-              "synopsis": "A baking contest brings laughter and lessons.",
-              "duration": "21:50",
-              "thumbnail": "/Assets/Posters/strawberry_s1e2.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/strawberry-shortcake/season1/strawberry-shortcake-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1532,9 +1477,9 @@
               "episodeNumber": 1,
               "title": "Friendship Picnic",
               "synopsis": "A picnic strengthens friendships and solves problems.",
-              "duration": "22:45",
+              "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s2e1.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/strawberry-shortcake/season2/strawberry-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1543,9 +1488,9 @@
               "episodeNumber": 2,
               "title": "Berry Rescue",
               "synopsis": "A rescue mission brings the town together.",
-              "duration": "22:30",
+              "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s2e2.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/strawberry-shortcake/season2/strawberry-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1577,9 +1522,9 @@
               "episodeNumber": 1,
               "title": "Cat & Mouse Chaos",
               "synopsis": "Tom chases Jerry through a classic mishap.",
-              "duration": "22:10",
+              "duration": null,
               "thumbnail": "/Assets/Posters/tomjerry_s1e1.jpg",
-              "videoUrl": "/Videos/tom-and-jerry/season1/ep1-master.m3u8",
+              "videoUrl": "/Videos/tom-and-jerry-tales/season1/tom-and-jerry-tales-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1588,9 +1533,20 @@
               "episodeNumber": 2,
               "title": "The Great Chase",
               "synopsis": "A chase sequence escalates to ridiculous extremes.",
-              "duration": "21:55",
+              "duration": null,
               "thumbnail": "/Assets/Posters/tomjerry_s1e2.jpg",
-              "videoUrl": "/Videos/tom-and-jerry/season1/ep2-master.m3u8",
+              "videoUrl": "/Videos/tom-and-jerry-tales/season1/tom-and-jerry-tales-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomjerry-s1-e3",
+              "episodeNumber": 3,
+              "title": "Mouse Mischief",
+              "synopsis": "Jerry pulls a trick that backfires on Tom.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/tomjerry_s1e3.jpg",
+              "videoUrl": "/Videos/tom-and-jerry-tales/season1/tom-and-jerry-tales-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1606,9 +1562,9 @@
               "episodeNumber": 1,
               "title": "Mischief Mansion",
               "synopsis": "Tom's antics cause trouble at a grand mansion.",
-              "duration": "23:05",
+              "duration": null,
               "thumbnail": "/Assets/Posters/tomjerry_s2e1.jpg",
-              "videoUrl": "/Videos/tom-and-jerry/season2/ep1-master.m3u8",
+              "videoUrl": "/Videos/tom-and-jerry-tales/season2/tom-and-jerry-tales-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1617,9 +1573,9 @@
               "episodeNumber": 2,
               "title": "The Big Trap",
               "synopsis": "A massive trap scheme backfires spectacularly.",
-              "duration": "22:40",
+              "duration": null,
               "thumbnail": "/Assets/Posters/tomjerry_s2e2.jpg",
-              "videoUrl": "/Videos/tom-and-jerry/season2/ep2-master.m3u8",
+              "videoUrl": "/Videos/tom-and-jerry-tales/season2/tom-and-jerry-tales-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
