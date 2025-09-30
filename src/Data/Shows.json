@@ -510,18 +510,29 @@
               "synopsis": "Mickey and friends solve a puzzle at the clubhouse.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s1e1.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season1/mickey-mouse-clubhouse-s01-e01.mp4",
+              "videoUrl": "/Videos/mickey-mouse-clubhouse/season-01/mickey-mouse-clubhouse-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "mickey-s1-e2",
               "episodeNumber": 2,
-              "title": "The Missing Map",
-              "synopsis": "A treasure map goes missing and teamwork saves the day.",
+              "title": "Mickey Goes Fishing",
+              "synopsis": "Mickey and friends head out for a fun fishing trip.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s1e2.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season1/mickey-mouse-clubhouse-s01-e02.mp4",
+              "videoUrl": "/Videos/mickey-mouse-clubhouse/season-01/mickey-mouse-clubhouse-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mickey-s1-e3",
+              "episodeNumber": 3,
+              "title": "Mickey Helps the Red Birdie",
+              "synopsis": "Mickey helps a little birdie find its way home.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/mickey_s1e3.jpg",
+              "videoUrl": "/Videos/mickey-mouse-clubhouse/season-01/mickey-mouse-clubhouse-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -535,22 +546,22 @@
             {
               "episodeId": "mickey-s2-e1",
               "episodeNumber": 1,
-              "title": "Goofy's Big Plan",
-              "synopsis": "Goofy leads a big plan that almost fails but succeeds.",
+              "title": "Mickey Says Hi at the Halloween Party",
+              "synopsis": "The gang celebrates Halloween at the clubhouse.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s2e1.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season2/mickey-s02-e01.mp4",
+              "videoUrl": "/Videos/mickey-mouse-clubhouse/season-02/mickey-mouse-clubhouse - s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "mickey-s2-e2",
               "episodeNumber": 2,
-              "title": "Donald's Surprise",
-              "synopsis": "Donald prepares a surprise that becomes a lesson in patience.",
+              "title": "Mickey’s Treasure Hunt",
+              "synopsis": "Mickey and his friends go on an adventurous treasure hunt.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mickey_s2e2.jpg",
-              "videoUrl": "/Videos/mickey-mouse/season2/mickey-s02-e02.mp4",
+              "videoUrl": "/Videos/mickey-mouse-clubhouse/season-02/mickey-mouse-clubhouse-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -558,7 +569,6 @@
         }
       ]
     },
-
     {
       "id": "mr-bean",
       "title": "Mr. Bean",
@@ -584,7 +594,29 @@
               "synopsis": "Mr. Bean faces everyday trouble with hilarious solutions.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s1e1.jpg",
-              "videoUrl": "/Videos/mr-bean/season1/mr-bean-s01-e01.mp4",
+              "videoUrl": "/Videos/mr-bean/season-01/mr-bean-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mrbean-s1-e2",
+              "episodeNumber": 2,
+              "title": "Spring Clean Bean",
+              "synopsis": "Mr. Bean attempts a spring clean that quickly gets out of hand.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/mrbean_s1e2.jpg",
+              "videoUrl": "/Videos/mr-bean/season-01/mr-bean-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "mrbean-s1-e3",
+              "episodeNumber": 3,
+              "title": "Super Marrow",
+              "synopsis": "A strange mishap with a marrow leads to chaotic comedy.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/mrbean_s1e3.jpg",
+              "videoUrl": "/Videos/mr-bean/season-01/mr-bean-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -598,22 +630,22 @@
             {
               "episodeId": "mrbean-s2-e1",
               "episodeNumber": 1,
-              "title": "Cinema Chaos",
-              "synopsis": "Bean's trip to the cinema turns into a disaster.",
+              "title": "Jurassic Bean",
+              "synopsis": "An everyday object becomes prehistorically problematic for Bean.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s2e1.jpg",
-              "videoUrl": "/Videos/mr-bean/season2/mrbean-s02-e01.mp4",
+              "videoUrl": "/Videos/mr-bean/season-02/mr-bean-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "mrbean-s2-e2",
               "episodeNumber": 2,
-              "title": "The Accident",
-              "synopsis": "A small accident leads to a domino of misfortunes.",
+              "title": "The Frog Problem",
+              "synopsis": "A pesky frog turns a quiet day into full-on chaos.",
               "duration": null,
               "thumbnail": "/Assets/Posters/mrbean_s2e2.jpg",
-              "videoUrl": "/Videos/mr-bean/season2/mrbean-s02-e02.mp4",
+              "videoUrl": "/Videos/mr-bean/season-02/mr-bean-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -621,7 +653,6 @@
         }
       ]
     },
-
     {
       "id": "ninja-hattori",
       "title": "Ninja Hattori",
@@ -932,7 +963,29 @@
               "synopsis": "Ash gets Pikachu and begins his journey.",
               "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s1e1.jpg",
-              "videoUrl": "/Videos/pokemon/season1/pokemon-s01-e01.mp4",
+              "videoUrl": "/Videos/pokemon/season-01/pokemon-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "pokemon-s1-e2",
+              "episodeNumber": 2,
+              "title": "A Fan with a Plan",
+              "synopsis": "Ash faces an unusual challenge with a fan of Pokémon battles.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/pokemon_s1e2.jpg",
+              "videoUrl": "/Videos/pokemon/season-01/Pokemon - A Fan with a Plan - s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "pokemon-s1-e3",
+              "episodeNumber": 3,
+              "title": "Exploud and Clear",
+              "synopsis": "Ash encounters a noisy Exploud that causes chaos.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/pokemon_s1e3.jpg",
+              "videoUrl": "/Videos/pokemon/season-01/Pokemon - Exploud and Clear - s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -946,22 +999,22 @@
             {
               "episodeId": "pokemon-s2-e1",
               "episodeNumber": 1,
-              "title": "New Regions",
-              "synopsis": "Ash heads to new regions and meets new friends.",
+              "title": "Two Hits and a Miss",
+              "synopsis": "Ash trains for new battles but faces setbacks.",
               "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s2e1.jpg",
-              "videoUrl": "/Videos/pokemon/season2/pokemon-s02-e01.mp4",
+              "videoUrl": "/Videos/pokemon/season-02/Pokemon - Two Hits and a miss - s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "pokemon-s2-e2",
               "episodeNumber": 2,
-              "title": "Rival Encounter",
-              "synopsis": "Ash faces a tough rival trainer.",
+              "title": "Johto Challenge",
+              "synopsis": "Ash battles in Johto with new strategies and rivals.",
               "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s2e2.jpg",
-              "videoUrl": "/Videos/pokemon/season2/pokemon-s02-e02.mp4",
+              "videoUrl": "/Videos/pokemon/season-02/Pokemon s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -969,7 +1022,6 @@
         }
       ]
     },
-
     {
       "id": "shaun-the-sheep",
       "title": "Shaun the Sheep",
