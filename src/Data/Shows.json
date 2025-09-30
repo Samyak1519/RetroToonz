@@ -84,7 +84,6 @@
         }
       ]
     },
-
     {
       "id": "chhota-bheem",
       "title": "Chhota Bheem",
@@ -106,22 +105,33 @@
             {
               "episodeId": "chhota-bheem-s1-e1",
               "episodeNumber": 1,
-              "title": "The Festival Trouble",
-              "synopsis": "Bheem and friends save the village festival from mischief.",
+              "title": "Raging Bull",
+              "synopsis": "Bheem and friends face the chaos caused by a rampaging bull during the festival.",
               "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s1e1.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e01.mp4",
+              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e01 - Raging Bull.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "chhota-bheem-s1-e2",
               "episodeNumber": 2,
-              "title": "The Stolen Treasure",
-              "synopsis": "An ancient treasure goes missing and Bheem leads the search.",
+              "title": "Ghost Train",
+              "synopsis": "A spooky train appears near Dholakpur and Bheem investigates the mystery.",
               "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s1e2.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e02.mp4",
+              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e02 - Ghost Train.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "chhota-bheem-s1-e3",
+              "episodeNumber": 3,
+              "title": "Wanted",
+              "synopsis": "Someone important goes missing and Bheem must track them down.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/chhota-bheem_s1e3.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season1/chhota-bheem-s01-e03 - Wanted.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -135,96 +145,33 @@
             {
               "episodeId": "chhota-bheem-s2-e1",
               "episodeNumber": 1,
-              "title": "The Forest Guardian",
-              "synopsis": "Bheem meets a guardian spirit protecting the forest.",
+              "title": "Talking Statue",
+              "synopsis": "A statue mysteriously comes to life and guides Bheem on a quest.",
               "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s2e1.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e01.mp4",
+              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e01 - Talking Statue.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "chhota-bheem-s2-e2",
               "episodeNumber": 2,
-              "title": "The Giant Ganesha",
-              "synopsis": "A giant mechanical Ganesha threatens the town and Bheem must stop it.",
+              "title": "Saber Toothed Tiger",
+              "synopsis": "A prehistoric predator threatens the villagers and Bheem must protect them.",
               "duration": null,
               "thumbnail": "/Assets/Posters/chhota-bheem_s2e2.jpg",
-              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        }
-      ]
-    },
-
-    {
-      "id": "courage",
-      "title": "Courage: The Cowardly Dog",
-      "year": "1994",
-      "thumbnail": "/Assets/Posters/Courage_The_Cowardly_Dog.jpg",
-      "thumbnailMobile": "/Assets/Mobile_Posters/courage-the-cowardly-dog.jpeg",
-      "tags": ["Comedy", "Horror"],
-      "description": "Courage may be timid, but when supernatural forces threaten his owners Muriel and Eustace, he finds the bravery to fight back. From creepy monsters to bizarre aliens, Courage protects his home in the middle of Nowhere with hilarious yet spooky encounters.",
-      "duration": "1 hr 45 min",
-      "language": "Hindi",
-      "rating": "9.0",
-      "views": "18k",
-      "seasons": [
-        {
-          "seasonNumber": 1,
-          "title": "Season 1",
-          "year": "1994",
-          "episodes": [
-            {
-              "episodeId": "courage-s1-e1",
-              "episodeNumber": 1,
-              "title": "A New Strange Neighbor",
-              "synopsis": "Courage encounters a strange neighbor with mysterious powers.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/courage_s1e1.jpg",
-              "videoUrl": "/Videos/courage/season1/courage-the-cowardly-dog-s01-e01.mp4",
+              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e02 - Saber Toothed Tiger.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
-              "episodeId": "courage-s1-e2",
-              "episodeNumber": 2,
-              "title": "The Phantom of Nowhere",
-              "synopsis": "Phantoms haunt the farmhouse and Courage must protect his family.",
+              "episodeId": "chhota-bheem-s2-e3",
+              "episodeNumber": 3,
+              "title": "Pagalpur",
+              "synopsis": "Bheem travels to Pagalpur and helps solve problems caused by a local feud.",
               "duration": null,
-              "thumbnail": "/Assets/Posters/courage_s1e2.jpg",
-              "videoUrl": "/Videos/courage/season1/courage-the-cowardly-dog-s01-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        },
-        {
-          "seasonNumber": 2,
-          "title": "Season 2",
-          "year": "1995",
-          "episodes": [
-            {
-              "episodeId": "courage-s2-e1",
-              "episodeNumber": 1,
-              "title": "Alien Intrusion",
-              "synopsis": "A spaceship lands nearby and Courage must save Muriel.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/courage_s2e1.jpg",
-              "videoUrl": "/Videos/courage/season2/courage-the-cowardly-dog-s02-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "courage-s2-e2",
-              "episodeNumber": 2,
-              "title": "The Curse of the Mask",
-              "synopsis": "A cursed mask brings nightmares to the farmhouse.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/courage_s2e2.jpg",
-              "videoUrl": "/Videos/courage/season2/courage-the-cowardly-dog-s02-e02.mp4",
+              "thumbnail": "/Assets/Posters/chhota-bheem_s2e3.jpg",
+              "videoUrl": "/Videos/chhota-bheem/season2/chhota-bheem-s02-e03 - Pagalpur.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -310,80 +257,6 @@
               "duration": null,
               "thumbnail": "/Assets/Posters/doraemon_s2e2.jpg",
               "videoUrl": "/Videos/doraemon/season2/doraemon-s02-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        }
-      ]
-    },
-
-    {
-      "id": "jake-and-the-never-land-pirates",
-      "title": "Jake and the Never Land Pirates",
-      "year": "2011",
-      "thumbnail": "/Assets/Posters/jake-and-the-never-land-pirates.jpg",
-      "thumbnailMobile": "/Assets/Mobile_Posters/jake-and-never-land-pirates.jpeg",
-      "tags": ["Adventure", "Fantasy"],
-      "description": "Jake and his crew of young pirates set sail across Never Land, facing challenges and collecting treasures. Together they outsmart the mischievous Captain Hook, proving that teamwork and friendship make them true pirates of adventure.",
-      "duration": "1 hr 20 min",
-      "language": "Hindi",
-      "rating": "8.0",
-      "views": "12k",
-      "seasons": [
-        {
-          "seasonNumber": 1,
-          "title": "Season 1",
-          "year": "2011",
-          "episodes": [
-            {
-              "episodeId": "jake-s1-e1",
-              "episodeNumber": 1,
-              "title": "Treasure Hunt",
-              "synopsis": "Jake's crew hunts for a hidden treasure on Never Land.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/jake_s1e1.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/jake-and-the-never-land-pirates-s01-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "jake-s1-e2",
-              "episodeNumber": 2,
-              "title": "Captain Hook's Return",
-              "synopsis": "Captain Hook plots a new scheme to steal Jake's treasure map.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/jake_s1e2.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season1/jake-and-the-never-land-pirates-s01-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        },
-        {
-          "seasonNumber": 2,
-          "title": "Season 2",
-          "year": "2012",
-          "episodes": [
-            {
-              "episodeId": "jake-s2-e1",
-              "episodeNumber": 1,
-              "title": "Island Rescue",
-              "synopsis": "Jake rescues a stranded friend from a spooky island.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/jake_s2e1.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/jake-s02-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "jake-s2-e2",
-              "episodeNumber": 2,
-              "title": "Treasure Map Riddle",
-              "synopsis": "A clever riddle reveals the next treasure location.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/jake_s2e2.jpg",
-              "videoUrl": "/Videos/jake-and-the-never-land-pirates/season2/jake-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -539,7 +412,6 @@
         }
       ]
     },
-
     {
       "id": "kiteretsu",
       "title": "Kiteretsu",
@@ -613,7 +485,6 @@
         }
       ]
     },
-
     {
       "id": "mickey-mouse",
       "title": "Mickey Mouse Clubhouse",
@@ -911,69 +782,6 @@
     },
 
     {
-      "id": "oswald",
-      "title": "Oswald",
-      "year": "2001",
-      "thumbnail": "/Assets/Posters/oswald.jpg",
-      "thumbnailMobile": "/Assets/Mobile_Posters/oswald.jpeg",
-      "tags": ["Educational", "Calm"],
-      "description": "Oswald the gentle octopus lives in Big City with his pet dog, Weenie. His calm and kind nature brings life lessons of patience, friendship, and positivity as he faces small adventures in everyday life.",
-      "duration": "55 min",
-      "language": "Hindi",
-      "rating": "7.5",
-      "views": "9k",
-      "seasons": [
-        {
-          "seasonNumber": 1,
-          "title": "Season 1",
-          "year": "2001",
-          "episodes": [
-            {
-              "episodeId": "oswald-s1-e1",
-              "episodeNumber": 1,
-              "title": "Big City Day",
-              "synopsis": "Oswald explores Big City and helps a friend.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/oswald_s1e1.jpg",
-              "videoUrl": "/Videos/oswald/season1/oswald-s01-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        },
-        {
-          "seasonNumber": 2,
-          "title": "Season 2",
-          "year": "2002",
-          "episodes": [
-            {
-              "episodeId": "oswald-s2-e1",
-              "episodeNumber": 1,
-              "title": "The Garden",
-              "synopsis": "Oswald helps grow a garden for the neighborhood.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/oswald_s2e1.jpg",
-              "videoUrl": "/Videos/oswald/season2/oswald-s02-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "oswald-s2-e2",
-              "episodeNumber": 2,
-              "title": "Music Day",
-              "synopsis": "A music festival brings friends together.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/oswald_s2e2.jpg",
-              "videoUrl": "/Videos/oswald/season2/oswald-s02-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        }
-      ]
-    },
-
-    {
       "id": "perman",
       "title": "Perman",
       "year": "1983",
@@ -1154,69 +962,6 @@
               "duration": null,
               "thumbnail": "/Assets/Posters/pokemon_s2e2.jpg",
               "videoUrl": "/Videos/pokemon/season2/pokemon-s02-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        }
-      ]
-    },
-
-    {
-      "id": "roll-no-21",
-      "title": "Roll No 21",
-      "year": "2010",
-      "thumbnail": "/Assets/Posters/rollno21.jpg",
-      "thumbnailMobile": "/Assets/Mobile_Posters/roll-no-21.jpeg",
-      "tags": ["Action", "Comedy"],
-      "description": "Kris, the modern-day avatar of Lord Krishna, battles evil in his school while disguising himself as an ordinary student. With clever tricks and divine wisdom, he defeats his enemy Kanishk and proves that good always triumphs over evil.",
-      "duration": "1 hr 25 min",
-      "language": "Hindi",
-      "rating": "8.4",
-      "views": "16k",
-      "seasons": [
-        {
-          "seasonNumber": 1,
-          "title": "Season 1",
-          "year": "2010",
-          "episodes": [
-            {
-              "episodeId": "rollno-s1-e1",
-              "episodeNumber": 1,
-              "title": "New Student Kris",
-              "synopsis": "Kris reveals his divine side to protect classmates.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/rollno_s1e1.jpg",
-              "videoUrl": "/Videos/roll-no-21/season1/roll-no-21-s01-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        },
-        {
-          "seasonNumber": 2,
-          "title": "Season 2",
-          "year": "2011",
-          "episodes": [
-            {
-              "episodeId": "rollno-s2-e1",
-              "episodeNumber": 1,
-              "title": "School Fair",
-              "synopsis": "Kris uses tricks to save the school fair.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/rollno_s2e1.jpg",
-              "videoUrl": "/Videos/roll-no-21/season2/roll-no-21-s02-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "rollno-s2-e2",
-              "episodeNumber": 2,
-              "title": "Divine Challenge",
-              "synopsis": "A difficult challenge tests Kris' faith and cunning.",
-              "duration": null,
-              "thumbnail": "/Assets/Posters/rollno_s2e2.jpg",
-              "videoUrl": "/Videos/roll-no-21/season2/roll-no-21-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
