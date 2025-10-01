@@ -1,15 +1,15 @@
 // src/Components/Header.jsx
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
-  FaUserCircle,
-  FaUser,
-  FaList,
   FaHeart,
-  FaSignInAlt,
+  FaList,
   FaSearch,
+  FaSignInAlt,
+  FaUser,
+  FaUserCircle,
 } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { createPortal } from "react-dom";
 import SearchBar from "./SearchBar";
 
 export default function Header() {

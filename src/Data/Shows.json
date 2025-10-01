@@ -286,22 +286,33 @@
             {
               "episodeId": "kick-s1-e1",
               "episodeNumber": 1,
-              "title": "Daredevil Debut",
-              "synopsis": "Kick attempts a daring stunt to impress the town.",
+              "title": "Dead Man's Drop / Stumped",
+              "synopsis": "Kick attempts to conquer the Dead Man's Drop ramp while also trying to catch his idol's show — with Gunther's help.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kick_s1e1.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season1/kick-buttowski-s01-e01.mp4",
+              "videoUrl": "/Videos/kick-buttowski/season-01/kick-buttowski-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kick-s1-e2",
               "episodeNumber": 2,
-              "title": "Ramp of Doom",
-              "synopsis": "A crazy ramp challenge puts Kick to the test.",
+              "title": "If Books Could Kill / There Will Be Nachos",
+              "synopsis": "Gunther accidentally returns Kick's autographed book to the library; in the B-story they try to crash a party for nachos.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kick_s1e2.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season1/kick-buttowski-s01-e02.mp4",
+              "videoUrl": "/Videos/kick-buttowski/season-01/kick-buttowski-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "kick-s1-e3",
+              "episodeNumber": 3,
+              "title": "Kicked Out / Kick the Habit",
+              "synopsis": "Kick must go 24 hours without attempting stunts or face serious consequences, while the B-story deals with an intervention on his stunt habit.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/kick_s1e3.jpg",
+              "videoUrl": "/Videos/kick-buttowski/season-01/kick-buttowski-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -315,22 +326,22 @@
             {
               "episodeId": "kick-s2-e1",
               "episodeNumber": 1,
-              "title": "Extreme Weekend",
-              "synopsis": "Kick enters an extreme sports weekend competition.",
+              "title": "Mow Money / Love Stinks!",
+              "synopsis": "Kick and Gunther try to earn money (lawn-mowing) to see Rock Callahan; the B-story follows first crush / romance hijinks.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kick_s2e1.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season2/kick-s02-e01.mp4",
+              "videoUrl": "/Videos/kick-buttowski/season-02/kick-buttowski-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kick-s2-e2",
               "episodeNumber": 2,
-              "title": "Neighborhood Showdown",
-              "synopsis": "A hometown showdown determines who is the bravest.",
+              "title": "Kickin' Genes / Clothes Call",
+              "synopsis": "Two short stories: one about genes/identity and another about a clothing-related stunt mishap.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kick_s2e2.jpg",
-              "videoUrl": "/Videos/kick-buttowski/season2/kick-s02-e02.mp4",
+              "videoUrl": "/Videos/kick-buttowski/season-02/kick-buttowski-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -338,7 +349,6 @@
         }
       ]
     },
-
     {
       "id": "kid-vs-kat",
       "title": "Kid vs Kat",
@@ -360,22 +370,22 @@
             {
               "episodeId": "kidvk-s1-e1",
               "episodeNumber": 1,
-              "title": "Alien Pet",
-              "synopsis": "Coop discovers Kat's alien origins.",
+              "title": "Let the Games Begin / Night of the Zombie Kat",
+              "synopsis": "Coop discovers Kat's alien origin and tries to expose him after a series of spooky and chaotic events.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s1e1.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season1/kid_vs_kat-s01-e01.mp4",
+              "videoUrl": "/Videos/kid-vs-kat/season-01/kid-vs-kat-s01-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kidvk-s1-e2",
               "episodeNumber": 2,
-              "title": "Gadget Mayhem",
-              "synopsis": "Kat's gadgets create chaos in the neighborhood.",
+              "title": "Trespassers Will Be Persecuted / Me-Oh-Me-Oh Meow",
+              "synopsis": "Coop runs afoul of Old Lady Munson while Kat's behavior causes mayhem; Kat's meowing causes trouble in the B-story.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s1e2.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season1/kid_vs_kat-s01-e02.mp4",
+              "videoUrl": "/Videos/kid-vs-kat/season-01/kid-vs-kat-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -384,27 +394,27 @@
         {
           "seasonNumber": 2,
           "title": "Season 2",
-          "year": "2009",
+          "year": "2010",
           "episodes": [
             {
               "episodeId": "kidvk-s2-e1",
               "episodeNumber": 1,
-              "title": "Coop's Revenge",
-              "synopsis": "Coop fights back using clever traps.",
+              "title": "Rat a Phooey",
+              "synopsis": "Kat builds a rat-ray gun which causes Dad to be zapped; Coop must capture and fix the situation.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kidvk_s2e1.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season2/kidvk-s02-e01.mp4",
+              "videoUrl": "/Videos/kid-vs-kat/season-02/kid-vs-kat - Rat a Phooey - s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kidvk-s2-e2",
               "episodeNumber": 2,
-              "title": "The Great Escape",
-              "synopsis": "Kat escapes and Coop must capture him again.",
+              "title": "Night of the Zombie Kat",
+              "synopsis": "Coop watches a horror movie and Kat uses flour to scare him, creating a 'zombie' cat situation.",
               "duration": null,
-              "thumbnail": "/Assets/Posters/kidvk_s2e2.jpg",
-              "videoUrl": "/Videos/kid-vs-kat/season2/kidvk-s02-e02.mp4",
+              "thumbnail": "/Assets/Posters/kidvk_s2e_temp_s01e02.jpg",
+              "videoUrl": "/Videos/kid-vs-kat/season-02/kid-vs-kat - Night Of The Zombie Cat - s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -417,7 +427,7 @@
       "title": "Kiteretsu",
       "year": "1988",
       "thumbnail": "/Assets/Posters/Kiteretsu.jpg",
-      "thumbnailMobile": "/Assets/Mobile_Posters/kitretsu.jpeg",
+      "thumbnailMobile": "/Assets/Mobile_Posters/kiteretsu.jpeg",
       "tags": ["Comedy", "Adventure"],
       "description": "Kiteretsu is a boy genius who builds amazing inventions inspired by his ancestor’s encyclopedia. Along with his robot friend Korosuke, he explores science, friendship, and wild adventures that mix comedy with clever problem-solving.",
       "duration": "22 min",
@@ -433,22 +443,22 @@
             {
               "episodeId": "kiteretsu-s1-e1",
               "episodeNumber": 1,
-              "title": "Invention #1",
-              "synopsis": "Kiteretsu builds a helpful invention.",
+              "title": "Kiteretsu Encyclopedia",
+              "synopsis": "Kiteretsu discovers the ancient encyclopedia and starts inventing with Korosuke.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s1e1.jpg",
-              "videoUrl": "/Videos/kiteretsu/season1/kiteretsu-s01-e01.mp4",
+              "videoUrl": "/Videos/kiteretsu/season-01/kiteretsu-s01e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kiteretsu-s1-e2",
               "episodeNumber": 2,
-              "title": "Robot Friend",
-              "synopsis": "Kiteretsu meets and repairs a robot friend.",
+              "title": "Korosuke Comes Alive",
+              "synopsis": "Kiteretsu repairs and befriends the robot Korosuke, who becomes his loyal partner.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s1e2.jpg",
-              "videoUrl": "/Videos/kiteretsu/season1/kiteretsu-s01-e02.mp4",
+              "videoUrl": "/Videos/kiteretsu/season-01/kiteretsu-s01e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -462,22 +472,22 @@
             {
               "episodeId": "kiteretsu-s2-e1",
               "episodeNumber": 1,
-              "title": "Treasure of Science",
-              "synopsis": "A scientific treasure hunt begins.",
+              "title": "The Flying Bicycle",
+              "synopsis": "Kiteretsu invents a flying bicycle that brings unexpected adventures.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s2e1.jpg",
-              "videoUrl": "/Videos/kiteretsu/season2/kiteretsu-s02-e01.mp4",
+              "videoUrl": "/Videos/kiteretsu/season-02/kiteretsu-s02e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "kiteretsu-s2-e2",
               "episodeNumber": 2,
-              "title": "Time Machine",
-              "synopsis": "Kiteretsu experiments with a time device.",
+              "title": "Adventures in Time",
+              "synopsis": "Kiteretsu experiments with time travel, leading to comic situations.",
               "duration": null,
               "thumbnail": "/Assets/Posters/kiteretsu_s2e2.jpg",
-              "videoUrl": "/Videos/kiteretsu/season2/kiteretsu-s02-e02.mp4",
+              "videoUrl": "/Videos/kiteretsu/season-02/kiteretsu-s02e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -485,6 +495,7 @@
         }
       ]
     },
+
     {
       "id": "mickey-mouse",
       "title": "Mickey Mouse Clubhouse",
@@ -833,11 +844,33 @@
             {
               "episodeId": "perman-s1-e1",
               "episodeNumber": 1,
-              "title": "Becoming Perman",
-              "synopsis": "Mitsuo receives powers and learns his duty.",
+              "title": "The Run Away",
+              "synopsis": "Mitsuo faces a dilemma when he tries to run away from responsibilities.",
               "duration": null,
               "thumbnail": "/Assets/Posters/perman_s1e1.jpg",
-              "videoUrl": "/Videos/perman/season1/perman-s01-e01.mp4",
+              "videoUrl": "/Videos/perman/season-01/perman-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "perman-s1-e2",
+              "episodeNumber": 2,
+              "title": "Robot To The Rescue",
+              "synopsis": "Perman takes help from a robot in a tricky situation.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/perman_s1e2.jpg",
+              "videoUrl": "/Videos/perman/season-01/perman-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "perman-s1-e3",
+              "episodeNumber": 3,
+              "title": "Trouble At The Hotspring",
+              "synopsis": "A peaceful day at the hotspring turns chaotic for Perman.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/perman_s1e3.jpg",
+              "videoUrl": "/Videos/perman/season-01/perman-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -851,22 +884,33 @@
             {
               "episodeId": "perman-s2-e1",
               "episodeNumber": 1,
-              "title": "Robot Menace",
-              "synopsis": "Robots threaten the city and Perman intervenes.",
+              "title": "New Tutor",
+              "synopsis": "Mitsuo struggles with a strict new tutor while balancing superhero duties.",
               "duration": null,
               "thumbnail": "/Assets/Posters/perman_s2e1.jpg",
-              "videoUrl": "/Videos/perman/season2/perman-s02-e01.mp4",
+              "videoUrl": "/Videos/perman/season-02/perman-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "perman-s2-e2",
               "episodeNumber": 2,
-              "title": "Power Test",
-              "synopsis": "Perman's powers are tested by a cunning foe.",
+              "title": "The Pyramid Adventure",
+              "synopsis": "Perman embarks on an adventure inside a mysterious pyramid.",
               "duration": null,
               "thumbnail": "/Assets/Posters/perman_s2e2.jpg",
-              "videoUrl": "/Videos/perman/season2/perman-s02-e02.mp4",
+              "videoUrl": "/Videos/perman/season-02/perman-s02-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "perman-s2-e3",
+              "episodeNumber": 3,
+              "title": "The Hidden Danger",
+              "synopsis": "Perman uncovers a hidden threat lurking in the city.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/perman_s2e3.jpg",
+              "videoUrl": "/Videos/perman/season-02/perman-s02-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -874,7 +918,6 @@
         }
       ]
     },
-
     {
       "id": "phineas-and-ferb",
       "title": "Phineas and Ferb",
@@ -896,11 +939,44 @@
             {
               "episodeId": "phineas-s1-e1",
               "episodeNumber": 1,
-              "title": "The Big Invention",
-              "synopsis": "Phineas and Ferb build an incredible invention.",
+              "title": "Rollercoaster",
+              "synopsis": "Phineas and Ferb build the world's greatest roller coaster in their backyard; Candace tries to bust them.",
               "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s1e1.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season1/phineas-and-ferb-s01-e01.mp4",
+              "videoUrl": "/Videos/phineas-and-ferb/season-01/phineas-and-ferb-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "phineas-s1-e2",
+              "episodeNumber": 2,
+              "title": "Lawn Gnome Beach Party of Terror",
+              "synopsis": "Phineas and Ferb create a backyard beach party — using a lawn gnome — with chaotic results.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/phineas_s1e2.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season-01/phineas-and-ferb-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "phineas-s1-e3",
+              "episodeNumber": 3,
+              "title": "Flop Starz",
+              "synopsis": "Phineas starts a boy band and launches a music career gone hilariously wrong.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/phineas_s1e3.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season-01/phineas-and-ferb-s01-e03.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "phineas-s1-e4",
+              "episodeNumber": 4,
+              "title": "The Fast and the Phineas",
+              "synopsis": "The boys build a souped-up vehicle and enter an over-the-top race.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/phineas_s1e4.jpg",
+              "videoUrl": "/Videos/phineas-and-ferb/season-01/phineas-and-ferb-s01-e04.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -909,27 +985,27 @@
         {
           "seasonNumber": 2,
           "title": "Season 2",
-          "year": "2008",
+          "year": "2009",
           "episodes": [
             {
               "episodeId": "phineas-s2-e1",
               "episodeNumber": 1,
-              "title": "Roller Coaster Day",
-              "synopsis": "A massive roller coaster takes Phineas and Ferb's fun to new heights.",
+              "title": "The Lake Nose Monster",
+              "synopsis": "Phineas and Ferb work to rescue the Lake Nose Monster after Dr. Doofenshmirtz removes all the metal from the water.",
               "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s2e1.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season2/phineas-s02-e01.mp4",
+              "videoUrl": "/Videos/phineas-and-ferb/season-02/phineas-and-ferb-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "phineas-s2-e2",
               "episodeNumber": 2,
-              "title": "The Great Escape",
-              "synopsis": "An escape plan goes hilariously wrong.",
+              "title": "Interview With a Platypus / Tip of the Day",
+              "synopsis": "Two segments: an 'Interview With a Platypus' and a short 'Tip of the Day' vignette.",
               "duration": null,
               "thumbnail": "/Assets/Posters/phineas_s2e2.jpg",
-              "videoUrl": "/Videos/phineas-and-ferb/season2/phineas-s02-e02.mp4",
+              "videoUrl": "/Videos/phineas-and-ferb/season-02/phineas-and-ferb-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -937,7 +1013,6 @@
         }
       ]
     },
-
     {
       "id": "pokemon",
       "title": "Pokemon",
@@ -1043,11 +1118,33 @@
             {
               "episodeId": "shaun-s1-e1",
               "episodeNumber": 1,
-              "title": "Farm Follies",
-              "synopsis": "Shaun leads the flock into a comedic adventure.",
+              "title": "Off the Baa!",
+              "synopsis": "A football match between the sheep and a head of cabbage kicks off mayhem.",
               "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s1e1.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season1/shaun-the-sheep-s01-e01.mp4",
+              "videoUrl": "/Videos/shaun-the-sheep/season-01/shaun-the-sheep-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shaun-s1-e2",
+              "episodeNumber": 2,
+              "title": "Bath Time",
+              "synopsis": "Shaun and the flock try to give the pigs a bath, but things get messy.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shaun_s1e2.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season-01/shaun-the-sheep-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shaun-s1-e3",
+              "episodeNumber": 3,
+              "title": "Pizza Party",
+              "synopsis": "Shaun organizes a pizza party, but Bitzer struggles to keep the flock in shape.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shaun_s1e3.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season-01/shaun-the-sheep-s01-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1061,22 +1158,33 @@
             {
               "episodeId": "shaun-s2-e1",
               "episodeNumber": 1,
-              "title": "Holiday Hijinks",
-              "synopsis": "Shaun prepares a holiday surprise with chaotic results.",
+              "title": "Stick with Me",
+              "synopsis": "Shaun and the flock get into sticky trouble with some super glue.",
               "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s2e1.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season2/shaun-s02-e01.mp4",
+              "videoUrl": "/Videos/shaun-the-sheep/season-02/shaun-the-sheep-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "shaun-s2-e2",
               "episodeNumber": 2,
-              "title": "The Big Escape",
-              "synopsis": "A daring escape plan tests Shaun's leadership.",
+              "title": "Fireside Favourite",
+              "synopsis": "The flock compete for the Farmer’s attention by the fireplace.",
               "duration": null,
               "thumbnail": "/Assets/Posters/shaun_s2e2.jpg",
-              "videoUrl": "/Videos/shaun-the-sheep/season2/shaun-s02-e02.mp4",
+              "videoUrl": "/Videos/shaun-the-sheep/season-02/shaun-the-sheep-s02-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shaun-s2-e3",
+              "episodeNumber": 3,
+              "title": "Operation Pidsley",
+              "synopsis": "The flock plot to teach the Farmer’s cat Pidsley a lesson.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shaun_s2e3.jpg",
+              "videoUrl": "/Videos/shaun-the-sheep/season-02/shaun-the-sheep-s02-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1084,7 +1192,6 @@
         }
       ]
     },
-
     {
       "id": "shinchan",
       "title": "Shinchan",
@@ -1104,13 +1211,112 @@
           "year": "2006",
           "episodes": [
             {
-              "episodeId": "shinchan-s1-e1",
+              "episodeId": "shinchan-s1-e01",
               "episodeNumber": 1,
               "title": "Classroom Chaos",
-              "synopsis": "Shinchan causes hilarity at school.",
+              "synopsis": "Shinchan's antics spark chaos in class and the teacher struggles to keep order.",
               "duration": null,
-              "thumbnail": "/Assets/Posters/shinchan_s1e1.jpg",
-              "videoUrl": "/Videos/shinchan/season1/shinchan-s01-e01.mp4",
+              "thumbnail": "/Assets/Posters/shinchan_s1e01.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e02",
+              "episodeNumber": 2,
+              "title": "Playground Pranks",
+              "synopsis": "Shinchan pulls pranks on his classmates at the playground with hilarious results.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e02.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e03",
+              "episodeNumber": 3,
+              "title": "Messed Up Meal",
+              "synopsis": "A simple family meal turns into a culinary disaster thanks to Shinchan's mischief.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e03.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e03.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e04",
+              "episodeNumber": 4,
+              "title": "Birthday Blunder",
+              "synopsis": "Shinchan tries to plan a surprise for a friend but everything goes off the rails.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e04.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e04.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e05",
+              "episodeNumber": 5,
+              "title": "Doggy Daze",
+              "synopsis": "Shinchan befriends a stray dog and drags the family into a series of dog-related troubles.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e05.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e05.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e06",
+              "episodeNumber": 6,
+              "title": "Shopping Spree",
+              "synopsis": "A trip to the shop becomes a wild adventure when Shinchan decides to 'help' with the shopping.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e06.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e06.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e07",
+              "episodeNumber": 7,
+              "title": "Toy Trouble",
+              "synopsis": "Shinchan's newest toy causes more trouble than fun for the whole neighborhood.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e07.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e07.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e08",
+              "episodeNumber": 8,
+              "title": "Grandpa's Secret",
+              "synopsis": "Shinchan uncovers a surprising secret about his grandfather that leads to an unexpected adventure.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e08.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e08.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e09",
+              "episodeNumber": 9,
+              "title": "Hide and Seek Havoc",
+              "synopsis": "What starts as a game of hide-and-seek quickly escalates into town-wide mayhem.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e09.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e09.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s1-e10",
+              "episodeNumber": 10,
+              "title": "Camping Catastrophe",
+              "synopsis": "A family camping trip becomes a series of calamities thanks to Shinchan's antics.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s1e10.jpg",
+              "videoUrl": "/Videos/shinchan/season-01/shinchan-s01-e10.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1122,24 +1328,35 @@
           "year": "2007",
           "episodes": [
             {
-              "episodeId": "shinchan-s2-e1",
+              "episodeId": "shinchan-s2-e01",
               "episodeNumber": 1,
               "title": "Holiday Trouble",
-              "synopsis": "Shinchan ruins a family holiday in typical fashion.",
+              "synopsis": "A family holiday goes awry when Shinchan insists on doing everything his own way.",
               "duration": null,
-              "thumbnail": "/Assets/Posters/shinchan_s2e1.jpg",
-              "videoUrl": "/Videos/shinchan/season2/shinchan-s02-e01.mp4",
+              "thumbnail": "/Assets/Posters/shinchan_s2e01.jpg",
+              "videoUrl": "/Videos/shinchan/season-02/shinchan-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
-              "episodeId": "shinchan-s2-e2",
+              "episodeId": "shinchan-s2-e02",
               "episodeNumber": 2,
               "title": "Neighborhood Show",
-              "synopsis": "Shinchan performs in a neighborhood show with unexpected results.",
+              "synopsis": "Shinchan stages a neighborhood show that spirals into chaotic entertainment.",
               "duration": null,
-              "thumbnail": "/Assets/Posters/shinchan_s2e2.jpg",
-              "videoUrl": "/Videos/shinchan/season2/shinchan-s02-e02.mp4",
+              "thumbnail": "/Assets/Posters/shinchan_s2e02.jpg",
+              "videoUrl": "/Videos/shinchan/season-02/shinchan-s02-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s2-e03",
+              "episodeNumber": 3,
+              "title": "Shinchan's New Pet",
+              "synopsis": "Shinchan brings home an unusual pet and the family must adapt to the new addition.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/shinchan_s2e03.jpg",
+              "videoUrl": "/Videos/shinchan/season-02/shinchan-s02-e03.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1147,7 +1364,6 @@
         }
       ]
     },
-
     {
       "id": "spongebob-squarepants",
       "title": "SpongeBob Square Pants",
@@ -1232,7 +1448,6 @@
         }
       ]
     },
-
     {
       "id": "strawberry-shortcake",
       "title": "Strawberry Shortcake",
@@ -1258,7 +1473,18 @@
               "synopsis": "Strawberry Shortcake organizes a festival for friends.",
               "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s1e1.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season1/strawberry-shortcake-s01-e01.mp4",
+              "videoUrl": "/Videos/strawberry-shortcake/season-01/strawberry-shortcake-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "strawberry-s1-e2",
+              "episodeNumber": 2,
+              "title": "House Pests",
+              "synopsis": "Strawberry and friends deal with mischievous pests around town.",
+              "duration": null,
+              "thumbnail": "/Assets/Posters/strawberry_s1e2.jpg",
+              "videoUrl": "/Videos/strawberry-shortcake/season-01/strawberry-shortcake-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1272,22 +1498,22 @@
             {
               "episodeId": "strawberry-s2-e1",
               "episodeNumber": 1,
-              "title": "Friendship Picnic",
-              "synopsis": "A picnic strengthens friendships and solves problems.",
+              "title": "The Berry Long Winter",
+              "synopsis": "A long unexpected winter tests the town's resourcefulness and friendship.",
               "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s2e1.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season2/strawberry-s02-e01.mp4",
+              "videoUrl": "/Videos/strawberry-shortcake/season-02/strawberry-shortcake-s02-e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "strawberry-s2-e2",
               "episodeNumber": 2,
-              "title": "Berry Rescue",
-              "synopsis": "A rescue mission brings the town together.",
+              "title": "The Berry Best Choice",
+              "synopsis": "Making the best choice isn't always easy, but friends help each other decide.",
               "duration": null,
               "thumbnail": "/Assets/Posters/strawberry_s2e2.jpg",
-              "videoUrl": "/Videos/strawberry-shortcake/season2/strawberry-s02-e02.mp4",
+              "videoUrl": "/Videos/strawberry-shortcake/season-02/strawberry-shortcake-s02-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1295,7 +1521,6 @@
         }
       ]
     },
-
     {
       "id": "tom-and-jerry",
       "title": "Tom and Jerry",
