@@ -20,28 +20,42 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
+
+  // gesture helpers
+  const tapTimeoutRef = useRef(null);
+  const lastTapRef = useRef(0);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const startVolume = useRef(1);
+  const startCurrentTime = useRef(0);
+
   const navigate = useNavigate();
 
+  // playback state
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
 
+  // UI state
   const [showControls, setShowControls] = useState(true);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // settings / quality
   const [showSettings, setShowSettings] = useState(false);
   const [settingsView, setSettingsView] = useState("main"); // "main" | "speed" | "quality"
   const [speedOptions] = useState(DEFAULT_SPEEDS);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
-
-  // qualities come from show or episode; each is {label, url}
   const [qualities, setQualities] = useState([]);
   const [selectedQuality, setSelectedQuality] = useState("Auto");
 
+  // UX overlays / feedback
   const [progressBackground, setProgressBackground] = useState("");
+  const [seekFeedback, setSeekFeedback] = useState(null); // "+10s", "-10s" or timestamp while dragging
+  const [volumeFeedback, setVolumeFeedback] = useState(null);
+  const [dragSeekTime, setDragSeekTime] = useState(null);
 
   const clearControlsTimeout = () => {
     if (controlsTimeoutRef.current) {
@@ -50,7 +64,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     }
   };
 
-  const resetControlsTimer = () => {
+  const resetControlsTimer = (ms = 3000) => {
     setShowControls(true);
     clearControlsTimeout();
     controlsTimeoutRef.current = setTimeout(() => {
@@ -59,7 +73,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
       setShowSettings(false);
       setShowVolumeSlider(false);
       setSettingsView("main");
-    }, 3000);
+    }, ms);
   };
 
   const toggleControls = (e) => {
@@ -146,17 +160,14 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     resetControlsTimer();
   };
 
-  // When the video ends, go to next episode (not next show)
   const handleVideoEnd = () => {
     if (typeof goToNextEpisode === "function") goToNextEpisode();
   };
 
-  // Load episode or show video (handles startEpisode preference)
+  // Load episode/show qualities and source
   useEffect(() => {
     let sourceUrl = null;
-    // episode-level may have qualities array or single videoUrl
     if (startEpisode) {
-      // prefer episode qualities if present
       if (startEpisode.qualities && startEpisode.qualities.length) {
         setQualities(startEpisode.qualities);
         setSelectedQuality(startEpisode.qualities[0].label ?? "Auto");
@@ -167,7 +178,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
         sourceUrl = startEpisode.videoUrl;
       }
     } else {
-      // fallback to show-level video/qualities
       const q = currentShow?.qualities ?? (currentShow?.videoUrl ? [{ label: "Auto", url: currentShow.videoUrl }] : []);
       setQualities(q);
       setSelectedQuality(q[0]?.label ?? "Auto");
@@ -244,7 +254,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     if (videoRef.current) videoRef.current.playbackRate = playbackSpeed;
   }, [playbackSpeed]);
 
-  // When selectedQuality changes, switch video.src and try to preserve currentTime
   const changeQuality = (label) => {
     const q = qualities.find((x) => x.label === label);
     if (!q || !videoRef.current) {
@@ -267,7 +276,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     resetControlsTimer();
   };
 
-  // Build progress gradient string: played portion (accent), buffered portion (muted), remainder (dark)
   const updateProgressBackground = () => {
     const v = videoRef.current;
     if (!v || !duration || duration === 0) {
@@ -308,12 +316,139 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [duration]);
 
+  /* ============================
+     TOUCH / GESTURE HANDLERS
+     - double-tap left/right for +/-10s
+     - vertical swipe on right side -> volume
+     - horizontal drag -> seek (preview)
+     - single tap handled with tapTimeout (do not interfere with double-tap)
+     ============================ */
+
+  const handleTouchStart = (e) => {
+    if (!videoRef.current || !containerRef.current) return;
+    const touch = e.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+    startVolume.current = videoRef.current.volume;
+    startCurrentTime.current = videoRef.current.currentTime || 0;
+
+    const now = Date.now();
+    const dt = now - (lastTapRef.current || 0);
+    lastTapRef.current = now;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const zone = x / rect.width;
+
+    // clear any pending single-tap
+    if (tapTimeoutRef.current) {
+      clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+    }
+
+    if (dt > 0 && dt < 300) {
+      // double-tap: immediate action
+      if (zone < 0.33) {
+        // rewind 10s
+        videoRef.current.currentTime = Math.max(0, (videoRef.current.currentTime || 0) - 10);
+        setSeekFeedback("-10s");
+      } else if (zone > 0.66) {
+        // forward 10s
+        videoRef.current.currentTime = Math.min(duration || Infinity, (videoRef.current.currentTime || 0) + 10);
+        setSeekFeedback("+10s");
+      } else {
+        // center double-tap -> toggle play/pause
+        togglePlayPause();
+        setSeekFeedback(isPlaying ? "⏸" : "▶");
+      }
+      resetControlsTimer();
+      setTimeout(() => setSeekFeedback(null), 700);
+      return;
+    }
+
+    // possible single tap — wait to confirm (don't toggle immediately)
+    tapTimeoutRef.current = setTimeout(() => {
+      // only toggle if touch didn't move significantly (we'll check move on touchend)
+      // If user moves, touchend will clear/avoid toggling because tapTimeout would have been cleared in touchmove
+      toggleControls();
+      tapTimeoutRef.current = null;
+    }, 300);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!videoRef.current || !containerRef.current) return;
+    // if user moves we should cancel any pending single-tap toggle
+    if (tapTimeoutRef.current) {
+      clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+    }
+
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStartX.current;
+    const dy = touch.clientY - touchStartY.current;
+    const rect = containerRef.current.getBoundingClientRect();
+    const zoneX = (touchStartX.current - rect.left) / rect.width;
+
+    // vertical swipe on right half -> volume change
+    if (Math.abs(dy) > Math.abs(dx)) {
+      if (zoneX > 0.5) {
+        const delta = -dy / rect.height; // swipe up increases volume
+        let newVolume = Math.min(1, Math.max(0, startVolume.current + delta));
+        if (videoRef.current) videoRef.current.volume = newVolume;
+        setVolume(newVolume);
+        setIsMuted(newVolume === 0);
+        setVolumeFeedback(Math.round(newVolume * 100));
+      } else {
+        // left half vertical gestures ignored (brightness removed)
+      }
+    } else {
+      // horizontal -> scrubbing preview
+      if (!duration || duration <= 0) return;
+      const seekDelta = (dx / rect.width) * duration; // proportion * duration
+      const newTime = Math.min(duration, Math.max(0, startCurrentTime.current + seekDelta));
+      setDragSeekTime(newTime);
+      setSeekFeedback(formatTime(newTime));
+    }
+    resetControlsTimer(2000);
+  };
+
+  const handleTouchEnd = (e) => {
+    // cancel pending single tap if movement happened
+    if (tapTimeoutRef.current) {
+      clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+    }
+
+    // finalize scrub if any
+    if (dragSeekTime !== null && videoRef.current) {
+      videoRef.current.currentTime = dragSeekTime;
+      setCurrentTime(dragSeekTime);
+    }
+    setDragSeekTime(null);
+
+    // hide feedbacks after short delay
+    setTimeout(() => setSeekFeedback(null), 600);
+    setTimeout(() => setVolumeFeedback(null), 600);
+  };
+
+  // progress gradient updater
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      updateProgressBackground();
+    }, 250);
+    return () => clearInterval(ticker);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [duration, currentTime]);
+
   return (
-    <div ref={containerRef} className="w-full text-white">
-      <div
-        className={`relative w-full bg-black rounded-md overflow-hidden ${isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"
-          }`}
-      >
+    <div
+      ref={containerRef}
+      className="w-full text-white"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className={`relative w-full bg-black rounded-md overflow-hidden ${isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"}`}>
         <video
           ref={videoRef}
           src={qualities && qualities[0] ? qualities[0].url : startEpisode?.videoUrl ?? currentShow?.videoUrl}
@@ -324,14 +459,16 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           autoPlay
           controls={false}
           onClick={toggleControls}
+          playsInline
+          preload="metadata"
         />
 
-        {/* TOP BAR */}
+        {/* permanent dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
+        {/* TOP BAR (back + volume moved here + settings) */}
         {showControls && (
-          <div
-            data-controls
-            className="absolute top-0 left-0 right-0 z-40 bg-gradient-to-b from-black/70 to-transparent px-4 py-2 flex items-center justify-between"
-          >
+          <div data-controls className="absolute top-0 left-0 right-0 z-40 bg-gradient-to-b from-black/70 to-transparent px-4 py-2 flex items-center justify-between">
             <div className="flex items-center">
               <button
                 onClick={(e) => {
@@ -351,6 +488,38 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
             </div>
 
             <div className="flex items-center relative">
+              {/* Volume icon moved to top */}
+              <div className="relative mr-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute(e);
+                    setShowVolumeSlider((p) => !p);
+                    resetControlsTimer();
+                  }}
+                  className="p-2 rounded-full hover:bg-white/10 transition"
+                  title={isMuted ? "Unmute" : "Mute"}
+                >
+                  {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
+                </button>
+
+                {/* Top-mounted volume slider */}
+                <div
+                  className={`absolute right-0 mt-12 w-36 bg-black/90 border border-white/10 rounded-md p-2 z-50 transition-all ${showVolumeSlider ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={isMuted ? 0 : volume}
+                    onChange={handleVolumeChange}
+                    className="w-full accent-cyan-500"
+                  />
+                </div>
+              </div>
+
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -426,8 +595,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
                               setPlaybackSpeed(s);
                               resetControlsTimer();
                             }}
-                            className={`px-2 py-1 rounded text-sm ${playbackSpeed === s ? "bg-white/20" : "bg-white/5"
-                              }`}
+                            className={`px-2 py-1 rounded text-sm ${playbackSpeed === s ? "bg-white/20" : "bg-white/5"}`}
                           >
                             {s}x
                           </button>
@@ -462,8 +630,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
                               changeQuality(q.label);
                               resetControlsTimer();
                             }}
-                            className={`text-left px-3 py-2 rounded text-sm ${selectedQuality === q.label ? "bg-white/10" : "bg-white/5"
-                              }`}
+                            className={`text-left px-3 py-2 rounded text-sm ${selectedQuality === q.label ? "bg-white/10" : "bg-white/5"}`}
                           >
                             {q.label}
                           </button>
@@ -519,22 +686,45 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           </div>
         )}
 
+        {/* Overlays: seek & volume feedback */}
+        {seekFeedback && (
+          <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
+            <div className="bg-black/75 text-white px-4 py-2 rounded-lg text-lg font-semibold">{seekFeedback}</div>
+          </div>
+        )}
+
+        {volumeFeedback !== null && (
+          <div className="absolute right-4 top-16 z-50 pointer-events-none">
+            <div className="bg-black/75 text-white px-3 py-2 rounded-lg text-sm">🔊 {volumeFeedback}%</div>
+          </div>
+        )}
+
         {/* BOTTOM BAR */}
         {showControls && (
-          <div
-            data-controls
-            className="absolute left-0 right-0 bottom-0 z-30 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent"
-          >
+          <div data-controls className="absolute left-0 right-0 bottom-0 z-30 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
             <div className="flex items-center gap-3">
-              <div className="text-sm w-12 text-left">{formatTime(currentTime)}</div>
+              <div className="text-sm w-12 text-left">{formatTime(dragSeekTime ?? currentTime)}</div>
 
               <input
                 type="range"
                 min="0"
                 max={duration || 0}
                 step="0.1"
-                value={currentTime}
-                onChange={handleProgressChange}
+                value={dragSeekTime ?? currentTime}
+                onChange={(e) => {
+                  const newTime = parseFloat(e.target.value);
+                  setDragSeekTime(newTime);
+                }}
+                onMouseUp={(e) => {
+                  const newTime = parseFloat(e.target.value);
+                  if (videoRef.current) videoRef.current.currentTime = newTime;
+                  setDragSeekTime(null);
+                }}
+                onTouchEnd={(e) => {
+                  const newTime = parseFloat(e.target.value);
+                  if (videoRef.current) videoRef.current.currentTime = newTime;
+                  setDragSeekTime(null);
+                }}
                 className="flex-1 h-1 cursor-pointer appearance-none"
                 style={{
                   background: progressBackground || undefined,
@@ -574,37 +764,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="relative">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMute(e);
-                      setShowVolumeSlider((p) => !p);
-                    }}
-                    className="p-1"
-                    title={isMuted ? "Unmute" : "Mute"}
-                    aria-label={isMuted ? "Unmute" : "Mute"}
-                  >
-                    {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
-                  </button>
-
-                  <div
-                    className={`absolute -right-0 top-0 mt-8 transition-all ${showVolumeSlider ? "opacity-100 w-28" : "opacity-0 w-0 overflow-hidden"
-                      }`}
-                    onMouseDown={(e) => e.stopPropagation()}
-                  >
-                    <input
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.05"
-                      value={isMuted ? 0 : volume}
-                      onChange={handleVolumeChange}
-                      className="w-full accent-cyan-500"
-                    />
-                  </div>
-                </div>
-
+                {/* Volume is moved to top; keep fullscreen here */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -620,6 +780,32 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           </div>
         )}
       </div>
+
+      {/* small helper CSS */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        /* Make range thumb larger for touch */
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          height: 16px;
+          width: 16px;
+          border-radius: 999px;
+          background: #22d3ee;
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.12);
+        }
+        input[type="range"]::-moz-range-thumb {
+          height: 16px;
+          width: 16px;
+          border-radius: 999px;
+          background: #22d3ee;
+        }
+      `}</style>
     </div>
   );
 };

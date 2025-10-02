@@ -46,20 +46,25 @@ export default function VideoPlayerEpisodes({
                     Episodes
                 </h2>
 
-                <div className="hidden sm:flex gap-2 items-center">
-                    {normalizedSeasons.map((s, i) => (
-                        <button
-                            key={s.seasonNumber ?? i}
-                            onClick={() => setActiveSeason(i)}
-                            className={`text-sm px-3 py-1 rounded-full transition ${i === activeSeason
-                                ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white"
-                                : "bg-white/5 text-gray-200"
-                                }`}
-                        >
-                            Season {s.seasonNumber ?? i + 1}
-                        </button>
-                    ))}
-                </div>
+                {/* Season Tabs - visible on all sizes and horizontally scrollable on small screens */}
+                {normalizedSeasons.length > 1 ? (
+                    <div className="flex gap-2 items-center overflow-x-auto scrollbar-hide py-1">
+                        {normalizedSeasons.map((s, i) => (
+                            <button
+                                key={s.seasonNumber ?? i}
+                                type="button"
+                                onClick={() => setActiveSeason(i)}
+                                aria-pressed={i === activeSeason}
+                                className={`flex-shrink-0 text-sm px-3 py-1 rounded-full transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/20 ${i === activeSeason
+                                    ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white"
+                                    : "bg-white/5 text-gray-200 hover:bg-white/5"
+                                    }`}
+                            >
+                                Season {s.seasonNumber ?? i + 1}
+                            </button>
+                        ))}
+                    </div>
+                ) : null}
             </div>
 
             {/* Mobile horizontal scroller (default) -> grid on md+ */}
@@ -77,7 +82,8 @@ export default function VideoPlayerEpisodes({
                         }}
                     >
                         {season.episodes.map((ep) => {
-                            const num = ep.episodeNumber ?? (ep.id ? parseInt(String(ep.id).replace(/\D/g, ""), 10) || 0 : 0);
+                            const num =
+                                ep.episodeNumber ?? (ep.id ? parseInt(String(ep.id).replace(/\D/g, ""), 10) || 0 : 0);
                             const prefix = `E${String(num).padStart(2, "0")}`;
                             const thumb = getThumb(ep);
 
@@ -117,24 +123,13 @@ export default function VideoPlayerEpisodes({
                                             </div>
 
                                             {/* Play overlay - ALWAYS visible, slightly blurred */}
-                                            <div
-                                                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                                                aria-hidden="true"
-                                            >
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
                                                 <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-transform duration-150 group-hover:scale-110">
-                                                    <svg
-                                                        width="16"
-                                                        height="16"
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        aria-hidden
-                                                        className="sm:w-5 sm:h-5"
-                                                    >
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden className="sm:w-5 sm:h-5">
                                                         <path d="M5 3v18l15-9L5 3z" fill="white" />
                                                     </svg>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         {/* Title area: semi-transparent 10% black (as requested earlier) */}
