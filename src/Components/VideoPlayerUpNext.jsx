@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 
-const defaultPoster = "/Assets/default.jpg";
+const defaultPoster = "/media/extras/default.jpg";
 const normalizePath = (p) => {
     if (!p) return null;
     return p.startsWith("/") ? p : `/Assets/${p}`;

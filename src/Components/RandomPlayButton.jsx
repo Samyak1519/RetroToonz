@@ -1,23 +1,39 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { FaRandom } from "react-icons/fa";
+import showsData from "../Data/Shows.json";
 
-function RandomPlayButton({ shows }) {
+function RandomPlayButton() {
   const navigate = useNavigate();
-  const [randomShow, setRandomShow] = useState(null);
 
-  useEffect(() => {
-    if (shows?.length) {
-      const validShows = shows.filter((show) => show?.videoUrl); // ensure valid playable show
-      const index = Math.floor(Math.random() * validShows.length);
-      setRandomShow(validShows[index]);
-    }
-  }, [shows]);
+  function pickRandomEpisode(allShows) {
+    const pool = [];
+    allShows.forEach((show) => {
+      (show.seasons || []).forEach((season) => {
+        (season.episodes || []).forEach((ep) => {
+          if (ep.isPlayable !== false) {
+            pool.push({
+              ...ep,
+              showId: show.id,
+              showTitle: show.title,
+              seasonNumber: season.seasonNumber,
+            });
+          }
+        });
+      });
+    });
+    if (pool.length === 0) return null;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
 
   const handlePlay = () => {
-    if (randomShow && randomShow.id) {
-      navigate(`/watch/${randomShow.id}`);
+    const allShows = showsData.allShows || showsData;
+    const episode = pickRandomEpisode(allShows);
+    if (!episode) {
+      alert("No playable episode found.");
+      return;
     }
+    // Navigate to VideoPlayerPage with episode info in state
+    navigate(`/watch/${episode.showId}`, { state: { startEpisode: episode } });
   };
 
   return (
