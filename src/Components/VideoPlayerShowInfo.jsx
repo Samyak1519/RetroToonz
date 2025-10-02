@@ -2,8 +2,14 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
     if (!currentShow) return null;
 
     let sePid = "";
-    if (currentEpisode?.seasonNumber !== undefined && currentEpisode?.episodeNumber !== undefined) {
-        sePid = `S${String(currentEpisode.seasonNumber).padStart(2, "0")}E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
+    if (
+        currentEpisode?.seasonNumber !== undefined &&
+        currentEpisode?.episodeNumber !== undefined
+    ) {
+        sePid = `S${String(currentEpisode.seasonNumber).padStart(
+            2,
+            "0"
+        )}E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
     } else if (currentEpisode?.episodeNumber !== undefined) {
         sePid = `E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
     } else if (currentEpisode?.episodeId) {
@@ -11,11 +17,19 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
     }
 
     return (
-        <div className="px-4 sm:px-8 md:px-12 py-6">
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">{currentShow.title}</h1>
+        <div className="px-4 sm:px-8 md:px-12 py-6 mb-2">
+        
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                {currentShow.title}
+            </h1>
 
             <div className="flex flex-wrap gap-2 text-sm text-gray-300 mb-4">
-                {[currentShow.year, currentShow.language, currentShow.rating && `⭐ ${currentShow.rating}`, currentShow.duration]
+                {[
+                    currentShow.year,
+                    currentShow.language,
+                    currentShow.rating && `⭐ ${currentShow.rating}`,
+                    currentShow.duration,
+                ]
                     .filter(Boolean)
                     .map((item, i, arr) => (
                         <span key={i}>
@@ -29,7 +43,10 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
                 <div className="mb-4">
                     <div className="flex flex-wrap gap-2">
                         {currentShow.tags.map((tag, i) => (
-                            <span key={i} className="px-2 py-1 text-xs font-medium bg-white/10 border border-white/20 rounded-full">
+                            <span
+                                key={i}
+                                className="px-2 py-1 text-xs font-medium bg-white/10 border border-white/20 rounded-full"
+                            >
                                 {tag}
                             </span>
                         ))}
@@ -37,10 +54,11 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
                 </div>
             )}
 
-            <p className="text-gray-200 max-w-3xl leading-relaxed text-md">
+            <p className="text-gray-200 max-w-3xl leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl">
                 {sePid ? `${sePid} - ` : ""}
                 {currentEpisode?.title ?? currentShow.description ?? ""}
             </p>
+
         </div>
     );
 }

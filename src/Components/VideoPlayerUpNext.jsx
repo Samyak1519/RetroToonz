@@ -72,8 +72,7 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
 
     return (
         <section className="pb-10">
-            <h2 className="text-xl font-semibold mb-4">Up Next</h2>
-
+            <h2 className="text-lg font-semibold mb-3">Up Next</h2>
             <div className="relative">
                 <button
                     onClick={() => scrollByCards(-1)}

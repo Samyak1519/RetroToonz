@@ -117,7 +117,7 @@ function VideoPlayerPage() {
                 currentEpisode={currentEpisode}
               />
 
-              <div className="px-4 sm:px-8 md:px-12 mb-10">
+              <div className="px-4 sm:px-8 md:px-12 mb-5">
                 <Episodes
                   seasons={currentShow.seasons}
                   currentShowId={currentShow.id}
