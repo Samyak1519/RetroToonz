@@ -1,6 +1,6 @@
 import { Fragment, useMemo, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { FaCheck, FaChevronDown } from "react-icons/fa";
+import { FaCheck, FaChevronDown, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
@@ -39,7 +39,6 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
     );
   }
 
-  // use poster if episode thumbnail is missing
   const getEpisodeThumb = () => {
     if (posterDesktop) return posterDesktop;
     return defaultPoster || "/media/posters-desktop/default-poster.jpg";
@@ -100,8 +99,8 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
         </div>
       </div>
 
-      {/* Episodes grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {/* Redesigned Episode Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {episodes.length === 0 ? (
           <div className="col-span-full text-gray-400">
             No episodes found for this season.
@@ -116,9 +115,10 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                 onClick={() =>
                   navigate(`/watch/${show.id}?ep=${episode.episodeId}`)
                 }
-                className="cursor-pointer bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg hover:scale-105 transition duration-300"
+                className="group cursor-pointer bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-purple-500/20 transition-all duration-300"
               >
-                <div className="relative pt-[56.25%] bg-gray-800">
+                {/* Thumbnail */}
+                <div className="relative pt-[56.25%]">
                   <img
                     src={getEpisodeThumb()}
                     alt={episode.title || `Episode ${epNum}`}
@@ -130,13 +130,23 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                     }}
                     className="absolute top-0 left-0 w-full h-full object-cover"
                   />
-                  <div className="absolute top-0 left-0 w-full h-full bg-black/40 flex items-center justify-center text-white text-lg font-bold">
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition duration-300" />
+                  {/* Floating Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <div className="bg-purple-600 p-3 rounded-full shadow-lg">
+                      <FaPlay className="text-white text-sm" />
+                    </div>
+                  </div>
+                  {/* Episode Label Top Left */}
+                  <div className="absolute top-2 left-2 bg-black/70 px-2 py-1 rounded-md text-xs font-semibold text-white">
                     {epPrefix}
                   </div>
                 </div>
 
+                {/* Title */}
                 <div className="p-3 text-white">
-                  <h3 className="text-sm sm:text-base font-medium truncate">
+                  <h3 className="text-sm sm:text-base font-medium line-clamp-2">
                     {epPrefix} - {episode.title || `Episode ${epNum}`}
                   </h3>
                 </div>
