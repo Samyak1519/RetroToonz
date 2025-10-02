@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="relative mt-5 bg-gradient-to-b from-[#0a1628] via-[#0f1f38] to-[#081120] text-white/90 py-10 backdrop-blur-md border-t border-white/10 ">
+    <footer className="relative  bg-gradient-to-b from-[#0a1628] via-[#0f1f38] to-[#081120] text-white/90 py-10 backdrop-blur-md border-t border-white/10 ">
       {/* Subtle Gradient Top Border */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyan-400/70 via-blue-400/70 to-cyan-400/70"></div>
 
