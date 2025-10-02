@@ -14,37 +14,46 @@ const getPosterUrl = (id, device = "desktop") => {
 };
 
 function VideoPlayerPage() {
+  // -------------------------
+  // Hooks: ALWAYS at top
+  // -------------------------
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const allShows = showsData.allShows;
+  // -------------------------
+  // Data lookups (no hooks)
+  // -------------------------
+  const allShows = showsData.allShows || [];
   const currentShow = allShows.find((show) => show.id === id);
 
+  // default poster paths
+  const defaultPoster = "/media/posters-desktop/default-poster.jpg";
+
+  // If there's no show, render placeholder early (this is safe because all hooks have already run)
   if (!currentShow) {
     return <div className="text-white p-4">Video not found</div>;
   }
 
-  // compute poster paths (prefer JSON fields)
+  // Prefer explicit fields from JSON if present, otherwise fall back to computed path
   const posterDesktop =
-    currentShow.thumbnail && currentShow.thumbnail.startsWith("/media")
+    currentShow.thumbnail && String(currentShow.thumbnail).startsWith("/media")
       ? currentShow.thumbnail
       : getPosterUrl(currentShow.id, "desktop");
 
   const posterMobile =
-    currentShow.thumbnailMobile && currentShow.thumbnailMobile.startsWith("/media")
+    currentShow.thumbnailMobile && String(currentShow.thumbnailMobile).startsWith("/media")
       ? currentShow.thumbnailMobile
       : getPosterUrl(currentShow.id, "mobile");
-
-  // fallback poster file in public/media/posters-desktop/
-  const defaultPoster = "/media/posters-desktop/default-poster.jpg";
 
   // flatten episodes safely
   const allEpisodes = (currentShow.seasons || []).flatMap((s) => s.episodes ?? []);
 
+  // Resolve current episode param robustly
   const stateEpisodeId = location.state?.startEpisode?.episodeId ?? null;
   const epParam = searchParams.get("ep") || stateEpisodeId || (allEpisodes[0] && allEpisodes[0].episodeId);
+
   const currentEpisodeIndex = allEpisodes.findIndex((ep) => ep.episodeId === epParam);
   const currentEpisode = currentEpisodeIndex >= 0 ? allEpisodes[currentEpisodeIndex] : allEpisodes[0];
 
@@ -61,6 +70,7 @@ function VideoPlayerPage() {
   };
 
   const selectEpisode = (episodeId) => {
+    if (!episodeId) return;
     setSearchParams({ ep: episodeId });
   };
 
@@ -103,6 +113,7 @@ function VideoPlayerPage() {
 
               <ShowInfo
                 currentShow={currentShow}
+                startEpisode={currentEpisode}
                 currentEpisode={currentEpisode}
               />
 
@@ -110,11 +121,10 @@ function VideoPlayerPage() {
                 <Episodes
                   seasons={currentShow.seasons}
                   currentShowId={currentShow.id}
-                  onSelectEpisode={selectEpisode} // 👈 updates ?ep= param
+                  onSelectEpisode={selectEpisode}
                   posterDesktop={posterDesktop}
                   defaultPoster={defaultPoster}
                 />
-
               </div>
 
               <div className="px-4 sm:px-8 md:px-12">

@@ -41,6 +41,9 @@ function ShowDetailsPage() {
   // default poster — keep this in public/media/posters-desktop/
   const defaultPoster = "/media/posters-desktop/default-poster.jpg";
 
+  // ✅ Get first episode ID for Play button
+  const firstEpisodeId = show.seasons?.[0]?.episodes?.[0]?.episodeId;
+
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
@@ -93,6 +96,7 @@ function ShowDetailsPage() {
             </div>
 
             <div className="flex items-center gap-4 mr-2 sm:mr-5">
+              {/* Watchlist button */}
               <button
                 onClick={toggleShortlist}
                 className="text-4xl sm:text-5xl mr-3 sm:mr-5 hover:scale-110 transition-transform"
@@ -108,8 +112,15 @@ function ShowDetailsPage() {
                 )}
               </button>
 
+              {/* ✅ Play button updated */}
               <button
-                onClick={() => navigate(`/watch/${show.id}`)}
+                onClick={() => {
+                  if (firstEpisodeId) {
+                    navigate(`/watch/${show.id}?ep=${firstEpisodeId}`);
+                  } else {
+                    navigate(`/watch/${show.id}`);
+                  }
+                }}
                 className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 rounded-full text-white shadow-md transition"
                 title="Watch Now"
               >
