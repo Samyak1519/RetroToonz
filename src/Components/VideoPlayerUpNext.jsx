@@ -1,28 +1,72 @@
+// src/Components/VideoPlayerUpNext.jsx
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-const defaultPoster = "/media/extras/default.jpg";
-const normalizePath = (p) => {
-    if (!p) return null;
-    return p.startsWith("/") ? p : `/Assets/${p}`;
-};
+const DEFAULT_POSTER = "/media/extras/default.jpg";
 
-export default function VideoPlayerUpNext({ allShows, currentIndex }) {
+/**
+ * Clean up path:
+ *  - remove duplicate slashes
+ *  - ensure leading slash
+ */
+function cleanPath(p) {
+    if (!p) return null;
+    // Replace multiple slashes with single slash
+    const s = p.replace(/\/{2,}/g, "/");
+    // Ensure leading slash
+    return s.startsWith("/") ? s : `/${s}`;
+}
+
+/**
+ * Build the desktop/mobile poster urls.
+ * Priority:
+ *  1) Use value from JSON (if it looks like a /media/... path)
+ *  2) Otherwise fall back to convention using show.id:
+ *     Desktop -> /media/posters-desktop/${show.id}-poster-desktop.jpg
+ *     Mobile  -> /media/posters-mobile/${show.id}-poster-mobile.jpeg
+ */
+function getPosterUrls(show = {}) {
+    const rawDesktop = show.thumbnail || show.poster || null;
+    const rawMobile = show.thumbnailMobile || show.posterMobile || null;
+
+    const jsonDesktop = cleanPath(rawDesktop);
+    const jsonMobile = cleanPath(rawMobile);
+
+    const looksLikeMedia = (p) => !!p && p.startsWith("/media/");
+
+    // Fallback (use show.id, sanitized)
+    const id = (show.id || "").toString().trim();
+    // sanitize id to be safe for file name (replace spaces with -, lowercase)
+    const slug = id ? id.replace(/\s+/g, "-").toLowerCase() : null;
+
+    const guessedDesktop = slug ? `/media/posters-desktop/${slug}-poster-desktop.jpg` : null;
+    const guessedMobile = slug ? `/media/posters-mobile/${slug}-poster-mobile.jpeg` : null;
+
+    const desktop = (looksLikeMedia(jsonDesktop) ? jsonDesktop : guessedDesktop) || DEFAULT_POSTER;
+    const mobile = (looksLikeMedia(jsonMobile) ? jsonMobile : guessedMobile) || desktop || DEFAULT_POSTER;
+
+    return {
+        desktop: desktop,
+        mobile: mobile,
+    };
+}
+
+export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
     const scrollerRef = useRef(null);
 
-    if (!allShows || allShows.length === 0) return null;
+    if (!Array.isArray(allShows) || allShows.length === 0) return null;
 
     const scrollByCards = (count) => {
         if (!scrollerRef.current) return;
         const firstCard = scrollerRef.current.querySelector("[data-upnext-card]");
-        const cardWidth = firstCard ? firstCard.offsetWidth : 200;
+        const cardWidth = firstCard ? firstCard.offsetWidth : 220;
         scrollerRef.current.scrollBy({ left: cardWidth * count, behavior: "smooth" });
     };
 
-    // Next 10 shows (wrap around)
+    // Next shows (exclude currentIndex)
     const upcoming = [];
-    for (let i = 1; i <= Math.min(10, allShows.length - 1); i++) {
+    for (let i = 1; i <= Math.min(12, allShows.length - 1); i++) {
         upcoming.push(allShows[(currentIndex + i) % allShows.length]);
     }
 
@@ -31,7 +75,6 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
             <h2 className="text-xl font-semibold mb-4">Up Next</h2>
 
             <div className="relative">
-                {/* Left arrow (desktop only) */}
                 <button
                     onClick={() => scrollByCards(-1)}
                     aria-label="Scroll left"
@@ -40,7 +83,6 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                     <ChevronLeft className="w-5 h-5 text-white" />
                 </button>
 
-                {/* Horizontal scroller */}
                 <div
                     ref={scrollerRef}
                     className="overflow-x-auto scrollbar-hide scroll-smooth"
@@ -51,8 +93,8 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                         style={{ scrollSnapType: "x mandatory", paddingBottom: 8 }}
                     >
                         {upcoming.map((show, i) => {
-                            const desktopSrc = normalizePath(show.thumbnail) || "";
-                            const mobileSrc = normalizePath(show.thumbnailMobile) || "";
+                            const { desktop, mobile } = getPosterUrls(show);
+
                             return (
                                 <Link
                                     key={show.id || i}
@@ -60,24 +102,21 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                                     data-upnext-card
                                     className="block bg-white/5 hover:bg-white/10 rounded-lg overflow-hidden transition flex-shrink-0"
                                     style={{
-                                        flex: "0 0 calc(100% / 2.5)", // mobile: 2.5 cards
+                                        flex: "0 0 calc(100% / 2.5)", // mobile: about 2.5 cards
                                         scrollSnapAlign: "start",
                                     }}
                                 >
-                                    {/* 2:3 aspect on mobile (pt-[150%]), 16:9 on sm+ (sm:pt-[56.25%]) */}
                                     <div className="pt-[150%] sm:pt-[56.25%] relative bg-gray-800 rounded-lg overflow-hidden shadow-sm">
                                         <picture>
-                                            <source
-                                                srcSet={desktopSrc || mobileSrc || defaultPoster}
-                                                media="(min-width:640px)"
-                                            />
+                                            <source srcSet={desktop || DEFAULT_POSTER} media="(min-width:640px)" />
                                             <img
-                                                src={mobileSrc || desktopSrc || defaultPoster}
+                                                src={mobile || desktop || DEFAULT_POSTER}
                                                 alt={show.title || ""}
                                                 className="absolute inset-0 w-full h-full object-cover"
                                                 onError={(e) => {
+                                                    // fallback to default if the requested image 404s
                                                     e.target.onerror = null;
-                                                    e.target.src = defaultPoster;
+                                                    e.target.src = DEFAULT_POSTER;
                                                 }}
                                             />
                                         </picture>
@@ -88,7 +127,6 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                     </div>
                 </div>
 
-                {/* Right arrow (desktop only) */}
                 <button
                     onClick={() => scrollByCards(1)}
                     aria-label="Scroll right"
@@ -98,7 +136,7 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
                 </button>
             </div>
 
-            <style jsx>{`
+            <style>{`
         @media (min-width: 640px) {
           a[data-upnext-card] {
             flex: 0 0 calc(100% / 4) !important; /* 4 cards tablet */
@@ -108,6 +146,13 @@ export default function VideoPlayerUpNext({ allShows, currentIndex }) {
           a[data-upnext-card] {
             flex: 0 0 calc(100% / 5.5) !important; /* 5.5 cards desktop */
           }
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
         </section>

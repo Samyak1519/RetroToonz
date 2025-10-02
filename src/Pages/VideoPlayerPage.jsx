@@ -20,18 +20,14 @@ function VideoPlayerPage() {
     return <div className="text-white p-4">Video not found</div>;
   }
 
-  // flatten episodes for easy indexing
+  // flatten episodes
   const allEpisodes = currentShow.seasons.flatMap((s) => s.episodes ?? []);
 
-  // support random episode passed via location.state (in case Random button sent it)
   const stateEpisodeId = location.state?.startEpisode?.episodeId ?? null;
-
-  // prefer ?ep query param then location.state then default to first episode
   const epParam = searchParams.get("ep") || stateEpisodeId || (allEpisodes[0] && allEpisodes[0].episodeId);
   const currentEpisodeIndex = allEpisodes.findIndex((ep) => ep.episodeId === epParam);
   const currentEpisode = currentEpisodeIndex >= 0 ? allEpisodes[currentEpisodeIndex] : allEpisodes[0];
 
-  // navigate by updating ?ep query param (keeps same show route)
   const goToNextEpisode = () => {
     if (!allEpisodes.length) return;
     const nextIndex = (currentEpisodeIndex + 1) % allEpisodes.length;
@@ -44,12 +40,10 @@ function VideoPlayerPage() {
     setSearchParams({ ep: allEpisodes[prevIndex].episodeId });
   };
 
-  // helper to select episode (e.g., clicking from Episodes list)
   const selectEpisode = (episodeId) => {
     setSearchParams({ ep: episodeId });
   };
 
-  // background artwork path (keeps UI like before)
   const bgUrl = "/media/extras/bullseye-gradient.svg";
 
   return (
@@ -93,12 +87,12 @@ function VideoPlayerPage() {
                 <Episodes
                   seasons={currentShow.seasons}
                   currentShowId={currentShow.id}
-                  onSelectEpisode={selectEpisode} // make episodes clickable
+                  onSelectEpisode={selectEpisode}
                 />
               </div>
 
               <div className="px-4 sm:px-8 md:px-12">
-                <UpNext allShows={allShows} currentIndex={allShows.findIndex(s => s.id === id)} currentShow={currentShow} />
+                <UpNext allShows={allShows} currentIndex={allShows.findIndex((s) => s.id === id)} />
               </div>
             </motion.div>
           </AnimatePresence>

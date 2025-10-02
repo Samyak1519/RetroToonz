@@ -37,8 +37,10 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
   const [speedOptions] = useState(DEFAULT_SPEEDS);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
 
+  // qualities come from show or episode; each is {label, url}
   const [qualities, setQualities] = useState([]);
   const [selectedQuality, setSelectedQuality] = useState("Auto");
+
   const [progressBackground, setProgressBackground] = useState("");
 
   const clearControlsTimeout = () => {
@@ -144,23 +146,29 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     resetControlsTimer();
   };
 
-  // When video ends, play next EP (episode-level behaviour)
+  // When the video ends, go to next episode (not next show)
   const handleVideoEnd = () => {
-    if (typeof goToNextEpisode === "function") {
-      goToNextEpisode();
-    }
+    if (typeof goToNextEpisode === "function") goToNextEpisode();
   };
 
-  // Load startEpisode or default qualities from show
+  // Load episode or show video (handles startEpisode preference)
   useEffect(() => {
     let sourceUrl = null;
-
-    if (startEpisode && startEpisode.videoUrl) {
-      sourceUrl = startEpisode.videoUrl;
-      setQualities([{ label: "Auto", url: startEpisode.videoUrl }]);
-      setSelectedQuality("Auto");
+    // episode-level may have qualities array or single videoUrl
+    if (startEpisode) {
+      // prefer episode qualities if present
+      if (startEpisode.qualities && startEpisode.qualities.length) {
+        setQualities(startEpisode.qualities);
+        setSelectedQuality(startEpisode.qualities[0].label ?? "Auto");
+        sourceUrl = startEpisode.qualities[0].url;
+      } else {
+        setQualities([{ label: "Auto", url: startEpisode.videoUrl }]);
+        setSelectedQuality("Auto");
+        sourceUrl = startEpisode.videoUrl;
+      }
     } else {
-      const q = currentShow?.qualities ?? [{ label: "Auto", url: currentShow?.videoUrl }];
+      // fallback to show-level video/qualities
+      const q = currentShow?.qualities ?? (currentShow?.videoUrl ? [{ label: "Auto", url: currentShow.videoUrl }] : []);
       setQualities(q);
       setSelectedQuality(q[0]?.label ?? "Auto");
       sourceUrl = q[0]?.url;
@@ -175,7 +183,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
       }, 50);
     }
 
-    // reset UI state
     setCurrentTime(0);
     setDuration(0);
     setShowControls(true);
@@ -185,6 +192,9 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
       controlsTimeoutRef.current = null;
     }, 1500);
 
+    return () => {
+      clearControlsTimeout();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentShow, startEpisode]);
 
@@ -234,6 +244,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     if (videoRef.current) videoRef.current.playbackRate = playbackSpeed;
   }, [playbackSpeed]);
 
+  // When selectedQuality changes, switch video.src and try to preserve currentTime
   const changeQuality = (label) => {
     const q = qualities.find((x) => x.label === label);
     if (!q || !videoRef.current) {
@@ -256,6 +267,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     resetControlsTimer();
   };
 
+  // Build progress gradient string: played portion (accent), buffered portion (muted), remainder (dark)
   const updateProgressBackground = () => {
     const v = videoRef.current;
     if (!v || !duration || duration === 0) {
@@ -273,7 +285,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     }
     const bufferedPct = Math.min(100, (bufferedEnd / duration) * 100);
 
-    const accent = "rgba(34,211,238,1)";
+    const accent = "rgba(34,211,238,1)"; // cyan-like
     const bufferedColor = "rgba(255,255,255,0.2)";
     const remainder = "rgba(255,255,255,0.06)";
 
@@ -304,7 +316,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
       >
         <video
           ref={videoRef}
-          src={startEpisode?.videoUrl ?? (qualities && qualities[0] ? qualities[0].url : currentShow?.videoUrl)}
+          src={qualities && qualities[0] ? qualities[0].url : startEpisode?.videoUrl ?? currentShow?.videoUrl}
           className="absolute inset-0 w-full h-full object-contain"
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
@@ -472,8 +484,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (videoRef.current)
-                    videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
+                  if (videoRef.current) videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
                   resetControlsTimer();
                 }}
                 className="bg-black/60 p-3 rounded-full text-white"
@@ -496,8 +507,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (videoRef.current)
-                    videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
+                  if (videoRef.current) videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
                   resetControlsTimer();
                 }}
                 className="bg-black/60 p-3 rounded-full text-white"
@@ -509,7 +519,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           </div>
         )}
 
-        {/* BOTTOM BAR: progress + actions */}
+        {/* BOTTOM BAR */}
         {showControls && (
           <div
             data-controls
@@ -538,6 +548,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 
             <div className="mt-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
+                {/* Previous Episode */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -549,6 +560,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
                   <FaBackward size={14} /> <span className="hidden sm:inline">Previous</span>
                 </button>
 
+                {/* Next Episode */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
