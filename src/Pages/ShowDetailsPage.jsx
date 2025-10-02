@@ -7,6 +7,12 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import showsData from "../Data/Shows.json";
 
+const getPosterUrl = (id, device = "desktop") => {
+  if (!id) return "";
+  const ext = device === "mobile" ? "jpeg" : "jpg";
+  return `/media/posters-${device}/${id}-poster-${device}.${ext}`;
+};
+
 function ShowDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,36 +28,51 @@ function ShowDetailsPage() {
     return <p className="text-white p-4">Show not found.</p>;
   }
 
-  return (
+  const posterDesktop =
+    show.thumbnail && show.thumbnail.startsWith("/media")
+      ? show.thumbnail
+      : getPosterUrl(show.id, "desktop");
 
+  const posterMobile =
+    show.thumbnailMobile && show.thumbnailMobile.startsWith("/media")
+      ? show.thumbnailMobile
+      : getPosterUrl(show.id, "mobile");
+
+  // default poster — keep this in public/media/posters-desktop/
+  const defaultPoster = "/media/posters-desktop/default-poster.jpg";
+
+  return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* ✅ Sticky Header */}
       <Header />
 
-      {/* ✅ Main Content Area */}
       <main className="flex-grow">
-        {/* ✅ Poster with Back Button */}
         <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden ">
-          <img
-            src={`/Assets/${show.thumbnail}`}
-            alt={show.title}
-            className="w-full h-full object-cover"
-          />
+          <picture>
+            <source srcSet={posterMobile} media="(max-width:600px)" />
+            <img
+              src={posterDesktop}
+              alt={`${show.title} poster`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = defaultPoster;
+              }}
+            />
+          </picture>
+
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-          {/* ✅ Back Button */}
           <button
             onClick={() => navigate(-1)}
             className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl z-20 transition"
+            aria-label="Go back"
           >
             <FaArrowLeft />
           </button>
         </div>
 
-        {/* ✅ Show Info */}
         <div className="px-4 pb-10 mt-5 sm:px-40 sm:pr-48">
           <div className="flex items-start justify-between gap-4 mb-5">
-            {/* Left: Info Block */}
             <div className="flex-1">
               <h1 className="text-2xl sm:text-3xl font-extrabold">
                 {show.title}
@@ -71,7 +92,6 @@ function ShowDetailsPage() {
               </p>
             </div>
 
-            {/* Right: Heart + Play Button */}
             <div className="flex items-center gap-4 mr-2 sm:mr-5">
               <button
                 onClick={toggleShortlist}
@@ -79,6 +99,7 @@ function ShowDetailsPage() {
                 title={
                   isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
                 }
+                aria-pressed={isShortlisted}
               >
                 {isShortlisted ? (
                   <VscHeartFilled className="text-red-600" />
@@ -87,7 +108,6 @@ function ShowDetailsPage() {
                 )}
               </button>
 
-              {/* Navigate to full-screen video page */}
               <button
                 onClick={() => navigate(`/watch/${show.id}`)}
                 className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 rounded-full text-white shadow-md transition"
@@ -98,7 +118,6 @@ function ShowDetailsPage() {
             </div>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
             {show.tags?.map((tag) => (
               <span
@@ -110,18 +129,20 @@ function ShowDetailsPage() {
             ))}
           </div>
 
-          {/* Description */}
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6">
             {show.description ||
               "This is a placeholder description. Add something meaningful here about characters, story or nostalgia!"}
           </p>
 
-          {/* ✅ Episodes */}
-          <EpisodeSection poster={`/Assets/${show.thumbnail}`} />
+          <EpisodeSection
+            posterDesktop={posterDesktop}
+            posterMobile={posterMobile}
+            show={show}
+            defaultPoster={defaultPoster}
+          />
         </div>
       </main>
 
-      {/* ✅ Sticky Footer */}
       <Footer />
     </div>
   );
