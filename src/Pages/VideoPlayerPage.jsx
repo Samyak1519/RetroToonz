@@ -7,6 +7,12 @@ import ShowInfo from "../Components/VideoPlayerShowInfo";
 import UpNext from "../Components/VideoPlayerUpNext";
 import showsData from "../Data/Shows.json";
 
+const getPosterUrl = (id, device = "desktop") => {
+  if (!id) return "";
+  const ext = device === "mobile" ? "jpeg" : "jpg";
+  return `/media/posters-${device}/${id}-poster-${device}.${ext}`;
+};
+
 function VideoPlayerPage() {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,8 +26,22 @@ function VideoPlayerPage() {
     return <div className="text-white p-4">Video not found</div>;
   }
 
-  // flatten episodes
-  const allEpisodes = currentShow.seasons.flatMap((s) => s.episodes ?? []);
+  // compute poster paths (prefer JSON fields)
+  const posterDesktop =
+    currentShow.thumbnail && currentShow.thumbnail.startsWith("/media")
+      ? currentShow.thumbnail
+      : getPosterUrl(currentShow.id, "desktop");
+
+  const posterMobile =
+    currentShow.thumbnailMobile && currentShow.thumbnailMobile.startsWith("/media")
+      ? currentShow.thumbnailMobile
+      : getPosterUrl(currentShow.id, "mobile");
+
+  // fallback poster file in public/media/posters-desktop/
+  const defaultPoster = "/media/posters-desktop/default-poster.jpg";
+
+  // flatten episodes safely
+  const allEpisodes = (currentShow.seasons || []).flatMap((s) => s.episodes ?? []);
 
   const stateEpisodeId = location.state?.startEpisode?.episodeId ?? null;
   const epParam = searchParams.get("ep") || stateEpisodeId || (allEpisodes[0] && allEpisodes[0].episodeId);
@@ -81,14 +101,20 @@ function VideoPlayerPage() {
                 goToPreviousEpisode={goToPreviousEpisode}
               />
 
-              <ShowInfo currentShow={currentShow} startEpisode={currentEpisode} />
+              <ShowInfo
+                currentShow={currentShow}
+                currentEpisode={currentEpisode}
+              />
 
               <div className="px-4 sm:px-8 md:px-12 mb-10">
                 <Episodes
                   seasons={currentShow.seasons}
                   currentShowId={currentShow.id}
-                  onSelectEpisode={selectEpisode}
+                  onSelectEpisode={selectEpisode} // 👈 updates ?ep= param
+                  posterDesktop={posterDesktop}
+                  defaultPoster={defaultPoster}
                 />
+
               </div>
 
               <div className="px-4 sm:px-8 md:px-12">
