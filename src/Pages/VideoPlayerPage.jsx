@@ -1,7 +1,8 @@
+// src/Pages/VideoPlayerPage.jsx
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 import VideoPlayer from "../Components/VideoPlayer";
 import Episodes from "../Components/VideoPlayerEpisodes";
 import ShowInfo from "../Components/VideoPlayerShowInfo";
