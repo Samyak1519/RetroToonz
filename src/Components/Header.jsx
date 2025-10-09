@@ -8,6 +8,7 @@ import {
   FaSignInAlt,
   FaUser,
   FaUserCircle,
+  FaChevronDown,
 } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
@@ -74,12 +75,27 @@ export default function Header() {
     };
   }, []);
 
-  // position + focus
+  // position + focus (focus first item)
   useEffect(() => {
     if (profileOpen) {
-      positionPortal();
-      setTimeout(() => firstItemRef.current?.focus(), 40);
+      // position portal for floating menu
+      try {
+        if (typeof window !== "undefined") {
+          positionPortal();
+        }
+      } catch (err) {
+        // ignore in SSR / tests
+      }
+
+      // give layout a bit of time then focus
+      const t = setTimeout(() => firstItemRef.current?.focus(), 120);
+      return () => clearTimeout(t);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profileOpen]);
+
+  // recalc position on resize/scroll while open
+  useEffect(() => {
     function recalc() {
       if (profileOpen) positionPortal();
     }
@@ -89,7 +105,6 @@ export default function Header() {
       window.removeEventListener("resize", recalc);
       window.removeEventListener("scroll", recalc);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profileOpen]);
 
   // auto close on navigation
@@ -196,15 +211,25 @@ export default function Header() {
               aria-haspopup="menu"
               aria-expanded={profileOpen}
               title="Profile"
+              aria-label="Open profile menu"
               className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${isScrolled
                   ? "hover:bg-gray-700"
                   : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
                 }`}
             >
               <FaUserCircle size={20} />
+              {/* username hidden on smaller screens but keep chevron visible */}
               <span className="hidden lg:block font-semibold text-sm sm:text-base">
                 Samyak
               </span>
+
+              {/* Chevron that rotates when menu opens - visible on all sizes */}
+              <FaChevronDown
+                size={12}
+                aria-hidden="true"
+                className={`block transform transition-transform duration-200 ${profileOpen ? "rotate-180" : "rotate-0"
+                  }`}
+              />
             </button>
           </div>
         </div>
@@ -230,7 +255,7 @@ export default function Header() {
 
       {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
-      {/* Profile menu via portal */}
+      {/* Profile menu via portal (floating menu for all viewports) */}
       {profileOpen &&
         createPortal(
           <div
