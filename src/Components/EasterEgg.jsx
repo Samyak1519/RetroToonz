@@ -2,7 +2,7 @@ function EasterEgg({ onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
       <video
-        src="/media/extras/easter-egg.mp4"
+        src="/media/extras/easter-egg.gif"
         autoPlay
         onEnded={onClose}
         controls={false}

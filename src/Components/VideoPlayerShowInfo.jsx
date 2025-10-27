@@ -54,7 +54,7 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
                 </div>
             )}
 
-            <p className="text-gray-200 max-w-3xl leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl">
+            <p className="text-gray-200 max-w-3xl leading-relaxed text-sm sm:text-base md:text-lg lg:text-lg font-normal">
                 {sePid ? `${sePid} - ` : ""}
                 {currentEpisode?.title ?? currentShow.description ?? ""}
             </p>

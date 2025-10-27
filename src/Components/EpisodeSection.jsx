@@ -1,6 +1,6 @@
 import { Fragment, useMemo, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { FaCheck, FaChevronDown, FaPlay } from "react-icons/fa";
+import { FaCheck, FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
@@ -70,7 +70,9 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                     <Listbox.Option
                       key={season.index}
                       className={({ active }) =>
-                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? "bg-purple-600 text-white" : "text-gray-100"
+                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active
+                          ? "bg-purple-600 text-white"
+                          : "text-gray-100"
                         }`
                       }
                       value={season}
@@ -99,7 +101,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
         </div>
       </div>
 
-      {/* Redesigned Episode Cards */}
+      {/* ✅ Tablet now shows 4 cards, no padding added */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {episodes.length === 0 ? (
           <div className="col-span-full text-gray-400">
@@ -109,18 +111,26 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
           episodes.map((episode, index) => {
             const epNum = episode.episodeNumber ?? index + 1;
             const epPrefix = `E${String(epNum).padStart(2, "0")}`;
+            const thumb =
+              getEpisodeThumb() ||
+              defaultPoster ||
+              "/media/posters-desktop/default-poster.jpg";
+
             return (
               <div
                 key={episode.episodeId || index}
                 onClick={() =>
                   navigate(`/watch/${show.id}?ep=${episode.episodeId}`)
                 }
-                className="group cursor-pointer bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-purple-500/20 transition-all duration-300"
+                className="group vt-card cursor-pointer rounded-lg overflow-hidden shadow-[0_6px_18px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:scale-[1.04] md:hover:scale-[1.05]"
               >
                 {/* Thumbnail */}
-                <div className="relative pt-[56.25%]">
+                <div
+                  className="relative bg-zinc-800"
+                  style={{ paddingTop: "56.25%" }}
+                >
                   <img
-                    src={getEpisodeThumb()}
+                    src={thumb}
                     alt={episode.title || `Episode ${epNum}`}
                     onError={(e) => {
                       e.currentTarget.onerror = null;
@@ -128,27 +138,46 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                         defaultPoster ||
                         "/media/posters-desktop/default-poster.jpg";
                     }}
-                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition duration-300" />
-                  {/* Floating Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                    <div className="bg-purple-600 p-3 rounded-full shadow-lg">
-                      <FaPlay className="text-white text-sm" />
-                    </div>
-                  </div>
-                  {/* Episode Label Top Left */}
-                  <div className="absolute top-2 left-2 bg-black/70 px-2 py-1 rounded-md text-xs font-semibold text-white">
+
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+                  {/* Episode badge */}
+                  <div className="absolute top-2 left-2 bg-black/60 px-2 py-0.5 rounded-md text-xs font-semibold text-white">
                     {epPrefix}
+                  </div>
+
+                  {/* Centered Play Icon */}
+                  <div
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    aria-hidden="true"
+                  >
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-transform duration-150 group-hover:scale-110">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        className="sm:w-5 sm:h-5"
+                      >
+                        <path d="M5 3v18l15-9L5 3z" fill="white" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
                 {/* Title */}
-                <div className="p-3 text-white">
-                  <h3 className="text-sm sm:text-base font-medium line-clamp-2">
+                <div className="p-2 py-2.5 bg-black/10">
+                  <h3 className="text-xs sm:text-sm font-medium text-white truncate">
                     {epPrefix} - {episode.title || `Episode ${epNum}`}
                   </h3>
+                  <p className="text-[10px] sm:text-xs text-gray-300 truncate mt-1 hidden sm:block">
+                    {episode.description || ""}
+                  </p>
                 </div>
               </div>
             );

@@ -67,14 +67,23 @@ function ShowDetailsPage() {
 
           <button
             onClick={() => navigate(-1)}
-            className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl z-20 transition"
+            className="absolute 
+                        top-4 left-2
+                        sm:top-5 sm:left-6
+                        lg:top-6 lg:left-10
+                        bg-black/70 hover:bg-black/90 
+                        p-2 sm:p-2.5 lg:p-3 
+                        rounded-full 
+                        text-white 
+                        text-lg sm:text-xl lg:text-2xl 
+                        z-20 transition"
             aria-label="Go back"
           >
             <FaArrowLeft />
           </button>
         </div>
 
-        <div className="px-4 pb-10 mt-5 sm:px-40 sm:pr-48">
+        <div className="px-4 md:px-20 lg:px-40 lg:pr-48 pb-10 mt-5">
           <div className="flex items-start justify-between gap-4 mb-5">
             <div className="flex-1">
               <h1 className="text-2xl sm:text-3xl font-extrabold">

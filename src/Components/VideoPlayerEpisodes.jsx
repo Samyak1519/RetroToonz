@@ -42,7 +42,7 @@ export default function VideoPlayerEpisodes({
     return (
         <section aria-labelledby="episodes-title" className="w-full">
             <div className="flex items-center justify-between mb-3">
-                <h2 id="episodes-title" className="text-lg font-semibold">
+                <h2 id="episodes-title" className="text-xl font-semibold">
                     Episodes
                 </h2>
 
