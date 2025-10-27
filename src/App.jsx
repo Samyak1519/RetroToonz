@@ -1,28 +1,27 @@
-// src/App.js (or wherever your AppRoutes are)
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddShowPage from "./Pages/AddShowPage";
-import AllShowsPage from "./Pages/AllShowsPage"; // <-- NEW
+import AllShowsPage from "./Pages/AllShowsPage";
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
-import Login from "./Pages/LoginPage";
+import AuthPage from "./Pages/AuthPage"; // ✅ New unified page
 import ProfilePage from "./Pages/ProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
-
 import "./App.css";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/signup" element={<AuthPage />} /> {/* optional alias */}
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
-      <Route path="/all-shows" element={<AllShowsPage />} /> {/* <-- NEW */}
+      <Route path="/all-shows" element={<AllShowsPage />} />
       <Route path="/show/:id" element={<ShowDetailsPage />} />
       <Route path="/watch/:id" element={<VideoPlayerPage />} />
       <Route path="/comingsoon" element={<ComingSoon />} />

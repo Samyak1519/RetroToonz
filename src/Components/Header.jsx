@@ -1,5 +1,5 @@
 // src/Components/Header.jsx
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   FaHeart,
@@ -13,32 +13,43 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
+/*
+  Robust Header:
+  - creates portal root synchronously (if running in browser)
+  - guards createPortal usage if root isn't present
+  - uses navigate() consistently for programmatic navigation
+*/
+
+const PORTAL_ROOT_ID = "retrotoonz-profile-portal-root";
+
+// create portal root synchronously if in browser — avoids createPortal(null) on first open
+if (typeof window !== "undefined") {
+  try {
+    if (!document.getElementById(PORTAL_ROOT_ID)) {
+      const root = document.createElement("div");
+      root.id = PORTAL_ROOT_ID;
+      document.body.appendChild(root);
+    }
+  } catch (err) {
+    // ignore (defensive)
+  }
+}
+
 export default function Header() {
   const [showSearchMobile, setShowSearchMobile] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
   const [profileOpen, setProfileOpen] = useState(false);
+
   const profileBtnRef = useRef(null);
   const firstItemRef = useRef(null);
-
   const [portalPos, setPortalPos] = useState({ top: 0, left: 0, caretLeft: 0 });
 
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
-  // create portal root if missing
-  useEffect(() => {
-    let root = document.getElementById("retrotoonz-profile-portal-root");
-    if (!root) {
-      root = document.createElement("div");
-      root.id = "retrotoonz-profile-portal-root";
-      document.body.appendChild(root);
-    }
-  }, []);
-
-  // detect scroll for header bg
+  // Header bg on scroll
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
@@ -55,11 +66,11 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // outside click / esc
+  // Close menu on outside click / Escape
   useEffect(() => {
     function onDocClick(e) {
       const btn = profileBtnRef.current;
-      const portalRoot = document.getElementById("retrotoonz-profile-portal-root");
+      const portalRoot = document.getElementById(PORTAL_ROOT_ID);
       if (btn && btn.contains(e.target)) return;
       if (portalRoot && portalRoot.contains(e.target)) return;
       setProfileOpen(false);
@@ -75,43 +86,7 @@ export default function Header() {
     };
   }, []);
 
-  // position + focus (focus first item)
-  useEffect(() => {
-    if (profileOpen) {
-      // position portal for floating menu
-      try {
-        if (typeof window !== "undefined") {
-          positionPortal();
-        }
-      } catch (err) {
-        // ignore in SSR / tests
-      }
-
-      // give layout a bit of time then focus
-      const t = setTimeout(() => firstItemRef.current?.focus(), 120);
-      return () => clearTimeout(t);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profileOpen]);
-
-  // recalc position on resize/scroll while open
-  useEffect(() => {
-    function recalc() {
-      if (profileOpen) positionPortal();
-    }
-    window.addEventListener("resize", recalc);
-    window.addEventListener("scroll", recalc, { passive: true });
-    return () => {
-      window.removeEventListener("resize", recalc);
-      window.removeEventListener("scroll", recalc);
-    };
-  }, [profileOpen]);
-
-  // auto close on navigation
-  useEffect(() => {
-    setProfileOpen(false);
-  }, [location.pathname]);
-
+  // position portal function
   const positionPortal = () => {
     const btn = profileBtnRef.current;
     if (!btn) return;
@@ -126,13 +101,44 @@ export default function Header() {
     left = Math.min(Math.max(left, minLeft), maxLeft);
 
     const top = rect.bottom + 8 + window.scrollY;
-
     const btnCenter = rect.left + rect.width / 2;
     let caretLeft = btnCenter - left - caretWidth / 2;
     caretLeft = Math.max(12, Math.min(menuWidth - 12 - caretWidth, caretLeft));
 
     setPortalPos({ top, left, caretLeft });
   };
+
+  // open menu -> position + focus
+  useEffect(() => {
+    if (profileOpen) {
+      // position portal
+      try {
+        positionPortal();
+      } catch (err) {
+        // ignore
+      }
+      const t = setTimeout(() => firstItemRef.current?.focus(), 120);
+      return () => clearTimeout(t);
+    }
+  }, [profileOpen]);
+
+  // reposition when scrolling / resizing
+  useEffect(() => {
+    function recalc() {
+      if (profileOpen) positionPortal();
+    }
+    window.addEventListener("resize", recalc);
+    window.addEventListener("scroll", recalc, { passive: true });
+    return () => {
+      window.removeEventListener("resize", recalc);
+      window.removeEventListener("scroll", recalc);
+    };
+  }, [profileOpen]);
+
+  // auto-close on navigation
+  useEffect(() => {
+    setProfileOpen(false);
+  }, [location.pathname]);
 
   const navigateAndClose = (path) => {
     setProfileOpen(false);
@@ -142,13 +148,16 @@ export default function Header() {
   const headerHeightClasses = "h-16 sm:h-20";
   const spacerClasses = "h-16 sm:h-20";
 
+  // get portal root once
+  const portalRoot = typeof document !== "undefined" ? document.getElementById(PORTAL_ROOT_ID) : null;
+
   return (
     <>
       <header
         className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-50 ${headerHeightClasses}`}
         aria-label="Main header"
       >
-        {/* bg */}
+        {/* background */}
         <div
           className={`absolute inset-0 transition-opacity duration-500 ease-out ${isScrolled ? "opacity-100" : "opacity-0"
             }`}
@@ -181,9 +190,7 @@ export default function Header() {
               }}
               title="Search"
               aria-expanded={searchOpen}
-              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled
-                  ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
                 }`}
             >
               <FaSearch size={16} />
@@ -196,9 +203,7 @@ export default function Header() {
                 setSearchOpen(false);
               }}
               title="Search"
-              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled
-                  ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
                 }`}
             >
               <FaSearch size={16} />
@@ -212,23 +217,15 @@ export default function Header() {
               aria-expanded={profileOpen}
               title="Profile"
               aria-label="Open profile menu"
-              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${isScrolled
-                  ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${isScrolled ? "hover:bg-gray-700" : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
                 }`}
             >
               <FaUserCircle size={20} />
-              {/* username hidden on smaller screens but keep chevron visible */}
-              <span className="hidden lg:block font-semibold text-sm sm:text-base">
-                Samyak
-              </span>
-
-              {/* Chevron that rotates when menu opens - visible on all sizes */}
+              <span className="hidden lg:block font-semibold text-sm sm:text-base">Samyak</span>
               <FaChevronDown
                 size={12}
                 aria-hidden="true"
-                className={`block transform transition-transform duration-200 ${profileOpen ? "rotate-180" : "rotate-0"
-                  }`}
+                className={`block transform transition-transform duration-200 ${profileOpen ? "rotate-180" : "rotate-0"}`}
               />
             </button>
           </div>
@@ -255,8 +252,8 @@ export default function Header() {
 
       {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
-      {/* Profile menu via portal (floating menu for all viewports) */}
-      {profileOpen &&
+      {/* render portal only when portalRoot exists (defensive) */}
+      {profileOpen && portalRoot &&
         createPortal(
           <div
             id="retrotoonz-profile-portal"
@@ -276,8 +273,7 @@ export default function Header() {
                 width: 16,
                 height: 16,
                 transform: "rotate(45deg)",
-                background:
-                  "linear-gradient(135deg, rgba(0,0,0,0.7), rgba(17,24,39,0.7))",
+                background: "linear-gradient(135deg, rgba(0,0,0,0.7), rgba(17,24,39,0.7))",
                 borderLeft: "1px solid rgba(255,255,255,0.1)",
                 borderTop: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 2,
@@ -293,14 +289,10 @@ export default function Header() {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <MenuItems
-                firstItemRef={firstItemRef}
-                onNavigate={navigateAndClose}
-                onClose={() => setProfileOpen(false)}
-              />
+              <MenuItems firstItemRef={firstItemRef} onNavigate={navigateAndClose} onClose={() => setProfileOpen(false)} />
             </div>
           </div>,
-          document.getElementById("retrotoonz-profile-portal-root")
+          portalRoot
         )}
 
       <style>{`
@@ -324,51 +316,45 @@ function MenuItems({ firstItemRef, onNavigate, onClose }) {
 
   return (
     <div className="py-2">
-      <Link
-        to="/profile"
-        role="menuitem"
+      <button
         ref={firstItemRef}
-        tabIndex={0}
-        className={`${itemBase} ${isActive("/profile") ? "bg-white/10" : ""}`}
         onClick={() => onNavigate("/profile")}
+        role="menuitem"
+        className={`${itemBase} ${isActive("/profile") ? "bg-white/10" : ""} w-full text-left`}
       >
         <FaUser className="text-cyan-300" />
         <span>My Account</span>
-      </Link>
+      </button>
 
-      <Link
-        to="/all-shows"
-        role="menuitem"
-        className={`${itemBase} ${isActive("/all-shows") ? "bg-white/10" : ""}`}
+      <button
         onClick={() => onNavigate("/all-shows")}
+        role="menuitem"
+        className={`${itemBase} ${isActive("/all-shows") ? "bg-white/10" : ""} w-full text-left`}
       >
         <FaList className="text-cyan-300" />
         <span>All Shows</span>
-      </Link>
+      </button>
 
-      <Link
-        to="/watchlist"
-        role="menuitem"
-        className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""}`}
+      <button
         onClick={() => onNavigate("/watchlist")}
+        role="menuitem"
+        className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""} w-full text-left`}
       >
         <FaHeart className="text-cyan-300" />
         <span>Wishlist</span>
-      </Link>
+      </button>
 
       <div className="h-px bg-white/10 my-1" />
 
       <button
         role="menuitem"
         className={itemBase + " w-full text-left"}
-        onClick={() => {
-          onClose && onClose();
-          alert("Log In / Log Out clicked (wire to your auth flow).");
-        }}
+        onClick={() => onNavigate("/login")}
       >
         <FaSignInAlt className="text-cyan-300" />
-        <span>Log In / Log Out</span>
+        <span>Sign In</span>
       </button>
+
     </div>
   );
 }
