@@ -6,24 +6,30 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
         currentEpisode?.seasonNumber !== undefined &&
         currentEpisode?.episodeNumber !== undefined
     ) {
-        sePid = `S${String(currentEpisode.seasonNumber).padStart(
-            2,
-            "0"
-        )}E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
+        sePid = `S${String(currentEpisode.seasonNumber).padStart(2, "0")}E${String(
+            currentEpisode.episodeNumber
+        ).padStart(2, "0")}`;
     } else if (currentEpisode?.episodeNumber !== undefined) {
         sePid = `E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
     } else if (currentEpisode?.episodeId) {
         sePid = currentEpisode.episodeId;
     }
 
+    // Prefer episode synopsis; fallback to show description
+    const synopsis =
+        (currentEpisode && (currentEpisode.synopsis ?? currentEpisode.description)) ??
+        currentShow.description ??
+        "";
+
     return (
         <div className="px-4 sm:px-8 md:px-12 py-6 mb-2">
-        
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+            {/* Reduced heading sizes */}
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2">
                 {currentShow.title}
             </h1>
 
-            <div className="flex flex-wrap gap-2 text-sm text-gray-300 mb-4">
+            {/* metadata - slightly smaller */}
+            <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-300 mb-4">
                 {[
                     currentShow.year,
                     currentShow.language,
@@ -54,11 +60,18 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
                 </div>
             )}
 
-            <p className="text-gray-200 max-w-3xl leading-relaxed text-sm sm:text-base md:text-lg lg:text-lg font-normal">
+            {/* Episode identifier + title (made slightly smaller) */}
+            <p className="text-gray-200 w-full leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl font-semibold">
+
                 {sePid ? `${sePid} - ` : ""}
                 {currentEpisode?.title ?? currentShow.description ?? ""}
             </p>
 
+            {synopsis ? (
+                <p className="text-gray-300 w-full mt-3 leading-relaxed text-sm sm:text-sm md:text-sm lg:text-sm">
+                    {synopsis}
+                </p>
+            ) : null}
         </div>
     );
 }
