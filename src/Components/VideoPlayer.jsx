@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import VideoTopBar from "./VideoTopBar";
-import VideoCenterControls from "./VideoCenterControls";
-import VideoBottomBar from "./VideoBottomBar";
 import SettingsPopover from "./SettingsPopover";
+import VideoBottomBar from "./VideoBottomBar";
+import VideoCenterControls from "./VideoCenterControls";
+import VideoTopBar from "./VideoTopBar";
 
 const DEFAULT_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 

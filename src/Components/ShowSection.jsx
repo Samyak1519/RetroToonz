@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import ShowCard from "./ShowCard";
 
 function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {

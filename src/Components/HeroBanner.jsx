@@ -1,7 +1,7 @@
 // src/Components/HeroBanner.jsx
 import { useEffect, useState } from "react";
+import { FaInfoCircle, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
 const DEFAULT_POSTER = "/Assets/default.jpg";
 

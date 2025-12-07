@@ -5,27 +5,13 @@ import { Link } from "react-router-dom";
 
 const DEFAULT_POSTER = "/media/extras/default.jpg";
 
-/**
- * Clean up path:
- *  - remove duplicate slashes
- *  - ensure leading slash
- */
+
 function cleanPath(p) {
     if (!p) return null;
-    // Replace multiple slashes with single slash
     const s = p.replace(/\/{2,}/g, "/");
-    // Ensure leading slash
     return s.startsWith("/") ? s : `/${s}`;
 }
 
-/**
- * Build the desktop/mobile poster urls.
- * Priority:
- *  1) Use value from JSON (if it looks like a /media/... path)
- *  2) Otherwise fall back to convention using show.id:
- *     Desktop -> /media/posters-desktop/${show.id}-poster-desktop.jpg
- *     Mobile  -> /media/posters-mobile/${show.id}-poster-mobile.jpeg
- */
 function getPosterUrls(show = {}) {
     const rawDesktop = show.thumbnail || show.poster || null;
     const rawMobile = show.thumbnailMobile || show.posterMobile || null;

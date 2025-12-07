@@ -1,5 +1,5 @@
 // src/Components/VideoBottomBar.jsx
-import { FaBackward, FaForward, FaCompress, FaExpand } from "react-icons/fa";
+import { FaBackward, FaCompress, FaExpand, FaForward } from "react-icons/fa";
 
 export default function VideoBottomBar({
   currentTime,

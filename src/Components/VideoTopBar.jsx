@@ -19,7 +19,6 @@ export default function VideoTopBar({
 }) {
     const showTitle = currentShow?.title || currentShow?.name || currentShow?.id || "Show";
 
-    // format episode number as E01 etc (pad to 2 digits) — fallback to episodeId if needed
     const episodeNumber =
         currentEpisode?.episodeNumber !== undefined && currentEpisode?.episodeNumber !== null
             ? String(currentEpisode.episodeNumber).padStart(2, "0")
@@ -27,15 +26,11 @@ export default function VideoTopBar({
 
     const episodeTitle = currentEpisode?.title || "";
 
-    // container classes: match bottom bar horizontal padding (px-5 sm:px-10).
-    // Add slightly larger top padding when fullscreen on desktop for breathing room.
     const containerClasses = [
         "absolute top-0 left-0 right-0 z-40",
         "bg-gradient-to-b from-black/70 to-transparent",
-        // NOTE: horizontal padding matches VideoBottomBar px-5 sm:px-10
         "px-5 py-2 sm:py-3",
         "flex items-center justify-between",
-        // extra top padding when fullscreen on larger screens to match visual weight
         isFullscreen ? "sm:pt-6 lg:pt-8" : "",
     ]
         .filter(Boolean)
@@ -61,7 +56,6 @@ export default function VideoTopBar({
                     <FaArrowLeft className="text-lg sm:text-xl" />
                 </button>
 
-                {/* Inline title/episode (only shown in fullscreen) */}
                 {isFullscreen && (
                     <div className="flex items-center gap-2 truncate min-w-0">
                         {/* Main label — plain inline text (no background) */}
@@ -118,7 +112,6 @@ export default function VideoTopBar({
                     </div>
                 </div>
 
-                {/* settings small back (when in settings subview) */}
                 {showSettings && settingsView !== "main" && (
                     <button
                         onClick={(e) => {
@@ -134,7 +127,6 @@ export default function VideoTopBar({
                     </button>
                 )}
 
-                {/* settings toggle */}
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
