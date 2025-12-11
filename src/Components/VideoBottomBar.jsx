@@ -100,7 +100,7 @@ export default function VideoBottomBar({
           title="Toggle fullscreen (F)"
           className="p-2 rounded-full hover:bg-white/10 transition"
         >
-          {isFullscreen ? <FaCompress size={16} /> : <FaExpand size={16} />}
+          {isFullscreen ? <FaCompress className="text-xl sm:text-xl" /> : <FaExpand className="text-xl sm:text-xl" />}
         </button>
       </div>
 

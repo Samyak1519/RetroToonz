@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SettingsPopover from "./SettingsPopover";
 import VideoBottomBar from "./VideoBottomBar";
 import VideoCenterControls from "./VideoCenterControls";
 import VideoTopBar from "./VideoTopBar";
-
-const DEFAULT_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
 const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousEpisode }) => {
   const videoRef = useRef(null);
@@ -17,13 +14,13 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
   const lastTapRef = useRef(0);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
-  const startVolume = useRef(1);
   const startCurrentTime = useRef(0);
 
   const navigate = useNavigate();
 
   // playback state
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isBuffering, setIsBuffering] = useState(true);   // ⭐ NEW
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -31,18 +28,13 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 
   // UI state
   const [showControls, setShowControls] = useState(true);
-  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // settings / quality
-  const [showSettings, setShowSettings] = useState(false);
-  const [settingsView, setSettingsView] = useState("main"); // "main" | "speed" | "quality"
-  const [speedOptions] = useState(DEFAULT_SPEEDS);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  // quality
   const [qualities, setQualities] = useState([]);
   const [selectedQuality, setSelectedQuality] = useState("Auto");
 
-  // UX overlays / feedback
+  // overlays / feedback
   const [progressBackground, setProgressBackground] = useState("");
   const [seekFeedback, setSeekFeedback] = useState(null);
   const [volumeFeedback, setVolumeFeedback] = useState(null);
@@ -61,13 +53,11 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     controlsTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
       controlsTimeoutRef.current = null;
-      setShowSettings(false);
-      setShowVolumeSlider(false);
-      setSettingsView("main");
     }, ms);
   };
 
-  /* ---------- Basic handlers (text mostly as before) ---------- */
+  /* ---------- Basic handlers ---------- */
+
   const toggleControls = (e) => {
     const clickedInsideControls = e?.target?.closest?.("[data-controls]") ?? false;
     if (clickedInsideControls) return;
@@ -90,6 +80,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     if (v.paused) {
       v.play().catch(() => { });
       setIsPlaying(true);
+      setIsBuffering(true);   // ⭐ show spinner until playing event fires
     } else {
       v.pause();
       setIsPlaying(false);
@@ -109,6 +100,15 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     updateProgressBackground();
   };
 
+  // ⭐ NEW: video buffering/ready handlers
+  const handleLoadStart = () => setIsBuffering(true);
+  const handleWaiting = () => setIsBuffering(true);
+  const handlePlaying = () => {
+    setIsBuffering(false);
+    setIsPlaying(true);
+  };
+  const handleCanPlay = () => setIsBuffering(false);
+
   const handleProgressChange = (newTime) => {
     if (videoRef.current) videoRef.current.currentTime = newTime;
     setCurrentTime(newTime);
@@ -124,9 +124,16 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 
   const toggleMute = (e) => {
     if (e) e.stopPropagation();
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
+    const v = videoRef.current;
+    if (!v) return;
+
+    v.muted = !v.muted;
+    setIsMuted(v.muted);
+
+    if (!v.muted && v.volume === 0) {
+      v.volume = 1;
+      setVolume(1);
+    }
     resetControlsTimer();
   };
 
@@ -140,13 +147,10 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
         await document.exitFullscreen();
       } else {
         await container.requestFullscreen();
-        if (window.screen?.orientation?.lock) {
+        if (window.screen?.orientation?.lock)
           window.screen.orientation.lock("landscape").catch(() => { });
-        }
       }
-    } catch (err) {
-      console.warn("Fullscreen error", err);
-    }
+    } catch { }
     resetControlsTimer();
   };
 
@@ -154,7 +158,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     if (typeof goToNextEpisode === "function") goToNextEpisode();
   };
 
-  // quality switching (kept same)
+  // quality switching kept the same
   const changeQuality = (label) => {
     const q = qualities.find((x) => x.label === label);
     if (!q || !videoRef.current) {
@@ -164,140 +168,121 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     const v = videoRef.current;
     const time = v.currentTime || 0;
     const wasPlaying = !v.paused;
+
     v.pause();
     v.src = q.url;
     setSelectedQuality(q.label);
     v.load();
+
     try {
-      v.currentTime = Math.min(time, q.url ? Infinity : time);
-    } catch (err) { }
-    if (wasPlaying) {
-      v.play().catch(() => setIsPlaying(false));
-    }
+      v.currentTime = time;
+    } catch { }
+
+    if (wasPlaying) v.play().catch(() => setIsPlaying(false));
     resetControlsTimer();
   };
 
   const updateProgressBackground = () => {
     const v = videoRef.current;
-    if (!v || !duration || duration === 0) {
-      setProgressBackground("");
-      return;
-    }
+    if (!v || !duration) return;
+
     const playedPct = Math.min(100, (v.currentTime / duration) * 100);
     let bufferedEnd = 0;
+
     try {
       for (let i = 0; i < v.buffered.length; i++) {
         bufferedEnd = Math.max(bufferedEnd, v.buffered.end(i));
       }
-    } catch (err) {
-      bufferedEnd = 0;
-    }
+    } catch { }
+
     const bufferedPct = Math.min(100, (bufferedEnd / duration) * 100);
 
-    const accent = "rgba(34,211,238,1)"; // cyan-like
+    const accent = "rgba(34,211,238,1)";
     const bufferedColor = "rgba(255,255,255,0.2)";
     const remainder = "rgba(255,255,255,0.06)";
 
-    const played = Math.max(0, Math.min(playedPct, bufferedPct));
+    const played = Math.min(playedPct, bufferedPct);
     const buffered = Math.max(playedPct, bufferedPct);
 
-    const gradient = `linear-gradient(90deg, ${accent} 0% ${played}%, ${bufferedColor} ${played}% ${buffered}%, ${remainder} ${buffered}% 100%)`;
-    setProgressBackground(gradient);
+    setProgressBackground(
+      `linear-gradient(90deg, ${accent} 0% ${played}%, ${bufferedColor} ${played}% ${buffered}%, ${remainder} ${buffered}% 100%)`
+    );
   };
 
   useEffect(() => {
-    const ticker = setInterval(() => {
-      updateProgressBackground();
-    }, 250);
+    const ticker = setInterval(updateProgressBackground, 250);
     return () => clearInterval(ticker);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [duration, currentTime]);
-
-  useEffect(() => {
-    updateProgressBackground();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [duration]);
-
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = playbackSpeed;
-  }, [playbackSpeed]);
 
   // keyboard handlers
   useEffect(() => {
     const onKey = (e) => {
       if (!containerRef.current) return;
+
       if (e.code === "Space") {
         e.preventDefault();
         togglePlayPause();
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
         if (videoRef.current) {
-          videoRef.current.currentTime = Math.max(0, (videoRef.current.currentTime || 0) - 10);
+          videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
           setCurrentTime(videoRef.current.currentTime);
         }
-        resetControlsTimer();
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
         if (videoRef.current) {
-          videoRef.current.currentTime = Math.min(duration || Infinity, (videoRef.current.currentTime || 0) + 10);
+          videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
           setCurrentTime(videoRef.current.currentTime);
         }
-        resetControlsTimer();
       } else if (e.key.toLowerCase() === "f") {
-        e.preventDefault();
         toggleFullscreen();
       } else if (e.key.toLowerCase() === "m") {
-        e.preventDefault();
         toggleMute();
       }
+
+      resetControlsTimer();
     };
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [duration]);
 
-  // load source / qualities when episode changes (kept same)
+  // load episode
   useEffect(() => {
     let sourceUrl = null;
-    if (startEpisode) {
-      if (startEpisode.qualities && startEpisode.qualities.length) {
-        setQualities(startEpisode.qualities);
-        setSelectedQuality(startEpisode.qualities[0].label ?? "Auto");
-        sourceUrl = startEpisode.qualities[0].url;
-      } else {
-        setQualities([{ label: "Auto", url: startEpisode.videoUrl }]);
-        setSelectedQuality("Auto");
-        sourceUrl = startEpisode.videoUrl;
-      }
+
+    if (startEpisode?.qualities?.length) {
+      setQualities(startEpisode.qualities);
+      setSelectedQuality(startEpisode.qualities[0].label ?? "Auto");
+      sourceUrl = startEpisode.qualities[0].url;
+    } else if (startEpisode?.videoUrl) {
+      setQualities([{ label: "Auto", url: startEpisode.videoUrl }]);
+      sourceUrl = startEpisode.videoUrl;
+    } else if (currentShow?.qualities?.length) {
+      setQualities(currentShow.qualities);
+      setSelectedQuality(currentShow.qualities[0].label ?? "Auto");
+      sourceUrl = currentShow.qualities[0].url;
     } else {
-      const q = currentShow?.qualities ?? (currentShow?.videoUrl ? [{ label: "Auto", url: currentShow.videoUrl }] : []);
-      setQualities(q);
-      setSelectedQuality(q[0]?.label ?? "Auto");
-      sourceUrl = q[0]?.url;
+      setQualities([{ label: "Auto", url: currentShow?.videoUrl }]);
+      sourceUrl = currentShow?.videoUrl;
     }
 
     const v = videoRef.current;
     if (v && sourceUrl) {
+      setIsBuffering(true);     // ⭐ show spinner immediately
       v.src = sourceUrl;
       v.load();
-      setTimeout(() => {
-        v.play().catch(() => setIsPlaying(false));
-      }, 50);
+      v.play().catch(() => setIsPlaying(false));
     }
 
     setCurrentTime(0);
     setDuration(0);
     setShowControls(true);
-    clearControlsTimeout();
-    controlsTimeoutRef.current = setTimeout(() => {
-      setShowControls(false);
-      controlsTimeoutRef.current = null;
-    }, 1500);
 
-    return () => {
-      clearControlsTimeout();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    clearControlsTimeout();
+    controlsTimeoutRef.current = setTimeout(() => setShowControls(false), 1500);
+
+    return clearControlsTimeout;
   }, [currentShow, startEpisode]);
 
   useEffect(() => {
@@ -310,35 +295,31 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
   }, []);
 
   /* ============================
-     TOUCH / GESTURE HANDLERS (kept same)
+     TOUCH HANDLERS (same except no volume swipe)
   ============================ */
   const handleTouchStart = (e) => {
-    if (!videoRef.current || !containerRef.current) return;
+    if (!videoRef.current) return;
     const touch = e.touches[0];
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
-    startVolume.current = videoRef.current.volume;
     startCurrentTime.current = videoRef.current.currentTime || 0;
 
     const now = Date.now();
-    const dt = now - (lastTapRef.current || 0);
+    const dt = now - lastTapRef.current;
     lastTapRef.current = now;
 
     const rect = containerRef.current.getBoundingClientRect();
     const x = touch.clientX - rect.left;
     const zone = x / rect.width;
 
-    if (tapTimeoutRef.current) {
-      clearTimeout(tapTimeoutRef.current);
-      tapTimeoutRef.current = null;
-    }
+    if (tapTimeoutRef.current) clearTimeout(tapTimeoutRef.current);
 
-    if (dt > 0 && dt < 300) {
+    if (dt < 300) {
       if (zone < 0.33) {
-        videoRef.current.currentTime = Math.max(0, (videoRef.current.currentTime || 0) - 10);
+        videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
         setSeekFeedback("-10s");
       } else if (zone > 0.66) {
-        videoRef.current.currentTime = Math.min(duration || Infinity, (videoRef.current.currentTime || 0) + 10);
+        videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
         setSeekFeedback("+10s");
       } else {
         togglePlayPause();
@@ -356,43 +337,25 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
   };
 
   const handleTouchMove = (e) => {
-    if (!videoRef.current || !containerRef.current) return;
-    if (tapTimeoutRef.current) {
-      clearTimeout(tapTimeoutRef.current);
-      tapTimeoutRef.current = null;
-    }
+    if (!videoRef.current) return;
 
     const touch = e.touches[0];
     const dx = touch.clientX - touchStartX.current;
     const dy = touch.clientY - touchStartY.current;
     const rect = containerRef.current.getBoundingClientRect();
-    const zoneX = (touchStartX.current - rect.left) / rect.width;
 
-    if (Math.abs(dy) > Math.abs(dx)) {
-      if (zoneX > 0.5) {
-        const delta = -dy / rect.height;
-        let newVolume = Math.min(1, Math.max(0, startVolume.current + delta));
-        if (videoRef.current) videoRef.current.volume = newVolume;
-        setVolume(newVolume);
-        setIsMuted(newVolume === 0);
-        setVolumeFeedback(Math.round(newVolume * 100));
-      }
-    } else {
-      if (!duration || duration <= 0) return;
+    // only horizontal seeking
+    if (Math.abs(dx) > Math.abs(dy)) {
       const seekDelta = (dx / rect.width) * duration;
       const newTime = Math.min(duration, Math.max(0, startCurrentTime.current + seekDelta));
       setDragSeekTime(newTime);
       setSeekFeedback(formatTime(newTime));
     }
+
     resetControlsTimer(2000);
   };
 
   const handleTouchEnd = () => {
-    if (tapTimeoutRef.current) {
-      clearTimeout(tapTimeoutRef.current);
-      tapTimeoutRef.current = null;
-    }
-
     if (dragSeekTime !== null && videoRef.current) {
       videoRef.current.currentTime = dragSeekTime;
       setCurrentTime(dragSeekTime);
@@ -403,18 +366,11 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     setTimeout(() => setVolumeFeedback(null), 600);
   };
 
-  /* ---------------------
-     small helper: formatTime
-     --------------------- */
-  function formatTime(time = 0) {
-    if (!isFinite(time) || time <= 0) return "00:00";
-    const h = Math.floor(time / 3600);
-    const m = Math.floor((time % 3600) / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = Math.floor(time % 60)
-      .toString()
-      .padStart(2, "0");
+  function formatTime(t = 0) {
+    if (!isFinite(t) || t <= 0) return "00:00";
+    const h = Math.floor(t / 3600);
+    const m = Math.floor((t % 3600) / 60).toString().padStart(2, "0");
+    const s = Math.floor(t % 60).toString().padStart(2, "0");
     return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
   }
 
@@ -429,8 +385,12 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
       <div className={`relative w-full bg-black rounded-md overflow-hidden ${isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"}`}>
         <video
           ref={videoRef}
-          src={qualities && qualities[0] ? qualities[0].url : startEpisode?.videoUrl ?? currentShow?.videoUrl}
+          src={qualities?.[0]?.url}
           className="absolute inset-0 w-full h-full object-contain"
+          onLoadStart={handleLoadStart}
+          onWaiting={handleWaiting}
+          onCanPlay={handleCanPlay}
+          onPlaying={handlePlaying}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleVideoEnd}
@@ -443,7 +403,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 
         <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-        {/* TOP BAR — render only when controls are visible (keeps top & bottom in sync) */}
+        {/* TOP BAR */}
         {showControls && (
           <VideoTopBar
             currentShow={currentShow}
@@ -452,60 +412,34 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
             navigate={navigate}
             isMuted={isMuted}
             volume={volume}
-            showVolumeSlider={showVolumeSlider}
-            setShowVolumeSlider={setShowVolumeSlider}
             toggleMute={toggleMute}
             resetControlsTimer={resetControlsTimer}
-            showSettings={showSettings}
-            setShowSettings={setShowSettings}
-            settingsView={settingsView}
-            setSettingsView={setSettingsView}
           />
         )}
 
+        {/* CENTER CONTROLS + SPINNER */}
+        <VideoCenterControls
+          isPlaying={isPlaying}
+          togglePlayPause={togglePlayPause}
+          rewind={() => {
+            if (videoRef.current)
+              videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
+            resetControlsTimer();
+          }}
+          forward={() => {
+            if (videoRef.current)
+              videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
+            resetControlsTimer();
+          }}
+          isBuffering={isBuffering}   // ⭐ NEW
+        />
 
-
-        {/* Settings popover (anchored to top-right area) */}
-        {showSettings && (
-          <SettingsPopover
-            settingsView={settingsView}
-            setSettingsView={setSettingsView}
-            speedOptions={speedOptions}
-            playbackSpeed={playbackSpeed}
-            setPlaybackSpeed={setPlaybackSpeed}
-            qualities={qualities}
-            selectedQuality={selectedQuality}
-            changeQuality={changeQuality}
-            resetControlsTimer={resetControlsTimer}
-          />
-        )}
-
-        {/* CENTER CONTROLS */}
-        {showControls && (
-          <VideoCenterControls
-            isPlaying={isPlaying}
-            togglePlayPause={togglePlayPause}
-            rewind={() => {
-              if (videoRef.current) videoRef.current.currentTime = Math.max(0, videoRef.current.currentTime - 10);
-              resetControlsTimer();
-            }}
-            forward={() => {
-              if (videoRef.current) videoRef.current.currentTime = Math.min(duration, videoRef.current.currentTime + 10);
-              resetControlsTimer();
-            }}
-          />
-        )}
-
-        {/* Overlays */}
+        {/* Seek feedback */}
         {seekFeedback && (
           <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
-            <div className="bg-black/75 text-white px-4 py-2 rounded-lg text-lg font-semibold">{seekFeedback}</div>
-          </div>
-        )}
-
-        {volumeFeedback !== null && (
-          <div className="absolute right-4 top-16 z-50 pointer-events-none">
-            <div className="bg-black/75 text-white px-3 py-2 rounded-lg text-sm">🔊 {volumeFeedback}%</div>
+            <div className="bg-black/75 text-white px-4 py-2 rounded-lg text-lg font-semibold">
+              {seekFeedback}
+            </div>
           </div>
         )}
 
@@ -526,32 +460,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           />
         )}
       </div>
-
-      {/* small helper CSS (unchanged) */}
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        /* Make range thumb larger for touch */
-        input[type="range"]::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          height: 16px;
-          width: 16px;
-          border-radius: 999px;
-          background: #22d3ee;
-          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.12);
-        }
-        input[type="range"]::-moz-range-thumb {
-          height: 16px;
-          width: 16px;
-          border-radius: 999px;
-          background: #22d3ee;
-        }
-      `}</style>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-// src/Components/VideoTopBar.jsx
-import { FaArrowLeft, FaCog, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import { FaArrowLeft, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 export default function VideoTopBar({
     currentShow,
@@ -7,14 +6,8 @@ export default function VideoTopBar({
     navigate,
     isMuted,
     volume,
-    showVolumeSlider,
-    setShowVolumeSlider,
     toggleMute,
     resetControlsTimer,
-    showSettings,
-    setShowSettings,
-    settingsView,
-    setSettingsView,
     isFullscreen,
 }) {
     const showTitle = currentShow?.title || currentShow?.name || currentShow?.id || "Show";
@@ -38,7 +31,7 @@ export default function VideoTopBar({
 
     return (
         <div data-controls className={containerClasses}>
-            <div className="flex items-center min-w-0">
+            <div className="flex items-center min-w-0 sm:px-0 md:px-6">
                 {/* Back button */}
                 <button
                     onClick={(e) => {
@@ -49,11 +42,11 @@ export default function VideoTopBar({
                             navigate(-1);
                         }
                     }}
-                    className="p-2 sm:p-3 mr-2 rounded-full hover:bg-white/10 transition flex items-center"
+                    className="p-2 sm:p-3  mr-2 rounded-full hover:bg-white/10 transition flex items-center"
                     aria-label="Back to show"
                     onMouseDown={(e) => e.stopPropagation()}
                 >
-                    <FaArrowLeft className="text-lg sm:text-xl" />
+                    <FaArrowLeft className="text-xl sm:text-xl" />
                 </button>
 
                 {isFullscreen && (
@@ -63,7 +56,8 @@ export default function VideoTopBar({
                             <span className="font-semibold">{showTitle}</span>
                             {episodeNumber && (
                                 <span className="text-white/90">
-                                    {" "} : E{episodeNumber}
+                                    {" "}
+                                    : E{episodeNumber}
                                     {episodeTitle ? ` "${episodeTitle}"` : ""}
                                 </span>
                             )}
@@ -73,76 +67,21 @@ export default function VideoTopBar({
             </div>
 
             <div className="flex items-center relative">
-                {/* volume button */}
-                <div className="relative mr-2">
+                {/* volume button: only mute/unmute now */}
+                <div className="relative mr-2 sm:mr-10 ">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             toggleMute(e);
-                            setShowVolumeSlider((p) => !p);
                             resetControlsTimer();
                         }}
-                        className="p-2 rounded-full hover:bg-white/10 transition"
+                        className="p-2 sm:pr-1 rounded-full hover:bg-white/10 transition"
                         title={isMuted ? "Unmute" : "Mute"}
                         aria-label={isMuted ? "Unmute" : "Mute"}
                     >
-                        {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
+                        {isMuted || volume === 0 ? <FaVolumeMute className="text-xl sm:text-xl" /> : <FaVolumeUp className="text-xl sm:text-xl" />}
                     </button>
-
-                    <div
-                        className={`absolute right-0 mt-12 w-36 bg-black/90 border border-white/10 rounded-md p-2 z-50 transition-all ${showVolumeSlider ? "opacity-100" : "opacity-0 pointer-events-none"
-                            }`}
-                        onMouseDown={(e) => e.stopPropagation()}
-                    >
-                        <input
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value={isMuted ? 0 : volume}
-                            onChange={(e) => {
-                                const v = parseFloat(e.target.value);
-                                e.stopPropagation();
-                                // parent can listen for this custom event or you can wire a callback instead
-                                const ev = new CustomEvent("video-volume-change", { detail: { value: v } });
-                                window.dispatchEvent(ev);
-                            }}
-                            className="w-full accent-cyan-500"
-                        />
-                    </div>
                 </div>
-
-                {showSettings && settingsView !== "main" && (
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setSettingsView("main");
-                            resetControlsTimer();
-                        }}
-                        className="p-1 sm:p-2 rounded-full hover:bg-white/10 transition mr-2"
-                        aria-label="Back in settings"
-                        title="Back"
-                    >
-                        <FaArrowLeft className="text-sm sm:text-base" />
-                    </button>
-                )}
-
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowSettings((s) => {
-                            const next = !s;
-                            if (next) setSettingsView("main");
-                            return next;
-                        });
-                        resetControlsTimer();
-                    }}
-                    className="p-2 sm:p-3 rounded-full hover:bg-white/10 transition"
-                    aria-label="Settings"
-                    title="Settings"
-                >
-                    <FaCog className="text-lg sm:text-xl" />
-                </button>
             </div>
         </div>
     );
