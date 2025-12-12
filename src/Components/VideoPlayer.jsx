@@ -20,7 +20,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 
   // playback state
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isBuffering, setIsBuffering] = useState(true);   // ⭐ NEW
+  const [isBuffering, setIsBuffering] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -47,7 +47,16 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     }
   };
 
-  const resetControlsTimer = (ms = 3000) => {
+  const showControlsOnTap = (e) => {
+    const clickedInsideControls = e?.target?.closest?.("[data-controls]");
+    if (clickedInsideControls) return;
+
+    // Always show controls and restart timer
+    resetControlsTimer(5000); // or 3000 if you want
+  };
+
+
+  const resetControlsTimer = (ms = 5000) => {
     setShowControls(true);
     clearControlsTimeout();
     controlsTimeoutRef.current = setTimeout(() => {
@@ -331,9 +340,10 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
     }
 
     tapTimeoutRef.current = setTimeout(() => {
-      toggleControls();
+      showControlsOnTap();
       tapTimeoutRef.current = null;
     }, 300);
+
   };
 
   const handleTouchMove = (e) => {
@@ -396,7 +406,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           onEnded={handleVideoEnd}
           autoPlay
           controls={false}
-          onClick={toggleControls}
+          onClick={showControlsOnTap}
           playsInline
           preload="metadata"
         />
@@ -417,6 +427,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
           />
         )}
 
+
         {/* CENTER CONTROLS + SPINNER */}
         <VideoCenterControls
           isPlaying={isPlaying}
@@ -432,6 +443,7 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
             resetControlsTimer();
           }}
           isBuffering={isBuffering}   // ⭐ NEW
+          showControls={showControls}
         />
 
         {/* Seek feedback */}
@@ -465,3 +477,6 @@ const VideoPlayer = ({ currentShow, startEpisode, goToNextEpisode, goToPreviousE
 };
 
 export default VideoPlayer;
+
+
+

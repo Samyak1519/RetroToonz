@@ -1,3 +1,4 @@
+import { CircleStar } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -378,7 +379,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
         role="menuitem"
         className={`${itemBase} ${isActive("/about-us") ? "bg-white/10" : ""} w-full text-left`}
       >
-        <FaHeart className="text-cyan-300" />
+        <CircleStar className="text-cyan-300" />
         <span>About Us</span>
       </button>
 
