@@ -12,6 +12,7 @@ import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
 import "./App.css";
+import AboutPage from "./Pages/AboutPage";
 
 function AppRoutes() {
   return (
@@ -27,6 +28,7 @@ function AppRoutes() {
       <Route path="/comingsoon" element={<ComingSoon />} />
       <Route path="/search" element={<SearchResultsPage />} />
       <Route path="/addshow" element={<AddShowPage />} />
+      <Route path="/about-us" element={<AboutPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

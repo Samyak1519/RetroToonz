@@ -372,6 +372,16 @@ function MenuItems({ firstItemRef, onNavigate }) {
         <span>Wishlist</span>
       </button>
 
+
+      <button
+        onClick={() => onNavigate("/about-us")}
+        role="menuitem"
+        className={`${itemBase} ${isActive("/about-us") ? "bg-white/10" : ""} w-full text-left`}
+      >
+        <FaHeart className="text-cyan-300" />
+        <span>About Us</span>
+      </button>
+
       <div className="h-px bg-white/10 my-1" />
 
       <button
