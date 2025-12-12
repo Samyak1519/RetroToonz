@@ -369,7 +369,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
         role="menuitem"
         className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""} w-full text-left`}
       >
-        <FaHeart className="text-cyan-300" />
+        <FaHeart className="text-cyan-300 " />
         <span>Wishlist</span>
       </button>
 

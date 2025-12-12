@@ -31,7 +31,7 @@ export default function VideoCenterControls({
                 </div>
             )}
 
-            <div className="pointer-events-auto flex items-center gap-10 sm:gap-20">
+            <div className="pointer-events-auto flex items-center gap-10 sm:gap-16">
                 {/* Rewind */}
                 <button
                     onClick={(e) => {

@@ -135,12 +135,7 @@ export default function AllShowsPage() {
       <Header />
 
       <main className="flex-grow relative">
-        {/* 
-          Changed padding:
-            - small/medium: keep previous comfortable paddings
-            - large (lg) and xl: increase left/right padding so content sits under back arrow
-        */}
-        <div className="px-4 sm:px-7 md:px-8 lg:px-20 xl:px-30 py-6 max-w-screen-2xl mx-auto relative">
+        <div className="px-4 sm:px-7 md:px-8 lg:px-16 xl:px-30 py-6 max-w-screen-2xl mx-auto relative">
 
           <div className="flex items-center gap-3 mb-3 sm:mb-6">
             <button
@@ -148,7 +143,7 @@ export default function AllShowsPage() {
               className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-lg transition z-20"
               aria-label="Go back"
             >
-              <FaArrowLeft />
+              <FaArrowLeft size={24} />
             </button>
 
             <h1 className="text-2xl sm:text-3xl font-extrabold">All Shows</h1>
@@ -254,10 +249,8 @@ export default function AllShowsPage() {
 
               {grouped.map(({ letter, shows }) => (
                 <section
-                  key={letter}
-                  className="pb-6 border-b border-white/5 last:border-b-0"
-                >
-                  <div className="flex items-center gap-5 mb-4">
+                  key={letter}                >
+                  <div className="flex items-center gap-5 my-5">
                     <div className="text-2xl font-bold text-cyan-300">{letter}</div>
                     <div className="h-px flex-1 bg-white/10" />
                     <div className="text-sm text-gray-400">{shows.length}</div>
@@ -266,11 +259,9 @@ export default function AllShowsPage() {
 
                   <div
                     className="grid grid-cols-2 gap-x-4 gap-y-5
-             sm:grid-cols-3 sm:gap-x-5 sm:gap-y-6
-             md:grid-cols-4 md:gap-x-6 md:gap-y-8
-             lg:grid-cols-5 xl:grid-cols-5"
-                  >
-
+                              sm:grid-cols-3 sm:gap-x-5 sm:gap-y-6
+                              md:grid-cols-4 md:gap-x-6 md:gap-y-8
+                              lg:grid-cols-5 xl:grid-cols-5">
 
                     {shows.map((s) => (
                       <div
