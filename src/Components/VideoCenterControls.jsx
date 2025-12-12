@@ -6,12 +6,23 @@ export default function VideoCenterControls({
     togglePlayPause,
     rewind,
     forward,
-    isBuffering
+    isBuffering,
+    showControls,
 }) {
-    return (
-        <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+    const glassBtn =
+        "bg-black/30 backdrop-blur-md border border-white/10 hover:bg-white/20 transition rounded-full text-white";
 
-            {/* ⭐ Spinner A — YouTube-style white circular loader */}
+    return (
+        <div
+            data-controls
+            className={`
+                absolute inset-0 z-30 flex items-center justify-center
+                pointer-events-none
+                transition-opacity duration-300 ease-in-out
+                ${showControls ? "opacity-100" : "opacity-0"}
+            `}
+        >
+            {/* Spinner */}
             {isBuffering && (
                 <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
                     <div className="yt-spinner-container">
@@ -20,15 +31,14 @@ export default function VideoCenterControls({
                 </div>
             )}
 
-            <div className="pointer-events-auto flex items-center gap-8 sm:gap-10">
-
+            <div className="pointer-events-auto flex items-center gap-10 sm:gap-20">
                 {/* Rewind */}
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
                         rewind?.();
                     }}
-                    className="bg-black/40 p-2.5 sm:p-3 rounded-full text-white"
+                    className={`${glassBtn} p-2.5 sm:p-3`}
                 >
                     <RiReplay10Line size={20} />
                 </button>
@@ -39,7 +49,7 @@ export default function VideoCenterControls({
                         e.stopPropagation();
                         togglePlayPause?.();
                     }}
-                    className="bg-black/40 p-3.5 sm:p-4 rounded-full text-white"
+                    className={`${glassBtn} p-3.5 sm:p-4`}
                 >
                     {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
                 </button>
@@ -50,13 +60,13 @@ export default function VideoCenterControls({
                         e.stopPropagation();
                         forward?.();
                     }}
-                    className="bg-black/40 p-2.5 sm:p-3 rounded-full text-white"
+                    className={`${glassBtn} p-2.5 sm:p-3`}
                 >
                     <RiForward10Line size={20} />
                 </button>
             </div>
 
-            {/* Spinner A CSS */}
+            {/* Spinner CSS (unchanged) */}
             <style jsx>{`
                 .yt-spinner-container {
                     padding: 16px;
@@ -71,11 +81,8 @@ export default function VideoCenterControls({
                     width: 40px;
                     height: 40px;
                     border-radius: 999px;
-
-                    /* YouTube-style thin arc */
                     border: 3px solid rgba(255, 255, 255, 0.25);
                     border-top-color: white;
-
                     animation: yt-spin 0.75s linear infinite;
                 }
 
