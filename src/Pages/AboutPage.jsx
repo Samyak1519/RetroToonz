@@ -2,7 +2,7 @@ import React from 'react';
 import { Film, Tv, Sparkles, Heart, ArrowRight, Instagram, Twitter, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const logoSrc = "/public/media/extras/retrotoonz_full_image.png";
+const logoSrc = "/media/extras/retrotoonz_full_image.png";
 
 const AboutPage = () => {
     return (
@@ -12,41 +12,40 @@ const AboutPage = () => {
             <nav className="w-full py-6 px-4 md:px-12 flex justify-between items-center border-b border-[#d4af37]/20">
 
                 <Link to="/">
-                    <div className="text-2xl font-serif font-bold tracking-wider text-[#d4af37]">RetroToonz</div>
+                    <div className="text-3xl font-serif font-semibold tracking-wider text-[#d4af37]">RetroToonz</div>
                 </Link>
                 <div className="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase opacity-80">
-                    <a href="#" className="text-[#d4af37]">About</a>
+                    <p className="text-[#d4af37] font-semibold text-lg">About US</p>
                 </div>
             </nav>
 
             {/* --- Hero Section --- */}
-            <section className="relative w-full py-10 md:py-24 flex flex-col items-center text-center overflow-hidden">
+            <section className="relative w-full py-2 md:pt-6 md:pb-24 flex flex-col items-center text-center overflow-hidden">
                 {/* Background Decorative Pattern */}
                 <div className="absolute inset-0 opacity-10 pointer-events-none"
                     style={{ backgroundImage: 'radial-gradient(circle, #d4af37 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
                 </div>
 
                 {/* Glow effect behind logo */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#d4af37] rounded-full blur-[120px] opacity-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#d4af37] rounded-full blur-[120px] opacity-15"></div>
 
                 {/* Main Logo Image */}
-                <div className="relative z-10 mb-8 transform hover:scale-105 transition-transform duration-700 ease-out">
+                <div className="relative z-10 mb-8 transform hover:scale-105 transition-transform duration-700 ease-out w-full md:w-auto">
                     <img
                         src={logoSrc}
                         alt="RetroToonz Emblem"
-                        className="w-82 md:w-96 mx-auto drop-shadow-2xl cursor-pointer"
+                        className="w-full md:w-[600px] mx-auto drop-shadow-2xl cursor-pointer"
                     />
                 </div>
 
-                <h1 className="relative z-10  text-4xl md:text-6xl font-serif font-bold text-[#d4af37] mb-6 tracking-wide drop-shadow-lg">
-                    Restoring the Golden Age
+                <h1 className="relative z-10 text-4xl md:text-6xl font-serif font-bold text-[#d4af37] mb-6 tracking-wide drop-shadow-lg">
+                    Restoring <br className="block md:hidden" /> the Golden Age
                 </h1>
-                <p className="relative z-10 max-w-2xl px-6 text-lg md:text-xl leading-relaxed text-[#f4e4bc]/80">
+                <p className="relative z-10 max-w-2xl px-6 text-md md:text-lg leading-relaxed text-[#f4e4bc]/80">
                     We don't just preserve the past; we remix it. Welcome to the home of
                     nostalgia, vintage animation, and digital art reimagined.
                 </p>
             </section>
-
             {/* --- The Story Section --- */}
             <section className="w-full max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-16 items-center">
                 <div className="space-y-6">
@@ -57,10 +56,10 @@ const AboutPage = () => {
                     <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight">
                         Classic Vibes. <br /> Modern Soul.
                     </h2>
-                    <p className="text-[#f4e4bc]/70 leading-relaxed text-lg">
+                    <p className="text-[#f4e4bc]/70 leading-relaxed text-md">
                         RetroToonz was born from a love of Saturday morning cartoons, 8-bit adventures, and the vibrant ink-and-paint aesthetic of the 20th century. We exist to keep that spirit alive.
                     </p>
-                    <p className="text-[#f4e4bc]/70 leading-relaxed text-lg">
+                    <p className="text-[#f4e4bc]/70 leading-relaxed text-md">
                         Whether it’s through original artwork, apparel, or digital content, RetroToonz bridges the gap between the cherished memories of your childhood and the style of today.
                     </p>
 
@@ -84,13 +83,13 @@ const AboutPage = () => {
                         {/* COLUMN 1: Vintage (Big) -> Art Remix (Small) */}
                         <div className="flex flex-col gap-4">
                             {/* Vintage Style - BIG BLOCK */}
-                            <div className="bg-[#2a0a0a] rounded-lg border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-60 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
+                            <div className="bg-[#2a0a0a] rounded-3xl border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-60 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
                                 <Film size={36} className="text-[#d4af37] group-hover:scale-110 transition-transform" />
                                 <span className="font-serif text-lg text-[#f4e4bc] group-hover:text-[#d4af37]">Vintage Style</span>
                             </div>
 
                             {/* Art Remix - SMALL BLOCK */}
-                            <div className="bg-[#2a0a0a] rounded-lg border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-36 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
+                            <div className="bg-[#2a0a0a] rounded-3xl border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-36 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
                                 <Sparkles size={32} className="text-[#d4af37] group-hover:scale-110 transition-transform" />
                                 <span className="font-serif text-lg text-[#f4e4bc] group-hover:text-[#d4af37]">Art Remix</span>
                             </div>
@@ -99,13 +98,13 @@ const AboutPage = () => {
                         {/* COLUMN 2: Cartoons (Small) -> Nostalgia (Big) */}
                         <div className="flex flex-col gap-4">
                             {/* Cartoons - SMALL BLOCK */}
-                            <div className="bg-[#2a0a0a] rounded-lg border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-36 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
+                            <div className="bg-[#2a0a0a] rounded-3xl border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-36 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
                                 <Tv size={32} className="text-[#d4af37] group-hover:scale-110 transition-transform" />
                                 <span className="font-serif text-lg text-[#f4e4bc] group-hover:text-[#d4af37]">Cartoons</span>
                             </div>
 
                             {/* Nostalgia - BIG BLOCK */}
-                            <div className="bg-[#2a0a0a] rounded-lg border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-60 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
+                            <div className="bg-[#2a0a0a] rounded-3xl border border-[#d4af37]/20 flex flex-col items-center justify-center text-center gap-3 h-60 hover:bg-[#3a0e0e] transition-colors group cursor-pointer">
                                 <Heart size={36} className="text-[#d4af37] group-hover:scale-110 transition-transform" />
                                 <span className="font-serif text-lg text-[#f4e4bc] group-hover:text-[#d4af37]">Nostalgia</span>
                             </div>
@@ -116,7 +115,7 @@ const AboutPage = () => {
             </section>
 
             {/* --- Divider --- */}
-            <div className="w-full flex justify-center items-center gap-4 opacity-30 py-8">
+            <div className="w-full flex justify-center items-center gap-4 opacity-30 py-5">
                 <div className="h-[1px] w-32 bg-[#d4af37]"></div>
                 <div className="text-[#d4af37] text-2xl font-serif">✦</div>
                 <div className="h-[1px] w-32 bg-[#d4af37]"></div>
@@ -154,7 +153,7 @@ const AboutPage = () => {
             </section>
 
             {/* --- Footer --- */}
-            <footer className="w-full mt-20 border-t border-[#d4af37]/20 bg-[#120303] py-12">
+            <footer className="w-full mt-10 border-t border-[#d4af37]/20 bg-[#120303] py-12">
                 <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
 
                     <div className="text-center md:text-left">

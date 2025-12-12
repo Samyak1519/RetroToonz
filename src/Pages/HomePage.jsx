@@ -14,11 +14,7 @@ const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";   // ✅ updated to plural
 const extrasDir = "/media/extras";
 
-/**
- * Normalize a poster-like value to the media folder.
- * - keep if already starts with /media/
- * - otherwise map to posters-desktop or posters-mobile
- */
+
 const normalizePosterPath = (value, preferMobile = false) => {
   if (!value) return null;
   if (typeof value === "string" && value.startsWith("/media/")) return value;
