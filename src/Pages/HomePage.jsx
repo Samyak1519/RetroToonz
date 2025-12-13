@@ -129,9 +129,6 @@ const cartoonComedy = pickShows(
 
 function HomePage() {
   return (
-
-
-
     <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
       <Header />
 

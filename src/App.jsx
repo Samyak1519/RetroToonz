@@ -5,21 +5,22 @@ import AllShowsPage from "./Pages/AllShowsPage";
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
-import AuthPage from "./Pages/AuthPage"; // ✅ New unified page
+import AuthPage from "./Pages/AuthPage";
 import ProfilePage from "./Pages/ProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
-import "./App.css";
 import AboutPage from "./Pages/AboutPage";
+import ScrollToTop from "./Components/ScrollToTop"; // ✅ ADD THIS
+import "./App.css";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<AuthPage />} />
-      <Route path="/signup" element={<AuthPage />} /> {/* optional alias */}
+      <Route path="/signup" element={<AuthPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
       <Route path="/all-shows" element={<AllShowsPage />} />
@@ -38,6 +39,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-space-galaxy text-white">
       <BrowserRouter>
+        <ScrollToTop /> {/* ✅ THIS FIXES THE ISSUE */}
         <AppRoutes />
         <SpeedInsights />
       </BrowserRouter>

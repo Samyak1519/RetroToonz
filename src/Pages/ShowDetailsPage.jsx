@@ -38,10 +38,8 @@ function ShowDetailsPage() {
       ? show.thumbnailMobile
       : getPosterUrl(show.id, "mobile");
 
-  // default poster — keep this in public/media/posters-desktop/
   const defaultPoster = "/media/posters-desktop/default-poster.jpg";
 
-  // ✅ Get first episode ID for Play button
   const firstEpisodeId = show.seasons?.[0]?.episodes?.[0]?.episodeId;
 
   return (
@@ -49,7 +47,9 @@ function ShowDetailsPage() {
       <Header />
 
       <main className="flex-grow">
-        <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[400px] overflow-hidden ">
+
+        {/* POSTER SECTION — SAME STRUCTURE, ONLY ASPECT CHANGE */}
+        <div className="relative w-full aspect-[3/3] sm:aspect-auto sm:h-72 md:h-80 lg:h-[400px] overflow-hidden">
           <picture>
             <source srcSet={posterMobile} media="(max-width:600px)" />
             <img
@@ -67,22 +67,24 @@ function ShowDetailsPage() {
 
           <button
             onClick={() => navigate(-1)}
-            className="absolute 
-                        top-4 left-2
-                        sm:top-5 sm:left-6
-                        lg:top-6 lg:left-10
-                        bg-black/70 hover:bg-black/90 
-                        p-2 sm:p-2.5 lg:p-3 
-                        rounded-full 
-                        text-white 
-                        text-lg sm:text-xl lg:text-2xl 
-                        z-20 transition"
+            className="
+              absolute top-4 left-3.5
+              sm:top-5 sm:left-6
+              lg:top-6 lg:left-10
+              bg-black/70 hover:bg-black/90
+              p-3 sm:p-2.5 lg:p-3
+              rounded-full
+              text-white
+              text-lg sm:text-xl lg:text-2xl
+              z-20 transition
+            "
             aria-label="Go back"
           >
             <FaArrowLeft />
           </button>
         </div>
 
+        {/* CONTENT */}
         <div className="px-4 md:px-20 lg:px-40 lg:pr-48 pb-10 mt-5">
           <div className="flex items-start justify-between gap-4 mb-5">
             <div className="flex-1">
@@ -105,14 +107,14 @@ function ShowDetailsPage() {
             </div>
 
             <div className="flex items-center gap-4 mr-2 sm:mr-5">
-              {/* Watchlist button */}
               <button
                 onClick={toggleShortlist}
-                className="text-4xl sm:text-5xl mr-3 sm:mr-5 hover:scale-110 transition-transform"
+                className="text-4xl sm:text-5xl hover:scale-110 transition-transform"
                 title={
-                  isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
+                  isShortlisted
+                    ? "Remove from Watchlist"
+                    : "Add to Watchlist"
                 }
-                aria-pressed={isShortlisted}
               >
                 {isShortlisted ? (
                   <VscHeartFilled className="text-red-600" />
@@ -121,7 +123,6 @@ function ShowDetailsPage() {
                 )}
               </button>
 
-              {/* ✅ Play button updated */}
               <button
                 onClick={() => {
                   if (firstEpisodeId) {
