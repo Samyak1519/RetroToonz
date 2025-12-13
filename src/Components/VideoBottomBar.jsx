@@ -31,10 +31,10 @@ export default function VideoBottomBar({
   return (
     <div
       data-controls
-      className="absolute left-0 right-0 bottom-0 z-30 px-4 sm:px-8 lg:px-12 pb-1.5 sm:pb-5 pt-2 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto"
+      className="absolute left-0 right-0 bottom-0 z-30 px-5 sm:px-8 lg:px-12 pb-1.5 sm:pb-5 pt-2 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto"
     >
       {/* progress row */}
-      <div className="flex items-center gap-0.5 mb-1.5 sm:mb-5">
+      <div className="flex items-center gap-0.5 mb-2 sm:mb-7">
         <span className="text-xs text-white w-12 text-left select-none">
           {formatTime(value)}
         </span>
