@@ -140,6 +140,48 @@ const AboutPage = () => {
                 </div>
             </section>
 
+
+
+            {/* --- Premium Divider (Blue/Silver) --- */}
+            <div className="w-full flex justify-center items-center gap-6 opacity-40 py-12">
+                {/* Changed to Blue Gradient */}
+                <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
+                <div className="text-[#93c5fd] text-2xl animate-pulse">✦</div>
+                <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
+            </div>
+
+            {/* --- Mission / Values --- */}
+            <section className="w-full max-w-6xl mx-auto px-6 pt-10 text-center">
+                <h3 className="text-2xl md:text-4xl font-royal font-bold text-[#f1f5f9] mb-16 tracking-wide">
+                    "STAY CURIOUS. <span className="text-[#60a5fa]">STAY ADVENTUROUS.</span>"
+                </h3>
+
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+                    {[
+                        {
+                            title: "THE LEGACY",
+                            desc: "Honoring the bold lines, wacky characters, and 'anything is possible' attitude of vintage animation."
+                        },
+                        {
+                            title: "THE CRAFT",
+                            desc: "Blending old-school aesthetics with modern design tools to create something entirely unique."
+                        },
+                        {
+                            title: "THE COMMUNITY",
+                            desc: "Building a tribe of people who still believe that cartoons are cool at any age."
+                        }
+                    ].map((item, idx) => (
+
+                        <div key={idx} className="bg-[#0b1121] p-10 border border-[#1e293b] hover:border-[#60a5fa]/40 transition-all duration-500 rounded-lg group hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(30,58,138,0.2)]">
+                            <h4 className="text-xl font-royal font-bold text-[#e2e8f0] mb-4 group-hover:text-[#93c5fd] transition-colors">{item.title}</h4>
+                            <p className="text-[#94a3b8] font-body text-sm md:text-base leading-relaxed group-hover:text-[#cbd5e1] transition-colors">
+                                {item.desc}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             {/* --- Footer --- */}
             <footer className="w-full mt-20 border-t border-[#1e293b] bg-[#020617] py-16 relative overflow-hidden">
                 {/* Footer Glow Line */}
