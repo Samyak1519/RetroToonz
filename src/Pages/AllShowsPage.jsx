@@ -242,9 +242,9 @@ export default function AllShowsPage() {
             </div>
 
             {/* Removed inner px so blocks align with container padding */}
-            <div className="space-y-10 mb-16">
+            <div className="space-y-10 mb-16 sm:px-0 px-2">
               {grouped.length === 0 && (
-                <div className="py-12 text-center text-gray-400">No shows match your filters.</div>
+                <div className="py-10 text-center text-gray-400">No shows match your filters.</div>
               )}
 
               {grouped.map(({ letter, shows }) => (
@@ -257,12 +257,13 @@ export default function AllShowsPage() {
                   </div>
 
 
+                  {/* Locating the grid container in your code */}
                   <div
-                    className="grid grid-cols-2 gap-x-4 gap-y-5
-                              sm:grid-cols-3 sm:gap-x-5 sm:gap-y-6
-                              md:grid-cols-4 md:gap-x-6 md:gap-y-8
-                              lg:grid-cols-5 xl:grid-cols-5">
-
+                    className="grid grid-cols-2 gap-x-4 gap-y-5 
+                          sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 
+                          md:grid-cols-3 md:gap-x-6 md:gap-y-8 
+                          lg:grid-cols-4 xl:grid-cols-4"
+                  >
                     {shows.map((s) => (
                       <div
                         key={s.id}
