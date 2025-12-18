@@ -9,7 +9,6 @@ function WatchlistPage() {
   const navigate = useNavigate();
 
   return (
-
     <div className="flex flex-col min-h-screen text-white">
       <Header />
 
@@ -22,9 +21,7 @@ function WatchlistPage() {
           <FaArrowLeft />
         </button>
 
-        <h2 className="text-2xl font-semibold">
-          Your Watchlist
-        </h2>
+        <h2 className="text-2xl font-semibold">Your Watchlist</h2>
       </div>
 
       {/* Centered Message */}

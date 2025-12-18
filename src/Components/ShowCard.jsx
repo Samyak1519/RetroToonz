@@ -26,7 +26,6 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
     <Link to={`/show/${id}`} aria-label={`Open ${title}`}>
       <article className="relative flex-shrink-0">
         <div className="w-[38vw] sm:w-full">
-
           {/* Hover owner */}
           <div
             className="
@@ -49,7 +48,6 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
             >
               {/* Aspect ratio */}
               <div className="pt-[150%] sm:pt-[56.25%] relative">
-
                 {/* Poster */}
                 <picture>
                   <source media="(min-width:640px)" srcSet={desktopPoster} />
@@ -108,11 +106,9 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                     <VscHeart />
                   )}
                 </button>
-
               </div>
             </div>
           </div>
-
         </div>
       </article>
     </Link>

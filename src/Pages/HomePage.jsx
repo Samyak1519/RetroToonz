@@ -110,16 +110,12 @@ const trendingShows = pickShows(allShows, usedCounts, 8);
 const newlyAdded = allShows
   .filter((show) => newlyAddedTitles.includes(show.title))
   .slice(0, 6);
-newlyAdded.forEach(
-  (s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1)
-);
+newlyAdded.forEach((s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1));
 
 const retroClassics = allShows
   .filter((show) => show.year && parseInt(show.year) < 2000)
   .slice(0, 6);
-retroClassics.forEach(
-  (s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1)
-);
+retroClassics.forEach((s) => (usedCounts[s.id] = (usedCounts[s.id] || 0) + 1));
 
 const cartoonComedy = pickShows(
   allShows.filter((show) => show.tags?.includes("Comedy")),

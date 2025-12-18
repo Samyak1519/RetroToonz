@@ -70,9 +70,8 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                     <Listbox.Option
                       key={season.index}
                       className={({ active }) =>
-                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active
-                          ? "bg-purple-600 text-white"
-                          : "text-gray-100"
+                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                          active ? "bg-purple-600 text-white" : "text-gray-100"
                         }`
                       }
                       value={season}
@@ -80,8 +79,9 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                       {({ selected }) => (
                         <>
                           <span
-                            className={`block truncate ${selected ? "font-semibold text-purple-300" : ""
-                              }`}
+                            className={`block truncate ${
+                              selected ? "font-semibold text-purple-300" : ""
+                            }`}
                           >
                             {season.label}
                           </span>

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const DEFAULT_POSTER = "/Assets/default.jpg";
 
-
 const normalizePath = (p) => {
   if (!p) return DEFAULT_POSTER;
   return p.startsWith("/") ? p : `/Assets/${p}`;
@@ -18,7 +17,9 @@ function HeroBanner({ shows = [] }) {
 
   // track whether we're on a mobile-width viewport
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.matchMedia("(max-width: 640px)").matches : false
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 640px)").matches
+      : false
   );
 
   useEffect(() => {
@@ -62,10 +63,7 @@ function HeroBanner({ shows = [] }) {
    * @returns {string[]} array of lines
    */
   const formatDescription = (text = "", wordsPerLine = 10, maxLines = 3) => {
-    const words = text
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
+    const words = text.trim().split(/\s+/).filter(Boolean);
     const lines = [];
 
     for (let i = 0; i < maxLines; i++) {
@@ -99,8 +97,9 @@ function HeroBanner({ shows = [] }) {
         {/* Background image with slide transitions */}
         <div
           key={show.id}
-          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform ${slideIn ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-            }`}
+          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform ${
+            slideIn ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+          }`}
         >
           <picture>
             {show.thumbnailMobile && (
@@ -163,7 +162,9 @@ function HeroBanner({ shows = [] }) {
           {/* Subtitle / description */}
           {descriptionLines.length > 0 && (
             <div
-              className={`text-xs ${isMobile ? "leading-5" : "sm:text-sm md:text-base lg:text-base"} text-gray-200 mb-5 sm:mb-5`}
+              className={`text-xs ${
+                isMobile ? "leading-5" : "sm:text-sm md:text-base lg:text-base"
+              } text-gray-200 mb-5 sm:mb-5`}
             >
               {descriptionLines.map((line, idx) => (
                 <p key={idx} className="m-0">

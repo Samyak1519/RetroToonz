@@ -15,7 +15,8 @@ export default function VideoBottomBar({
   isFullscreen,
 }) {
   const value = dragSeekTime ?? currentTime ?? 0;
-  const pct = duration && duration > 0 ? Math.min(100, (value / duration) * 100) : 0;
+  const pct =
+    duration && duration > 0 ? Math.min(100, (value / duration) * 100) : 0;
 
   const handleSeekEnd = (val) => {
     const t = parseFloat(val) || 0;
@@ -66,7 +67,8 @@ export default function VideoBottomBar({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              if (typeof goToPreviousEpisode === "function") goToPreviousEpisode();
+              if (typeof goToPreviousEpisode === "function")
+                goToPreviousEpisode();
             }}
             aria-label="Previous episode"
             className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-white/20 transition"
@@ -90,7 +92,6 @@ export default function VideoBottomBar({
           </button>
         </div>
 
-
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -100,7 +101,11 @@ export default function VideoBottomBar({
           title="Toggle fullscreen (F)"
           className="p-2 rounded-full hover:bg-white/10 transition"
         >
-          {isFullscreen ? <FaCompress className="text-2xl sm:text-2xl" /> : <FaExpand className="text-xl sm:text-xl" />}
+          {isFullscreen ? (
+            <FaCompress className="text-2xl sm:text-2xl" />
+          ) : (
+            <FaExpand className="text-xl sm:text-xl" />
+          )}
         </button>
       </div>
 
@@ -108,8 +113,8 @@ export default function VideoBottomBar({
       <style jsx>{`
         /* variables: track height and thumb sizes */
         input[type="range"] {
-          --track-h: 5px;        /* uniform track height for mobile + desktop */
-          --thumb-mobile: 12px;  /* thumb on small screens */
+          --track-h: 5px; /* uniform track height for mobile + desktop */
+          --thumb-mobile: 12px; /* thumb on small screens */
           --thumb-desktop: 14px; /* thumb on sm+ */
           --thumb-size: var(--thumb-mobile);
           width: 100%;
@@ -143,15 +148,16 @@ export default function VideoBottomBar({
           border-radius: 999px;
           background: #22d3ee;
           border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.10);
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.1);
           cursor: pointer;
           /* center the thumb: move by (track - thumb)/2. transform is more reliable on mobile WebKit */
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
-          transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2)) scale(1.06);
-          box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.10);
+          transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2))
+            scale(1.06);
+          box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.1);
         }
 
         /* Firefox track & progress */
@@ -171,7 +177,7 @@ export default function VideoBottomBar({
           width: var(--thumb-size);
           border-radius: 999px;
           background: #22d3ee;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           cursor: pointer;
           /* center via translate as well */
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
@@ -189,7 +195,7 @@ export default function VideoBottomBar({
           border-radius: 999px;
         }
         input[type="range"]::-ms-fill-upper {
-          background: rgba(255,255,255,0.12);
+          background: rgba(255, 255, 255, 0.12);
           border-radius: 999px;
         }
         input[type="range"]::-ms-thumb {
@@ -197,7 +203,7 @@ export default function VideoBottomBar({
           width: var(--thumb-size);
           border-radius: 999px;
           background: #22d3ee;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
         }
 

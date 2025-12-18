@@ -1,4 +1,4 @@
-import { CircleStar } from 'lucide-react';
+import { CircleStar } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
-
 
 const PORTAL_ROOT_ID = "retrotoonz-profile-portal-root";
 
@@ -135,7 +134,10 @@ export default function Header() {
   const headerHeightClasses = "h-16 sm:h-20";
   const spacerClasses = "h-16 sm:h-20";
 
-  const portalRoot = typeof document !== "undefined" ? document.getElementById(PORTAL_ROOT_ID) : null;
+  const portalRoot =
+    typeof document !== "undefined"
+      ? document.getElementById(PORTAL_ROOT_ID)
+      : null;
 
   // 🥚 Easter Egg Trigger Logic
   useEffect(() => {
@@ -150,7 +152,8 @@ export default function Header() {
   useEffect(() => {
     const onEasterEgg = () => setShowEasterEgg(true);
     window.addEventListener("retrotoonz:easteregg", onEasterEgg);
-    return () => window.removeEventListener("retrotoonz:easteregg", onEasterEgg);
+    return () =>
+      window.removeEventListener("retrotoonz:easteregg", onEasterEgg);
   }, []);
 
   return (
@@ -161,7 +164,9 @@ export default function Header() {
       >
         {/* background */}
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ease-out ${isScrolled ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 transition-opacity duration-500 ease-out ${
+            isScrolled ? "opacity-100" : "opacity-0"
+          }`}
           aria-hidden="true"
         >
           <div className="w-full h-full bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md shadow-md" />
@@ -195,10 +200,11 @@ export default function Header() {
               }}
               title="Search"
               aria-expanded={searchOpen}
-              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled
-                ? "hover:bg-gray-700"
-                : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                }`}
+              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${
+                isScrolled
+                  ? "hover:bg-gray-700"
+                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              }`}
             >
               <FaSearch size={16} />
             </button>
@@ -210,10 +216,11 @@ export default function Header() {
                 setSearchOpen(false);
               }}
               title="Search"
-              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isScrolled
-                ? "hover:bg-gray-700"
-                : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                }`}
+              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${
+                isScrolled
+                  ? "hover:bg-gray-700"
+                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              }`}
             >
               <FaSearch size={16} />
             </button>
@@ -226,18 +233,22 @@ export default function Header() {
               aria-expanded={profileOpen}
               title="Profile"
               aria-label="Open profile menu"
-              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${isScrolled
-                ? "hover:bg-gray-700"
-                : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
-                }`}
+              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${
+                isScrolled
+                  ? "hover:bg-gray-700"
+                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+              }`}
             >
               <FaUserCircle size={20} />
-              <span className="hidden lg:block font-semibold text-sm sm:text-base">Samyak</span>
+              <span className="hidden lg:block font-semibold text-sm sm:text-base">
+                Samyak
+              </span>
               <FaChevronDown
                 size={12}
                 aria-hidden="true"
-                className={`block transform transition-transform duration-200 ${profileOpen ? "rotate-180" : "rotate-0"
-                  }`}
+                className={`block transform transition-transform duration-200 ${
+                  profileOpen ? "rotate-180" : "rotate-0"
+                }`}
               />
             </button>
           </div>
@@ -297,7 +308,8 @@ export default function Header() {
               aria-label="Profile menu"
               className="w-56 rounded-2xl bg-gradient-to-b from-black/40 to-black/70 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden transform origin-top-right"
               style={{
-                animation: "rtFadeInScale 200ms cubic-bezier(.2,.9,.2,1) forwards",
+                animation:
+                  "rtFadeInScale 200ms cubic-bezier(.2,.9,.2,1) forwards",
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -349,7 +361,9 @@ function MenuItems({ firstItemRef, onNavigate }) {
         ref={firstItemRef}
         onClick={() => onNavigate("/profile")}
         role="menuitem"
-        className={`${itemBase} ${isActive("/profile") ? "bg-white/10" : ""} w-full text-left`}
+        className={`${itemBase} ${
+          isActive("/profile") ? "bg-white/10" : ""
+        } w-full text-left`}
       >
         <FaUser className="text-cyan-300" />
         <span>My Account</span>
@@ -358,7 +372,9 @@ function MenuItems({ firstItemRef, onNavigate }) {
       <button
         onClick={() => onNavigate("/all-shows")}
         role="menuitem"
-        className={`${itemBase} ${isActive("/all-shows") ? "bg-white/10" : ""} w-full text-left`}
+        className={`${itemBase} ${
+          isActive("/all-shows") ? "bg-white/10" : ""
+        } w-full text-left`}
       >
         <FaList className="text-cyan-300" />
         <span>All Shows</span>
@@ -367,17 +383,20 @@ function MenuItems({ firstItemRef, onNavigate }) {
       <button
         onClick={() => onNavigate("/watchlist")}
         role="menuitem"
-        className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""} w-full text-left`}
+        className={`${itemBase} ${
+          isActive("/watchlist") ? "bg-white/10" : ""
+        } w-full text-left`}
       >
         <FaHeart className="text-cyan-300 " />
         <span>Wishlist</span>
       </button>
 
-
       <button
         onClick={() => onNavigate("/about-us")}
         role="menuitem"
-        className={`${itemBase} ${isActive("/about-us") ? "bg-white/10" : ""} w-full text-left`}
+        className={`${itemBase} ${
+          isActive("/about-us") ? "bg-white/10" : ""
+        } w-full text-left`}
       >
         <CircleStar className="text-cyan-300" />
         <span>About Us</span>

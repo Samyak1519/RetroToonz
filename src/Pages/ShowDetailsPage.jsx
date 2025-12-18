@@ -47,7 +47,6 @@ function ShowDetailsPage() {
       <Header />
 
       <main className="flex-grow">
-
         {/* POSTER SECTION — SAME STRUCTURE, ONLY ASPECT CHANGE */}
         <div className="relative w-full aspect-[3/3] sm:aspect-auto sm:h-72 md:h-80 lg:h-[400px] overflow-hidden">
           <picture>
@@ -111,9 +110,7 @@ function ShowDetailsPage() {
                 onClick={toggleShortlist}
                 className="text-4xl sm:text-5xl hover:scale-110 transition-transform"
                 title={
-                  isShortlisted
-                    ? "Remove from Watchlist"
-                    : "Add to Watchlist"
+                  isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
                 }
               >
                 {isShortlisted ? (

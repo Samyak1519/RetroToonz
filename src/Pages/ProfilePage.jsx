@@ -45,9 +45,7 @@ const ProfilePage = () => {
             <h1 className="text-2xl sm:text-3xl font-bold tracking-wide">
               Samyak Nimsarkar
             </h1>
-            <h2 className="text-base sm:text-lg text-cyan-300">
-              @samyak005
-            </h2>
+            <h2 className="text-base sm:text-lg text-cyan-300">@samyak005</h2>
 
             {/* Action Buttons */}
             <div className="mt-4 flex flex-col sm:flex-row sm:space-x-4 gap-3">
@@ -70,10 +68,11 @@ const ProfilePage = () => {
             {["History", "About"].map((tab) => (
               <div
                 key={tab}
-                className={`cursor-pointer pb-2 transition-all ${activeTab === tab
-                  ? "text-yellow-400 border-b-2 border-yellow-400"
-                  : "text-gray-400 hover:text-yellow-400"
-                  }`}
+                className={`cursor-pointer pb-2 transition-all ${
+                  activeTab === tab
+                    ? "text-yellow-400 border-b-2 border-yellow-400"
+                    : "text-gray-400 hover:text-yellow-400"
+                }`}
                 onClick={() => setActiveTab(tab)}
               >
                 {tab}

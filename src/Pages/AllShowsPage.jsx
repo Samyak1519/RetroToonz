@@ -12,7 +12,6 @@ const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";
 const extrasDir = "/media/extras";
 
-
 const normalizePosterPath = (value, preferMobile = false) => {
   if (!value) return null;
   if (typeof value === "string" && value.startsWith("/media/")) return value;
@@ -136,7 +135,6 @@ export default function AllShowsPage() {
 
       <main className="flex-grow relative">
         <div className="px-4 sm:px-7 md:px-8 lg:px-16 xl:px-30 py-6 max-w-screen-2xl mx-auto relative">
-
           <div className="flex items-center gap-3 mb-3 sm:mb-6">
             <button
               onClick={() => navigate(-1)}
@@ -171,9 +169,7 @@ export default function AllShowsPage() {
             </div>
           </div>
 
-          <div className="sm:pl-7 md:pl-5 lg:pl-12 xl:pl-30" >
-
-
+          <div className="sm:pl-7 md:pl-5 lg:pl-12 xl:pl-30">
             {/* description respects container padding now */}
             <div className="text-gray-400 mb-4 text-sm sm:text-base">
               <div>Browse the full catalog by tag or sort.</div>
@@ -188,10 +184,11 @@ export default function AllShowsPage() {
                       <button
                         key={t}
                         onClick={() => setActiveTag(t)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${activeTag === t
-                          ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black shadow-lg"
-                          : "bg-white/6 text-gray-200 hover:bg-white/10"
-                          }`}
+                        className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${
+                          activeTag === t
+                            ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black shadow-lg"
+                            : "bg-white/6 text-gray-200 hover:bg-white/10"
+                        }`}
                         aria-pressed={activeTag === t}
                       >
                         {t}
@@ -205,7 +202,10 @@ export default function AllShowsPage() {
                 <div className="text-sm text-gray-400">
                   Showing{" "}
                   <span className="text-white font-medium">{total}</span> of{" "}
-                  <span className="text-white font-medium">{allShows.length}</span> shows
+                  <span className="text-white font-medium">
+                    {allShows.length}
+                  </span>{" "}
+                  shows
                 </div>
 
                 <div className="sm:hidden">
@@ -229,7 +229,9 @@ export default function AllShowsPage() {
 
                 <div className="hidden sm:block text-gray-400">
                   {activeTag !== "All" && (
-                    <>· tag: <span className="text-cyan-300">{activeTag}</span></>
+                    <>
+                      · tag: <span className="text-cyan-300">{activeTag}</span>
+                    </>
                   )}
                 </div>
               </div>
@@ -244,18 +246,20 @@ export default function AllShowsPage() {
             {/* Removed inner px so blocks align with container padding */}
             <div className="space-y-10 mb-16 sm:px-0 px-2">
               {grouped.length === 0 && (
-                <div className="py-10 text-center text-gray-400">No shows match your filters.</div>
+                <div className="py-10 text-center text-gray-400">
+                  No shows match your filters.
+                </div>
               )}
 
               {grouped.map(({ letter, shows }) => (
-                <section
-                  key={letter}                >
+                <section key={letter}>
                   <div className="flex items-center gap-5 my-5">
-                    <div className="text-2xl font-bold text-cyan-300">{letter}</div>
+                    <div className="text-2xl font-bold text-cyan-300">
+                      {letter}
+                    </div>
                     <div className="h-px flex-1 bg-white/10" />
                     <div className="text-sm text-gray-400">{shows.length}</div>
                   </div>
-
 
                   {/* Locating the grid container in your code */}
                   <div

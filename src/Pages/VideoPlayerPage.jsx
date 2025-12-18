@@ -1,6 +1,11 @@
 // src/Pages/VideoPlayerPage.jsx
 import { AnimatePresence, motion } from "framer-motion";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import VideoPlayer from "../Components/VideoPlayer";
@@ -36,17 +41,28 @@ function VideoPlayerPage() {
       : getPosterUrl(currentShow.id, "desktop");
 
   const posterMobile =
-    currentShow.thumbnailMobile && String(currentShow.thumbnailMobile).startsWith("/media")
+    currentShow.thumbnailMobile &&
+    String(currentShow.thumbnailMobile).startsWith("/media")
       ? currentShow.thumbnailMobile
       : getPosterUrl(currentShow.id, "mobile");
 
-  const allEpisodes = (currentShow.seasons || []).flatMap((s) => s.episodes ?? []);
+  const allEpisodes = (currentShow.seasons || []).flatMap(
+    (s) => s.episodes ?? []
+  );
 
   const stateEpisodeId = location.state?.startEpisode?.episodeId ?? null;
-  const epParam = searchParams.get("ep") || stateEpisodeId || (allEpisodes[0] && allEpisodes[0].episodeId);
+  const epParam =
+    searchParams.get("ep") ||
+    stateEpisodeId ||
+    (allEpisodes[0] && allEpisodes[0].episodeId);
 
-  const currentEpisodeIndex = allEpisodes.findIndex((ep) => ep.episodeId === epParam);
-  const currentEpisode = currentEpisodeIndex >= 0 ? allEpisodes[currentEpisodeIndex] : allEpisodes[0];
+  const currentEpisodeIndex = allEpisodes.findIndex(
+    (ep) => ep.episodeId === epParam
+  );
+  const currentEpisode =
+    currentEpisodeIndex >= 0
+      ? allEpisodes[currentEpisodeIndex]
+      : allEpisodes[0];
 
   const goToNextEpisode = () => {
     if (!allEpisodes.length) return;
@@ -56,7 +72,8 @@ function VideoPlayerPage() {
 
   const goToPreviousEpisode = () => {
     if (!allEpisodes.length) return;
-    const prevIndex = (currentEpisodeIndex - 1 + allEpisodes.length) % allEpisodes.length;
+    const prevIndex =
+      (currentEpisodeIndex - 1 + allEpisodes.length) % allEpisodes.length;
     setSearchParams({ ep: allEpisodes[prevIndex].episodeId });
   };
 
@@ -105,7 +122,11 @@ function VideoPlayerPage() {
                 goToPreviousEpisode={goToPreviousEpisode}
               />
 
-              <ShowInfo currentShow={currentShow} startEpisode={currentEpisode} currentEpisode={currentEpisode} />
+              <ShowInfo
+                currentShow={currentShow}
+                startEpisode={currentEpisode}
+                currentEpisode={currentEpisode}
+              />
 
               <div className="px-4 sm:px-8 md:px-12 mb-5">
                 <Episodes
@@ -118,7 +139,10 @@ function VideoPlayerPage() {
               </div>
 
               <div className="px-4 sm:px-8 md:px-12 mb-8">
-                <UpNext allShows={allShows} currentIndex={allShows.findIndex((s) => s.id === id)} />
+                <UpNext
+                  allShows={allShows}
+                  currentIndex={allShows.findIndex((s) => s.id === id)}
+                />
               </div>
             </motion.div>
           </AnimatePresence>

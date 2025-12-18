@@ -15,7 +15,9 @@ import showsData from "../Data/Shows.json";
 const enrich = (arr) =>
   (arr || []).map((show) => ({
     ...show,
-    thumbnail: show.thumbnail ? `/Assets/${show.thumbnail}` : "/Assets/default.jpg",
+    thumbnail: show.thumbnail
+      ? `/Assets/${show.thumbnail}`
+      : "/Assets/default.jpg",
   }));
 
 const allShows = enrich(showsData.allShows || []);
@@ -67,9 +69,9 @@ export default function ErrorPage() {
       <main className="flex-grow flex flex-col items-center justify-center px-6 py-12 relative">
         <div className="max-w-4xl w-full text-center relative z-10">
           <div className="flex flex-col items-center gap-6">
-            
-
-            <h1 className="text-6xl sm:text-7xl font-extrabold tracking-tight mb-0">404</h1>
+            <h1 className="text-6xl sm:text-7xl font-extrabold tracking-tight mb-0">
+              404
+            </h1>
             <p className="text-gray-300 text-lg mb-2">Page not found</p>
             <p className="text-gray-400 max-w-2xl text-sm sm:text-base">
               The link may be broken or the page removed. Try going back home or
