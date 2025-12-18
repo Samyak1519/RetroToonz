@@ -1,4 +1,4 @@
-import { CircleStar } from "lucide-react";
+import { CircleStar, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -70,7 +70,10 @@ export default function Header() {
       setProfileOpen(false);
     }
     function onKey(e) {
-      if (e.key === "Escape") setProfileOpen(false);
+      if (e.key === "Escape") {
+        setProfileOpen(false);
+        setShowEasterEgg(false); // Close egg on Escape too
+      }
     }
     document.addEventListener("mousedown", onDocClick);
     document.addEventListener("keydown", onKey);
@@ -323,17 +326,36 @@ export default function Header() {
           portalRoot
         )}
 
-      {/* 🥚 Easter Egg Overlay */}
+      {/* 🥚 FIXED EASTER EGG OVERLAY */}
       {showEasterEgg && (
         <div
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-black/90 backdrop-blur-md"
+          // Keep the background click only if you want it to close when clicking the dark area
           onClick={() => setShowEasterEgg(false)}
         >
-          <img
-            src="/media/extras/easter-egg.gif"
-            alt="Easter Egg"
-            className="max-w-xs sm:max-w-md rounded-2xl shadow-2xl border border-white/10"
-          />
+          {/* Close button at the top right of the screen for mobile accessibility */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowEasterEgg(false);
+            }}
+            className="absolute top-6 right-6 z-[100001] bg-white/10 hover:bg-red-500 text-white p-3 rounded-full transition-all active:scale-95"
+            aria-label="Close"
+          >
+            <X size={28} />
+          </button>
+
+          {/* Content Wrapper */}
+          <div
+            className="relative flex items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()} // Prevents closing when clicking the GIF
+          >
+            <img
+              src="/media/extras/easter-egg.gif"
+              alt="Easter Egg"
+              className="max-w-[85vw] max-h-[75vh] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            />
+          </div>
         </div>
       )}
 

@@ -93,7 +93,6 @@ heroShows.forEach((s) => {
 
 // Specific "Newly Added" curated titles
 const newlyAddedTitles = [
-  "Ben 10",
   "Jake and the Never Land Pirates",
   "Kick Buttowski",
   "Kid vs Kat",
@@ -101,6 +100,7 @@ const newlyAddedTitles = [
   "Mickey Mouse Clubhouse",
   "Mr. Bean",
   "Phineas and Ferb",
+  "Ben 10",
   "Shaun the Sheep",
   "SpongeBob Square Pants",
 ];
