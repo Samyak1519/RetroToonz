@@ -203,10 +203,10 @@ export default function Header() {
               }}
               title="Search"
               aria-expanded={searchOpen}
-              className={`hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full transition ${
+              className={`hidden sm:inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaSearch size={16} />
@@ -219,10 +219,10 @@ export default function Header() {
                 setSearchOpen(false);
               }}
               title="Search"
-              className={`sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-full transition ${
+              className={`sm:hidden inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaSearch size={16} />
@@ -236,10 +236,10 @@ export default function Header() {
               aria-expanded={profileOpen}
               title="Profile"
               aria-label="Open profile menu"
-              className={`inline-flex items-center gap-2 h-11 rounded-full px-3 transition ${
+              className={`inline-flex items-center gap-2 h-12 rounded-full px-3.5 transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-white/20 hover:bg-black/10 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaUserCircle size={20} />

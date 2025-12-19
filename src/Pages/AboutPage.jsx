@@ -1,12 +1,12 @@
-import React from "react";
 import {
   Film,
-  Tv,
-  Sparkles,
   Heart,
+  Home,
   Instagram,
-  Twitter,
   Mail,
+  Sparkles,
+  Tv,
+  Twitter,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -18,25 +18,34 @@ const AboutPage = () => {
       {/* --- Navigation --- */}
       <nav className="w-full py-6 px-4 md:px-12 flex justify-between items-center border-b border-[#1e293b]/50 bg-[#020617]/50 backdrop-blur-md sticky top-0 z-50">
         <Link to="/">
-          {/* Metallic Silver-Blue Gradient Text */}
           <div className="text-2xl md:text-4xl font-royal font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#8f84c0] via-[#eba550] to-[#b7ce88] hover:opacity-80 transition-opacity">
             RetroToonz
           </div>
         </Link>
-        <div className="hidden md:flex gap-8 text-sm font-medium tracking-[0.2em] uppercase opacity-90">
-          <p className="text-[#bfdbfe] font-body font-bold text-sm md:text-base  pb-1">
-            About Us
-          </p>
+
+        {/* Navigation Items - Now visible on mobile and desktop */}
+        <div className="flex items-center gap-3 md:gap-5 text-sm font-medium tracking-[0.2em] uppercase px-5">
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-[#94a3b8] hover:text-[#60a5fa] transition-all group"
+          >
+            <Home
+              size={18}
+              md:size={20}
+              className="group-hover:scale-125 transition-transform"
+            />
+            <span className="font-semibold text-base md:text-lg">
+              Home
+            </span>
+          </Link>
         </div>
       </nav>
 
       {/* --- Hero Section --- */}
-      {/* CHANGED: Reduced top padding from 'py-16 md:pt-20' to 'pt-10 md:pt-6' to remove empty space */}
       <section className="relative w-full pt-10 pb-16 md:pt-6 md:pb-32 flex flex-col items-center text-center overflow-hidden">
-        {/* 1. Base Background Color (Deep Blue) */}
         <div className="absolute inset-0 bg-[#020617]"></div>
 
-        {/* 2. THE RETRO GRID PATTERN */}
+        {/* THE RETRO GRID PATTERN */}
         <div
           className="absolute inset-0 z-0 opacity-20"
           style={{
@@ -45,14 +54,13 @@ const AboutPage = () => {
           }}
         ></div>
 
-        {/* 3. Radial Vignette */}
+        {/* Radial Vignette */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_90%)] pointer-events-none"></div>
 
-        {/* 4. Central Spotlight Glow */}
+        {/* Central Spotlight Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#15419f] rounded-full blur-[200px] opacity-25 z-0"></div>
 
         {/* Main Logo */}
-        {/* You can also add '-mt-4' here if you want it even higher */}
         <div className="relative z-10 mb-12 transform hover:scale-[1.02] transition-transform duration-1000 ease-out w-full md:w-auto">
           <img
             src={logoSrc}
@@ -79,7 +87,6 @@ const AboutPage = () => {
 
       {/* --- The Story Section --- */}
       <section className="w-full max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-16 md:gap-24 items-center relative">
-        {/* Text Content */}
         <div className="space-y-8 relative z-10">
           <div className="flex items-center gap-4 text-[#60a5fa] font-royal text-lg tracking-widest uppercase font-bold">
             <div className="h-[1px] w-12 bg-[#60a5fa]/50"></div>
@@ -106,17 +113,10 @@ const AboutPage = () => {
         </div>
 
         {/* Decorative Graphic Side - SYMMETRICAL GRID */}
-        {/* CHANGES:
-                 1. Removed 'mt-8' from the second column to align it perfectly with the top.
-                 2. Set ALL cards to 'h-48'. This ensures the Top of both columns (and the bottom) are equal height.
-                 3. Reduced container padding to 'p-3' for a tighter fit without cutting corners.
-                */}
         <div className="relative border border-[#334155]/30 bg-[#0f172a]/30 backdrop-blur-sm p-3 rounded-tr-3xl rounded-bl-3xl shadow-[0_0_60px_-15px_rgba(30,58,138,0.2)]">
-          {/* Inner Grid */}
           <div className="grid grid-cols-2 gap-3 relative z-10">
             {/* COLUMN 1 */}
             <div className="flex flex-col gap-3">
-              {/* Vintage Style - TOP LEFT */}
               <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
                 <Film
                   strokeWidth={1.5}
@@ -128,7 +128,6 @@ const AboutPage = () => {
                 </span>
               </div>
 
-              {/* Remix - BOTTOM LEFT */}
               <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
                 <Sparkles
                   strokeWidth={1.5}
@@ -142,10 +141,7 @@ const AboutPage = () => {
             </div>
 
             {/* COLUMN 2 */}
-            {/* REMOVED 'mt-8' here. Now it starts at the top. */}
             <div className="flex flex-col gap-3">
-              {/* Toonz - TOP RIGHT */}
-              {/* Changed height to h-48 to match the left side */}
               <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
                 <Tv
                   strokeWidth={1.5}
@@ -157,8 +153,6 @@ const AboutPage = () => {
                 </span>
               </div>
 
-              {/* Nostalgia - BOTTOM RIGHT */}
-              {/* Changed height to h-48 to match the left side */}
               <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
                 <Heart
                   strokeWidth={1.5}
@@ -174,9 +168,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* --- Premium Divider (Blue/Silver) --- */}
+      {/* --- Premium Divider --- */}
       <div className="w-full flex justify-center items-center gap-6 opacity-40 py-12">
-        {/* Changed to Blue Gradient */}
         <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
         <div className="text-[#93c5fd] text-2xl animate-pulse">✦</div>
         <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
@@ -221,7 +214,6 @@ const AboutPage = () => {
 
       {/* --- Footer --- */}
       <footer className="w-full mt-20 border-t border-[#1e293b] bg-[#020617] py-16 relative overflow-hidden">
-        {/* Footer Glow Line */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#1d4ed8] to-transparent opacity-50"></div>
 
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 relative z-10">
@@ -235,7 +227,6 @@ const AboutPage = () => {
           </div>
 
           <div className="flex gap-6">
-            {/* Elegant Social Buttons */}
             {[Instagram, Twitter, Mail].map((Icon, i) => (
               <a
                 key={i}

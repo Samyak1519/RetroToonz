@@ -6,7 +6,10 @@
       "year": "2005",
       "thumbnail": "/media/posters-desktop/ben10-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/ben10-poster-mobile.jpeg",
-      "tags": ["Action", "Sci-Fi"],
+      "tags": [
+        "Action",
+        "Sci-Fi"
+      ],
       "description": "A young boy named Ben discovers a mysterious alien watch that lets him transform into ten different heroes. With each form offering unique powers, Ben battles villains, saves the world from galactic threats, and learns the true meaning of responsibility.",
       "duration": "1 hr 45 min",
       "language": "Hindi",
@@ -90,7 +93,9 @@
       "year": "2008",
       "thumbnail": "/media/posters-desktop/chhota-bheem-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/chhota-bheem-poster-mobile.jpeg",
-      "tags": ["Adventure"],
+      "tags": [
+        "Adventure"
+      ],
       "description": "In the kingdom of Dholakpur, Bheem is a brave and kind-hearted boy with incredible strength. Along with his friends, he takes on villains, monsters, and tricky situations, proving that wisdom and courage always win the day.",
       "duration": "1 hr 32 min",
       "language": "Hindi",
@@ -179,14 +184,16 @@
         }
       ]
     },
-
     {
       "id": "doraemon",
       "title": "Doraemon",
       "year": "2005",
       "thumbnail": "/media/posters-desktop/doraemon-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/doraemon-poster-mobile.jpeg",
-      "tags": ["Sci-Fi", "Comedy"],
+      "tags": [
+        "Sci-Fi",
+        "Comedy"
+      ],
       "description": "A robotic cat from the 22nd century, Doraemon, travels back in time to help Nobita. Using futuristic gadgets, he tries to fix Nobita’s everyday problems, but often ends up in funny and chaotic adventures with his friends.",
       "duration": "2 hr 5 min",
       "language": "Hindi",
@@ -264,14 +271,16 @@
         }
       ]
     },
-
     {
       "id": "kick-buttowski",
       "title": "Kick Buttowski",
       "year": "2010",
       "thumbnail": "/media/posters-desktop/kick-buttowski-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/kick-buttowski-poster-mobile.jpeg",
-      "tags": ["Action", "Comedy"],
+      "tags": [
+        "Action",
+        "Comedy"
+      ],
       "description": "Clarence “Kick” Buttowski dreams of being the world’s greatest daredevil. With fearless stunts, wild challenges, and endless determination, Kick constantly pushes the limits of danger and comedy in his small suburban town.",
       "duration": "1 hr 10 min",
       "language": "Hindi",
@@ -355,7 +364,11 @@
       "year": "2008",
       "thumbnail": "/media/posters-desktop/kid-vs-kat-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/kid-vs-kat-poster-mobile.jpeg",
-      "tags": ["Action", "Comedy", "Sci-Fi"],
+      "tags": [
+        "Action",
+        "Comedy",
+        "Sci-Fi"
+      ],
       "description": "When Coop’s sister adopts a strange hairless cat, life takes a turn for chaos. The cat is actually an evil alien plotting world domination, and Coop becomes the only one who knows the truth—leading to a never-ending battle of wits.",
       "duration": "1 hr 20 min",
       "language": "Hindi",
@@ -428,7 +441,10 @@
       "year": "1988",
       "thumbnail": "/media/posters-desktop/kiteretsu-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/kiteretsu-poster-mobile.jpeg",
-      "tags": ["Comedy", "Adventure"],
+      "tags": [
+        "Comedy",
+        "Adventure"
+      ],
       "description": "Kiteretsu is a boy genius who builds amazing inventions inspired by his ancestor’s encyclopedia. Along with his robot friend Korosuke, he explores science, friendship, and wild adventures that mix comedy with clever problem-solving.",
       "duration": "22 min",
       "language": "Hindi",
@@ -495,14 +511,16 @@
         }
       ]
     },
-
     {
       "id": "mickey-mouse",
       "title": "Mickey Mouse Clubhouse",
       "year": "1928",
       "thumbnail": "/media/posters-desktop/mickey-mouse-clubhouse-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/mickey-mouse-clubhouse-poster-mobile.jpeg",
-      "tags": ["Classic", "Family"],
+      "tags": [
+        "Classic",
+        "Family"
+      ],
       "description": "Mickey and his friends invite kids into a colorful clubhouse filled with fun, friendship, and problem-solving. Together with Minnie, Donald, Daisy, Goofy, and Pluto, Mickey uses teamwork and creativity to solve everyday challenges in magical ways.",
       "duration": "1 hr 30 min",
       "language": "Hindi",
@@ -586,7 +604,10 @@
       "year": "1990",
       "thumbnail": "/media/posters-desktop/mr-bean-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/mr-bean-poster-mobile.jpeg",
-      "tags": ["Comedy", "Classic"],
+      "tags": [
+        "Comedy",
+        "Classic"
+      ],
       "description": "Mr. Bean is eccentric, childlike, and hilariously unpredictable. With little dialogue and plenty of slapstick, he stumbles into ordinary situations that quickly spiral into chaotic misadventures, leaving laughter in his wake.",
       "duration": "1 hr 30 min",
       "language": "Hindi",
@@ -670,7 +691,10 @@
       "year": "1981",
       "thumbnail": "/media/posters-desktop/ninja-hattori-poster-desktop.png",
       "thumbnailMobile": "/media/posters-mobile/ninja-hattori-poster-mobile.jpeg",
-      "tags": ["Adventure", "Action"],
+      "tags": [
+        "Adventure",
+        "Action"
+      ],
       "description": "Hattori is a skilled young ninja who comes to live with Kenichi, a mischievous schoolboy. Using his ninja skills, Hattori helps Kenichi with school, friends, and life’s problems, while also battling rival ninjas who threaten peace.",
       "duration": "1 hr 38 min",
       "language": "Hindi",
@@ -748,14 +772,15 @@
         }
       ]
     },
-
     {
       "id": "oggy",
       "title": "Oggy and the Cockroaches",
       "year": "1998",
       "thumbnail": "/media/posters-desktop/oggy-and-the-cockroaches-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/oggy-and-the-cockroaches-poster-mobile.jpeg",
-      "tags": ["Comedy"],
+      "tags": [
+        "Comedy"
+      ],
       "description": "Oggy, a lazy cat, just wants to relax and enjoy life, but three pesky cockroaches—Joey, Dee Dee, and Marky—never let him. Their endless pranks lead to hilarious chases, over-the-top chaos, and slapstick comedy in every episode.",
       "duration": "1 hr 18 min",
       "language": "Hindi",
@@ -822,14 +847,16 @@
         }
       ]
     },
-
     {
       "id": "perman",
       "title": "Perman",
       "year": "1983",
       "thumbnail": "/media/posters-desktop/perman-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/perman-poster-mobile.jpeg",
-      "tags": ["Superhero", "Action"],
+      "tags": [
+        "Superhero",
+        "Action"
+      ],
       "description": "Mitsuo, a young boy, is chosen to become “Perman,” a superhero who fights crime with special gadgets and powers. Balancing his double life as both a student and a hero, Mitsuo learns the importance of responsibility and courage.",
       "duration": "1 hr 50 min",
       "language": "Hindi",
@@ -924,7 +951,10 @@
       "year": "2007",
       "thumbnail": "/media/posters-desktop/phineas-and-ferb-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/phineas-and-ferb-poster-mobile.jpeg",
-      "tags": ["Comedy", "Adventure"],
+      "tags": [
+        "Comedy",
+        "Adventure"
+      ],
       "description": "Stepbrothers Phineas and Ferb spend every summer day creating outrageous inventions and wild projects. Meanwhile, their sister Candace tries to expose them, and their pet platypus Perry secretly lives a double life as a spy fighting evil Dr. Doofenshmirtz.",
       "duration": "1 hr 42 min",
       "language": "Hindi",
@@ -1019,7 +1049,10 @@
       "year": "2003",
       "thumbnail": "/media/posters-desktop/pokemon-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/pokemon-poster-mobile.jpeg",
-      "tags": ["Adventure", "Fantasy"],
+      "tags": [
+        "Adventure",
+        "Fantasy"
+      ],
       "description": "Join Ash Ketchum and his loyal Pikachu as they travel across regions to become Pokémon Masters. Along the way, they meet new friends, battle rivals, discover legendary creatures, and learn that true strength comes from friendship and teamwork.",
       "duration": "2 hr 10 min",
       "language": "Hindi",
@@ -1103,7 +1136,10 @@
       "year": "2007",
       "thumbnail": "/media/posters-desktop/shaun-the-sheep-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/shaun-the-sheep-poster-mobile.jpeg",
-      "tags": ["Comedy", "Stop-Motion"],
+      "tags": [
+        "Comedy",
+        "Stop-Motion"
+      ],
       "description": "Shaun is a clever sheep who leads his flock into comical adventures on a quiet farm. From mischievous tricks to clever escapes, Shaun’s leadership often drags the farmer and the sheepdog Bitzer into lighthearted chaos.",
       "duration": "1 hr 15 min",
       "language": "Hindi",
@@ -1198,7 +1234,9 @@
       "year": "2006",
       "thumbnail": "/media/posters-desktop/shinchan-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/shinchan-poster-mobile.jpeg",
-      "tags": ["Comedy"],
+      "tags": [
+        "Comedy"
+      ],
       "description": "Shinchan is a mischievous five-year-old whose wild antics drive his parents, teachers, and neighbors crazy. With cheeky humor, silly jokes, and unpredictable adventures, he manages to turn every ordinary day into pure comedy.",
       "duration": "1 hr 35 min",
       "language": "Hindi",
@@ -1370,7 +1408,10 @@
       "year": "1999",
       "thumbnail": "/media/posters-desktop/spongebob-squarepants-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/spongebob-squarepants-poster-mobile.jpeg",
-      "tags": ["Comedy", "Adventure"],
+      "tags": [
+        "Comedy",
+        "Adventure"
+      ],
       "description": "In the underwater city of Bikini Bottom, SpongeBob works at the Krusty Krab and goes on absurd adventures with his best friend Patrick. From jellyfishing to facing Plankton’s schemes, SpongeBob’s endless optimism makes every day hilariously unpredictable.",
       "duration": "1 hr 28 min",
       "language": "Hindi",
@@ -1454,7 +1495,10 @@
       "year": "2009",
       "thumbnail": "/media/posters-desktop/strawberry-shortcake-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/strawberry-shortcake-poster-mobile.jpeg",
-      "tags": ["Adventure", "Friendship"],
+      "tags": [
+        "Adventure",
+        "Friendship"
+      ],
       "description": "In the sweet and colorful world of Strawberryland, Strawberry Shortcake and her friends go on heartwarming adventures. With lessons in kindness, friendship, and positivity, their journeys are as delightful as the desserts they love.",
       "duration": "1 hr 25 min",
       "language": "Hindi",
@@ -1521,14 +1565,17 @@
         }
       ]
     },
-
     {
       "id": "tom-and-jerry-classic",
       "title": "Tom and Jerry",
       "year": "1952",
       "thumbnail": "/media/posters-desktop/tom-and-jerry-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-poster-mobile.jpeg",
-      "tags": ["Comedy", "Classic", "Oscar Winner"],
+      "tags": [
+        "Comedy",
+        "Classic",
+        "Oscar Winner"
+      ],
       "description": "The legendary cat and mouse duo take their rivalry to 17th-century France. As Mouseketeers, Jerry and Tuffy attempt to raid a royal banquet guarded by Tom, leading to a high-stakes swashbuckling adventure.",
       "duration": "7 min",
       "language": "Hindi",
@@ -1541,13 +1588,123 @@
           "year": "1952",
           "episodes": [
             {
+              "episodeId": "tom-and-jerry-e35",
+              "episodeNumber": 35,
+              "title": "The Truce Hurts",
+              "synopsis": "Tired of their endless cycle of violence, Tom, Jerry, and Spike the bulldog decide to sign a formal peace treaty. The trio enjoys a brief period of domestic harmony and cooperation until they find a juicy steak. Greedy instincts quickly take over, turning their newfound friendship back into a chaotic free-for-all.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e35.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e35.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e40",
+              "episodeNumber": 40,
+              "title": "The Little Orphan",
+              "synopsis": "On Thanksgiving, Jerry takes in Nibbles, a perpetually hungry orphan mouse. Jerry attempts to show the little one a grand feast on the dining table, but they must dodge Tom’s constant attacks. This Oscar-winning short features a miniature pilgrim battle as the mice use food and cutlery to defend their holiday meal.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e40.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e40.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e41",
+              "episodeNumber": 41,
+              "title": "Hatch Up Your Troubles",
+              "synopsis": "A lost woodpecker egg rolls into Jerry’s home and hatches, leading the baby bird to believe Jerry is his mother. The protective Jerry must keep the hungry, wood-pecking bird safe from Tom, who wants a snack. Eventually, the bird's father arrives to give Tom a lesson he will never forget.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e41.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e41.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e47",
+              "episodeNumber": 47,
+              "title": "Little Quacker",
+              "synopsis": "Tom intercepts a duckling's egg and tries to turn the hatchling into a roast dinner. Jerry heroically intervenes, leading to a frantic chase involving a lawnmower and various garden tools. The story concludes when the duckling’s muscular father steps in to protect his son and humiliate the predatory cat.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e47.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e47.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e54",
+              "episodeNumber": 54,
+              "title": "Cue Ball Cat",
+              "synopsis": "Tom is enjoying a solo game of billiards in a local pool hall until he wakes up a sleeping Jerry inside one of the pockets. The pool table becomes a miniature battlefield, with Tom using cue balls as projectiles. Jerry uses his wit and the table’s mechanics to turn the game against Tom.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e54.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e54.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e55",
+              "episodeNumber": 55,
+              "title": "Casanova Cat",
+              "synopsis": "Tom attempts to woo a wealthy female cat by presenting Jerry as an automated, wind-up dancing toy. However, Jerry refuses to play along with the humiliation and begins sabotaging Tom’s romantic gestures. The situation escalates into a destructive pursuit that leaves Tom’s love life in ruins while Jerry gets the last laugh.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e55.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e55.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e56",
+              "episodeNumber": 56,
+              "title": "Jerry and the Goldfish",
+              "synopsis": "After listening to a radio chef explain how to prepare fish, Tom develops an appetite for the family’s pet goldfish. Jerry becomes the fish's bodyguard, desperately trying to keep his bowl away from the stove. The chase moves through the kitchen as Jerry finds creative ways to rescue his aquatic friend from the pot.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e56.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e56.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e57",
+              "episodeNumber": 57,
+              "title": "Jerry's Cousin",
+              "synopsis": "Tired of being bullied, Jerry sends a letter to his cousin Muscles, the toughest mouse in the world. Muscles arrives and immediately begins terrorizing Tom, proving that size doesn't matter when you have super strength. After Tom fails to hire thugs to stop him, Jerry adopts Muscles' outfit to keep Tom permanently intimidated.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e57.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e57.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
               "episodeId": "tom-and-jerry-e65",
               "episodeNumber": 65,
               "title": "The Two Mouseketeers",
-              "synopsis": "Set in the French royal court, Mouseketeers Jerry and Tuffy try to feast on a lavish banquet. Tom, a guard captain, is warned that he will face the guillotine if he fails to protect the spread. A frantic sword-fighting chase ensues involving flying roasts, exploding champagne, and daring escapes.",
-              "duration": "7:24",
-              "thumbnail": "/media/posters-desktop/tomandjerry_s1e1.jpg",
-              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-tales-s01-e65.mp4",
+              "synopsis": "In the royal palace of France, Mouseketeers Jerry and Nibbles attempt to raid a massive banquet table. Tom, the King's guard, is threatened with execution if he allows a single crumb to be stolen. A legendary sword fight breaks out amidst the gourmet food, leading to a explosive and somewhat dark finale.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e65.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e65.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e66",
+              "episodeNumber": 66,
+              "title": "Smitten Kitten",
+              "synopsis": "When Tom falls head-over-heels for a beautiful feline neighbor, Jerry experiences flashbacks of all the times Tom's romantic interests led to disaster. This clip-show episode revisits classic moments of Tom being rejected or tricked while in love. Despite Jerry’s warnings, both characters end up falling for a pair of female mice and cats.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e66.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e66.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e75",
+              "episodeNumber": 75,
+              "title": "Johann Mouse",
+              "synopsis": "Set in the house of Johann Strauss in Vienna, Jerry is a mouse who loves to dance to piano music. Tom teaches himself to play the piano just to lure Jerry out into the open for a capture. This beautifully animated short features classical music and won an Academy Award for its artistic direction.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e75.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e75.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1561,7 +1718,10 @@
       "year": "1995",
       "thumbnail": "/media/posters-desktop/tom-and-jerry-tales-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-tales-poster-mobile.jpeg",
-      "tags": ["Comedy", "Classic"],
+      "tags": [
+        "Comedy",
+        "Classic"
+      ],
       "description": "One of the most iconic rivalries in animation, Tom the cat and Jerry the mouse engage in endless chases, traps, and slapstick comedy. Their timeless battles, filled with clever gags and explosive humor, remain a classic for all ages.",
       "duration": "1 hr 40 min",
       "language": "Hindi",
@@ -1606,7 +1766,6 @@
               "subtitles": [],
               "isPlayable": true
             },
-
             {
               "episodeId": "tomandjerrytales-s1-e4",
               "episodeNumber": 4,
@@ -1669,7 +1828,6 @@
               "subtitles": [],
               "isPlayable": true
             },
-
             {
               "episodeId": "tomandjerrytales-s2-e3",
               "episodeNumber": 3,

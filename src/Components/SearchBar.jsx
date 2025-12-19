@@ -21,8 +21,8 @@ function SearchBar() {
         relative flex w-full max-w-lg mx-auto
         rounded-3xl
 
-        /* glass container */
-        bg-black/30
+        // /* glass container */
+        bg-black/10
         backdrop-blur-xl backdrop-saturate-150
         border border-white/10
 
@@ -33,7 +33,7 @@ function SearchBar() {
       <Search
         className="
           absolute left-4 top-1/2 -translate-y-1/2
-          text-cyan-400
+          text-cyan-100
           w-5 h-5 md:w-4 md:h-4
           pointer-events-none
         "

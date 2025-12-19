@@ -30,18 +30,17 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
       </h1>
 
       {/* metadata - slightly smaller */}
-      <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-300 mb-4">
+      <div className="flex flex-wrap gap-2  text-xs sm:text-sm text-gray-300 mb-4">
         {[
           currentShow.year,
           currentShow.language,
-          currentShow.rating && `⭐ ${currentShow.rating}`,
-          currentShow.duration,
+          currentShow.rating && `⭐ ${currentShow.rating}`
         ]
           .filter(Boolean)
           .map((item, i, arr) => (
-            <span key={i}>
+            <span key={i} className="whitespace-nowrap gap-1 flex items-center">
               {item}
-              {i < arr.length - 1 && " | "}
+              {i < arr.length - 1 && " |"}
             </span>
           ))}
       </div>
