@@ -1588,6 +1588,61 @@
           "year": "1952",
           "episodes": [
             {
+              "episodeId": "tom-and-jerry-e10",
+              "episodeNumber": 10,
+              "title": "The Lonesome Mouse",
+              "synopsis": "After Tom is kicked out of the house for failing to catch Jerry, the mouse realizes he actually misses having a rival. Jerry lures Tom back inside, and the two orchestrate a series of fake chases to convince Mammy Two Shoes that Tom is a champion mouse-catcher.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e10.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e10.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e24",
+              "episodeNumber": 24,
+              "title": "The Milky Waif",
+              "synopsis": "Jerry is tasked with babysitting Nibbles, a tiny, hungry orphan mouse. When they try to sneak some of Tom’s milk, a chase breaks out. Despite Tom's efforts to catch them, Jerry and Nibbles use their wits and a bit of teamwork to ensure the baby gets his fill.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e24.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e24.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e25",
+              "episodeNumber": 25,
+              "title": "Trap Happy",
+              "synopsis": "Tom decides to call in a professional mouse-catcher to handle Jerry once and for all. However, Jerry is far more clever than the expert, leading to a series of backfiring traps and mechanical failures. Tom eventually realizes that if he wants a job done right, he has to do it himself.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e25.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e25.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e26",
+              "episodeNumber": 26,
+              "title": "Solid Serenade",
+              "synopsis": "Tom brings a double bass to a neighboring yard to serenade a female cat, but his loud singing keeps Jerry awake. Jerry retaliates with various household items to stop the concert. The night ends in a symphony of destruction as the musical instruments become weapons in their classic battle.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e26.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e26.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e28",
+              "episodeNumber": 28,
+              "title": "Part Time Pal",
+              "synopsis": "After Tom accidentally drinks some 'spiked' punch, he becomes Jerry's best friend. He invites Jerry to feast in the kitchen, much to the mouse's surprise. However, once the effect wears off, Tom returns to his predatory self, leading to a frantic chase to avoid getting into trouble with Mammy.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e28.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e28.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
               "episodeId": "tom-and-jerry-e35",
               "episodeNumber": 35,
               "title": "The Truce Hurts",
@@ -1676,6 +1731,17 @@
               "isPlayable": true
             },
             {
+              "episodeId": "tom-and-jerry-e59",
+              "episodeNumber": 59,
+              "title": "His Mouse Friday",
+              "synopsis": "Tom finds himself shipwrecked on a tropical island and discovers Jerry. Tom assumes a cannibalistic persona to catch Jerry, but the mouse is one step ahead, using island tricks and a group of 'natives' to turn the tables. Tom quickly realizes he is not the king of this jungle.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e59.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e59.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
               "episodeId": "tom-and-jerry-e65",
               "episodeNumber": 65,
               "title": "The Two Mouseketeers",
@@ -1694,6 +1760,17 @@
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerry_s1e66.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e66.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tom-and-jerry-e71",
+              "episodeNumber": 71,
+              "title": "Cruise Cat",
+              "synopsis": "Tom is employed as a mascot on an ocean liner, but Jerry has stowed away for a vacation of his own. The chase spans the entire ship, from the luxury dining halls to the theater. Tom must catch Jerry without getting into trouble with the ship's captain, leading to high-seas hilarity.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerry_s1e71.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry/season-01/tom-and-jerry-s01-e71.mp4",
               "subtitles": [],
               "isPlayable": true
             },
