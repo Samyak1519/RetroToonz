@@ -1792,7 +1792,7 @@
     {
       "id": "tom-and-jerry-tales",
       "title": "Tom and Jerry Tales",
-      "year": "1995",
+      "year": "2006",
       "thumbnail": "/media/posters-desktop/tom-and-jerry-tales-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-tales-poster-mobile.jpeg",
       "tags": [
@@ -1808,13 +1808,13 @@
         {
           "seasonNumber": 1,
           "title": "Season 1",
-          "year": "1995",
+          "year": "2006",
           "episodes": [
             {
               "episodeId": "tomandjerrytales-s1-e1",
               "episodeNumber": 1,
-              "title": "Cat & Mouse Chaos",
-              "synopsis": "Tom begins another determined chase after Jerry, but every attempt backfires spectacularly as they crash through furniture, appliances, and household obstacles. Jerry uses clever tricks and quick thinking to stay one step ahead, turning Tom’s plans into hilarious disasters that escalate into a full-blown, slapstick showdown across the entire house.",
+              "title": "Tiger Cat",
+              "synopsis": "Tom and Jerry's chase leads them to a zoo where Tom tries to use a tiger to help catch Jerry, only to realize the big cat isn't on his side.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e1.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e01.mp4",
@@ -1824,8 +1824,8 @@
             {
               "episodeId": "tomandjerrytales-s1-e2",
               "episodeNumber": 2,
-              "title": "The Great Chase",
-              "synopsis": "A simple chase quickly spirals into an elaborate series of comedic setups as Tom pursues Jerry through rooms, rooftops, and makeshift obstacles. Jerry’s clever traps trigger explosive outcomes while Tom’s determination only intensifies the chaos, creating a relentless sequence of gags that turns an ordinary pursuit into an unforgettable battle.",
+              "title": "Feeding Time",
+              "synopsis": "At the zoo, Tom is tasked with feeding the animals, but Jerry is determined to turn the mealtime into a chaotic buffet.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e2.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e02.mp4",
@@ -1835,8 +1835,8 @@
             {
               "episodeId": "tomandjerrytales-s1-e3",
               "episodeNumber": 3,
-              "title": "Mouse Mischief",
-              "synopsis": "Jerry devises a playful prank to outsmart Tom, but the plan quickly snowballs into a chain reaction of accidents affecting the entire house. Tom’s attempts to retaliate only create bigger problems, leading both rivals into a whirlwind of traps, reversals, and slapstick surprises neither of them fully anticipated.",
+              "title": "Polar Peril",
+              "synopsis": "The rivalry heads to the arctic where Tom and Jerry battle it out amidst icebergs, freezing water, and a very grumpy polar bear.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e3.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e03.mp4",
@@ -1846,8 +1846,8 @@
             {
               "episodeId": "tomandjerrytales-s1-e4",
               "episodeNumber": 4,
-              "title": "Way-Off Broadway",
-              "synopsis": "Tom and Jerry end up backstage at a grand Broadway-style theater, where Jerry tries to enjoy the show while Tom attempts to keep the performance running smoothly. Their rivalry quickly escalates into a cascade of comedic disasters involving props, costumes, lighting cues, and musical numbers that spiral hilariously out of control.",
+              "title": "Joy Riding Jokers",
+              "synopsis": "Tom and Jerry find themselves behind the wheel of a high-speed car, turning a simple drive into a destructive race through the streets.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e4.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e04.mp4",
@@ -1857,8 +1857,8 @@
             {
               "episodeId": "tomandjerrytales-s1-e5",
               "episodeNumber": 5,
-              "title": "EGG Beats",
-              "synopsis": "Jerry discovers a mysterious egg that he decides to protect, but Tom sees it as an opportunity for mischief. Their chase becomes a chaotic scramble as the fragile egg bounces through kitchens, hallways, and backyards, forcing both rivals to improvise wildly to prevent it from cracking while still outsmarting each other.",
+              "title": "Cat Got Your Luggage",
+              "synopsis": "Set in a busy hotel, Tom’s job as a bellhop is made impossible when Jerry decides to hide inside the guests' suitcases.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e5.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e05.mp4",
@@ -1868,11 +1868,198 @@
             {
               "episodeId": "tomandjerrytales-s1-e6",
               "episodeNumber": 6,
-              "title": "Friday Cat Scat",
-              "synopsis": "Tom plans a relaxing Friday evening, but Jerry’s mischief turns it into a frantic, jazz-filled adventure. A lively musical rhythm takes over the house, causing Tom to stumble through dance-like chases, syncopated traps, and slapstick mishaps. Each beat intensifies their rivalry, transforming the night into chaotic, toe-tapping mayhem.",
+              "title": "City Dump Chumps",
+              "synopsis": "The battle moves to the city dump, where the duo uses piles of junk and discarded machinery to build elaborate traps for one another.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e6.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e06.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e7",
+              "episodeNumber": 7,
+              "title": "Way off Broadway",
+              "synopsis": "Tom and Jerry cause a scene at a musical theater, turning a sophisticated performance into a slapstick comedy routine.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e7.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e07.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e8",
+              "episodeNumber": 8,
+              "title": "Egg Beats",
+              "synopsis": "Jerry uses a collection of noisy farm eggs to keep Tom awake and agitated in this high-energy musical pursuit.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e8.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e08.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e10",
+              "episodeNumber": 10,
+              "title": "Bats What I Like About the South",
+              "synopsis": "Tom attempts to use a mechanical bat to catch Jerry, but the invention has a mind of its own in the deep south.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e10.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e10.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e11",
+              "episodeNumber": 11,
+              "title": "Fraidy Cat Scat",
+              "synopsis": "After watching a scary movie, Tom becomes paranoid, and Jerry takes full advantage of his fear to haunt him around the house.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e11.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e11.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e12",
+              "episodeNumber": 12,
+              "title": "Tomb It May Concern",
+              "synopsis": "The duo explores an ancient Egyptian tomb, dodging mummies and ancient curses in a race for hidden treasure.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e12.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e12.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e13",
+              "episodeNumber": 13,
+              "title": "Dino-Sores",
+              "synopsis": "Transported back to the prehistoric era, Tom and Jerry must survive encounters with massive dinosaurs and erupting volcanoes.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e13.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e13.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e14",
+              "episodeNumber": 14,
+              "title": "Freaky Tiki",
+              "synopsis": "On a tropical island, Tom and Jerry deal with a local volcano deity and some very aggressive tiki statues.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e14.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e14.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e15",
+              "episodeNumber": 15,
+              "title": "Prehisterics",
+              "synopsis": "Another adventure in the Stone Age where Tom tries to prove he is the ultimate cave-cat hunter.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e15.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e15.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e17",
+              "episodeNumber": 17,
+              "title": "Hi, Robot",
+              "synopsis": "Tom builds a robot to catch Jerry, but the robot's programming is easily manipulated by the clever mouse.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e17.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e17.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e18",
+              "episodeNumber": 18,
+              "title": "Tomcat Jetpack",
+              "synopsis": "Tom takes to the skies with a high-tech jetpack, but Jerry finds ways to make sure Tom's flight ends in a crash.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e18.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e18.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e19",
+              "episodeNumber": 19,
+              "title": "Firebreathing Tom Cat",
+              "synopsis": "In a medieval fantasy setting, Tom becomes a dragon-like feline, but Jerry has a few magical tricks of his own.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e19.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e19.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e20",
+              "episodeNumber": 20,
+              "title": "Medieval Menace",
+              "synopsis": "Castle walls and knight armor provide the backdrop for a royal battle between the legendary duo.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e20.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e20.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e21",
+              "episodeNumber": 21,
+              "title": "The Itch",
+              "synopsis": "Tom is bothered by a persistent itch that turns out to be a very organized group of fleas led by Jerry.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e21.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e21.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e22",
+              "episodeNumber": 22,
+              "title": "Ho Ho Horrors",
+              "synopsis": "A Christmas-themed chase where Tom and Jerry turn holiday decorations into weapons of festive destruction.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e22.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e22.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e23",
+              "episodeNumber": 23,
+              "title": "Doggone Hill Hog",
+              "synopsis": "Tom and Jerry compete for the best spot on a snowy hill, leading to a high-speed sledding disaster.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e23.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e23.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e25",
+              "episodeNumber": 25,
+              "title": "Cat Nebula",
+              "synopsis": "The rivalry goes galactic as Tom and Jerry take their battle to a high-tech space station in deep orbit.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e25.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e25.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "tomandjerrytales-s1-e26",
+              "episodeNumber": 26,
+              "title": "Martian Mice",
+              "synopsis": "Tom discovers that Jerry has been communicating with mice from Mars, leading to an out-of-this-world showdown.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/tomandjerrytales_s1e26.jpg",
+              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-01/tom-and-jerry-tales-s01-e26.mp4",
               "subtitles": [],
               "isPlayable": true
             }
@@ -1902,39 +2089,6 @@
               "duration": null,
               "thumbnail": "/media/posters-desktop/tomandjerrytales_s2e2.jpg",
               "videoUrl": "/media/episodes/tom-and-jerry-tales/season-02/tom-and-jerry-tales-s02-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "tomandjerrytales-s2-e3",
-              "episodeNumber": 3,
-              "title": "Tomb It May Concern",
-              "synopsis": "Tom and Jerry stumble into an ancient Egyptian tomb packed with treasures and perilous traps. Tom tries to seize the riches while Jerry focuses on escaping, but a revived mummy joins the chase. With collapsing chambers and shifting passageways, their rivalry becomes a frantic fight for survival in the crumbling ruins.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/tomandjerrytales_s2e3.jpg",
-              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-02/tom-and-jerry-tales-s02-e03.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "tomandjerrytales-s2-e4",
-              "episodeNumber": 4,
-              "title": "Dino-Sores",
-              "synopsis": "Transported into a prehistoric world, Tom and Jerry encounter massive dinosaurs, erupting volcanoes, and primitive landscapes. Jerry befriends a playful baby dino, while Tom’s pursuit triggers encounters with larger, more dangerous creatures. Their chase grows increasingly chaotic as the environment’s sheer scale turns ordinary mischief into Stone Age-sized slapstick destruction.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/tomandjerrytales_s2e4.jpg",
-              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-02/tom-and-jerry-tales-s02-e04.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "tomandjerrytales-s2-e5",
-              "episodeNumber": 5,
-              "title": "Tomcat Jetpack",
-              "synopsis": "Tom gets hold of a high-powered jetpack, giving him unexpected speed and new ways to pursue Jerry. But controlling the wild machine becomes a challenge as Tom rockets through houses, skies, and obstacles. Jerry cleverly redirects the chaos, turning Tom’s airborne advantage into explosive, fast-paced slapstick mayhem.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/tomandjerrytales_s2e5.jpg",
-              "videoUrl": "/media/episodes/tom-and-jerry-tales/season-02/tom-and-jerry-tales-s02-e05.mp4",
               "subtitles": [],
               "isPlayable": true
             }
