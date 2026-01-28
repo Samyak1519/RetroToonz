@@ -1,19 +1,19 @@
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import ScrollToTop from "./Components/ScrollToTop"; // ✅ ADD THIS
+import AboutPage from "./Pages/AboutPage";
 import AddShowPage from "./Pages/AddShowPage";
 import AllShowsPage from "./Pages/AllShowsPage";
+import AuthPage from "./Pages/AuthPage";
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
-import AuthPage from "./Pages/AuthPage";
 import ProfilePage from "./Pages/ProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import WatchlistPage from "./Pages/WatchlistPage";
-import AboutPage from "./Pages/AboutPage";
-import ScrollToTop from "./Components/ScrollToTop"; // ✅ ADD THIS
-import "./App.css";
 
 function AppRoutes() {
   return (
