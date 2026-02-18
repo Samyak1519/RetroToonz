@@ -1,7 +1,9 @@
+// src/App.jsx
+
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import ScrollToTop from "./Components/ScrollToTop"; // ✅ ADD THIS
+// import "./App.css";
+import ScrollToTop from "./Components/ScrollToTop";
 import AboutPage from "./Pages/AboutPage";
 import AddShowPage from "./Pages/AddShowPage";
 import AllShowsPage from "./Pages/AllShowsPage";

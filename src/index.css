@@ -1,13 +1,16 @@
 /* src/index.css */
 
-/* Import Nunito */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+/* ===  GOOGLE FONT — INTER === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+
+/* === TAILWIND BASE === */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Apply base font and Confetti Doodles background */
+
+/* === GLOBAL BODY STYLES === */
 body {
     @apply font-sans;
     margin: 0;
@@ -16,13 +19,7 @@ body {
     color: #ffffff;
 }
 
-/* Optional helper classes */
-.nunito-regular {
-    font-family: "Nunito", sans-serif;
-    font-weight: 400;
-}
-
-/* Hide scrollbars globally (optional) */
+/* === HIDE SCROLLBAR === */
 *::-webkit-scrollbar {
     display: none;
 }

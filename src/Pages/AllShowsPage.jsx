@@ -1,9 +1,9 @@
 // src/Pages/AllShowsPage.jsx
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaArrowLeft, FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 import ShowCard from "../Components/ShowCard";
 import showsDataRaw from "../Data/Shows.json"; // ensure path/casing matches
 
