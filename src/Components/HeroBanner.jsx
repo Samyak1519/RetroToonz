@@ -121,11 +121,11 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Dark overlay for Netflix-style effect */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/20 z-20" />
 
         {/* bottom gradient */}
-        <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
-          <div className="w-full h-full bg-gradient-to-t from-[#0F0A24] via-[#0F0A24]/70 to-transparent" />
+        <div className="absolute inset-0 w-full h-full z-30 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-t from-[#0F0A24] via-[#0F0A24]/50 to-transparent" />
           <div className="absolute bottom-0 w-full h-8 bg-[#0F0A24]" />
         </div>
 
