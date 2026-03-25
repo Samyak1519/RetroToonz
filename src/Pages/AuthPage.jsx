@@ -69,7 +69,7 @@ export default function AuthPage() {
 
           {/* Right Section */}
           <motion.div
-            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 border border-white/10"
+            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 my-16 border border-white/10"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -151,7 +151,7 @@ export default function AuthPage() {
         </div>
 
         {/* MOBILE VIEW */}
-        <div className="flex flex-col items-center justify-center text-center w-full max-w-sm md:hidden relative z-10">
+        <div className="flex flex-col items-center justify-center text-center w-full max-w-sm md:hidden relative z-10 py-10">
           <motion.div
             className="text-white mb-6"
             initial={{ opacity: 0, y: -20 }}
