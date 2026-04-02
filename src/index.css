@@ -1,25 +1,33 @@
 /* src/index.css */
 
-/* ===  GOOGLE FONT — INTER === */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-
-/* === TAILWIND BASE === */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 🔥 FORCE Inter globally (overrides Tailwind completely) */
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+    }
 
-/* === GLOBAL BODY STYLES === */
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+/* Background */
 body {
-    @apply font-sans;
     margin: 0;
     background: url('/media/extras/confetti-doodles.svg') no-repeat center center fixed;
     background-size: cover;
     color: #ffffff;
 }
 
-/* === HIDE SCROLLBAR === */
+/* Hide scrollbar */
 *::-webkit-scrollbar {
     display: none;
 }

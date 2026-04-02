@@ -206,7 +206,7 @@ export default function Header() {
               className={`hidden sm:inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-md  hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaSearch size={16} />
@@ -222,7 +222,7 @@ export default function Header() {
               className={`sm:hidden inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-lg hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaSearch size={16} />
@@ -239,7 +239,7 @@ export default function Header() {
               className={`inline-flex items-center gap-2 h-12 rounded-full px-3.5 transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/50 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-lg  hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <FaUserCircle size={20} />
@@ -323,7 +323,7 @@ export default function Header() {
               />
             </div>
           </div>,
-          portalRoot
+          portalRoot,
         )}
 
       {/* 🥚 FIXED EASTER EGG OVERLAY */}

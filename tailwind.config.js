@@ -16,10 +16,10 @@ module.exports = {
         galaxy: "linear-gradient(135deg,#0d1b2a,#1c1132,#082e38)",
       },
 
-      /* 🔤 FONT SETUP (Inter global) */
+      /* 🔥 FIXED FONT SYSTEM */
       fontFamily: {
-        sans: ["Inter", "sans-serif"], // GLOBAL FONT
-        inter: ["Inter", "sans-serif"], // optional utility
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        inter: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
 
       boxShadow: {
