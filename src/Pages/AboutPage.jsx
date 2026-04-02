@@ -34,9 +34,7 @@ const AboutPage = () => {
               md:size={20}
               className="group-hover:scale-125 transition-transform"
             />
-            <span className="font-semibold text-base md:text-lg">
-              Home
-            </span>
+            <span className="font-semibold text-base md:text-lg">Home</span>
           </Link>
         </div>
       </nav>
@@ -209,6 +207,43 @@ const AboutPage = () => {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* --- Support Section --- */}
+      <section className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
+        <div className="bg-[#0b1121] border border-[#1e293b] rounded-2xl p-10 md:p-12 shadow-[0_0_60px_-20px_rgba(30,58,138,0.3)] backdrop-blur-sm">
+          {/* Heading */}
+          <h3 className="text-2xl md:text-3xl font-royal font-bold text-white mb-4">
+            Enjoying RetroToonz?
+          </h3>
+
+          {/* Subtext */}
+          <p className="text-[#94a3b8] font-body mb-8 max-w-xl mx-auto">
+            If this project brings back memories or makes you smile, you can
+            support us with a chai ☕
+          </p>
+
+          {/* Chai Button (Cookie font style) */}
+          <a
+            href="https://buymeachai.ezee.li/Samyak005"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
+          >
+            <img
+              src="https://buymeachai.ezee.li/assets/images/chai.png"
+              alt="chai"
+              className="w-7 h-7"
+            />
+
+            <span
+              className="text-black text-xl"
+              style={{ fontFamily: "'Cookie', cursive" }}
+            >
+              Buy me a chai
+            </span>
+          </a>
         </div>
       </section>
 
