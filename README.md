@@ -6,6 +6,7 @@ Built with performance-focused tools and a clean, immersive UI.
 ---
 
 ## 🚀 Live Demo
+
 https://wwww.retrotoonz.in
 https://retrotoonz.vercel.app/
 
@@ -13,29 +14,27 @@ https://retrotoonz.vercel.app/
 
 ## ✨ Features
 
-* 🎥 **Random Episode Play (Surprise Me)**
+- 🎥 **Random Episode Play (Surprise Me)**
   Instantly jump into a random cartoon episode
 
-* 🧠 **Smart Content Sections**
+- 🧠 **Smart Content Sections**
+  - Trending Now
+  - Newly Added
+  - Retro Classics
+  - Cartoon Comedy
 
-  * Trending Now
-  * Newly Added
-  * Retro Classics
-  * Cartoon Comedy
-
-* 📺 **Hero Banner**
+- 📺 **Hero Banner**
   Dynamic featured shows on homepage
 
-* ⚡ **Fast & Lightweight**
+- ⚡ **Fast & Lightweight**
   Powered by Vite for blazing fast performance
 
-* 🎨 **Modern UI**
+- 🎨 **Modern UI**
+  - Tailwind CSS styling
+  - Smooth animations
+  - Clean Netflix-inspired layout
 
-  * Tailwind CSS styling
-  * Smooth animations
-  * Clean Netflix-inspired layout
-
-* 📱 **Responsive Design**
+- 📱 **Responsive Design**
   Works seamlessly across mobile, tablet, and desktop
 
 ---
@@ -44,26 +43,26 @@ https://retrotoonz.vercel.app/
 
 ### Frontend
 
-* React 18
-* React Router DOM
-* Tailwind CSS
+- React 18
+- React Router DOM
+- Tailwind CSS
 
 ### Animations & UI
 
-* Framer Motion
-* React Icons
-* Lucide React
+- Framer Motion
+- React Icons
+- Lucide React
 
 ### Build & Tooling
 
-* Vite
-* PostCSS
-* Autoprefixer
+- Vite
+- PostCSS
+- Autoprefixer
 
 ### Analytics
 
-* Vercel Analytics
-* Vercel Speed Insights
+- Vercel Analytics
+- Vercel Speed Insights
 
 ---
 
@@ -131,33 +130,27 @@ npm run preview
 
 A floating action button that:
 
-* Picks a random playable episode
-* Navigates directly to the player
-* Smartly avoids overlapping with footer
-
----
-
-## 📸 Screenshots
-
-*(Add screenshots here later for better presentation)*
+- Picks a random playable episode
+- Navigates directly to the player
+- Smartly avoids overlapping with footer
 
 ---
 
 ## 📌 Future Improvements
 
-* 🔍 Search functionality
-* ❤️ Watchlist persistence
-* 👤 User profiles
-* 🌙 Dark/Light theme toggle
-* 🎬 Better player controls
+- 🔍 Search functionality
+- ❤️ Watchlist persistence
+- 👤 User profiles
+- 🌙 Dark/Light theme toggle
+- 🎬 Better player controls
 
 ---
 
-## 🙌 Support
+## Support
 
 If you like this project:
 
-👉 Buy me a chai ☕
+Buy me a chai ☕
 https://buymeachai.ezee.li/Samyak005
 
 ---
@@ -173,9 +166,9 @@ This project is for educational and personal use.
 **Samyak**
 Frontend Developer (React)
 
-* Portfolio: https://portfolio-samyak.vercel.app
-* GitHub: https://github.com/your-username
-* LinkedIn: https://linkedin.com/in/your-profile
+- Portfolio: https://portfolio-samyak.vercel.app
+- GitHub: https://github.com/Samyak1519
+- LinkedIn: https://www.linkedin.com/in/samyak-nimsarkar-752877176/
 
 ---
 
