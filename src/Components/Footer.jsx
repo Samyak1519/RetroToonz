@@ -39,20 +39,26 @@ function Footer() {
           </div>
         </div>
 
-        {/* ☕ Custom Chai Support Button */}
+        {/* ☕ Custom Cookie Font Button */}
         <div className="w-full flex justify-center">
           <a
             href="https://buymeachai.ezee.li/Samyak005"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-white/90 backdrop-blur-md text-black px-5 py-3 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
+            className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
           >
             <img
               src="https://buymeachai.ezee.li/assets/images/chai.png"
               alt="chai"
-              className="w-6 h-6"
+              className="w-7 h-7"
             />
-            <span className="text-sm font-medium">Buy us a chai</span>
+
+            <span
+              className="text-2xl text-black/80 font-semibold"
+              style={{ fontFamily: "'Cookie', cursive" }}
+            >
+              Buy me a chai
+            </span>
           </a>
         </div>
       </div>
