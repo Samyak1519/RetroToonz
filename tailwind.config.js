@@ -16,7 +16,6 @@ module.exports = {
         galaxy: "linear-gradient(135deg,#0d1b2a,#1c1132,#082e38)",
       },
 
-      /* 🔥 FIXED FONT SYSTEM */
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         inter: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
@@ -46,5 +45,6 @@ module.exports = {
     },
   },
 
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  // ✅ plugins removed
+  plugins: [],
 };
