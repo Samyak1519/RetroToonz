@@ -1,6 +1,8 @@
-import { FaRandom } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { ShuffleIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import showsData from "../Data/Shows.json";
 
 function RandomPlayButton() {
@@ -77,7 +79,7 @@ function RandomPlayButton() {
       title="Play a random cartoon"
     >
       <span className="absolute inline-flex h-14 w-14 rounded-full bg-cyan-400 opacity-30 group-hover:animate-ping -z-10"></span>
-      <FaRandom className="text-xl animate-spin-slow" />
+      <HugeiconsIcon icon={ShuffleIcon} className="text-xl animate-spin-slow" />
       <span className="font-semibold hidden sm:block">Surprise Me!</span>
     </button>
   );

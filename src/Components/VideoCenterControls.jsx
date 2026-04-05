@@ -1,5 +1,10 @@
-import { FaPause, FaPlay } from "react-icons/fa";
-import { RiForward10Line, RiReplay10Line } from "react-icons/ri";
+import {
+  GoBackward10SecIcon,
+  GoForward10SecIcon,
+  PauseIcon,
+  PlayIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function VideoCenterControls({
   isPlaying,
@@ -10,17 +15,19 @@ export default function VideoCenterControls({
   showControls,
 }) {
   const glassBtn =
-    "bg-black/30 backdrop-blur-md border border-white/10 hover:bg-white/20 transition rounded-full text-white";
+    "bg-black/30 backdrop-blur-md border border-white/10 hover:bg-white/20 transition rounded-full text-white flex items-center justify-center";
 
   return (
     <div
       data-controls
       className={`
-                absolute inset-0 z-30 flex items-center justify-center
-                pointer-events-none
-                transition-opacity duration-300 ease-in-out
-                ${showControls ? "opacity-100" : "opacity-0"}
-            `}
+        absolute inset-0 z-30 flex items-center justify-center
+        pointer-events-none
+        transition-opacity duration-300 ease-in-out
+        translate-y-[-10px] sm:translate-y-0
+
+        ${showControls ? "opacity-100" : "opacity-0"}
+      `}
     >
       {/* Spinner */}
       {isBuffering && (
@@ -40,7 +47,7 @@ export default function VideoCenterControls({
           }}
           className={`${glassBtn} p-2.5 sm:p-3`}
         >
-          <RiReplay10Line size={20} />
+          <HugeiconsIcon icon={GoBackward10SecIcon} size={20} />
         </button>
 
         {/* Play / Pause */}
@@ -51,7 +58,11 @@ export default function VideoCenterControls({
           }}
           className={`${glassBtn} p-3.5 sm:p-4`}
         >
-          {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
+          {isPlaying ? (
+            <HugeiconsIcon icon={PauseIcon} size={22} />
+          ) : (
+            <HugeiconsIcon icon={PlayIcon} size={22} />
+          )}
         </button>
 
         {/* Forward */}
@@ -62,11 +73,11 @@ export default function VideoCenterControls({
           }}
           className={`${glassBtn} p-2.5 sm:p-3`}
         >
-          <RiForward10Line size={20} />
+          <HugeiconsIcon icon={GoForward10SecIcon} size={20} />
         </button>
       </div>
 
-      {/* Spinner CSS (unchanged) */}
+      {/* Spinner CSS */}
       <style jsx>{`
         .yt-spinner-container {
           padding: 16px;
