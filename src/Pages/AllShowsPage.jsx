@@ -1,14 +1,10 @@
+import { ArrowDown01Icon, ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowLeft01Icon,
-  ArrowDown01Icon,
-  StarsIcon,
-} from "@hugeicons/core-free-icons";
 
-import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
+import Header from "../Components/Header.jsx";
 import ShowCard from "../Components/ShowCard.jsx";
 import showsDataRaw from "../Data/Shows.json";
 

@@ -1,5 +1,12 @@
 // src/Components/VideoBottomBar.jsx
-import { FaBackward, FaCompress, FaExpand, FaForward } from "react-icons/fa";
+
+import {
+  ArrowShrinkIcon,
+  Backward01Icon,
+  Forward01Icon,
+  FullscreenIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function VideoBottomBar({
   currentTime,
@@ -24,7 +31,6 @@ export default function VideoBottomBar({
     setDragSeekTime(null);
   };
 
-  // computed gradient fallback if not provided
   const bg =
     progressBackground ??
     `linear-gradient(90deg, #06b6d4 ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
@@ -32,10 +38,10 @@ export default function VideoBottomBar({
   return (
     <div
       data-controls
-      className="absolute left-0 right-0 bottom-0 z-30 px-5 sm:px-8 lg:px-12 pb-1.5 sm:pb-5 pt-2 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto"
+      className="absolute left-0 right-0 bottom-0 z-30 px-5 sm:px-8 lg:px-12 pb-1.5 sm:pb-3 lg:pb-5 pt-2 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto"
     >
       {/* progress row */}
-      <div className="flex items-center gap-0.5 mb-2 sm:mb-7">
+      <div className="flex items-center gap-0.5 mb-1.5 sm:mb-3 lg:mb-7 px-2">
         <span className="text-xs text-white w-12 text-left select-none">
           {formatTime(value)}
         </span>
@@ -62,7 +68,7 @@ export default function VideoBottomBar({
       </div>
 
       {/* control row */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-2 pr-0">
         <div className="flex items-center bg-white/10 backdrop-blur-md rounded-full overflow-hidden border border-white/10">
           <button
             onClick={(e) => {
@@ -73,7 +79,7 @@ export default function VideoBottomBar({
             aria-label="Previous episode"
             className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-white/20 transition"
           >
-            <FaBackward size={12} />
+            <HugeiconsIcon icon={Backward01Icon} size={14} />
             <span className="hidden sm:inline">Prev</span>
           </button>
 
@@ -88,7 +94,7 @@ export default function VideoBottomBar({
             className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-white/20 transition"
           >
             <span className="hidden sm:inline">Next</span>
-            <FaForward size={12} />
+            <HugeiconsIcon icon={Forward01Icon} size={14} />
           </button>
         </div>
 
@@ -102,55 +108,56 @@ export default function VideoBottomBar({
           className="p-2 rounded-full hover:bg-white/10 transition"
         >
           {isFullscreen ? (
-            <FaCompress className="text-2xl sm:text-2xl" />
+            <HugeiconsIcon
+              icon={ArrowShrinkIcon}
+              className="text-2xl sm:text-2xl"
+            />
           ) : (
-            <FaExpand className="text-xl sm:text-xl" />
+            <HugeiconsIcon
+              icon={FullscreenIcon}
+              className="text-xl sm:text-xl"
+            />
           )}
         </button>
       </div>
 
-      {/* styles: uniform track thickness + transform centering for thumb */}
+      {/* styles unchanged */}
       <style jsx>{`
-        /* variables: track height and thumb sizes */
         input[type="range"] {
-          --track-h: 5px; /* uniform track height for mobile + desktop */
-          --thumb-mobile: 12px; /* thumb on small screens */
-          --thumb-desktop: 14px; /* thumb on sm+ */
+          --track-h: 5px;
+          --thumb-mobile: 12px;
+          --thumb-desktop: 14px;
           --thumb-size: var(--thumb-mobile);
           width: 100%;
           height: var(--track-h);
-          background: transparent; /* gradient via inline style */
+          background: transparent;
           border-radius: 999px;
           padding: 0;
           margin: 0;
           display: block;
         }
 
-        /* use larger thumb on sm+ */
         @media (min-width: 640px) {
           input[type="range"] {
             --thumb-size: var(--thumb-desktop);
           }
         }
 
-        /* WebKit track */
         input[type="range"]::-webkit-slider-runnable-track {
           height: var(--track-h);
           border-radius: 999px;
           background: transparent;
         }
 
-        /* WebKit thumb - use transform to vertically center reliably */
         input[type="range"]::-webkit-slider-thumb {
           -webkit-appearance: none;
           height: var(--thumb-size);
           width: var(--thumb-size);
           border-radius: 999px;
-          background: #22d3ee;
+          background: #ffffff;
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.1);
           cursor: pointer;
-          /* center the thumb: move by (track - thumb)/2. transform is more reliable on mobile WebKit */
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
         }
 
@@ -160,54 +167,54 @@ export default function VideoBottomBar({
           box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.1);
         }
 
-        /* Firefox track & progress */
         input[type="range"]::-moz-range-track {
           height: var(--track-h);
           border-radius: 999px;
           background: transparent;
         }
-        /* firefox's "progress" pseudo works for colored portion */
+
         input[type="range"]::-moz-range-progress {
           height: var(--track-h);
           border-radius: 999px;
           background: #06b6d4;
         }
+
         input[type="range"]::-moz-range-thumb {
           height: var(--thumb-size);
           width: var(--thumb-size);
           border-radius: 999px;
-          background: #22d3ee;
+          background: #ffffff;
           border: 1px solid rgba(255, 255, 255, 0.08);
           cursor: pointer;
-          /* center via translate as well */
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
         }
 
-        /* IE / Edge (old) */
         input[type="range"]::-ms-track {
           height: var(--track-h);
           background: transparent;
           border-color: transparent;
           color: transparent;
         }
+
         input[type="range"]::-ms-fill-lower {
           background: #06b6d4;
           border-radius: 999px;
         }
+
         input[type="range"]::-ms-fill-upper {
           background: rgba(255, 255, 255, 0.12);
           border-radius: 999px;
         }
+
         input[type="range"]::-ms-thumb {
           height: var(--thumb-size);
           width: var(--thumb-size);
           border-radius: 999px;
-          background: #22d3ee;
+          background: #ffffff;
           border: 1px solid rgba(255, 255, 255, 0.08);
           transform: translateY(calc((var(--track-h) - var(--thumb-size)) / 2));
         }
 
-        /* small visual tweak: ensure no accidental top/bottom spacing for the input element */
         input[type="range"] {
           line-height: 0;
         }

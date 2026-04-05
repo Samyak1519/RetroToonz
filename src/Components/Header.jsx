@@ -1,15 +1,18 @@
-import { CircleStar, X } from "lucide-react";
+import {
+  ArrowDown01Icon,
+  Cancel01Icon,
+  FavouriteIcon,
+  Login01Icon,
+  Menu01Icon,
+  Search01Icon,
+  StarIcon,
+  UserCircleIcon,
+  UserIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import {
-  FaChevronDown,
-  FaHeart,
-  FaList,
-  FaSearch,
-  FaSignInAlt,
-  FaUser,
-  FaUserCircle,
-} from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
@@ -209,7 +212,7 @@ export default function Header() {
                   : "bg-black/20 backdrop-blur-md  hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
-              <FaSearch size={16} />
+              <HugeiconsIcon icon={Search01Icon} size={16} />
             </button>
 
             {/* Search mobile */}
@@ -225,7 +228,7 @@ export default function Header() {
                   : "bg-black/20 backdrop-blur-lg hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
-              <FaSearch size={16} />
+              <HugeiconsIcon icon={Search01Icon} size={16} />
             </button>
 
             {/* Profile */}
@@ -242,13 +245,15 @@ export default function Header() {
                   : "bg-black/20 backdrop-blur-lg  hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
-              <FaUserCircle size={20} />
+              <HugeiconsIcon icon={UserCircleIcon} size={20} />
+
               <span className="hidden lg:block font-semibold text-sm sm:text-base">
                 Samyak
               </span>
-              <FaChevronDown
+
+              <HugeiconsIcon
+                icon={ArrowDown01Icon}
                 size={12}
-                aria-hidden="true"
                 className={`block transform transition-transform duration-200 ${
                   profileOpen ? "rotate-180" : "rotate-0"
                 }`}
@@ -342,7 +347,7 @@ export default function Header() {
             className="absolute top-6 right-6 z-[100001] bg-white/10 hover:bg-red-500 text-white p-3 rounded-full transition-all active:scale-95"
             aria-label="Close"
           >
-            <X size={28} />
+            <HugeiconsIcon icon={Cancel01Icon} size={28} />
           </button>
 
           {/* Content Wrapper */}
@@ -387,7 +392,8 @@ function MenuItems({ firstItemRef, onNavigate }) {
           isActive("/profile") ? "bg-white/10" : ""
         } w-full text-left`}
       >
-        <FaUser className="text-cyan-300" />
+        <HugeiconsIcon icon={UserIcon} className="text-cyan-300" size={18} />
+
         <span>My Account</span>
       </button>
 
@@ -398,7 +404,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
           isActive("/all-shows") ? "bg-white/10" : ""
         } w-full text-left`}
       >
-        <FaList className="text-cyan-300" />
+        <HugeiconsIcon icon={Menu01Icon} className="text-cyan-300" size={18} />
         <span>All Shows</span>
       </button>
 
@@ -409,7 +415,11 @@ function MenuItems({ firstItemRef, onNavigate }) {
           isActive("/watchlist") ? "bg-white/10" : ""
         } w-full text-left`}
       >
-        <FaHeart className="text-cyan-300 " />
+        <HugeiconsIcon
+          icon={FavouriteIcon}
+          className="text-cyan-300"
+          size={18}
+        />
         <span>Wishlist</span>
       </button>
 
@@ -420,7 +430,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
           isActive("/about-us") ? "bg-white/10" : ""
         } w-full text-left`}
       >
-        <CircleStar className="text-cyan-300" />
+        <HugeiconsIcon icon={StarIcon} className="text-cyan-300" size={18} />
         <span>About Us</span>
       </button>
 
@@ -431,7 +441,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
         className={itemBase + " w-full text-left"}
         onClick={() => onNavigate("/login")}
       >
-        <FaSignInAlt className="text-cyan-300" />
+        <HugeiconsIcon icon={Login01Icon} className="text-cyan-300" size={18} />
         <span>Sign In</span>
       </button>
     </div>

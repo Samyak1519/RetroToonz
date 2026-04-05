@@ -1,6 +1,10 @@
 import { Listbox, Transition } from "@headlessui/react";
+import {
+  ArrowDown01Icon,
+  CheckmarkCircle02Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { Fragment, useMemo, useState } from "react";
-import { FaCheck, FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
@@ -15,7 +19,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
   }, [show]);
 
   const [selectedSeason, setSelectedSeason] = useState(
-    seasons.length > 0 ? seasons[0] : { label: "Season 1", index: 0 }
+    seasons.length > 0 ? seasons[0] : { label: "Season 1", index: 0 },
   );
 
   const episodes = useMemo(() => {
@@ -55,7 +59,10 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
               <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-[#1f1f1f] py-2 pl-4 pr-10 text-left text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <span className="block truncate">{selectedSeason.label}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                  <FaChevronDown className="h-3 w-3 text-gray-400" />
+                  <HugeiconsIcon
+                    icon={ArrowDown01Icon}
+                    className="h-5 w-5 text-gray-400"
+                  />
                 </span>
               </Listbox.Button>
 
@@ -87,7 +94,10 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                           </span>
                           {selected && (
                             <span className="absolute inset-y-0 left-2 flex items-center">
-                              <FaCheck className="text-purple-300 text-xs" />
+                              <HugeiconsIcon
+                                icon={CheckmarkCircle02Icon}
+                                className="text-purple-300 text-xs"
+                              />
                             </span>
                           )}
                         </>

@@ -1,4 +1,6 @@
-import { Search } from "lucide-react";
+import { Search01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -30,13 +32,14 @@ function SearchBar() {
       "
     >
       {/* Search icon */}
-      <Search
+      <HugeiconsIcon
+        icon={Search01Icon}
         className="
-          absolute left-4 top-1/2 -translate-y-1/2
-          text-cyan-100
-          w-5 h-5 md:w-4 md:h-4
-          pointer-events-none
-        "
+    absolute left-4 top-1/2 -translate-y-1/2
+    text-cyan-100
+    w-5 h-5 md:w-4 md:h-4
+    pointer-events-none
+  "
       />
 
       {/* Input */}

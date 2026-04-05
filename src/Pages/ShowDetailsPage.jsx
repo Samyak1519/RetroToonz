@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { FaArrowLeft, FaPlay, FaStar } from "react-icons/fa";
-import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { useNavigate, useParams } from "react-router-dom";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowLeft02Icon,
+  PlayIcon,
+  StarIcon,
+  FavouriteIcon,
+} from "@hugeicons/core-free-icons";
+
 import EpisodeSection from "../Components/EpisodeSection";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
@@ -47,7 +53,7 @@ function ShowDetailsPage() {
       <Header />
 
       <main className="flex-grow">
-        {/* POSTER SECTION — SAME STRUCTURE, ONLY ASPECT CHANGE */}
+        {/* POSTER */}
         <div className="relative w-full aspect-[3/3] sm:aspect-auto sm:h-72 md:h-80 lg:h-[400px] overflow-hidden">
           <picture>
             <source srcSet={posterMobile} media="(max-width:600px)" />
@@ -64,6 +70,7 @@ function ShowDetailsPage() {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
+          {/* BACK BUTTON */}
           <button
             onClick={() => navigate(-1)}
             className="
@@ -74,12 +81,13 @@ function ShowDetailsPage() {
               p-3 sm:p-2.5 lg:p-3
               rounded-full
               text-white
-              text-lg sm:text-xl lg:text-2xl
               z-20 transition
             "
-            aria-label="Go back"
           >
-            <FaArrowLeft />
+            <HugeiconsIcon
+              icon={ArrowLeft02Icon}
+              className="text-lg sm:text-xl lg:text-2xl"
+            />
           </button>
         </div>
 
@@ -91,8 +99,12 @@ function ShowDetailsPage() {
                 {show.title}
               </h1>
 
+              {/* RATING */}
               <div className="flex items-center gap-2 text-yellow-400 text-sm sm:text-base mt-1">
-                <FaStar className="text-base sm:text-lg" />
+                <HugeiconsIcon
+                  icon={StarIcon}
+                  className="text-base sm:text-lg"
+                />
                 <span>{show.rating || "9.1"}</span>
                 <span className="text-xs text-gray-400">
                   ({show.views || "35k"} views)
@@ -105,21 +117,30 @@ function ShowDetailsPage() {
               </p>
             </div>
 
+            {/* ACTIONS */}
             <div className="flex items-center gap-4 mr-2 sm:mr-5">
+              {/* ❤️ Wishlist */}
               <button
                 onClick={toggleShortlist}
-                className="text-4xl sm:text-5xl hover:scale-110 transition-transform"
+                className="text-4xl sm:text-5xl transition-transform"
                 title={
                   isShortlisted ? "Remove from Watchlist" : "Add to Watchlist"
                 }
               >
-                {isShortlisted ? (
-                  <VscHeartFilled className="text-red-600" />
-                ) : (
-                  <VscHeart className="text-white" />
-                )}
+                <HugeiconsIcon
+                  icon={FavouriteIcon}
+                  className={`
+                    transition-all duration-200
+                    ${
+                      isShortlisted
+                        ? "text-red-500 scale-110 drop-shadow-[0_0_6px_rgba(248,113,113,0.6)]"
+                        : "text-white/80 hover:text-white"
+                    }
+                  `}
+                />
               </button>
 
+              {/* ▶️ Play */}
               <button
                 onClick={() => {
                   if (firstEpisodeId) {
@@ -129,13 +150,13 @@ function ShowDetailsPage() {
                   }
                 }}
                 className="bg-purple-600 hover:bg-purple-700 p-4 sm:p-5 rounded-full text-white shadow-md transition"
-                title="Watch Now"
               >
-                <FaPlay className="text-lg sm:text-xl" />
+                <HugeiconsIcon icon={PlayIcon} className="text-lg sm:text-xl" />
               </button>
             </div>
           </div>
 
+          {/* TAGS */}
           <div className="flex flex-wrap gap-2 mb-4">
             {show.tags?.map((tag) => (
               <span
@@ -147,11 +168,13 @@ function ShowDetailsPage() {
             ))}
           </div>
 
+          {/* DESCRIPTION */}
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6">
             {show.description ||
               "This is a placeholder description. Add something meaningful here about characters, story or nostalgia!"}
           </p>
 
+          {/* EPISODES */}
           <EpisodeSection
             posterDesktop={posterDesktop}
             posterMobile={posterMobile}

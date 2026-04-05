@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AiFillHeart } from "react-icons/ai";
-import { VscHeart } from "react-icons/vsc";
 import { Link } from "react-router-dom";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { FavouriteIcon } from "@hugeicons/core-free-icons";
 
 const defaultPoster = "/Assets/default.jpg";
 
@@ -85,7 +85,7 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                   </p>
                 </div>
 
-                {/* Wishlist / Favourite (GLASS) */}
+                {/* Wishlist / Favourite */}
                 <button
                   onClick={toggleShortlist}
                   className="
@@ -94,17 +94,22 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                     rounded-full
                     bg-black/30 backdrop-blur-md
                     border border-white/20
-                    text-white
                     flex items-center justify-center
                     transition-all duration-200
                     hover:bg-black/40 hover:border-white/30
                   "
                 >
-                  {isShortlisted ? (
-                    <AiFillHeart className="text-red-400" />
-                  ) : (
-                    <VscHeart />
-                  )}
+                  <HugeiconsIcon
+                    icon={FavouriteIcon}
+                    className={`
+                      w-4 h-4 transition-all duration-200
+                      ${
+                        isShortlisted
+                          ? "text-red-600 scale-110 drop-shadow-[0_0_6px_rgba(248,113,113,0.6)]"
+                          : "text-white"
+                      }
+                    `}
+                  />
                 </button>
               </div>
             </div>
