@@ -23,21 +23,25 @@ export default function VideoPlayerEpisodes({
   }, [seasons]);
 
   const [activeSeason, setActiveSeason] = useState(0);
+  const [activeEpisode, setActiveEpisode] = useState(null);
+
   const season = normalizedSeasons[activeSeason] || { episodes: [] };
   const scrollerRef = useRef(null);
 
   useEffect(() => {
-    if (scrollerRef.current)
+    if (scrollerRef.current) {
       scrollerRef.current.scrollTo({ left: 0, behavior: "smooth" });
+    }
   }, [activeSeason]);
 
   const normalizePath = (p) => (p ? (p.startsWith("/") ? p : `/${p}`) : null);
+
   const getThumb = (ep) =>
     posterDesktop
       ? normalizePath(posterDesktop)
       : ep?.thumbnail
-      ? normalizePath(ep.thumbnail)
-      : defaultPoster;
+        ? normalizePath(ep.thumbnail)
+        : defaultPoster;
 
   const handleImgError = (e) => {
     e.currentTarget.onerror = null;
@@ -45,128 +49,118 @@ export default function VideoPlayerEpisodes({
   };
 
   return (
-    <section aria-labelledby="episodes-title" className="w-full">
-      <div className="flex items-center justify-between mb-3">
-        <h2 id="episodes-title" className="text-xl font-semibold">
-          Episodes
-        </h2>
+    <section className="w-full mb-10">
+      {/* HEADER */}
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-2xl font-semibold text-white">Episodes</h2>
 
-        {/* Season Tabs - visible on all sizes and horizontally scrollable on small screens */}
-        {normalizedSeasons.length > 1 ? (
-          <div className="flex gap-2 items-center overflow-x-auto scrollbar-hide py-1">
+        {normalizedSeasons.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide py-1">
             {normalizedSeasons.map((s, i) => (
               <button
-                key={s.seasonNumber ?? i}
-                type="button"
+                key={i}
                 onClick={() => setActiveSeason(i)}
-                aria-pressed={i === activeSeason}
-                className={`flex-shrink-0 text-sm px-3 py-1 rounded-full transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/20 ${
+                className={`flex-shrink-0 text-sm px-4 py-1.5 rounded-full transition ${
                   i === activeSeason
                     ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white"
-                    : "bg-white/5 text-gray-200 hover:bg-white/5"
+                    : "bg-white/10 backdrop-blur-md text-gray-200 hover:bg-white/20"
                 }`}
               >
                 Season {s.seasonNumber ?? i + 1}
               </button>
             ))}
           </div>
-        ) : null}
+        )}
       </div>
 
-      {/* Mobile horizontal scroller (default) -> grid on md+ */}
+      {/* EPISODES */}
       <div className="relative">
         <div
           ref={scrollerRef}
-          className="overflow-x-auto scrollbar-hide touch-pan-x"
-          style={{ WebkitOverflowScrolling: "touch" }}
+          className="overflow-x-auto scrollbar-hide px-3 md:px-0"
         >
           <div
-            className="flex gap-3 items-stretch md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
-            style={{
-              scrollSnapType: "x mandatory",
-              paddingBottom: 8,
-            }}
+            className="flex gap-3 md:grid md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
+            style={{ scrollSnapType: "x mandatory" }}
           >
             {season.episodes.map((ep) => {
+              const parsedId = parseInt(String(ep.id).replace(/\D/g, ""), 10);
+
               const num =
-                ep.episodeNumber ??
-                (ep.id
-                  ? parseInt(String(ep.id).replace(/\D/g, ""), 10) || 0
-                  : 0);
+                ep.episodeNumber !== null && ep.episodeNumber !== undefined
+                  ? ep.episodeNumber
+                  : parsedId || 0;
+
               const prefix = `E${String(num).padStart(2, "0")}`;
               const thumb = getThumb(ep);
 
+              const isActive = activeEpisode === (ep.id || ep.episodeNumber);
+
               return (
                 <article
-                  key={ep.id ?? ep.episodeNumber}
-                  onClick={() =>
-                    onSelectEpisode?.(ep.episodeId ?? ep.episodeNumber ?? ep.id)
-                  }
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ")
-                      onSelectEpisode?.(
-                        ep.episodeId ?? ep.episodeNumber ?? ep.id
-                      );
+                  key={ep.id ?? num}
+                  onClick={() => {
+                    setActiveEpisode(ep.id || ep.episodeNumber);
+                    onSelectEpisode?.(
+                      ep.episodeId ?? ep.episodeNumber ?? ep.id,
+                    );
                   }}
-                  className="group vt-card flex-shrink-0 rounded-lg overflow-hidden cursor-pointer"
+                  className={`group relative flex-shrink-0 cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${
+                    isActive
+                      ? "ring-2 ring-pink-500 scale-[1.04]"
+                      : "hover:scale-[1.03]"
+                  }`}
                   style={{
-                    flex: "0 0 calc(100% / 2.5)",
+                    flex: "0 0 60%",
                     minWidth: 160,
                     maxWidth: 320,
                     scrollSnapAlign: "start",
                   }}
                 >
-                  <div className="relative rounded-md overflow-hidden shadow-[0_6px_18px_rgba(0,0,0,0.25)]">
-                    {/* Poster area */}
+                  {/* IMAGE */}
+                  <div className="relative">
                     <div
-                      style={{ paddingTop: "56.25%" }}
+                      style={{ paddingTop: "62%" }}
                       className="relative bg-zinc-800"
                     >
                       <img
                         src={thumb}
-                        alt={ep.title || `Episode ${num}`}
+                        alt={ep.title}
                         onError={handleImgError}
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
 
-                      {/* permanent dark layer over poster */}
-                      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                      {/* DARK OVERLAY */}
+                      <div className="absolute inset-0 bg-black/30" />
 
-                      {/* top-left episode badge */}
-                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-xs font-semibold bg-black/60 text-white">
+                      {/* GRADIENT */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition" />
+
+                      {/* EP NUMBER */}
+                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-500 text-white">
                         {prefix}
                       </div>
 
-                      {/* Play overlay - ALWAYS visible, slightly blurred */}
-                      <div
-                        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                        aria-hidden="true"
-                      >
-                        <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-transform duration-150 group-hover:scale-110">
+                      {/* PLAY BUTTON */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md border border-white/30 flex items-center justify-center transition-transform duration-300 group-hover:scale-125">
                           <svg
-                            width="16"
-                            height="16"
+                            width="18"
+                            height="18"
                             viewBox="0 0 24 24"
                             fill="none"
-                            aria-hidden
-                            className="sm:w-5 sm:h-5"
                           >
                             <path d="M5 3v18l15-9L5 3z" fill="white" />
                           </svg>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Title area: semi-transparent 10% black (as requested earlier) */}
-                    <div className="p-2 py-2.5 bg-black/10">
-                      <h3 className="text-xs sm:text-sm pl-0.5 font-medium text-white truncate">
-                        {prefix} - {ep.title || `Episode ${num}`}
-                      </h3>
-                      <p className="text-[10px] sm:text-xs text-gray-300 truncate mt-1 hidden sm:block">
-                        {ep.description || ""}
-                      </p>
+                      {/* TITLE OVERLAY */}
+                      <div className="absolute bottom-0 left-0 right-0 p-3">
+                        <h3 className="text-xs sm:text-sm text-white/80 line-clamp-2">
+                          {prefix} - {ep.title || `Episode ${num}`}
+                        </h3>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -176,6 +170,7 @@ export default function VideoPlayerEpisodes({
         </div>
       </div>
 
+      {/* SCROLLBAR HIDE */}
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -185,9 +180,8 @@ export default function VideoPlayerEpisodes({
           scrollbar-width: none;
         }
 
-        /* ensure grid layout on md+ uses normal flow (so flex-basis doesn't apply) */
         @media (min-width: 768px) {
-          .vt-card {
+          article {
             flex: 1 1 auto !important;
             min-width: 0 !important;
             max-width: none !important;
