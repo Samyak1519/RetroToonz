@@ -1,17 +1,18 @@
-import { FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import ShowCard from "../Components/ShowCard";
 import showsData from "../Data/Shows.json";
 
-// Add thumbnail fallback
+// ✅ Correct thumbnail handling (NO path breaking)
 const enrich = (arr) =>
   arr.map((show) => ({
     ...show,
-    thumbnail: show.thumbnail
-      ? `/Assets/${show.thumbnail}`
-      : "/Assets/default.jpg",
+    thumbnail: show.thumbnail || "/media/extras/default.jpg",
+    thumbnailMobile: show.thumbnailMobile || "/media/extras/default.jpg",
   }));
 
 const allShows = enrich(showsData.allShows);
@@ -21,62 +22,92 @@ function SearchResultsPage() {
   const query = new URLSearchParams(useLocation().search).get("q") || "";
 
   const searchResults = allShows.filter((show) =>
-    show.title.toLowerCase().includes(query.toLowerCase())
+    show.title.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (
     <div className="flex flex-col min-h-screen text-white bg-gray-950">
-      {/* Sticky Header */}
       <Header />
 
-      {/* Main Content (flex-grow pushes footer down) */}
-      <div className="flex-grow">
-        {/* Back Button + Heading */}
-        <div className="px-4 md:px-8 flex items-center gap-4 mt-5 mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl transition"
-          >
-            <FaArrowLeft />
-          </button>
+      <main className="flex-grow pb-5">
+        <div className="px-4 sm:px-7 md:px-10 lg:px-16 max-w-[1800px] mx-auto py-6">
+          {/* 🔝 Header */}
+          <div className="flex items-center gap-4 mb-12">
+            <button
+              onClick={() => navigate(-1)}
+              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 transition"
+            >
+              <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
+            </button>
 
-          {query && (
-            <h2 className="text-2xl font-semibold">
-              Search Results for "{query}"
-            </h2>
-          )}
-        </div>
+            <div>
+              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">
+                Search Results
+              </p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+                {query ? `"${query}"` : "All Shows"}
+              </h2>
+            </div>
+          </div>
 
-        {/* Search Results */}
-        <div className="px-4 md:px-8">
+          {/* 🔍 Results */}
           {query && (
             <>
               {searchResults.length ? (
-                <div className="flex flex-wrap gap-4 mb-10">
-                  {searchResults.map((show) => (
-                    <ShowCard key={show.id} {...show} />
-                  ))}
+                <div className="mb-12">
+                  <p className="text-sm text-gray-400 mb-4">
+                    {searchResults.length} result
+                    {searchResults.length !== 1 && "s"} found
+                  </p>
+
+                  <div className="max-w-[900px]">
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                      {searchResults.map((show) => (
+                        <div
+                          key={show.id}
+                          className="transition-transform duration-300 hover:scale-[1.03]"
+                        >
+                          <ShowCard {...show} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ) : (
-                <p className="text-gray-400 mb-10">No results found.</p>
+                <div className="text-center py-20">
+                  <p className="text-gray-400 text-lg mb-2">No results found</p>
+                  <p className="text-gray-500 text-sm">
+                    Try searching something else
+                  </p>
+                </div>
               )}
             </>
           )}
 
-          {/* Recommended Section */}
-          <h2 className="text-xl font-semibold mb-4">Recommended Shows</h2>
-          <div className="flex flex-wrap gap-4">
+          {/* Divider */}
+          <div className="h-[1px] bg-white/10 mb-12" />
+
+          {/* 🎬 Recommended */}
+          <h2 className="text-lg sm:text-xl font-semibold mb-6">
+            Recommended Shows
+          </h2>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {[...allShows]
               .sort(() => 0.5 - Math.random())
               .slice(0, 6)
               .map((show) => (
-                <ShowCard key={show.id} {...show} />
+                <div
+                  key={show.id}
+                  className="transition-transform duration-300 hover:scale-[1.03]"
+                >
+                  <ShowCard {...show} />
+                </div>
               ))}
           </div>
         </div>
-      </div>
+      </main>
 
-      {/* Footer always at bottom */}
       <Footer />
     </div>
   );

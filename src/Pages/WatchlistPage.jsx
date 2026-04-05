@@ -1,7 +1,9 @@
 // src/Pages/WatchlistPage.jsx
 
-import { FaArrowLeft } from "react-icons/fa";
+import { AllBookmarkIcon, ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useNavigate } from "react-router-dom";
+
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 
@@ -9,27 +11,50 @@ function WatchlistPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen text-white">
+    <div className="flex flex-col min-h-screen text-white bg-gradient-to-b from-[#05060b] to-[#0f0a24]">
       <Header />
 
-      {/* Back Button + Heading */}
-      <div className="px-4 md:px-8 flex items-center gap-4 mt-5 mb-6">
-        <button
-          onClick={() => navigate(-1)}
-          className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-xl sm:text-2xl transition"
-        >
-          <FaArrowLeft />
-        </button>
+      {/* 🔝 Header Section */}
+      <div className="px-4 sm:px-6 md:px-10 lg:px-16 max-w-[1800px] mx-auto w-full">
+        <div className="flex items-center gap-4 mt-6 mb-10">
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="
+              bg-white/5 hover:bg-white/10
+              p-2.5 rounded-full
+              border border-white/10
+              transition-all
+            "
+          >
+            <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
+          </button>
 
-        <h2 className="text-2xl font-semibold">Your Watchlist</h2>
+          {/* Title */}
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+            Your Watchlist
+          </h2>
+        </div>
+
+        {/* 📭 Empty State */}
+        <div className="flex items-center justify-center text-center py-20">
+          <div className="flex flex-col items-center mb-10">
+            {/* 🔥 ICON */}
+            <div className="mb-10 text-white/20 drop-shadow-[0_0_25px_rgba(255,255,255,0.08)] ">
+              <HugeiconsIcon icon={AllBookmarkIcon} size={80} />
+            </div>
+
+            {/* TEXT */}
+            <p className="text-gray-400 text-base sm:text-lg mb-2">
+              Your saved shows will appear here.
+            </p>
+            <p className="text-gray-500 text-sm">
+              Start adding shows to your watchlist 🎬
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Centered Message */}
-      <div className="flex-1 flex items-center justify-center px-4 text-center">
-        <p className="text-gray-400 text-base sm:text-lg">
-          Your saved shows will appear here.
-        </p>
-      </div>
       <Footer />
     </div>
   );
