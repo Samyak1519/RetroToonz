@@ -70,15 +70,13 @@ function SearchBar() {
       {/* Search button */}
       <button
         type="submit"
-        className="
+        className=" mr-1
           absolute right-1.5 top-1/2 -translate-y-1/2
           px-4 py-1.5 md:py-1
           text-sm font-semibold
           rounded-2xl text-white
-
           bg-gradient-to-r from-cyan-500 to-blue-600
           hover:from-blue-600 hover:to-cyan-500
-
           shadow-md
           transition-all duration-300
         "

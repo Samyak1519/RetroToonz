@@ -26,13 +26,35 @@ export default function VideoTopBar({
 
   const episodeTitle = currentEpisode?.title || "";
 
+  // ✅ Handle Back Button Logic
+  const handleBack = (e) => {
+    e.stopPropagation();
+
+    if (isFullscreen) {
+      // ✅ Exit Fullscreen mode instead of navigating
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    } else {
+      // ✅ Standard navigation if not in fullscreen
+      if (currentShow?.id) {
+        navigate(`/show/${currentShow.id}`);
+      } else {
+        navigate(-1);
+      }
+    }
+  };
+
   const containerClasses = [
     "absolute top-0 left-0 right-0 z-40",
     "bg-gradient-to-b from-black/70 to-transparent",
-
-    // ✅ FIXED RESPONSIVE PADDING
     "px-4 sm:px-6 lg:px-10 py-2 sm:py-3",
-
     "flex items-center justify-between",
     isFullscreen ? "sm:pt-4 lg:pt-4" : "",
   ]
@@ -43,18 +65,11 @@ export default function VideoTopBar({
     <div data-controls className={containerClasses}>
       {/* LEFT SIDE */}
       <div className="flex items-center min-w-0">
-        {/* Back button */}
+        {/* Back / Exit Fullscreen button */}
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (currentShow?.id) {
-              navigate(`/show/${currentShow.id}`);
-            } else {
-              navigate(-1);
-            }
-          }}
+          onClick={handleBack}
           className="p-2 sm:p-3 mr-2 rounded-full hover:bg-white/10 transition flex items-center"
-          aria-label="Back to show"
+          aria-label={isFullscreen ? "Exit Fullscreen" : "Back to show"}
           onMouseDown={(e) => e.stopPropagation()}
         >
           <HugeiconsIcon
@@ -63,20 +78,19 @@ export default function VideoTopBar({
           />
         </button>
 
-        {isFullscreen && (
-          <div className="flex items-center gap-2 truncate min-w-0">
-            <div className="text-sm sm:text-lg text-white truncate min-w-0">
-              <span className="font-semibold">{showTitle}</span>
-              {episodeNumber && (
-                <span className="text-white/90">
-                  {" "}
-                  : E{episodeNumber}
-                  {episodeTitle ? ` "${episodeTitle}"` : ""}
-                </span>
-              )}
-            </div>
+        {/* Info Overlay (Visible in Fullscreen or Mobile) */}
+        <div className="flex items-center gap-2 truncate min-w-0">
+          <div className="text-sm sm:text-lg text-white truncate min-w-0">
+            <span className="font-semibold">{showTitle}</span>
+            {episodeNumber && (
+              <span className="text-white/90">
+                {" "}
+                : E{episodeNumber}
+                {episodeTitle ? ` "${episodeTitle}"` : ""}
+              </span>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* RIGHT SIDE */}

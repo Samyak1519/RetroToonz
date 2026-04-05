@@ -50,7 +50,7 @@ function ShowDetailsPage() {
       <main className="flex-grow">
         <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-4 max-w-[1800px] mx-auto">
           {/* 🎬 POSTER */}
-          <div className="relative w-full aspect-[3/3] sm:aspect-auto sm:h-72 md:h-80 lg:h-[400px] overflow-hidden rounded-xl mb-4">
+          <div className="relative w-full aspect-[3/3] sm:aspect-auto sm:h-60 md:h-72 lg:h-[400px] overflow-hidden rounded-xl mb-4">
             {/* 🔥 BACK BUTTON (OVER POSTER, ALIGNED) */}
             <button
               onClick={() => navigate(-1)}

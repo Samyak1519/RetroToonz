@@ -1,18 +1,28 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaGoogle, FaFacebookF, FaApple } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === "/signup") setIsLogin(false);
-  }, [location.pathname]);
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0b132b]">
+      {/* ✅ CLOSE BUTTON */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-white transition-all border border-white/10 backdrop-blur-md group"
+      >
+        <HugeiconsIcon
+          icon={Cancel01Icon}
+          size={24}
+          color="currentColor"
+          strokeWidth={1.5}
+          className="group-hover:rotate-90 transition-transform duration-300"
+        />
+      </button>
+
       {/* MAIN CONTENT */}
       <div className="flex-grow relative flex items-center justify-center px-6 sm:px-10 md:px-16 overflow-hidden">
         {/* Confetti Overlay */}
@@ -75,17 +85,10 @@ export default function AuthPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-semibold mb-6 text-center text-emerald-100">
-              {isLogin ? "Sign in" : "Create an account"}
+              Sign in
             </h2>
 
             <form className="space-y-4">
-              {!isLogin && (
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
-                />
-              )}
               <input
                 type="email"
                 placeholder="Email address"
@@ -100,7 +103,7 @@ export default function AuthPage() {
                 type="submit"
                 className="w-full bg-gradient-to-r from-[#EF476F] to-[#FF6B6B] text-white py-3 rounded-lg hover:from-[#FF5C8A] hover:to-[#FF8DAA] transition font-medium shadow-md shadow-[#EF476F]/30"
               >
-                {isLogin ? "Continue" : "Sign Up"}
+                Continue
               </button>
             </form>
 
@@ -110,42 +113,32 @@ export default function AuthPage() {
               <div className="border-t border-gray-600 w-1/3" />
             </div>
 
+            {/* Social Login Buttons */}
             <div className="flex flex-col space-y-3">
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaGoogle className="mr-2 text-[#EA4335]" /> Continue with
-                Google
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/google-icon.png" className="w-5 h-5" />
+                Continue with Google
               </button>
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaFacebookF className="mr-2 text-[#1877F2]" /> Continue with
-                Facebook
+
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/facebook-logo.png" className="w-5 h-5" />
+                Continue with Facebook
               </button>
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaApple className="mr-2 text-gray-200" /> Continue with Apple
+
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/apple-logo.png" className="w-5 h-5 invert" />
+                Continue with Apple
               </button>
             </div>
 
             <p className="text-center text-gray-300 text-sm mt-6">
-              {isLogin ? (
-                <>
-                  New here?{" "}
-                  <button
-                    onClick={() => setIsLogin(false)}
-                    className="text-[#FFD166] hover:underline"
-                  >
-                    Create an account
-                  </button>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <button
-                    onClick={() => setIsLogin(true)}
-                    className="text-[#FFD166] hover:underline"
-                  >
-                    Sign in
-                  </button>
-                </>
-              )}
+              New here?{" "}
+              <button
+                onClick={() => navigate("/signup")}
+                className="text-[#FFD166] hover:underline"
+              >
+                Create an account
+              </button>
             </p>
           </motion.div>
         </div>
@@ -173,17 +166,10 @@ export default function AuthPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-2xl font-semibold mb-5 text-center text-emerald-100">
-              {isLogin ? "Sign in" : "Create an account"}
+              Sign in
             </h2>
 
             <form className="space-y-4">
-              {!isLogin && (
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
-                />
-              )}
               <input
                 type="email"
                 placeholder="Email address"
@@ -198,7 +184,7 @@ export default function AuthPage() {
                 type="submit"
                 className="w-full bg-[#EF476F] text-white py-3 rounded-lg hover:bg-[#FF5C8A] transition font-medium shadow-md shadow-[#EF476F]/30"
               >
-                {isLogin ? "Continue" : "Sign Up"}
+                Continue
               </button>
             </form>
 
@@ -209,41 +195,30 @@ export default function AuthPage() {
             </div>
 
             <div className="flex flex-col space-y-3">
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaGoogle className="mr-2 text-[#EA4335]" /> Continue with
-                Google
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/google-icon.png" className="w-5 h-5" />
+                Continue with Google
               </button>
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaFacebookF className="mr-2 text-[#1877F2]" /> Continue with
-                Facebook
+
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/facebook-logo.png" className="w-5 h-5" />
+                Continue with Facebook
               </button>
-              <button className="flex items-center justify-center w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <FaApple className="mr-2 text-gray-200" /> Continue with Apple
+
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+                <img src="/logos/apple-logo.png" className="w-5 h-5 invert" />
+                Continue with Apple
               </button>
             </div>
 
             <p className="text-center text-gray-300 text-sm mt-6">
-              {isLogin ? (
-                <>
-                  New here?{" "}
-                  <button
-                    onClick={() => setIsLogin(false)}
-                    className="text-[#FFD166] hover:underline"
-                  >
-                    Create an account
-                  </button>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <button
-                    onClick={() => setIsLogin(true)}
-                    className="text-[#FFD166] hover:underline"
-                  >
-                    Sign in
-                  </button>
-                </>
-              )}
+              New here?{" "}
+              <button
+                onClick={() => navigate("/signup")}
+                className="text-[#FFD166] hover:underline"
+              >
+                Create an account
+              </button>
             </p>
           </motion.div>
         </div>

@@ -12,7 +12,7 @@ function Footer() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-4xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent"
+            className="text-3xl font-royal font-extrabold cursor-pointer select-none text-white scale-95 transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88] md:text-4xl md:scale-100 md:text-white md:hover:scale-100 md:hover:text-white md:bg-none"
           >
             RetroToonz
           </Link>
@@ -80,7 +80,7 @@ function Footer() {
             {/* Logo */}
             <Link
               to="/"
-              className="relative text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent tracking-wide"
+              className="relative font-royal font-extrabold cursor-pointer select-none transition-all duration-300 ease-in-out transform text-white scale-95 md:text-4xl md:scale-100 md:hover:scale-105 md:hover:text-transparent md:hover:bg-clip-text md:hover:bg-gradient-to-r md:hover:from-[#8f84c0] md:hover:via-[#eba550] md:hover:to-[#b7ce88]"
             >
               RetroToonz
             </Link>
