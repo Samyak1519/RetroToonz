@@ -1,22 +1,32 @@
-/* src/index.css */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ✅ IMPORTANT: Tell Tailwind where to scan */
+@source "../src";
 
-/* 🔥 FORCE Inter globally (overrides Tailwind completely) */
-@layer base {
-    html {
-        font-family: 'Inter', sans-serif;
-    }
+/* =========================
+   🎨 THEME (from old config)
+========================= */
 
-    body {
-        font-family: 'Inter', sans-serif;
-    }
+:root {
+    /* Colors */
+    --color-space-blue: #0d1b2a;
+    --color-cosmic-purple: #1c1132;
+    --color-deep-teal: #082e38;
 
-    * {
-        font-family: 'Inter', sans-serif;
-    }
+    /* Gradients */
+    --bg-space-galaxy: linear-gradient(135deg, #0d1b2a, #1c1132, #082e38);
+
+    /* Fonts */
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* =========================
+   🌍 GLOBAL STYLES
+========================= */
+
+html,
+body {
+    font-family: var(--font-sans);
 }
 
 /* Background */
@@ -35,4 +45,92 @@ body {
 * {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+/* =========================
+   🎯 FIX: Ensure cursor works globally
+========================= */
+
+/* Default cursor */
+body {
+    cursor: default;
+}
+
+/* Interactive elements */
+a,
+button,
+.cursor-pointer,
+[role="button"] {
+    cursor: pointer;
+}
+
+/* =========================
+   🎨 CUSTOM UTILITIES
+========================= */
+
+/* Backgrounds */
+.bg-space-galaxy {
+    background: var(--bg-space-galaxy);
+}
+
+.bg-galaxy {
+    background: var(--bg-space-galaxy);
+}
+
+/* Colors */
+.text-space-blue {
+    color: var(--color-space-blue);
+}
+
+.text-cosmic-purple {
+    color: var(--color-cosmic-purple);
+}
+
+.text-deep-teal {
+    color: var(--color-deep-teal);
+}
+
+/* Shadows */
+.shadow-player {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.shadow-card-glow {
+    box-shadow: 0 4px 20px rgba(28, 17, 50, 0.6);
+}
+
+.shadow-neon-cyan {
+    box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
+}
+
+/* =========================
+   🎬 ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spinSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-spinSlow {
+    animation: spinSlow 4s linear infinite;
 }

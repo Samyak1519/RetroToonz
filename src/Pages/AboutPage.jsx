@@ -1,13 +1,14 @@
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Film,
-  Heart,
-  Home,
-  Instagram,
-  Mail,
-  Sparkles,
-  Tv,
-  Twitter,
-} from "lucide-react";
+  Film02Icon,
+  FavouriteIcon,
+  Home01Icon,
+  InstagramIcon,
+  Mail01Icon,
+  StarsIcon,
+  Tv01Icon,
+  TwitterIcon,
+} from "@hugeicons/core-free-icons";
 import { Link } from "react-router-dom";
 
 const logoSrc = "/media/extras/retrotoonz_full_image.png";
@@ -23,15 +24,14 @@ const AboutPage = () => {
           </div>
         </Link>
 
-        {/* Navigation Items - Now visible on mobile and desktop */}
         <div className="flex items-center gap-3 md:gap-5 text-sm font-medium tracking-[0.2em] uppercase px-5">
           <Link
             to="/"
             className="flex items-center gap-2 text-[#94a3b8] hover:text-[#60a5fa] transition-all group"
           >
-            <Home
-              size={18}
-              md:size={20}
+            <HugeiconsIcon
+              icon={Home01Icon}
+              size={20}
               className="group-hover:scale-125 transition-transform"
             />
             <span className="font-semibold text-base md:text-lg">Home</span>
@@ -43,7 +43,6 @@ const AboutPage = () => {
       <section className="relative w-full pt-10 pb-16 md:pt-6 md:pb-32 flex flex-col items-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-[#020617]"></div>
 
-        {/* THE RETRO GRID PATTERN */}
         <div
           className="absolute inset-0 z-0 opacity-20"
           style={{
@@ -52,13 +51,10 @@ const AboutPage = () => {
           }}
         ></div>
 
-        {/* Radial Vignette */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_90%)] pointer-events-none"></div>
 
-        {/* Central Spotlight Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#15419f] rounded-full blur-[200px] opacity-25 z-0"></div>
 
-        {/* Main Logo */}
         <div className="relative z-10 mb-12 transform hover:scale-[1.02] transition-transform duration-1000 ease-out w-full md:w-auto">
           <img
             src={logoSrc}
@@ -67,7 +63,6 @@ const AboutPage = () => {
           />
         </div>
 
-        {/* Headline */}
         <h1 className="relative z-10 text-3xl md:text-4xl font-royal font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] to-[#d4af37] mb-8 drop-shadow-xl leading-tight">
           RESTORING <br />
           <span className="text-transparent text-4xl md:text-5xl bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#f5eea4] to-[#bf953f] drop-shadow-[0_2px_2px_rgba(191,149,63,0.4)]">
@@ -102,65 +97,58 @@ const AboutPage = () => {
               8-bit adventures, and the vibrant ink-and-paint aesthetic of the
               20th century. We exist to keep that spirit alive.
             </p>
-            <p>
-              Whether it’s through original artwork, apparel, or digital
-              content, RetroToonz bridges the gap between the cherished memories
-              of your childhood and the style of today.
-            </p>
           </div>
         </div>
 
-        {/* Decorative Graphic Side - SYMMETRICAL GRID */}
+        {/* Decorative Graphic Side */}
         <div className="relative border border-[#334155]/30 bg-[#0f172a]/30 backdrop-blur-sm p-3 rounded-tr-3xl rounded-bl-3xl shadow-[0_0_60px_-15px_rgba(30,58,138,0.2)]">
           <div className="grid grid-cols-2 gap-3 relative z-10">
-            {/* COLUMN 1 */}
-            <div className="flex flex-col gap-3">
-              <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
-                <Film
-                  strokeWidth={1.5}
-                  size={40}
-                  className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
-                />
-                <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
-                  VINTAGE
-                </span>
-              </div>
-
-              <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
-                <Sparkles
-                  strokeWidth={1.5}
-                  size={34}
-                  className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
-                />
-                <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
-                  REMIX
-                </span>
-              </div>
+            {/* VINTAGE */}
+            <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
+              <HugeiconsIcon
+                icon={Film02Icon}
+                size={40}
+                className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
+              />
+              <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
+                VINTAGE
+              </span>
             </div>
 
-            {/* COLUMN 2 */}
-            <div className="flex flex-col gap-3">
-              <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
-                <Tv
-                  strokeWidth={1.5}
-                  size={34}
-                  className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
-                />
-                <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
-                  TOONZ
-                </span>
-              </div>
+            {/* TOONZ */}
+            <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
+              <HugeiconsIcon
+                icon={Tv01Icon}
+                size={34}
+                className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
+              />
+              <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
+                TOONZ
+              </span>
+            </div>
 
-              <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
-                <Heart
-                  strokeWidth={1.5}
-                  size={40}
-                  className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
-                />
-                <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
-                  NOSTALGIA
-                </span>
-              </div>
+            {/* REMIX */}
+            <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
+              <HugeiconsIcon
+                icon={StarsIcon}
+                size={34}
+                className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
+              />
+              <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
+                REMIX
+              </span>
+            </div>
+
+            {/* NOSTALGIA */}
+            <div className="bg-[#0b1121] hover:bg-[#111827] border border-[#1e293b] hover:border-[#60a5fa]/40 rounded-2xl flex flex-col items-center justify-center text-center gap-4 h-48 transition-all duration-500 group cursor-pointer shadow-lg">
+              <HugeiconsIcon
+                icon={FavouriteIcon}
+                size={40}
+                className="text-[#64748b] group-hover:text-[#93c5fd] group-hover:scale-110 transition-all duration-500"
+              />
+              <span className="font-royal text-lg text-[#cbd5e1] group-hover:text-white tracking-widest">
+                NOSTALGIA
+              </span>
             </div>
           </div>
         </div>
@@ -169,7 +157,11 @@ const AboutPage = () => {
       {/* --- Premium Divider --- */}
       <div className="w-full flex justify-center items-center gap-6 opacity-40 py-12">
         <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
-        <div className="text-[#93c5fd] text-2xl animate-pulse">✦</div>
+        <HugeiconsIcon
+          icon={StarsIcon}
+          size={24}
+          className="text-[#93c5fd] animate-pulse"
+        />
         <div className="h-[1px] w-40 bg-gradient-to-r from-transparent via-[#78abeb] to-transparent"></div>
       </div>
 
@@ -213,18 +205,13 @@ const AboutPage = () => {
       {/* --- Support Section --- */}
       <section className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
         <div className="bg-[#0b1121] border border-[#1e293b] rounded-2xl p-10 md:p-12 shadow-[0_0_60px_-20px_rgba(30,58,138,0.3)] backdrop-blur-sm">
-          {/* Heading */}
           <h3 className="text-2xl md:text-3xl font-royal font-bold text-white mb-4">
             Enjoying RetroToonz?
           </h3>
-
-          {/* Subtext */}
           <p className="text-[#94a3b8] font-body mb-8 max-w-xl mx-auto">
             If this project brings back memories or makes you smile, you can
             support us with a chai ☕
           </p>
-
-          {/* Chai Button (Cookie font style) */}
           <a
             href="https://buymeachai.ezee.li/Samyak005"
             target="_blank"
@@ -236,7 +223,6 @@ const AboutPage = () => {
               alt="chai"
               className="w-7 h-7"
             />
-
             <span
               className="text-black text-xl"
               style={{ fontFamily: "'Cookie', cursive" }}
@@ -262,15 +248,24 @@ const AboutPage = () => {
           </div>
 
           <div className="flex gap-6">
-            {[Instagram, Twitter, Mail].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="p-3 bg-[#0f172a] border border-[#1e293b] rounded-full hover:border-[#60a5fa] hover:text-[#93c5fd] hover:shadow-[0_0_20px_rgba(96,165,250,0.3)] transition-all duration-300 text-[#64748b]"
-              >
-                <Icon size={20} strokeWidth={1.5} />
-              </a>
-            ))}
+            <a
+              href="#"
+              className="p-3 bg-[#0f172a] border border-[#1e293b] rounded-full hover:border-[#60a5fa] hover:text-[#93c5fd] transition-all duration-300 text-[#64748b]"
+            >
+              <HugeiconsIcon icon={InstagramIcon} size={20} />
+            </a>
+            <a
+              href="#"
+              className="p-3 bg-[#0f172a] border border-[#1e293b] rounded-full hover:border-[#60a5fa] hover:text-[#93c5fd] transition-all duration-300 text-[#64748b]"
+            >
+              <HugeiconsIcon icon={TwitterIcon} size={20} />
+            </a>
+            <a
+              href="#"
+              className="p-3 bg-[#0f172a] border border-[#1e293b] rounded-full hover:border-[#60a5fa] hover:text-[#93c5fd] transition-all duration-300 text-[#64748b]"
+            >
+              <HugeiconsIcon icon={Mail01Icon} size={20} />
+            </a>
           </div>
         </div>
       </footer>

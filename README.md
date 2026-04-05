@@ -1,20 +1,26 @@
 # 🎬 RetroToonz
 
 A modern, Netflix-style web platform to relive your childhood cartoons.
-Built with performance-focused tools and a clean, immersive UI.
+Built with a **high-performance frontend stack**, immersive UI, and smooth interactions.
+
+---
+
+## 💡 Why This Project?
+
+RetroToonz is built to demonstrate modern frontend architecture using React, Vite, and Tailwind v4, focusing on performance, UI polish, and scalable component design.
 
 ---
 
 ## 🚀 Live Demo
 
-https://wwww.retrotoonz.in
-https://retrotoonz.vercel.app/
+- https://retrotoonz.vercel.app
+- https://www.retrotoonz.in
 
 ---
 
 ## ✨ Features
 
-- 🎥 **Random Episode Play (Surprise Me)**
+- 🎥 **Surprise Me (Random Episode Play)**
   Instantly jump into a random cartoon episode
 
 - 🧠 **Smart Content Sections**
@@ -23,18 +29,18 @@ https://retrotoonz.vercel.app/
   - Retro Classics
   - Cartoon Comedy
 
-- 📺 **Hero Banner**
-  Dynamic featured shows on homepage
+- 📺 **Dynamic Hero Banner**
+  Featured shows with engaging visuals
 
-- ⚡ **Fast & Lightweight**
-  Powered by Vite for blazing fast performance
+- ⚡ **Blazing Fast Performance**
+  Powered by Vite 8
 
-- 🎨 **Modern UI**
-  - Tailwind CSS styling
-  - Smooth animations
-  - Clean Netflix-inspired layout
+- 🎨 **Modern UI & UX**
+  - Tailwind CSS v4
+  - Smooth animations (Framer Motion)
+  - Netflix-inspired layout
 
-- 📱 **Responsive Design**
+- 📱 **Fully Responsive**
   Works seamlessly across mobile, tablet, and desktop
 
 ---
@@ -43,21 +49,21 @@ https://retrotoonz.vercel.app/
 
 ### Frontend
 
-- React 18
+- React 19
 - React Router DOM
-- Tailwind CSS
 
-### Animations & UI
+### Styling & UI
 
+- Tailwind CSS v4
+- CSS Variables (custom theme system)
 - Framer Motion
-- React Icons
-- Lucide React
+- Lucide React (icons)
+- Hugeicons
 
 ### Build & Tooling
 
-- Vite
-- PostCSS
-- Autoprefixer
+- Vite 8
+- @tailwindcss/vite
 
 ### Analytics
 
@@ -72,29 +78,23 @@ https://retrotoonz.vercel.app/
 src/
 │
 ├── Components/
-│   ├── Header.jsx
-│   ├── Footer.jsx
-│   ├── HeroBanner.jsx
-│   ├── ShowSection.jsx
-│   └── RandomPlayButton.jsx
-│
 ├── Pages/
-│   └── HomePage.jsx
-│
 ├── Data/
-│   └── Shows.json
+├── services/
 │
-└── main.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
 ```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repo
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/retrotoonz.git
+git clone https://github.com/samyak1519/retrotoonz.git
 cd retrotoonz
 ```
 
@@ -104,7 +104,7 @@ cd retrotoonz
 npm install
 ```
 
-### 3. Run development server
+### 3. Start development server
 
 ```bash
 npm run dev
@@ -116,7 +116,7 @@ npm run dev
 npm run build
 ```
 
-### 5. Preview build
+### 5. Preview production build
 
 ```bash
 npm run preview
@@ -128,30 +128,29 @@ npm run preview
 
 ### 🎲 Surprise Me Button
 
-A floating action button that:
+A floating action feature that:
 
-- Picks a random playable episode
-- Navigates directly to the player
-- Smartly avoids overlapping with footer
+- Selects a random playable episode
+- Navigates directly to the video player
+- Smart positioning to avoid UI overlap
 
 ---
 
 ## 📌 Future Improvements
 
-- 🔍 Search functionality
-- ❤️ Watchlist persistence
-- 👤 User profiles
-- 🌙 Dark/Light theme toggle
-- 🎬 Better player controls
+- 🔍 Advanced Search
+- ❤️ Persistent Watchlist
+- 👤 User Authentication & Profiles
+- 🌙 Theme Toggle (Dark/Light)
+- 🎬 Enhanced Video Player
 
 ---
 
-## Support
+## ☕ Support
 
-If you like this project:
+If this project brought back memories or helped you:
 
-Buy me a chai ☕
-https://buymeachai.ezee.li/Samyak005
+👉 https://buymeachai.ezee.li/Samyak005
 
 ---
 
@@ -164,7 +163,7 @@ This project is for educational and personal use.
 ## 👨‍💻 Author
 
 **Samyak**
-Frontend Developer (React)
+Frontend Developer
 
 - Portfolio: https://portfolio-samyak.vercel.app
 - GitHub: https://github.com/Samyak1519

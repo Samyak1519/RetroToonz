@@ -1,31 +1,33 @@
-// src/Pages/AllShowsPage.jsx
 import { useEffect, useMemo, useState } from "react";
-import { FaArrowLeft, FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import ShowCard from "../Components/ShowCard";
-import showsDataRaw from "../Data/Shows.json"; // ensure path/casing matches
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowLeft01Icon,
+  ArrowDown01Icon,
+  StarsIcon,
+} from "@hugeicons/core-free-icons";
 
-// --- media dirs (match your public/media layout) ---
+import Header from "../Components/Header.jsx";
+import Footer from "../Components/Footer.jsx";
+import ShowCard from "../Components/ShowCard.jsx";
+import showsDataRaw from "../Data/Shows.json";
+
+// --- Media Directories ---
 const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";
 const extrasDir = "/media/extras";
 
+// --- Data Normalization ---
 const normalizePosterPath = (value, preferMobile = false) => {
   if (!value) return null;
   if (typeof value === "string" && value.startsWith("/media/")) return value;
-
-  // strip leading slashes and get filename
   const cleaned = value.replace(/^\/+/, "");
   const parts = cleaned.split("/");
   const fileName = parts[parts.length - 1];
-
   const targetDir = preferMobile ? posterMobileDir : posterDesktopDir;
   return `${targetDir}/${fileName}`;
 };
 
-// normalize show data (keeps other fields intact)
 const normalizeShows = (arr) =>
   (arr || []).map((s) => {
     const desktopThumb = s.thumbnail
@@ -34,14 +36,12 @@ const normalizeShows = (arr) =>
         : normalizePosterPath(s.thumbnail, false)
       : null;
 
-    // mobile prefers explicit thumbnailMobile, else derive from desktop filename
     let mobileThumb = null;
     if (s.thumbnailMobile) {
       mobileThumb = s.thumbnailMobile.startsWith("/media/")
         ? s.thumbnailMobile
         : normalizePosterPath(s.thumbnailMobile, true);
     } else if (desktopThumb) {
-      // derive mobile name from desktop file name
       const filename = desktopThumb.split("/").pop();
       mobileThumb = `${posterMobileDir}/${filename}`;
     }
@@ -64,11 +64,9 @@ function firstLetterKey(title) {
 
 export default function AllShowsPage() {
   const navigate = useNavigate();
-
   const [activeTag, setActiveTag] = useState("All");
   const [sortBy, setSortBy] = useState("title-asc");
 
-  // derive tags
   const tags = useMemo(() => {
     const s = new Set();
     allShows.forEach((sh) => {
@@ -77,7 +75,6 @@ export default function AllShowsPage() {
     return ["All", ...Array.from(s).sort()];
   }, []);
 
-  // filter + sort
   const filtered = useMemo(() => {
     const list = allShows.filter((show) => {
       if (
@@ -89,7 +86,7 @@ export default function AllShowsPage() {
       return true;
     });
 
-    const sorted = [...list].sort((a, b) => {
+    return [...list].sort((a, b) => {
       switch (sortBy) {
         case "title-asc":
           return a.title.localeCompare(b.title);
@@ -103,11 +100,8 @@ export default function AllShowsPage() {
           return 0;
       }
     });
-
-    return sorted;
   }, [activeTag, sortBy]);
 
-  // grouped alphabetically
   const grouped = useMemo(() => {
     const map = {};
     for (const s of filtered) {
@@ -130,152 +124,114 @@ export default function AllShowsPage() {
   const total = filtered.length;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#05060b] to-[#0f0a24] text-white font-nunito">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#05060b] to-[#0f0a24] text-white font-nunito selection:bg-cyan-500/30">
       <Header />
 
       <main className="flex-grow relative">
-        <div className="px-4 sm:px-7 md:px-8 lg:px-16 xl:px-30 py-6 max-w-screen-2xl mx-auto relative">
-          <div className="flex items-center gap-3 mb-3 sm:mb-6">
+        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 max-w-[1800px] mx-auto relative">
+          {/* Header Section */}
+          <div className="flex items-center gap-4 mb-8">
             <button
               onClick={() => navigate(-1)}
-              className="bg-black/70 hover:bg-black/90 p-2 rounded-full text-white text-lg transition z-20"
+              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full text-white transition-all border border-white/10"
               aria-label="Go back"
             >
-              <FaArrowLeft size={24} />
+              <HugeiconsIcon icon={ArrowLeft01Icon} size={24} />
             </button>
-
-            <h1 className="text-2xl sm:text-3xl font-extrabold">All Shows</h1>
-
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight">
+              All Shows
+            </h1>
             <div className="flex-1" />
-
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <div className="relative">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-transparent border border-cyan-500/20 text-white text-sm px-4 py-2 rounded-full pr-10 min-w-[170px] focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
-                  aria-label="Sort shows desktop"
+                  className="appearance-none bg-white/5 border border-white/10 text-white text-sm px-5 py-2.5 rounded-full pr-12 min-w-[180px] focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition cursor-pointer"
                 >
                   <option value="title-asc">Title (A → Z)</option>
                   <option value="title-desc">Title (Z → A)</option>
-                  <option value="year-desc">Newest</option>
-                  <option value="year-asc">Oldest</option>
+                  <option value="year-desc">Newest First</option>
+                  <option value="year-asc">Oldest First</option>
                 </select>
-
-                <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-300">
-                  <FaChevronDown />
+                <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
+                  <HugeiconsIcon icon={ArrowDown01Icon} size={18} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="sm:pl-7 md:pl-5 lg:pl-12 xl:pl-30">
-            {/* description respects container padding now */}
-            <div className="text-gray-400 mb-4 text-sm sm:text-base">
-              <div>Browse the full catalog by tag or sort.</div>
-              <div>Grouped alphabetically.</div>
+          <div className="md:pl-2">
+            <div className="text-gray-400 mb-6 text-sm sm:text-base leading-relaxed">
+              <p>
+                Browse our full vault of nostalgia. Filter by genre or sort by
+                era.
+              </p>
+              <p className="text-cyan-400/60 font-medium">
+                Grouped alphabetically.
+              </p>
             </div>
 
-            <div className="mb-3  ">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex-1 overflow-x-auto hide-scrollbar">
-                  <div className="flex gap-2 pb-2 w-max">
-                    {tags.map((t) => (
-                      <button
-                        key={t}
-                        onClick={() => setActiveTag(t)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${
-                          activeTag === t
-                            ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black shadow-lg"
-                            : "bg-white/6 text-gray-200 hover:bg-white/10"
-                        }`}
-                        aria-pressed={activeTag === t}
-                      >
-                        {t}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+            {/* Tags section */}
+            <div className="mb-8">
+              <div className="flex items-center overflow-x-auto hide-scrollbar gap-2 pb-4">
+                {tags.map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => setActiveTag(t)}
+                    className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all border ${
+                      activeTag === t
+                        ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black border-transparent shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+                        : "bg-white/5 text-gray-300 border-white/5 hover:border-white/20 hover:bg-white/10"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
               </div>
-
-              <div className="mt-4 flex items-center justify-between gap-3 flex-wrap">
-                <div className="text-sm text-gray-400">
-                  Showing{" "}
-                  <span className="text-white font-medium">{total}</span> of{" "}
-                  <span className="text-white font-medium">
-                    {allShows.length}
-                  </span>{" "}
-                  shows
-                </div>
-
-                <div className="sm:hidden">
-                  <div className="relative">
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="appearance-none bg-transparent border border-cyan-500/20 text-white text-sm px-3 py-1.5 rounded-full pr-8 min-w-[150px] focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
-                      aria-label="Sort shows mobile"
-                    >
-                      <option value="title-asc">Title (A → Z)</option>
-                      <option value="title-desc">Title (Z → A)</option>
-                      <option value="year-desc">Newest</option>
-                      <option value="year-asc">Oldest</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-300">
-                      <FaChevronDown />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="hidden sm:block text-gray-400">
-                  {activeTag !== "All" && (
-                    <>
-                      · tag: <span className="text-cyan-300">{activeTag}</span>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {activeTag !== "All" && (
-                <div className="mt-2 sm:mt-1 text-sm text-cyan-300">
-                  Tag: <span className="font-medium">{activeTag}</span>
-                </div>
-              )}
             </div>
 
-            {/* Removed inner px so blocks align with container padding */}
-            <div className="space-y-10 mb-16 sm:px-0 px-2">
-              {grouped.length === 0 && (
-                <div className="py-10 text-center text-gray-400">
-                  No shows match your filters.
-                </div>
-              )}
-
+            {/* Grid Content */}
+            <div className="space-y-16 mb-24">
               {grouped.map(({ letter, shows }) => (
-                <section key={letter}>
-                  <div className="flex items-center gap-5 my-5">
-                    <div className="text-2xl font-bold text-cyan-300">
+                <section key={letter} className="group">
+                  <div className="flex items-center gap-6 mb-8">
+                    <div className="text-3xl font-black text-white group-hover:text-cyan-400 transition-colors">
                       {letter}
                     </div>
-                    <div className="h-px flex-1 bg-white/10" />
-                    <div className="text-sm text-gray-400">{shows.length}</div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/5 to-transparent" />
+                    <div className="text-xs font-bold text-gray-600 bg-white/5 px-3 py-1 rounded-md">
+                      {shows.length} SHOWS
+                    </div>
                   </div>
 
-                  {/* Locating the grid container in your code */}
-                  <div
-                    className="grid grid-cols-2 gap-x-4 gap-y-5 
-                          sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 
-                          md:grid-cols-3 md:gap-x-6 md:gap-y-8 
-                          lg:grid-cols-4 xl:grid-cols-4"
-                  >
-                    {shows.map((s) => (
-                      <div
-                        key={s.id}
-                        className="transform transition hover:-translate-y-1"
-                      >
-                        <ShowCard {...s} />
-                      </div>
-                    ))}
+                  {/* FIX: px-6 on mobile for more space.
+                    lg:grid-cols-4 for Image 1.
+                    xl:grid-cols-5 for Image 2.
+                  */}
+                  <div className="px-6 sm:px-0">
+                    <div
+                      className="grid grid-cols-2 gap-x-4 gap-y-6 
+                                    sm:grid-cols-2 sm:gap-x-6 
+                                    md:grid-cols-3 md:gap-x-6 md:gap-y-10 
+                                    lg:grid-cols-4 lg:gap-x-8   
+                                    xl:grid-cols-5"
+                    >
+                      {shows.map((s) => (
+                        <div
+                          key={s.id}
+                          className="transition-transform duration-300 hover:scale-[1.03]"
+                        >
+                          {/* We apply cinematic aspect ratio classes here */}
+                          <div className="aspect-[2/3] lg:aspect-video overflow-hidden rounded-xl border border-white/10 shadow-lg group">
+                            <ShowCard
+                              {...s}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </section>
               ))}
@@ -292,11 +248,10 @@ export default function AllShowsPage() {
           scrollbar-width: none;
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
-
-        select { background-clip: padding-box; }
-
-        @media (max-width: 640px) {
-          .card-wrapper, .grid > div > * { margin: 0; }
+        
+        select option {
+          background-color: #05060b;
+          color: white;
         }
       `}</style>
     </div>
