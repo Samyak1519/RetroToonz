@@ -35,8 +35,8 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [clickCount, setClickCount] = useState(0); // 🥚 Easter Egg click counter
-  const [showEasterEgg, setShowEasterEgg] = useState(false); // modal
+  const [clickCount, setClickCount] = useState(0);
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
 
   const profileBtnRef = useRef(null);
   const firstItemRef = useRef(null);
@@ -75,7 +75,8 @@ export default function Header() {
     function onKey(e) {
       if (e.key === "Escape") {
         setProfileOpen(false);
-        setShowEasterEgg(false); // Close egg on Escape too
+        setSearchOpen(false);
+        setShowEasterEgg(false);
       }
     }
     document.addEventListener("mousedown", onDocClick);
@@ -86,7 +87,6 @@ export default function Header() {
     };
   }, []);
 
-  // position portal function
   const positionPortal = () => {
     const btn = profileBtnRef.current;
     if (!btn) return;
@@ -130,22 +130,23 @@ export default function Header() {
 
   useEffect(() => {
     setProfileOpen(false);
+    setSearchOpen(false);
   }, [location.pathname]);
 
   const navigateAndClose = (path) => {
     setProfileOpen(false);
+    setSearchOpen(false);
     navigate(path);
   };
 
-  const headerHeightClasses = "h-16 sm:h-20";
-  const spacerClasses = "h-16 sm:h-20";
+  const headerHeightClasses = "h-14 sm:h-16";
+  const spacerClasses = "h-14 sm:h-16";
 
   const portalRoot =
     typeof document !== "undefined"
       ? document.getElementById(PORTAL_ROOT_ID)
       : null;
 
-  // 🥚 Easter Egg Trigger Logic
   useEffect(() => {
     if (clickCount === 13) {
       const event = new CustomEvent("retrotoonz:easteregg");
@@ -154,7 +155,6 @@ export default function Header() {
     }
   }, [clickCount]);
 
-  // 🥚 Example listener for showing the Easter Egg overlay
   useEffect(() => {
     const onEasterEgg = () => setShowEasterEgg(true);
     window.addEventListener("retrotoonz:easteregg", onEasterEgg);
@@ -165,7 +165,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-50 ${headerHeightClasses}`}
+        className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-100 ${headerHeightClasses}`}
         aria-label="Main header"
       >
         {/* background */}
@@ -179,103 +179,83 @@ export default function Header() {
         </div>
 
         {/* row */}
-        <div className="relative z-20 flex items-center justify-between px-3 sm:px-7 pt-6 pb-5 sm:py-5 h-full text-white">
-          {/* 🥚 Logo with Easter Egg Counter */}
-          <div
-            onClick={() => {
-              setClickCount((prev) => prev + 1);
-              navigate("/");
-            }}
-            className="text-3xl sm:text-3xl font-bold cursor-pointer select-none"
-            role="button"
-            aria-label="RetroToonz home"
-          >
-            RetroToonz
-          </div>
-
-          <div className="hidden sm:flex flex-1 justify-center">
-            <div className="mx-3 w-full max-w-lg" aria-hidden="true" />
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Search desktop */}
-            <button
+        <div className="relative z-20 flex items-center justify-between px-3 sm:px-7 h-full text-white">
+          {/* Logo Section */}
+          <div className="flex-shrink-0">
+            <div
+              role="button"
+              aria-label="RetroToonz home"
               onClick={() => {
-                setSearchOpen((s) => !s);
-                setShowSearchMobile(false);
+                if (typeof setClickCount === "function") {
+                  setClickCount((prev) => prev + 1);
+                }
+                navigate("/");
               }}
-              title="Search"
-              aria-expanded={searchOpen}
-              className={`hidden sm:inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
-                isScrolled
-                  ? "hover:bg-gray-700"
-                  : "bg-black/20 backdrop-blur-md  hover:bg-black/50 ring-1 ring-white/10"
-              }`}
+              className="text-2xl sm:text-3xl font-royal font-extrabold cursor-pointer select-none text-white scale-95 transition-all duration-300 ease-in-out transform hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88]"
             >
-              <HugeiconsIcon icon={Search01Icon} size={16} />
-            </button>
+              RetroToonz
+            </div>
+          </div>
 
-            {/* Search mobile */}
+          {/* Desktop Inline Search (Conditional Toggle) */}
+          <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4 ml-4">
+            {searchOpen && (
+              <div className="hidden sm:block w-full max-w-md animate-in fade-in slide-in-from-right-4 duration-300 mr-4">
+                <SearchBar />
+              </div>
+            )}
+          </div>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            {/* Search Icon (Toggles Desktop Search or Mobile Overlay) */}
             <button
               onClick={() => {
-                setShowSearchMobile((prev) => !prev);
-                setSearchOpen(false);
+                if (window.innerWidth >= 640) {
+                  setSearchOpen((prev) => !prev);
+                } else {
+                  setShowSearchMobile((prev) => !prev);
+                }
               }}
               title="Search"
-              className={`sm:hidden inline-flex items-center justify-center w-12 h-12 rounded-full transition ${
+              className={`inline-flex items-center justify-center w-10 h-10 rounded-full transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
                   : "bg-black/20 backdrop-blur-lg hover:bg-black/50 ring-1 ring-white/10"
-              }`}
+              } ${searchOpen ? "bg-white/20" : ""}`}
             >
-              <HugeiconsIcon icon={Search01Icon} size={16} />
+              <HugeiconsIcon
+                icon={searchOpen ? Cancel01Icon : Search01Icon}
+                size={18}
+              />
             </button>
 
             {/* Profile */}
             <button
               ref={profileBtnRef}
               onClick={() => setProfileOpen((p) => !p)}
-              aria-haspopup="menu"
-              aria-expanded={profileOpen}
-              title="Profile"
-              aria-label="Open profile menu"
-              className={`inline-flex items-center gap-2 h-12 rounded-full px-3.5 transition ${
+              className={`inline-flex items-center gap-2 h-10 rounded-full px-3.5 transition ${
                 isScrolled
                   ? "hover:bg-gray-700"
-                  : "bg-black/20 backdrop-blur-lg  hover:bg-black/50 ring-1 ring-white/10"
+                  : "bg-black/20 backdrop-blur-lg hover:bg-black/50 ring-1 ring-white/10"
               }`}
             >
               <HugeiconsIcon icon={UserCircleIcon} size={20} />
-
-              <span className="hidden lg:block font-semibold text-sm sm:text-base">
+              <span className="hidden lg:block font-semibold text-sm">
                 Samyak
               </span>
-
               <HugeiconsIcon
                 icon={ArrowDown01Icon}
                 size={12}
-                className={`block transform transition-transform duration-200 ${
-                  profileOpen ? "rotate-180" : "rotate-0"
-                }`}
+                className={`transform transition-transform duration-200 ${profileOpen ? "rotate-180" : "rotate-0"}`}
               />
             </button>
           </div>
         </div>
 
-        {/* desktop search overlay */}
-        {searchOpen && (
-          <div className="hidden sm:flex absolute inset-0 z-40 pointer-events-none">
-            <div className="w-full flex items-center justify-center mt-3">
-              <div className="pointer-events-auto w-full max-w-2xl px-4">
-                <SearchBar />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* mobile expanded search */}
+        {/* Mobile expanded search */}
         {showSearchMobile && (
-          <div className="w-full sm:hidden px-3 mt-1.5 pb-3 relative z-20">
+          <div className="w-full sm:hidden px-3 pt-1 pb-3 relative z-20">
             <SearchBar />
           </div>
         )}
@@ -283,6 +263,7 @@ export default function Header() {
 
       {!isHome && <div className={spacerClasses} aria-hidden="true" />}
 
+      {/* Profile Menu Portal */}
       {profileOpen &&
         portalRoot &&
         createPortal(
@@ -308,59 +289,42 @@ export default function Header() {
                 borderLeft: "1px solid rgba(255,255,255,0.1)",
                 borderTop: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 2,
-                boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
               }}
             />
             <div
               role="menu"
-              aria-label="Profile menu"
-              className="w-56 rounded-2xl bg-gradient-to-b from-black/40 to-black/70 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden transform origin-top-right"
+              className="w-56 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden transform origin-top-right"
               style={{
                 animation:
                   "rtFadeInScale 200ms cubic-bezier(.2,.9,.2,1) forwards",
               }}
-              onClick={(e) => e.stopPropagation()}
             >
               <MenuItems
                 firstItemRef={firstItemRef}
                 onNavigate={navigateAndClose}
-                onClose={() => setProfileOpen(false)}
               />
             </div>
           </div>,
           portalRoot,
         )}
 
-      {/* 🥚 FIXED EASTER EGG OVERLAY */}
+      {/* Easter Egg Overlay */}
       {showEasterEgg && (
         <div
           className="fixed inset-0 z-[100000] flex items-center justify-center bg-black/90 backdrop-blur-md"
-          // Keep the background click only if you want it to close when clicking the dark area
           onClick={() => setShowEasterEgg(false)}
         >
-          {/* Close button at the top right of the screen for mobile accessibility */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowEasterEgg(false);
-            }}
-            className="absolute top-6 right-6 z-[100001] bg-white/10 hover:bg-red-500 text-white p-3 rounded-full transition-all active:scale-95"
-            aria-label="Close"
+            onClick={() => setShowEasterEgg(false)}
+            className="absolute top-6 right-6 bg-white/10 hover:bg-red-500 text-white p-3 rounded-full"
           >
             <HugeiconsIcon icon={Cancel01Icon} size={28} />
           </button>
-
-          {/* Content Wrapper */}
-          <div
-            className="relative flex items-center justify-center p-4"
-            onClick={(e) => e.stopPropagation()} // Prevents closing when clicking the GIF
-          >
-            <img
-              src="/media/extras/easter-egg.gif"
-              alt="Easter Egg"
-              className="max-w-[85vw] max-h-[75vh] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-            />
-          </div>
+          <img
+            src="/media/extras/easter-egg.gif"
+            alt="Easter Egg"
+            className="max-w-[85vw] max-h-[75vh] object-contain"
+          />
         </div>
       )}
 
@@ -376,44 +340,30 @@ export default function Header() {
 
 function MenuItems({ firstItemRef, onNavigate }) {
   const location = useLocation();
-  const activePath = location.pathname;
-  const isActive = (path) => activePath === path;
-
+  const isActive = (path) => location.pathname === path;
   const itemBase =
-    "flex items-center gap-3 px-5 py-3 text-sm sm:text-base transition focus:outline-none hover:bg-white/10 focus:bg-white/10 text-white";
+    "flex items-center gap-3 px-5 py-3 text-sm transition hover:bg-white/10 text-white w-full text-left";
 
   return (
     <div className="py-2">
       <button
         ref={firstItemRef}
         onClick={() => onNavigate("/profile")}
-        role="menuitem"
-        className={`${itemBase} ${
-          isActive("/profile") ? "bg-white/10" : ""
-        } w-full text-left`}
+        className={`${itemBase} ${isActive("/profile") ? "bg-white/10" : ""}`}
       >
         <HugeiconsIcon icon={UserIcon} className="text-cyan-300" size={18} />
-
         <span>My Account</span>
       </button>
-
       <button
         onClick={() => onNavigate("/all-shows")}
-        role="menuitem"
-        className={`${itemBase} ${
-          isActive("/all-shows") ? "bg-white/10" : ""
-        } w-full text-left`}
+        className={`${itemBase} ${isActive("/all-shows") ? "bg-white/10" : ""}`}
       >
         <HugeiconsIcon icon={Menu01Icon} className="text-cyan-300" size={18} />
         <span>All Shows</span>
       </button>
-
       <button
         onClick={() => onNavigate("/watchlist")}
-        role="menuitem"
-        className={`${itemBase} ${
-          isActive("/watchlist") ? "bg-white/10" : ""
-        } w-full text-left`}
+        className={`${itemBase} ${isActive("/watchlist") ? "bg-white/10" : ""}`}
       >
         <HugeiconsIcon
           icon={FavouriteIcon}
@@ -422,25 +372,15 @@ function MenuItems({ firstItemRef, onNavigate }) {
         />
         <span>Wishlist</span>
       </button>
-
       <button
         onClick={() => onNavigate("/about-us")}
-        role="menuitem"
-        className={`${itemBase} ${
-          isActive("/about-us") ? "bg-white/10" : ""
-        } w-full text-left`}
+        className={`${itemBase} ${isActive("/about-us") ? "bg-white/10" : ""}`}
       >
         <HugeiconsIcon icon={StarIcon} className="text-cyan-300" size={18} />
         <span>About Us</span>
       </button>
-
       <div className="h-px bg-white/10 my-1" />
-
-      <button
-        role="menuitem"
-        className={itemBase + " w-full text-left"}
-        onClick={() => onNavigate("/login")}
-      >
+      <button onClick={() => onNavigate("/login")} className={itemBase}>
         <HugeiconsIcon icon={Login01Icon} className="text-cyan-300" size={18} />
         <span>Sign In</span>
       </button>

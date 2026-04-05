@@ -2,12 +2,16 @@
 
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import "./App.css";
+
 import ScrollToTop from "./Components/ScrollToTop";
+
 import AboutPage from "./Pages/AboutPage";
 import AddShowPage from "./Pages/AddShowPage";
 import AllShowsPage from "./Pages/AllShowsPage";
-import AuthPage from "./Pages/AuthPage";
+
+import LoginPage from "./Pages/auth/LoginPage";
+import SignupPage from "./Pages/auth/SignupPage";
+
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
@@ -21,8 +25,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<AuthPage />} />
-      <Route path="/signup" element={<AuthPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
       <Route path="/all-shows" element={<AllShowsPage />} />
@@ -41,7 +45,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-space-galaxy text-white">
       <BrowserRouter>
-        <ScrollToTop /> {/* ✅ THIS FIXES THE ISSUE */}
+        <ScrollToTop />
         <AppRoutes />
         <SpeedInsights />
       </BrowserRouter>
