@@ -161,7 +161,7 @@ function HeroBanner({ shows = [] }) {
               onClick={handleStartWatching}
               className="
                 group relative inline-flex items-center gap-2 
-                text-white px-3.5 py-2 rounded-full 
+                text-white px-4 py-2.5 rounded-full 
                 bg-gradient-to-r from-cyan-500 to-blue-600 
                 hover:from-blue-600 hover:to-cyan-500
                 shadow-md transition-all duration-300 
@@ -170,15 +170,15 @@ function HeroBanner({ shows = [] }) {
               "
             >
               <span className="absolute inline-flex h-9 w-9 rounded-full bg-cyan-400 opacity-20 group-hover:animate-ping -z-10" />
-              <HugeiconsIcon icon={PlayIcon} size={16} />
-              <span className="font-medium">Start Watching</span>
+              <HugeiconsIcon icon={PlayIcon} size={20} />
+              <span className="font-base">Start Watching</span>
             </button>
 
             <button
               onClick={handleMoreInfo}
               className="
                 flex items-center justify-center 
-                w-9 h-9 rounded-full 
+                w-10 h-10 rounded-full 
                 bg-white/20 hover:bg-white/30 
                 backdrop-blur-md border border-white/20
                 transition-all duration-300

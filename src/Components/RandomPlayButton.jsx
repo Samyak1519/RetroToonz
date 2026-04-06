@@ -69,7 +69,7 @@ function RandomPlayButton() {
     <button
       ref={btnRef}
       onClick={handlePlay}
-      className="fixed right-6 z-50 group 
+      className="fixed right-10 sm:right-15 z-50 group 
         bg-gradient-to-r from-cyan-500 to-blue-600
         hover:from-blue-600 hover:to-cyan-500
         text-white shadow-xl
