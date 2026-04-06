@@ -57,7 +57,6 @@ RetroToonz is built to demonstrate modern frontend architecture using React, Vit
 - Tailwind CSS v4
 - CSS Variables (custom theme system)
 - Framer Motion
-- Lucide React (icons)
 - Hugeicons
 
 ### Build & Tooling
@@ -172,3 +171,6 @@ Frontend Developer
 ---
 
 ⭐ If you found this project helpful, consider giving it a star!
+
+☕ Buy us a masaledar chai and enjoy your childhood:  
+👉 https://buymeachai.ezee.li/Samyak005
