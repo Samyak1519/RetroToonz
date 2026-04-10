@@ -158,7 +158,7 @@ export default function VideoPlayerEpisodes({
                       {/* TITLE OVERLAY */}
                       <div className="absolute bottom-0 left-0 right-0 p-3">
                         <h3 className="text-xs sm:text-sm text-white/80 line-clamp-2">
-                          {prefix} - {ep.title || `Episode ${num}`}
+                          {ep.title || `Episode ${num}`}
                         </h3>
                       </div>
                     </div>
