@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+=======
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+>>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 const ComingSoonPage = () => {
   return (

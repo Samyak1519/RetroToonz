@@ -76,8 +76,8 @@ RetroToonz is built to demonstrate modern frontend architecture using React, Vit
 ```
 src/
 │
-├── Components/
-├── Pages/
+├── components/
+├── pages/
 ├── Data/
 ├── services/
 │

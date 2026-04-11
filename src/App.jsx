@@ -12,14 +12,13 @@ import AboutPage from "./pages/misc/AboutPage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 
-import HomePage from "./pages/core/HomePage";
-import ComingSoon from "./pages/misc/ComingSoonPage";
-import ErrorPage from "./pages/misc/ErrorPage";
-// import ProfilePage from "./pages/ProfilePage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import HomePage from "./pages/core/HomePage";
 import SearchResultsPage from "./pages/core/SearchResultsPage";
 import ShowDetailsPage from "./pages/core/ShowDetailsPage";
 import VideoPlayerPage from "./pages/core/VideoPlayerPage";
+import ComingSoon from "./pages/misc/ComingSoonPage";
+import ErrorPage from "./pages/misc/ErrorPage";
 import WatchlistPage from "./pages/misc/WatchlistPage";
 import UserProfilePage from "./pages/user/UserProfilePage";
 

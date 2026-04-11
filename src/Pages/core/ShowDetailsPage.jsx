@@ -8,10 +8,17 @@ import {
   FavouriteIcon,
 } from "@hugeicons/core-free-icons";
 
+<<<<<<< HEAD
 import EpisodeSection from "../../components/show/EpisodeSection";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import showsData from "../../Data/Shows.json";
+=======
+import EpisodeSection from "../../components/show/EpisodeSection.jsx";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import showsData from "../../data/Shows.json";
+>>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 const getPosterUrl = (id, device = "desktop") => {
   if (!id) return "";

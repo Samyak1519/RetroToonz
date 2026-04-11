@@ -14,7 +14,11 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+<<<<<<< HEAD
 import showsDataRaw from "../../Data/Shows.json";
+=======
+import showsDataRaw from "../../data/Shows.json";
+>>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 const UserProfilePage = () => {
   const navigate = useNavigate();
