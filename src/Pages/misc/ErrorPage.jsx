@@ -1,4 +1,4 @@
-// src/Pages/ErrorPage.jsx
+// src/pages/ErrorPage.jsx
 
 import { useMemo, useRef, useEffect, useState } from "react";
 import {
@@ -9,10 +9,10 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import ShowCard from "../Components/ShowCard";
-import showsData from "../Data/Shows.json";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import ShowCard from "../../components/show/ShowCard";
+import showsData from "../../data/Shows.json";
 
 // ✅ Media fix
 const enrich = (arr) =>

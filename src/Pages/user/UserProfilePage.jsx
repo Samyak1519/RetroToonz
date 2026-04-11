@@ -1,4 +1,4 @@
-// src/Pages/user/UserProfilePage.jsx
+// src/pages/user/UserProfilePage.jsx
 
 import {
   ArrowLeft01Icon,
@@ -12,9 +12,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../Components/Footer";
-import Header from "../../Components/Header";
-import showsDataRaw from "../../Data/Shows.json";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import showsDataRaw from "../../data/Shows.json";
 
 const UserProfilePage = () => {
   const navigate = useNavigate();
