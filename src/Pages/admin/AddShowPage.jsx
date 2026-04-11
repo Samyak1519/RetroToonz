@@ -11,8 +11,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
+import Footer from "../../Components/Footer";
+import Header from "../../Components/Header";
 
 export default function AddShowPage() {
   const navigate = useNavigate();

@@ -139,7 +139,7 @@ export default function Header() {
     navigate(path);
   };
 
-  const headerHeightClasses = "h-14 sm:h-16";
+  const headerHeightClasses = "h-16 sm:h-20";
   const spacerClasses = "h-14 sm:h-16";
 
   const portalRoot =

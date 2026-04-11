@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./Components/ScrollToTop";
 
 import AboutPage from "./Pages/AboutPage";
-import AddShowPage from "./Pages/AddShowPage";
+import AddShowPage from "./Pages/admin/AddShowPage";
 import AllShowsPage from "./Pages/AllShowsPage";
 
 import LoginPage from "./Pages/auth/LoginPage";
@@ -15,7 +15,8 @@ import SignupPage from "./Pages/auth/SignupPage";
 import ComingSoon from "./Pages/ComingSoonPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
-import ProfilePage from "./Pages/ProfilePage";
+// import ProfilePage from "./Pages/ProfilePage";
+import UserProfilePage from "./Pages/user/UserProfilePage";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 import ShowDetailsPage from "./Pages/ShowDetailsPage";
 import VideoPlayerPage from "./Pages/VideoPlayerPage";
@@ -27,7 +28,7 @@ function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile" element={<UserProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
       <Route path="/all-shows" element={<AllShowsPage />} />
       <Route path="/show/:id" element={<ShowDetailsPage />} />
