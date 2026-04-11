@@ -1,4 +1,4 @@
-// src/Components/VideoBottomBar.jsx
+// src/components/VideoBottomBar.jsx
 
 import {
   ArrowShrinkIcon,

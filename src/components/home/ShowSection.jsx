@@ -1,6 +1,6 @@
-// src/Components/ShowSection.jsx
+// src/components/ShowSection.jsx
 import { useEffect, useRef, useState } from "react";
-import ShowCard from "./ShowCard";
+import ShowCard from "../show/ShowCard";
 
 function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
   const id = `section-${sectionTitle.replace(/\s+/g, "-").toLowerCase()}`;

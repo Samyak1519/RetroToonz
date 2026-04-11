@@ -1,12 +1,12 @@
-// src/Pages/HomePage.jsx
+// src/pages/HomePage.jsx
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import HeroBanner from "../Components/HeroBanner";
-import RandomPlayButton from "../Components/RandomPlayButton";
-import ShowSection from "../Components/ShowSection";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import HeroBanner from "../../components/home/HeroBanner";
+import RandomPlayButton from "../../components/home/RandomPlayButton";
+import ShowSection from "../../components/home/ShowSection";
 
-import showsData from "../Data/Shows.json";
+import showsData from "../../data/Shows.json";
 
 const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";

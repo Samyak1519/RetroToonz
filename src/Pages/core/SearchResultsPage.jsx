@@ -2,10 +2,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import ShowCard from "../Components/ShowCard";
-import showsData from "../Data/Shows.json";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import ShowCard from "../../components/show/ShowCard";
+import showsData from "../../data/Shows.json";
 
 // ✅ Correct thumbnail handling (NO path breaking)
 const enrich = (arr) =>

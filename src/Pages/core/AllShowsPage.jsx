@@ -3,10 +3,10 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../Components/Footer.jsx";
-import Header from "../Components/Header.jsx";
-import ShowCard from "../Components/ShowCard.jsx";
-import showsDataRaw from "../Data/Shows.json";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import ShowCard from "../../components/show/ShowCard.jsx";
+import showsDataRaw from "../../data/Shows.json";
 
 // --- Media Directories ---
 const posterDesktopDir = "/media/posters-desktop";

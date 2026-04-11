@@ -1,11 +1,11 @@
-// src/Pages/WatchlistPage.jsx
+// src/pages/WatchlistPage.jsx
 
 import { AllBookmarkIcon, ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
 
 function WatchlistPage() {
   const navigate = useNavigate();

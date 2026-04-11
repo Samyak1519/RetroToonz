@@ -1,4 +1,4 @@
-// src/Pages/ProfilePage.jsx
+// src/pages/ProfilePage.jsx
 
 import {
   UserIcon,
@@ -10,8 +10,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("History");
