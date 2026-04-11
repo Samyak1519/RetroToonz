@@ -3,14 +3,11 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../components/layout/Footer.jsx";
-import Header from "../../components/layout/Header.jsx";
-import ShowCard from "../../components/show/ShowCard.jsx";
-<<<<<<< HEAD
-import showsDataRaw from "../../Data/Shows.json";
-=======
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import ShowCard from "../../components/show/ShowCard";
+
 import showsDataRaw from "../../data/Shows.json";
->>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 // --- Media Directories ---
 const posterDesktopDir = "/media/posters-desktop";

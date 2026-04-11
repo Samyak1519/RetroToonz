@@ -1,16 +1,12 @@
 // src/pages/HomePage.jsx
 
-import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
 import HeroBanner from "../../components/home/HeroBanner";
 import RandomPlayButton from "../../components/home/RandomPlayButton";
 import ShowSection from "../../components/home/ShowSection";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
 
-<<<<<<< HEAD
-import showsData from "../../Data/Shows.json";
-=======
 import showsData from "../../data/Shows.json";
->>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";

@@ -6,23 +6,16 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-<<<<<<< HEAD
+
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
-import VideoPlayer from "../../components/video/VideoPlayer";
-import Episodes from "../../components/video/VideoPlayerEpisodes";
-import ShowInfo from "../../components/video/VideoPlayerShowInfo";
-import UpNext from "../../components/video/VideoPlayerUpNext";
-import showsData from "../../Data/Shows.json";
-=======
-import Footer from "../../components/layout/Footer.jsx";
-import Header from "../../components/layout/Header.jsx";
-import VideoPlayer from "../../components/video/VideoPlayer.jsx";
-import Episodes from "../../components/video/VideoPlayer.jsx";
-import ShowInfo from "../../components/video/VideoPlayer.jsx";
-import UpNext from "../../components/video/VideoPlayer.jsx";
+import {
+  default as Episodes,
+  default as ShowInfo,
+  default as UpNext,
+  default as VideoPlayer,
+} from "../../components/video/VideoPlayer";
 import showsData from "../../data/Shows.json";
->>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 const getPosterUrl = (id, device = "desktop") => {
   if (!id) return "";

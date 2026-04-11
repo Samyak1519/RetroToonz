@@ -1,25 +1,18 @@
 // src/pages/ErrorPage.jsx
 
-import { useMemo, useRef, useEffect, useState } from "react";
 import {
   ArrowLeft01Icon,
   ArrowRight01Icon,
   Home01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import ShowCard from "../../components/show/ShowCard";
-import showsData from "../../Data/Shows.json";
-=======
-import Footer from "../../components/layout/Footer.jsx";
-import Header from "../../components/layout/Header.jsx";
-import ShowCard from "../../components/show/ShowCard";
 import showsData from "../../data/Shows.json";
->>>>>>> e43d0ba959f5b4f67fdbad3036be0fbc2f7bda64
 
 // ✅ Media fix
 const enrich = (arr) =>
