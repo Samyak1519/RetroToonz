@@ -183,7 +183,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                 {/* Title */}
                 <div className="p-2 py-2.5 bg-black/10">
                   <h3 className="text-xs sm:text-sm font-medium text-white truncate">
-                     {episode.title || `Episode ${epNum}`}
+                    {episode.title || `Episode ${epNum}`}
                   </h3>
                   <p className="text-[10px] sm:text-xs text-gray-300 truncate mt-1 hidden sm:block">
                     {episode.description || ""}

@@ -3,7 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import showsData from "../Data/Shows.json";
+import showsData from "../../Data/Shows.json";
 
 function RandomPlayButton() {
   const navigate = useNavigate();

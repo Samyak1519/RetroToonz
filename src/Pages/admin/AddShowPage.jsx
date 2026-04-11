@@ -1,4 +1,4 @@
-// src/Pages/AddShowPage.jsx
+// src/pages/AddShowPage.jsx
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import Footer from "../../Components/Footer";
-import Header from "../../Components/Header";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
 
 export default function AddShowPage() {
   const navigate = useNavigate();

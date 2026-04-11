@@ -1,4 +1,4 @@
-// src/Pages/VideoPlayerPage.jsx
+// src/pages/VideoPlayerPage.jsx
 import { AnimatePresence, motion } from "framer-motion";
 import {
   useLocation,
@@ -6,13 +6,13 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import VideoPlayer from "../Components/VideoPlayer";
-import Episodes from "../Components/VideoPlayerEpisodes";
-import ShowInfo from "../Components/VideoPlayerShowInfo";
-import UpNext from "../Components/VideoPlayerUpNext";
-import showsData from "../Data/Shows.json";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import VideoPlayer from "../../components/video/VideoPlayer";
+import Episodes from "../../components/video/VideoPlayerEpisodes";
+import ShowInfo from "../../components/video/VideoPlayerShowInfo";
+import UpNext from "../../components/video/VideoPlayerUpNext";
+import showsData from "../../Data/Shows.json";
 
 const getPosterUrl = (id, device = "desktop") => {
   if (!id) return "";
@@ -47,7 +47,7 @@ function VideoPlayerPage() {
       : getPosterUrl(currentShow.id, "mobile");
 
   const allEpisodes = (currentShow.seasons || []).flatMap(
-    (s) => s.episodes ?? []
+    (s) => s.episodes ?? [],
   );
 
   const stateEpisodeId = location.state?.startEpisode?.episodeId ?? null;
@@ -57,7 +57,7 @@ function VideoPlayerPage() {
     (allEpisodes[0] && allEpisodes[0].episodeId);
 
   const currentEpisodeIndex = allEpisodes.findIndex(
-    (ep) => ep.episodeId === epParam
+    (ep) => ep.episodeId === epParam,
   );
   const currentEpisode =
     currentEpisodeIndex >= 0
