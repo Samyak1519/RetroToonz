@@ -1,11 +1,71 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function AuthPage() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  // ✅ STATE ADDED
+  const [formData, setFormData] = useState({
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  // ✅ HANDLE INPUT
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  // ✅ SIGNUP LOGIC
+  function handleSignup(e) {
+    e.preventDefault();
+
+    const { fullName, username, email, password } = formData;
+
+    if (!fullName || !username || !email || !password) {
+      if (!isValidEmail(email)) {
+        alert("Please enter a valid email");
+        return;
+      }
+    }
+
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    const alreadyExists = existingUsers.find(
+      (u) => u.email === email || u.username === username,
+    );
+
+    if (alreadyExists) {
+      alert("User already exists");
+      return;
+    }
+
+    const newUser = {
+      fullName,
+      username,
+      email,
+      password,
+      role: "user",
+    };
+
+    localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
+
+    alert("Account created successfully!");
+    navigate("/login");
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0b132b]">
@@ -22,6 +82,7 @@ export default function AuthPage() {
           className="group-hover:rotate-90 transition-transform duration-300"
         />
       </button>
+
       {/* MAIN CONTENT */}
       <div className="flex-grow relative flex items-center justify-center px-6 sm:px-10 md:px-16 overflow-hidden">
         {/* Confetti Overlay */}
@@ -87,22 +148,45 @@ export default function AuthPage() {
               Create an account
             </h2>
 
-            <form className="space-y-4">
+            {/* ✅ FORM UPDATED */}
+            <form className="space-y-4" onSubmit={handleSignup}>
+              {/* ✅ NEW FIELD */}
               <input
                 type="text"
-                placeholder="Username"
+                name="fullName"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+              />
+
               <input
                 type="email"
+                name="email"
                 placeholder="Email address"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
                 placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-[#EF476F] to-[#FF6B6B] text-white py-3 rounded-lg hover:from-[#FF5C8A] hover:to-[#FF8DAA] transition font-medium shadow-md shadow-[#EF476F]/30"
@@ -173,22 +257,44 @@ export default function AuthPage() {
               Create an account
             </h2>
 
-            <form className="space-y-4">
+            {/* ✅ SAME LOGIC APPLIED */}
+            <form className="space-y-4" onSubmit={handleSignup}>
               <input
                 type="text"
-                placeholder="Username"
+                name="fullName"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+              />
+
               <input
                 type="email"
+                name="email"
                 placeholder="Email address"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
                 placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <button
                 type="submit"
                 className="w-full bg-[#EF476F] text-white py-3 rounded-lg hover:bg-[#FF5C8A] transition font-medium shadow-md shadow-[#EF476F]/30"
@@ -235,6 +341,7 @@ export default function AuthPage() {
           </motion.div>
         </div>
       </div>
+
       {/* FOOTER */}
       <footer className="mt-auto py-4 text-center text-gray-400 text-xs sm:text-sm opacity-70">
         <p>

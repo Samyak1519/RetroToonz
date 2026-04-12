@@ -1,11 +1,54 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function AuthPage() {
   const navigate = useNavigate();
+
+  // ✅ STATE ADDED
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // ✅ HARDCODED ADMIN
+  const HARDCODED_USERS = [
+    {
+      email: "admin@retrotoonz.com",
+      password: "admin123",
+      role: "admin",
+    },
+  ];
+
+  // ✅ LOGIN LOGIC
+  function handleLogin(e) {
+    e.preventDefault();
+
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    const allUsers = [...HARDCODED_USERS, ...storedUsers];
+
+    const user = allUsers.find(
+      (u) =>
+        (u.email === email || u.username === email) && u.password === password,
+    );
+
+    if (!user) {
+      alert("Invalid credentials");
+      return;
+    }
+
+    // ✅ SAVE SESSION
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // ✅ ROLE BASED REDIRECT
+    if (user.role === "admin") {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0b132b]">
@@ -88,17 +131,24 @@ export default function AuthPage() {
               Sign in
             </h2>
 
-            <form className="space-y-4">
+            {/* ✅ FORM CONNECTED */}
+            <form className="space-y-4" onSubmit={handleLogin}>
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder="Email or Username"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-[#EF476F] to-[#FF6B6B] text-white py-3 rounded-lg hover:from-[#FF5C8A] hover:to-[#FF8DAA] transition font-medium shadow-md shadow-[#EF476F]/30"
@@ -169,17 +219,24 @@ export default function AuthPage() {
               Sign in
             </h2>
 
-            <form className="space-y-4">
+            {/* ✅ SAME LOGIC MOBILE */}
+            <form className="space-y-4" onSubmit={handleLogin}>
               <input
                 type="email"
                 placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
+
               <button
                 type="submit"
                 className="w-full bg-[#EF476F] text-white py-3 rounded-lg hover:bg-[#FF5C8A] transition font-medium shadow-md shadow-[#EF476F]/30"
