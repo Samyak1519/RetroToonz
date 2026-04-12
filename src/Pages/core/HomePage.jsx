@@ -1,10 +1,10 @@
 // src/pages/HomePage.jsx
 
-import HeroBanner from "../../components/home/HeroBanner";
-import RandomPlayButton from "../../components/home/RandomPlayButton";
-import ShowSection from "../../components/home/ShowSection";
-import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
+import HeroBanner from "../../components/home/HeroBanner.jsx";
+import RandomPlayButton from "../../components/home/RandomPlayButton.jsx";
+import ShowSection from "../../components/home/ShowSection.jsx";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
 
 import showsData from "../../data/Shows.json";
 

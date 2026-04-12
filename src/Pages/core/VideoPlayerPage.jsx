@@ -7,14 +7,14 @@ import {
   useSearchParams,
 } from "react-router-dom";
 
-import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
 import {
   default as Episodes,
   default as ShowInfo,
   default as UpNext,
   default as VideoPlayer,
-} from "../../components/video/VideoPlayer";
+} from "../../components/video/VideoPlayer.jsx";
 import showsData from "../../data/Shows.json";
 
 const getPosterUrl = (id, device = "desktop") => {

@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Home01Icon,
-  DashboardSquare01Icon,
-  PlayListAddIcon,
-  UserGroupIcon,
-  Analytics01Icon,
-  Home02Icon,
-  GridIcon,
   Alert02Icon,
-  Settings01Icon,
+  Analytics01Icon,
+  DashboardSquare01Icon,
+  GridIcon,
+  Home01Icon,
+  Home02Icon,
   Menu01Icon,
-  Cancel01Icon,
+  PlayListAddIcon,
+  Settings01Icon,
+  UserGroupIcon
 } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const stats = [
   { title: "Users", value: "12,430", change: "+12%" },

@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 import {
   ArrowLeft01Icon,
-  Upload01Icon,
   Image01Icon,
   PlayIcon,
+  Upload01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 

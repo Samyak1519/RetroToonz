@@ -14,7 +14,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
-import SearchBar from "../common/SearchBar";
+import SearchBar from "../common/SearchBar.jsx";
 
 const PORTAL_ROOT_ID = "retrotoonz-profile-portal-root";
 

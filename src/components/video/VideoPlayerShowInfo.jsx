@@ -7,7 +7,7 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
     currentEpisode?.episodeNumber !== undefined
   ) {
     sePid = `S${String(currentEpisode.seasonNumber).padStart(2, "0")}E${String(
-      currentEpisode.episodeNumber
+      currentEpisode.episodeNumber,
     ).padStart(2, "0")}`;
   } else if (currentEpisode?.episodeNumber !== undefined) {
     sePid = `E${String(currentEpisode.episodeNumber).padStart(2, "0")}`;
@@ -34,7 +34,7 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
         {[
           currentShow.year,
           currentShow.language,
-          currentShow.rating && `⭐ ${currentShow.rating}`
+          currentShow.rating && `⭐ ${currentShow.rating}`,
         ]
           .filter(Boolean)
           .map((item, i, arr) => (

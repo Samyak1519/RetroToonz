@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import VideoBottomBar from "./VideoBottomBar";
-import VideoCenterControls from "./VideoCenterControls";
-import VideoTopBar from "./VideoTopBar";
+import VideoBottomBar from "./VideoBottomBar.jsx";
+import VideoCenterControls from "./VideoCenterControls.jsx";
+import VideoTopBar from "./VideoTopBar.jsx";
 
 const VideoPlayer = ({
   currentShow,
@@ -219,7 +219,7 @@ const VideoPlayer = ({
     const buffered = Math.max(playedPct, bufferedPct);
 
     setProgressBackground(
-      `linear-gradient(90deg, ${accent} 0% ${played}%, ${bufferedColor} ${played}% ${buffered}%, ${remainder} ${buffered}% 100%)`
+      `linear-gradient(90deg, ${accent} 0% ${played}%, ${bufferedColor} ${played}% ${buffered}%, ${remainder} ${buffered}% 100%)`,
     );
   };
 
@@ -241,7 +241,7 @@ const VideoPlayer = ({
         if (videoRef.current) {
           videoRef.current.currentTime = Math.max(
             0,
-            videoRef.current.currentTime - 10
+            videoRef.current.currentTime - 10,
           );
           setCurrentTime(videoRef.current.currentTime);
         }
@@ -250,7 +250,7 @@ const VideoPlayer = ({
         if (videoRef.current) {
           videoRef.current.currentTime = Math.min(
             duration,
-            videoRef.current.currentTime + 10
+            videoRef.current.currentTime + 10,
           );
           setCurrentTime(videoRef.current.currentTime);
         }
@@ -338,13 +338,13 @@ const VideoPlayer = ({
       if (zone < 0.33) {
         videoRef.current.currentTime = Math.max(
           0,
-          videoRef.current.currentTime - 10
+          videoRef.current.currentTime - 10,
         );
         setSeekFeedback("-10s");
       } else if (zone > 0.66) {
         videoRef.current.currentTime = Math.min(
           duration,
-          videoRef.current.currentTime + 10
+          videoRef.current.currentTime + 10,
         );
         setSeekFeedback("+10s");
       } else {
@@ -375,7 +375,7 @@ const VideoPlayer = ({
       const seekDelta = (dx / rect.width) * duration;
       const newTime = Math.min(
         duration,
-        Math.max(0, startCurrentTime.current + seekDelta)
+        Math.max(0, startCurrentTime.current + seekDelta),
       );
       setDragSeekTime(newTime);
       setSeekFeedback(formatTime(newTime));
@@ -462,7 +462,7 @@ const VideoPlayer = ({
             if (videoRef.current)
               videoRef.current.currentTime = Math.max(
                 0,
-                videoRef.current.currentTime - 10
+                videoRef.current.currentTime - 10,
               );
             resetControlsTimer();
           }}
@@ -470,7 +470,7 @@ const VideoPlayer = ({
             if (videoRef.current)
               videoRef.current.currentTime = Math.min(
                 duration,
-                videoRef.current.currentTime + 10
+                videoRef.current.currentTime + 10,
               );
             resetControlsTimer();
           }}

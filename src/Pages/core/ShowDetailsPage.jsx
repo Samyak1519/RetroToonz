@@ -8,9 +8,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
-import EpisodeSection from "../../components/show/EpisodeSection";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import EpisodeSection from "../../components/show/EpisodeSection.jsx";
 import showsData from "../../data/Shows.json";
 
 const getPosterUrl = (id, device = "desktop") => {

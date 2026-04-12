@@ -2,9 +2,9 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
-import ShowCard from "../../components/show/ShowCard";
+import Footer from "../../components/layout/Footer.jsx";
+import Header from "../../components/layout/Header.jsx";
+import ShowCard from "../../components/show/ShowCard.jsx";
 import showsData from "../../data/Shows.json";
 
 // ✅ Correct thumbnail handling (NO path breaking)

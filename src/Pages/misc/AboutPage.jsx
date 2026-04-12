@@ -1,7 +1,6 @@
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Film02Icon,
   FavouriteIcon,
+  Film02Icon,
   Home01Icon,
   InstagramIcon,
   Mail01Icon,
@@ -9,6 +8,7 @@ import {
   Tv01Icon,
   TwitterIcon,
 } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
 
 const logoSrc = "/media/extras/retrotoonz_full_image.png";

@@ -3,24 +3,24 @@
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import ScrollToTop from "./components/common/ScrollToTop";
+import ScrollToTop from "./components/common/ScrollToTop.jsx";
 
-import AddShowPage from "./pages/admin/AddShowPage";
-import AllShowsPage from "./pages/core/AllShowsPage";
-import AboutPage from "./pages/misc/AboutPage";
+import AddShowPage from "./pages/admin/AddShowPage.jsx";
+import AllShowsPage from "./pages/core/AllShowsPage.jsx";
+import AboutPage from "./pages/misc/AboutPage.jsx";
 
-import LoginPage from "./pages/auth/LoginPage";
-import SignupPage from "./pages/auth/SignupPage";
+import LoginPage from "./pages/auth/LoginPage.jsx";
+import SignupPage from "./pages/auth/SignupPage.jsx";
 
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import HomePage from "./pages/core/HomePage";
-import SearchResultsPage from "./pages/core/SearchResultsPage";
-import ShowDetailsPage from "./pages/core/ShowDetailsPage";
-import VideoPlayerPage from "./pages/core/VideoPlayerPage";
-import ComingSoon from "./pages/misc/ComingSoonPage";
-import ErrorPage from "./pages/misc/ErrorPage";
-import WatchlistPage from "./pages/misc/WatchlistPage";
-import UserProfilePage from "./pages/user/UserProfilePage";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import HomePage from "./pages/core/HomePage.jsx";
+import SearchResultsPage from "./pages/core/SearchResultsPage.jsx";
+import ShowDetailsPage from "./pages/core/ShowDetailsPage.jsx";
+import VideoPlayerPage from "./pages/core/VideoPlayerPage.jsx";
+import ComingSoon from "./pages/misc/ComingSoonPage.jsx";
+import ErrorPage from "./pages/misc/ErrorPage.jsx";
+import WatchlistPage from "./pages/misc/WatchlistPage.jsx";
+import UserProfilePage from "./pages/user/UserProfilePage.jsx";
 
 function AppRoutes() {
   return (
