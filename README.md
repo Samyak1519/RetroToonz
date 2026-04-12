@@ -76,14 +76,26 @@ RetroToonz is built to demonstrate modern frontend architecture using React, Vit
 ```
 src/
 │
-├── components/
-├── pages/
-├── Data/
-├── services/
+├── components/ # Reusable UI components
+│ ├── layout/ # App layout 
+│ ├── home/ # Homepage sections 
+│ ├── show/ # Show-related UI 
+│ ├── video/ # Video player system
+│ ├── common/ # Shared utilities 
+│ └── misc/ # Special components
 │
-├── App.jsx
-├── main.jsx
-└── index.css
+├── pages/ # Route-level pages
+│ ├── core/ # Main app pages 
+│ ├── user/ # User profile & activity
+│ ├── admin/ # Admin dashboard & content management
+│ ├── auth/ # Login & Signup
+│ └── misc/ # Secondary pages
+│
+├── data/ # Static/mock data (temporary)
+│
+├── App.jsx # Root component
+├── main.jsx # Entry point
+└── index.css # Global styles
 ```
 
 ---
