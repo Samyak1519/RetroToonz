@@ -20,7 +20,7 @@ import ShowsPage from "./pages/admin/ShowsPage.jsx";
 import UsersPage from "./pages/admin/UsersPage.jsx";
 
 // Existing Pages
-import HomepageSection from "./pages/admin/HomePageSection.jsx";
+import HomepageSection from "./pages/admin/HomepageSection.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import SignupPage from "./pages/auth/SignupPage.jsx";
 import AllShowsPage from "./pages/core/AllShowsPage.jsx";

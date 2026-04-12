@@ -346,6 +346,20 @@ function MenuItems({ firstItemRef, onNavigate }) {
 
   return (
     <div className="py-2">
+      {/* ADMIN PROFILE */}
+      <button
+        onClick={() => onNavigate("/admin-profile")}
+        className={`${itemBase} ${
+          isActive("/admin-profile") ? "bg-white/10" : ""
+        }`}
+      >
+        <HugeiconsIcon
+          icon={UserCircleIcon}
+          className="text-yellow-300"
+          size={18}
+        />
+        <span>Admin Profile</span>
+      </button>
       <button
         ref={firstItemRef}
         onClick={() => onNavigate("/profile")}
