@@ -160,14 +160,14 @@ function Row({ title, description, children }) {
 
       <button
         onClick={() => scroll("left")}
-        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm border border-white/10"
+        className="hidden md:flex absolute left-0 top-6/10 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm border border-white/10"
       >
         <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
       </button>
 
       <button
         onClick={() => scroll("right")}
-        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm border border-white/10"
+        className="hidden md:flex absolute right-0 top-6/10 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm border border-white/10"
       >
         <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
       </button>
@@ -185,19 +185,37 @@ function Row({ title, description, children }) {
 /* CARD */
 function Card({ show, progress, onRemove, showDescription, isRecommended }) {
   return (
-    <div className="relative min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] bg-white/5 p-2.5 rounded-xl border border-white/10">
+    <div
+      className="relative min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] 
+                 bg-white/5 p-2.5 my-1 rounded-2xl 
+                 border border-white/10 
+                 overflow-hidden
+                 transition-all duration-200
+
+                 hover:border-sky-400/60
+                 hover:ring-1 hover:ring-sky-300/60
+                 hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
+    >
       {/* REMOVE */}
       {onRemove && (
         <button
           onClick={onRemove}
-          className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/60 border border-white/20"
+          className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center 
+                     rounded-full 
+                     bg-gradient-to-b from-white/20 to-white/5 
+                     bg-black/50 backdrop-blur-lg backdrop-saturate-150
+                     border border-white/10 
+                     shadow-[0_6px_24px_rgba(0,0,0,0.7)] 
+                     text-white/70 hover:text-white 
+                     hover:bg-black/60 hover:scale-110
+                     transition-all duration-200"
         >
           <HugeiconsIcon icon={Cancel01Icon} size={16} />
         </button>
       )}
 
       {/* IMAGE */}
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden">
         <img
           src={show.thumbnail}
           alt={show.title}
@@ -205,7 +223,15 @@ function Card({ show, progress, onRemove, showDescription, isRecommended }) {
         />
 
         <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-          <div className="bg-white/20 p-3 rounded-full">
+          <div
+            className="bg-gradient-to-b from-white/20 to-white/10 
+                       bg-black/50 backdrop-blur-lg backdrop-saturate-150
+                       border border-white/10  
+                       p-3 rounded-full cursor-pointer 
+                       text-white/80 hover:text-white 
+                       hover:bg-black/60 hover:scale-110
+                       transition-all duration-200"
+          >
             <HugeiconsIcon icon={PlayIcon} size={20} />
           </div>
         </div>
