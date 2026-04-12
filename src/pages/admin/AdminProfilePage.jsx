@@ -1,12 +1,16 @@
 // src/pages/user/UserProfilePage.jsx
 
 import {
-  ArrowLeft01Icon,
-  ArrowRight01Icon,
-  Cancel01Icon,
-  Edit02Icon,
-  PlayIcon,
-  UserIcon,
+    AddCircleIcon,
+    ArrowLeft01Icon,
+    ArrowRight01Icon,
+    DashboardSquare01Icon,
+    Cancel01Icon,
+    Edit02Icon,
+    Home02Icon,
+    PlayIcon,
+    PlayListAddIcon,
+    UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef, useState } from "react";
@@ -64,53 +68,157 @@ const UserProfilePage = () => {
 
             {/* PROFILE CARD */}
             <div
-              className="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 p-6 md:p-8 rounded-2xl 
-bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl"
+              className="relative flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-8 rounded-2xl 
+bg-gradient-to-br from-white/5 via-white/5 to-transparent 
+border border-white/10 backdrop-blur-xl shadow-xl"
             >
-              {/* 🔥 Subtle Gradient Glow */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/5 via-transparent to-cyan-500/5 pointer-events-none" />
-
               {/* LEFT */}
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 z-10">
+              <div className="flex items-center gap-6 md:gap-8 w-full">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-28 h-28 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                  <div
+                    className="w-24 h-24 md:w-28 md:h-28 rounded-full 
+        bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 
+        flex items-center justify-center shadow-lg"
+                  >
                     <HugeiconsIcon icon={UserIcon} size={42} />
                   </div>
 
-                  {/* Glow Ring */}
-                  <div className="absolute inset-0 rounded-full border border-white/20 blur-sm opacity-60" />
+                  {/* Admin Badge */}
+                  <span
+                    className="absolute -bottom-1 -right-1 px-2 py-[2px] text-[10px] rounded-full 
+        bg-yellow-400/20 text-yellow-300 border border-yellow-400/30"
+                  >
+                    ADMIN
+                  </span>
                 </div>
 
-                {/* Info */}
-                <div className="text-center md:text-left space-y-1">
+                {/* Text */}
+                <div className="flex flex-col">
                   <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
                     Samyak Nimsarkar
                   </h2>
 
-                  <p className="text-sm text-cyan-300 font-medium">
-                    @samyak005
-                  </p>
+                  <p className="text-cyan-300 text-sm mt-1">@samyak005</p>
 
-                  <p className="text-sm text-gray-400 mt-2 max-w-md">
-                    Cartoon lover • Nostalgia mode ON 🎬
+                  <p className="text-xs text-gray-400 mt-2">
+                    Managing RetroToonz Platform • Content & System Control
                   </p>
-
-                  
                 </div>
               </div>
 
               {/* ACTION BUTTONS */}
-              <div className="flex items-center gap-3 z-10">
-                <button className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-400/30 hover:from-cyan-500/30 hover:to-indigo-500/30 transition-all duration-200 shadow-md hover:shadow-lg">
-                  <HugeiconsIcon icon={Edit02Icon} size={16} />
-                  Edit Profile
-                </button>
+              <div className="flex items-center gap-3">
+                {/* BUTTON GROUP */}
+                <div className="flex items-center gap-3">
+                  {/* PRIMARY */}
+                  <button
+                    onClick={() => navigate("/admin")}
+                    className="flex items-center justify-center gap-2 
+    h-10 px-5 min-w-[140px]
+    rounded-xl text-sm font-medium
+
+    bg-gradient-to-r from-yellow-400/25 to-yellow-300/10 
+    border border-yellow-400/30 text-yellow-300
+
+    backdrop-blur-md shadow-md
+    hover:from-yellow-400/35 hover:to-yellow-300/20
+    hover:scale-[1.03]
+
+    whitespace-nowrap
+    transition-all duration-200"
+                  >
+                    <HugeiconsIcon icon={DashboardSquare01Icon} size={16} />
+                    Dashboard
+                  </button>
+
+                  {/* SECONDARY */}
+                  <button
+                    className="flex items-center justify-center gap-2 
+    h-10 px-5 min-w-[140px]
+    rounded-xl text-sm font-medium
+
+    bg-white/5 border border-white/10
+    backdrop-blur-md
+
+    hover:bg-white/10
+    hover:scale-[1.02]
+
+    whitespace-nowrap
+    transition-all duration-200"
+                  >
+                    <HugeiconsIcon icon={Edit02Icon} size={16} />
+                    Edit Profile
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="mt-10 border-t border-white/10" />
+            {/* 🔥 ADMIN OVERVIEW */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {[
+                { label: "Shows", value: allShows.length },
+                { label: "Episodes", value: 136 },
+                { label: "Users", value: "12.4K" },
+                { label: "Health", value: "Good" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="group p-4 rounded-xl 
+      bg-white/5 border border-white/10 backdrop-blur-md 
+      hover:bg-white/10 hover:border-white/20 
+      transition-all duration-200"
+                >
+                  <p className="text-[11px] uppercase tracking-wider text-gray-400">
+                    {item.label}
+                  </p>
+
+                  <p className="text-xl font-semibold mt-1 group-hover:scale-[1.02] transition">
+                    {item.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* 🔥 QUICK ACTIONS */}
+            <div className="flex flex-wrap items-center gap-4 mt-6">
+              {/* PRIMARY ACTION */}
+              <button
+                onClick={() => navigate("/admin/shows")}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-gradient-to-r from-indigo-500/30 to-indigo-400/10 border border-indigo-400/30 backdrop-blur-md shadow-md hover:from-indigo-500/40 hover:to-indigo-400/20 hover:scale-[1.03] transition-all duration-200"
+              >
+                <HugeiconsIcon icon={AddCircleIcon} size={16} />
+                Add Show
+              </button>
+
+              {/* SECONDARY */}
+              <button
+                onClick={() => navigate("/admin/episodes")}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.02] transition-all duration-200"
+              >
+                <HugeiconsIcon icon={PlayListAddIcon} size={16} />
+                Add Episode
+              </button>
+
+              {/* SECONDARY */}
+              <button
+                onClick={() => navigate("/admin/homepage-section")}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.02]  transition-all duration-200"
+              >
+                <HugeiconsIcon icon={Home02Icon} size={16} />
+                Homepage
+              </button>
+            </div>
           </section>
+
+          {/* 🔥 DIVIDER */}
+          <div className="mt-14 mb-6 flex items-center gap-4">
+            <div className="flex-1 h-[1px] bg-white/10" />
+            <p className="text-sm text-gray-400 uppercase tracking-widest">
+              Your Activity
+            </p>
+            <div className="flex-1 h-[1px] bg-white/10" />
+          </div>
 
           {/* CONTINUE WATCHING */}
           <Row
