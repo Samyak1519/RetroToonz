@@ -173,7 +173,7 @@ export default function ErrorPage() {
       {/* ✅ Responsive sizing + no scrollbar */}
       <style>{`
         .error-card {
-          width: 140px;
+          width: 132px;
         }
 
         @media (min-width: 640px) {

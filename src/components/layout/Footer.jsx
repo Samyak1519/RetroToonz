@@ -12,15 +12,15 @@ function Footer() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-3xl font-royal font-extrabold cursor-pointer select-none text-white scale-95 transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88] md:text-4xl md:scale-100 md:text-white md:hover:scale-100 md:hover:text-white md:bg-none"
+            className="text-title font-royal font-bold cursor-pointer select-none text-white scale-95 transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88] md:text-4xl md:scale-100 md:text-white md:hover:scale-100 md:hover:text-white md:bg-none"
           >
             RetroToonz
           </Link>
 
           {/* Links */}
-          <div className="flex gap-16 text-sm">
+          <div className="flex gap-16 text-body">
             <div className="space-y-2">
-              <h4 className="text-white font-semibold text-base">Company</h4>
+              <h4 className="text-heading text-white">Company</h4>
               <Link
                 to="/about"
                 className="block text-white/60 hover:text-cyan-300"
@@ -30,7 +30,7 @@ function Footer() {
             </div>
 
             <div className="space-y-2">
-              <h4 className="text-white font-semibold text-base">Explore</h4>
+              <h4 className="text-heading text-white">Explore</h4>
               <Link to="/" className="block text-white/60 hover:text-cyan-300">
                 Home
               </Link>
@@ -113,9 +113,9 @@ function Footer() {
           </div>
 
           {/* RIGHT: Links */}
-          <div className="flex gap-20 text-sm">
+          <div className="flex gap-20 text-body">
             <div className="space-y-2">
-              <h4 className="text-white font-semibold text-base">Company</h4>
+              <h4 className="text-heading text-white">Company</h4>
               <Link
                 to="/about"
                 className="block text-white/60 hover:text-cyan-300"
@@ -125,7 +125,7 @@ function Footer() {
             </div>
 
             <div className="space-y-2">
-              <h4 className="text-white font-semibold text-base">Explore</h4>
+              <h4 className="text-heading text-white">Explore</h4>
               <Link to="/" className="block text-white/60 hover:text-cyan-300">
                 Home
               </Link>
@@ -146,15 +146,21 @@ function Footer() {
         </div>
 
         {/* ================= BOTTOM ================= */}
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-meta text-white/50">
           <span>
             © {new Date().getFullYear()} RetroToonz. All rights reserved.
           </span>
 
           <div className="flex gap-6">
-            <span className="hover:text-white cursor-pointer">Terms</span>
-            <span className="hover:text-white cursor-pointer">Privacy</span>
-            <span className="hover:text-white cursor-pointer">FAQ</span>
+            <span className="text-meta hover:text-white cursor-pointer">
+              Terms
+            </span>
+            <span className="text-meta hover:text-white cursor-pointer">
+              Privacy
+            </span>
+            <span className="text-meta hover:text-white cursor-pointer">
+              FAQ
+            </span>
           </div>
         </div>
       </div>

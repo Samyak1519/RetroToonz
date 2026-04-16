@@ -23,54 +23,56 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
     "";
 
   return (
-    <div className="px-4 sm:px-8 md:px-12 py-6 mb-2">
-      {/* Reduced heading sizes */}
-      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2">
-        {currentShow.title}
-      </h1>
+    <div className="px-4 sm:px-8 md:px-12 py-6 mb-4 max-w-[1200px]">
+      {/* SHOW TITLE */}
+      <h1 className="text-title text-white mb-2">{currentShow.title}</h1>
 
-      {/* metadata - slightly smaller */}
-      <div className="flex flex-wrap gap-2  text-xs sm:text-sm text-gray-300 mb-4">
-        {[
-          currentShow.year,
-          currentShow.language,
-          currentShow.rating && `⭐ ${currentShow.rating}`,
-        ]
-          .filter(Boolean)
-          .map((item, i, arr) => (
-            <span key={i} className="whitespace-nowrap gap-1 flex items-center">
-              {item}
-              {i < arr.length - 1 && " |"}
-            </span>
-          ))}
+      {/* METADATA */}
+      <div className="flex items-center flex-wrap gap-3 text-meta text-white/60 mb-4">
+        {currentShow.year && <span>{currentShow.year}</span>}
+        {currentShow.language && <span>• {currentShow.language}</span>}
+        {currentShow.rating && (
+          <span className="flex items-center gap-1">
+            ⭐ {currentShow.rating}
+          </span>
+        )}
       </div>
 
+      {/* TAGS */}
       {currentShow.tags?.length > 0 && (
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
-            {currentShow.tags.map((tag, i) => (
-              <span
-                key={i}
-                className="px-2 py-1 text-xs font-medium bg-white/10 border border-white/20 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2 mb-5">
+          {currentShow.tags.map((tag, i) => (
+            <span
+              key={i}
+              className="
+              px-3 py-1
+              text-meta
+              bg-white/10
+              border border-white/10
+              rounded-full
+              backdrop-blur-md
+              hover:bg-white/20
+              transition
+            "
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       )}
 
-      {/* Episode identifier + title (made slightly smaller) */}
-      <p className="text-gray-200 w-full leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl font-semibold">
-        {sePid ? `${sePid} - ` : ""}
-        {currentEpisode?.title ?? currentShow.description ?? ""}
-      </p>
+      {/* EPISODE TITLE */}
+      <h2 className="text-heading text-white mb-2">
+        {sePid && <span className="text-white/60">{sePid} • </span>}
+        {currentEpisode?.title ?? "Untitled Episode"}
+      </h2>
 
-      {synopsis ? (
-        <p className="text-gray-300 w-full mt-3 leading-relaxed text-sm sm:text-sm md:text-sm lg:text-sm">
+      {/* DESCRIPTION */}
+      {synopsis && (
+        <p className="text-body text-white/70 leading-relaxed max-w-[800px]">
           {synopsis}
         </p>
-      ) : null}
+      )}
     </div>
   );
 }

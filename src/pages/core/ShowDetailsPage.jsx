@@ -90,21 +90,19 @@ function ShowDetailsPage() {
             <div className="flex items-start justify-between gap-4 mb-4">
               <div className="flex-1">
                 {/* ✅ TITLE */}
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                  {show.title}
-                </h1>
+                <h1 className="text-title">{show.title}</h1>
 
                 {/* ⭐ Rating */}
-                <div className="flex items-center gap-2 text-yellow-400 mt-1">
+                <div className="flex items-center gap-2 text-yellow-400 mt-1 text-label">
                   <HugeiconsIcon icon={StarIcon} size={18} />
                   <span>{show.rating || "9.1"}</span>
-                  <span className="text-xs text-gray-400">
+                  <span className="text-meta text-gray-400">
                     ({show.views || "35k"} views)
                   </span>
                 </div>
 
                 {/* 📄 Meta */}
-                <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                <p className="text-meta text-gray-400 mt-1">
                   {show.duration || "2 hr"} | {show.language || "Hindi"} |{" "}
                   {show.year}
                 </p>
@@ -148,7 +146,7 @@ function ShowDetailsPage() {
               {show.tags?.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs rounded-full bg-white text-black font-semibold"
+                  className="px-3 py-1 text-label rounded-full bg-white text-black"
                 >
                   {tag}
                 </span>
@@ -156,7 +154,7 @@ function ShowDetailsPage() {
             </div>
 
             {/* DESCRIPTION */}
-            <p className="text-sm sm:text-base text-gray-200 mb-6">
+            <p className="text-body text-gray-200 mb-6">
               {show.description ||
                 "Add something meaningful here about characters, story or nostalgia!"}
             </p>

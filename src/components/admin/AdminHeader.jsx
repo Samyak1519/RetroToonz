@@ -52,7 +52,8 @@ export default function AdminHeader({ onMenuClick }) {
               </span>
             </h1>
 
-            <p className="text-xs sm:text-sm text-gray-400 mt-1">
+            {/* 🔥 Improved subtitle */}
+            <p className="text-xs sm:text-sm text-white/50 mt-1 tracking-tight">
               {getTitle()} overview and insights
             </p>
           </div>
@@ -61,27 +62,59 @@ export default function AdminHeader({ onMenuClick }) {
         {/* RIGHT (Desktop) */}
         <div className="hidden md:flex items-center gap-3">
           {/* 🔍 Search */}
-          <div className="flex items-center gap-2 bg-black/50 border border-white/10 rounded-xl px-3 py-2 w-60 lg:w-72 focus-within:border-indigo-500/50 focus-within:bg-black/70 transition">
-            <HugeiconsIcon icon={Search01Icon} size={16} />
+          <div
+            className="
+            flex items-center gap-2 
+            bg-black/40 backdrop-blur-lg
+            border border-white/10 
+            rounded-xl px-3 py-2 
+            w-60 lg:w-72
+
+            transition-all duration-200
+            focus-within:border-indigo-400/40 
+            focus-within:bg-black/60
+          "
+          >
+            <HugeiconsIcon
+              icon={Search01Icon}
+              size={16}
+              className="text-white/60"
+            />
             <input
               type="text"
               placeholder="Search anything..."
-              className="bg-transparent outline-none text-sm w-full placeholder:text-gray-500"
+              className="bg-transparent outline-none text-sm w-full placeholder:text-white/40 text-white"
             />
           </div>
 
           {/* 🔔 Notification */}
-          <div className="relative p-2 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition group">
+          <div
+            className="
+            relative p-2 rounded-xl 
+            bg-white/5 hover:bg-white/10 
+            cursor-pointer transition group
+          "
+          >
             <HugeiconsIcon
               icon={Notification03Icon}
               size={18}
-              className="group-hover:scale-110 transition"
+              className="transition-all duration-200 group-hover:scale-110"
             />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
           </div>
 
           {/* 👤 Profile */}
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-sm font-semibold cursor-pointer hover:scale-105 transition shadow-lg">
+          <div
+            className="
+            w-9 h-9 rounded-full 
+            bg-gradient-to-br from-indigo-500 to-cyan-500 
+            flex items-center justify-center 
+            text-sm font-semibold 
+            cursor-pointer 
+            transition-all duration-200
+            hover:scale-105 hover:shadow-[0_0_12px_rgba(99,102,241,0.6)]
+          "
+          >
             S
           </div>
         </div>
@@ -90,12 +123,23 @@ export default function AdminHeader({ onMenuClick }) {
       {/* 📱 Mobile Row */}
       <div className="mt-4 flex md:hidden items-center gap-3">
         {/* Search */}
-        <div className="flex items-center gap-2 bg-black/50 border border-white/10 rounded-xl px-3 py-2 flex-1">
-          <HugeiconsIcon icon={Search01Icon} size={16} />
+        <div
+          className="
+          flex items-center gap-2 
+          bg-black/40 backdrop-blur-lg
+          border border-white/10 
+          rounded-xl px-3 py-2 flex-1
+        "
+        >
+          <HugeiconsIcon
+            icon={Search01Icon}
+            size={16}
+            className="text-white/60"
+          />
           <input
             type="text"
             placeholder="Search..."
-            className="bg-transparent outline-none text-sm w-full placeholder:text-gray-500"
+            className="bg-transparent outline-none text-sm w-full placeholder:text-white/40 text-white"
           />
         </div>
 
@@ -106,7 +150,14 @@ export default function AdminHeader({ onMenuClick }) {
         </div>
 
         {/* Profile */}
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-sm font-semibold">
+        <div
+          className="
+          w-9 h-9 rounded-full 
+          bg-gradient-to-br from-indigo-500 to-cyan-500 
+          flex items-center justify-center 
+          text-sm font-semibold
+        "
+        >
           S
         </div>
       </div>

@@ -69,20 +69,10 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_-48px_64px_rgba(0,0,0,0.75)]" />
 
                 {/* Title footer */}
-                <div
-                  className="
-                    absolute bottom-0 left-0 right-0
-                    px-3 py-2
-                    bg-gradient-to-t
-                    from-black/80 via-black/55 to-transparent
-                  "
-                >
-                  <h3 className="text-[12px] sm:text-sm font-medium text-white truncate">
-                    {title}
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-neutral-300">
-                    {year}
-                  </p>
+                <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 via-black/55 to-transparent">
+                  <h3 className="text-heading text-white truncate">{title}</h3>
+
+                  <p className="text-meta text-white/70">{year}</p>
                 </div>
 
                 {/* Wishlist / Favourite */}

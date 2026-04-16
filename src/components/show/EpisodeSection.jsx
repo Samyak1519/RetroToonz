@@ -35,10 +35,10 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
   if (!show || seasons.length === 0) {
     return (
       <div className="mt-10">
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
-          Episodes
-        </h2>
-        <p className="text-gray-400">No seasons or episodes available.</p>
+        <h2 className="text-title text-white mb-4">Episodes</h2>
+        <p className="text-body text-white/60">
+          No seasons or episodes available.
+        </p>
       </div>
     );
   }
@@ -53,11 +53,13 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl sm:text-2xl font-bold text-white">Episodes</h2>
 
-        <div className="w-44 text-sm">
+        <div className="w-44 text-label">
           <Listbox value={selectedSeason} onChange={setSelectedSeason}>
             <div className="relative">
               <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-[#1f1f1f] py-2 pl-4 pr-10 text-left text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                <span className="block truncate">{selectedSeason.label}</span>
+                <span className="block truncate text-label">
+                  {selectedSeason.label}
+                </span>
                 <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
                   <HugeiconsIcon
                     icon={ArrowDown01Icon}
@@ -87,7 +89,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                         <>
                           <span
                             className={`block truncate ${
-                              selected ? "font-semibold text-purple-300" : ""
+                              selected ? "text-purple-300" : ""
                             }`}
                           >
                             {season.label}
@@ -114,7 +116,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
       {/* ✅ Tablet now shows 4 cards, no padding added */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {episodes.length === 0 ? (
-          <div className="col-span-full text-gray-400">
+          <div className="col-span-full text-body text-white/60">
             No episodes found for this season.
           </div>
         ) : (
@@ -156,7 +158,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
                   <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
                   {/* Episode badge */}
-                  <div className="absolute top-2 left-2 bg-black/60 px-2 py-0.5 rounded-md text-xs font-semibold text-white">
+                  <div className="absolute top-2 left-2 bg-black/60 px-2 py-0.5 rounded-md text-label text-white">
                     {epPrefix}
                   </div>
 
@@ -182,10 +184,10 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
 
                 {/* Title */}
                 <div className="p-2 py-2.5 bg-black/10">
-                  <h3 className="text-xs sm:text-sm font-medium text-white truncate">
+                  <h3 className="text-heading text-white truncate">
                     {episode.title || `Episode ${epNum}`}
                   </h3>
-                  <p className="text-[10px] sm:text-xs text-gray-300 truncate mt-1 hidden sm:block">
+                  <p className="text-meta text-white/70 truncate mt-1 hidden sm:block">
                     {episode.description || ""}
                   </p>
                 </div>

@@ -54,7 +54,7 @@ export default function VideoTopBar({
   const containerClasses = [
     "absolute top-0 left-0 right-0 z-40",
     "bg-gradient-to-b from-black/70 to-transparent",
-    "px-4 sm:px-6 lg:px-10 py-2 sm:py-3",
+    "px-4 sm:px-8 md:px-12 py-3",
     "flex items-center justify-between",
     isFullscreen ? "sm:pt-4 lg:pt-4" : "",
   ]
@@ -65,25 +65,22 @@ export default function VideoTopBar({
     <div data-controls className={containerClasses}>
       {/* LEFT SIDE */}
       <div className="flex items-center min-w-0">
-        {/* Back / Exit Fullscreen button */}
+        {/* Back button */}
         <button
           onClick={handleBack}
-          className="p-2 sm:p-3 mr-2 rounded-full hover:bg-white/10 transition flex items-center"
+          className="p-2 sm:p-3 mr-e rounded-full hover:bg-white/10 transition flex items-center"
           aria-label={isFullscreen ? "Exit Fullscreen" : "Back to show"}
           onMouseDown={(e) => e.stopPropagation()}
         >
-          <HugeiconsIcon
-            icon={ArrowLeft02Icon}
-            className="text-xl sm:text-xl"
-          />
+          <HugeiconsIcon icon={ArrowLeft02Icon} className="w-5 h-5" />
         </button>
 
         {/* Info Overlay (Visible in Fullscreen or Mobile) */}
-        <div className="flex items-center gap-2 truncate min-w-0">
-          <div className="text-sm sm:text-lg text-white truncate min-w-0">
-            <span className="font-semibold">{showTitle}</span>
+        <div className="flex items-center gap-3 truncate min-w-0">
+          <div className="text-heading text-white truncate min-w-0">
+            <span>{showTitle}</span>
             {episodeNumber && (
-              <span className="text-white/90">
+              <span className="text-white/80 text-body">
                 {" "}
                 : E{episodeNumber}
                 {episodeTitle ? ` "${episodeTitle}"` : ""}
@@ -107,15 +104,9 @@ export default function VideoTopBar({
             aria-label={isMuted ? "Unmute" : "Mute"}
           >
             {isMuted || volume === 0 ? (
-              <HugeiconsIcon
-                icon={VolumeMuteIcon}
-                className="text-xl sm:text-xl"
-              />
+              <HugeiconsIcon icon={VolumeMuteIcon} className="w-5 h-5" />
             ) : (
-              <HugeiconsIcon
-                icon={VolumeHighIcon}
-                className="text-xl sm:text-xl"
-              />
+              <HugeiconsIcon icon={VolumeHighIcon} className="w-5 h-5" />
             )}
           </button>
         </div>

@@ -191,7 +191,7 @@ export default function Header() {
                 }
                 navigate("/");
               }}
-              className="text-2xl sm:text-3xl font-royal font-extrabold cursor-pointer select-none text-white scale-95 transition-all duration-300 ease-in-out transform hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88]"
+              className="text-display font-royal font-bold cursor-pointer select-none text-white/80 scale-95 transition-all duration-300 ease-in-out transform hover:scale-105 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#8f84c0] hover:via-[#eba550] hover:to-[#b7ce88]"
             >
               RetroToonz
             </div>
@@ -241,7 +241,7 @@ export default function Header() {
               }`}
             >
               <HugeiconsIcon icon={UserCircleIcon} size={20} />
-              <span className="hidden lg:block font-semibold text-sm">
+              <span className="hidden lg:block text-label text-white/90">
                 Samyak
               </span>
               <HugeiconsIcon
@@ -342,7 +342,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   const itemBase =
-    "flex items-center gap-3 px-5 py-3 text-sm transition hover:bg-white/10 text-white w-full text-left";
+    "flex items-center gap-3 px-5 py-3 text-label transition hover:bg-white/10 text-white w-full text-left";
 
   return (
     <div className="py-2">
@@ -393,7 +393,7 @@ function MenuItems({ firstItemRef, onNavigate }) {
         <HugeiconsIcon icon={StarIcon} className="text-cyan-300" size={18} />
         <span>About Us</span>
       </button>
-      <div className="h-px bg-white/10 my-1" />
+      <div className="h-px bg-white/10 my-2" />
       <button onClick={() => onNavigate("/login")} className={itemBase}>
         <HugeiconsIcon icon={Login01Icon} className="text-cyan-300" size={18} />
         <span>Sign In</span>

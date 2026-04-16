@@ -119,12 +119,11 @@ function HeroBanner({ shows = [] }) {
         {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-14 pb-8 sm:pb-8 md:pb-10 z-30">
           {/* Title */}
-          <h1 className="font-extrabold mb-2 leading-snug w-full">
-            <div className="flex flex-col gap-0.5">
-              <span className="text-base sm:text-xl md:text-2xl font-semibold">
-                Watch
-              </span>
-              <span className="text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+          <h1 className="mb-3 w-full">
+            <div className="flex flex-col gap-1">
+              <span className="text-label text-white/80">Watch</span>
+
+              <span className="text-display text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
                 {show.title}
               </span>
             </div>
@@ -136,7 +135,7 @@ function HeroBanner({ shows = [] }) {
               {show.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 text-xs bg-white/10 border border-white/20 rounded-full backdrop-blur-sm"
+                  className="px-2 py-0.5 text-label bg-white/10 border border-white/20 rounded-full backdrop-blur-sm"
                 >
                   {tag}
                 </span>
@@ -146,7 +145,7 @@ function HeroBanner({ shows = [] }) {
 
           {/* Description */}
           {descriptionLines.length > 0 && (
-            <div className="text-sm text-gray-200 mb-4">
+            <div className="text-body text-white/80 mb-5">
               {descriptionLines.map((line, idx) => (
                 <p key={idx} className="m-0">
                   {line}
@@ -166,12 +165,12 @@ function HeroBanner({ shows = [] }) {
                 hover:from-blue-600 hover:to-cyan-500
                 shadow-md transition-all duration-300 
                 hover:scale-105 active:scale-95
-                text-sm
+                text-label
               "
             >
               <span className="absolute inline-flex h-9 w-9 rounded-full bg-cyan-400 opacity-20 group-hover:animate-ping -z-10" />
               <HugeiconsIcon icon={PlayIcon} size={20} />
-              <span className="font-base">Start Watching</span>
+              <span>Start Watching</span>
             </button>
 
             <button

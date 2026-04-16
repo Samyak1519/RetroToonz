@@ -9,12 +9,10 @@ import {
 
 import Footer from "../../components/layout/Footer.jsx";
 import Header from "../../components/layout/Header.jsx";
-import {
-  default as Episodes,
-  default as ShowInfo,
-  default as UpNext,
-  default as VideoPlayer,
-} from "../../components/video/VideoPlayer.jsx";
+import VideoPlayer from "../../components/video/VideoPlayer.jsx";
+import ShowInfo from "../../components/video/VideoPlayerShowInfo.jsx";
+import Episodes from "../../components/video/VideoPlayerEpisodes.jsx";
+import UpNext from "../../components/video/VideoPlayerUpNext.jsx";
 import showsData from "../../data/Shows.json";
 
 const getPosterUrl = (id, device = "desktop") => {
@@ -88,13 +86,11 @@ function VideoPlayerPage() {
   const bgUrl = "/media/extras/bullseye-gradient.svg";
 
   return (
-    // flex column layout ensures footer is bottom when main is short
     <div className="min-h-screen flex flex-col bg-[#0F0A24] text-white">
       <Header />
 
-      {/* main area expands and scrolls when needed; background sits inside main so it fills between header and footer */}
-      <main className="flex-1 relative overflow-auto">
-        {/* gradient background that fills the main area only */}
+      <main className="flex-1 relative">
+        {/* 🌌 Background */}
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
@@ -103,11 +99,11 @@ function VideoPlayerPage() {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
-            backgroundAttachment: "fixed",
-            opacity: 0.3,
+            opacity: 0.25,
           }}
         />
 
+        {/* 📦 Content Wrapper */}
         <div className="relative z-10">
           <AnimatePresence mode="wait">
             <motion.div
@@ -116,8 +112,8 @@ function VideoPlayerPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="w-full"
             >
+              {/* 🎬 Player */}
               <VideoPlayer
                 currentShow={currentShow}
                 startEpisode={currentEpisode}
@@ -125,13 +121,14 @@ function VideoPlayerPage() {
                 goToPreviousEpisode={goToPreviousEpisode}
               />
 
+              {/* 📄 Show Info */}
               <ShowInfo
                 currentShow={currentShow}
-                startEpisode={currentEpisode}
                 currentEpisode={currentEpisode}
               />
 
-              <div className="px-4 sm:px-8 md:px-12 mb-5">
+              {/* 📺 Episodes */}
+              <section className="px-4 sm:px-6 md:px-8 lg:px-12 mb-6">
                 <Episodes
                   seasons={currentShow.seasons}
                   currentShowId={currentShow.id}
@@ -139,20 +136,20 @@ function VideoPlayerPage() {
                   posterDesktop={posterDesktop}
                   defaultPoster={defaultPoster}
                 />
-              </div>
+              </section>
 
-              <div className="px-4 sm:px-8 md:px-12 mb-8">
+              {/* 🔥 Up Next */}
+              <section className="px-4 sm:px-6 md:px-8 lg:px-12 mb-10">
                 <UpNext
                   allShows={allShows}
                   currentIndex={allShows.findIndex((s) => s.id === id)}
                 />
-              </div>
+              </section>
             </motion.div>
           </AnimatePresence>
         </div>
       </main>
 
-      {/* footer sits at bottom of page when main is short, or after content when main scrolls */}
       <Footer />
     </div>
   );

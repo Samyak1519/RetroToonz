@@ -15,7 +15,7 @@ export default function VideoCenterControls({
   showControls,
 }) {
   const glassBtn =
-    "bg-black/30 backdrop-blur-md border border-white/10 hover:bg-white/20 transition rounded-full text-white flex items-center justify-center";
+    "bg-black/40 backdrop-blur-lg border border-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-200 rounded-full text-white flex items-center justify-center active:scale-95";
 
   return (
     <div
@@ -24,7 +24,7 @@ export default function VideoCenterControls({
         absolute inset-0 z-30 flex items-center justify-center
         pointer-events-none
         transition-opacity duration-300 ease-in-out
-        translate-y-[-10px] sm:translate-y-0
+        translate-y-[-6px] sm:translate-y-0
 
         ${showControls ? "opacity-100" : "opacity-0"}
       `}
@@ -38,14 +38,14 @@ export default function VideoCenterControls({
         </div>
       )}
 
-      <div className="pointer-events-auto flex items-center gap-10 sm:gap-16">
+      <div className="pointer-events-auto flex items-center gap-8 sm:gap-12">
         {/* Rewind */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             rewind?.();
           }}
-          className={`${glassBtn} p-2.5 sm:p-3`}
+          className={`${glassBtn} p-3`}
         >
           <HugeiconsIcon icon={GoBackward10SecIcon} size={20} />
         </button>
@@ -56,12 +56,12 @@ export default function VideoCenterControls({
             e.stopPropagation();
             togglePlayPause?.();
           }}
-          className={`${glassBtn} p-3.5 sm:p-4`}
+          className={`${glassBtn} p-4`}
         >
           {isPlaying ? (
-            <HugeiconsIcon icon={PauseIcon} size={22} />
+            <HugeiconsIcon icon={PauseIcon} className="w-5 h-5" />
           ) : (
-            <HugeiconsIcon icon={PlayIcon} size={22} />
+            <HugeiconsIcon icon={PlayIcon} className="w-5 h-5" />
           )}
         </button>
 
@@ -71,7 +71,7 @@ export default function VideoCenterControls({
             e.stopPropagation();
             forward?.();
           }}
-          className={`${glassBtn} p-2.5 sm:p-3`}
+          className={`${glassBtn} p-3`}
         >
           <HugeiconsIcon icon={GoForward10SecIcon} size={20} />
         </button>
@@ -80,7 +80,7 @@ export default function VideoCenterControls({
       {/* Spinner CSS */}
       <style jsx>{`
         .yt-spinner-container {
-          padding: 16px;
+          padding: 12px;
           background: rgba(0, 0, 0, 0.4);
           border-radius: 999px;
           display: flex;
@@ -89,8 +89,8 @@ export default function VideoCenterControls({
         }
 
         .yt-spinner {
-          width: 40px;
-          height: 40px;
+          width: 32px;
+          height: 32px;
           border-radius: 999px;
           border: 3px solid rgba(255, 255, 255, 0.25);
           border-top-color: white;

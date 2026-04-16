@@ -1,6 +1,9 @@
-// src/components/VideoPlayerUpNext.jsx
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+  PlayIcon,
+} from "@hugeicons/core-free-icons";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -61,19 +64,20 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
     });
   };
 
-  // Next shows
   const upcoming = [];
   for (let i = 1; i <= Math.min(12, allShows.length - 1); i++) {
     upcoming.push(allShows[(currentIndex + i) % allShows.length]);
   }
 
   return (
-    <section className="pb-12">
-      {/* 🔥 Title */}
-      <h2 className="text-xl sm:text-2xl font-semibold mb-4 px-1">Up Next</h2>
+    <section className="pb-10">
+      {/* TITLE */}
+      <h2 className="text-title font-semibold tracking-tight text-white mb-2 px-1">
+        Up Next
+      </h2>
 
-      <div className="relative group">
-        {/* ⬅ LEFT BUTTON */}
+      <div className="relative group/controls">
+        {/* LEFT */}
         <button
           onClick={() => scrollByCards(-1)}
           className="
@@ -82,21 +86,21 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
             w-10 h-10 rounded-full
             bg-black/40 backdrop-blur-md
             hover:bg-black/70
-            opacity-0 group-hover:opacity-100
-            transition-all duration-300
+            opacity-0 group-hover/controls:opacity-100
+            transition
           "
         >
           <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
         </button>
 
-        {/* 🎬 SCROLLER */}
+        {/* SCROLLER */}
         <div
           ref={scrollerRef}
           className="overflow-x-auto scrollbar-hide scroll-smooth"
         >
           <div
-            className="flex gap-3 sm:gap-4 items-stretch"
-            style={{ scrollSnapType: "x mandatory", paddingBottom: 8 }}
+            className="flex gap-4 items-stretch py-3"
+            style={{ scrollSnapType: "x mandatory" }}
           >
             {upcoming.map((show, i) => {
               const { desktop, mobile } = getPosterUrls(show);
@@ -107,32 +111,26 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                   to={`/watch/${show.id}`}
                   data-upnext-card
                   className="
-                    group/card relative flex-shrink-0
+                    group relative flex-shrink-0
                     rounded-xl overflow-hidden
+                    bg-white/5 border border-white/10
                     transition-all duration-300
-                    hover:scale-[1.05]
-                    shadow-md hover:shadow-xl
+                    hover:scale-[1.05] hover:border-sky-400/60
                   "
                   style={{
-                    flex: "0 0 43%", // 🔥 2.3 cards on mobile
+                    flex: "0 0 45%", // mobile
                     scrollSnapAlign: "start",
                   }}
                 >
-                  {/* 🎥 IMAGE */}
-                  <div
-                    className="
-                      relative w-full 
-                      aspect-[2/3] sm:aspect-video
-                      bg-gray-800
-                    "
-                  >
+                  {/* IMAGE */}
+                  <div className="relative w-full aspect-video bg-zinc-800 ">
                     <picture>
                       <source srcSet={desktop} media="(min-width:640px)" />
                       <img
                         src={mobile || desktop}
                         alt={show.title || ""}
                         loading="lazy"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = DEFAULT_POSTER;
@@ -140,24 +138,37 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                       />
                     </picture>
 
-                    {/* 🔥 GRADIENT */}
-                    <div
-                      className="
-                        absolute inset-0 
-                        bg-gradient-to-t from-black/70 via-black/20 to-transparent
-                        opacity-70 group-hover/card:opacity-90
-                        transition
-                      "
-                    />
+                    {/* GRADIENT */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                    {/* 🎯 TITLE */}
+                    {/* PLAY OVERLAY */}
                     <div
                       className="
-                        absolute bottom-2 left-3 right-3
-                        text-white text-sm font-semibold
-                        drop-shadow-md
-                        line-clamp-2
+                      absolute inset-0 flex items-center justify-center
+                      bg-black/40
+                      opacity-0 group-hover:opacity-100
+                      transition
+                    "
+                    >
+                      <div
+                        className="
+                        bg-black/50 backdrop-blur-lg border border-white/10
+                        p-3 rounded-full
+                        flex items-center justify-center
+                        transition hover:scale-110
                       "
+                      >
+                        <HugeiconsIcon icon={PlayIcon} size={20} />
+                      </div>
+                    </div>
+
+                    {/* TITLE */}
+                    <div
+                      className="
+                      absolute bottom-2 left-3 right-3
+                      text-white text-sm sm:text-[15px] font-semibold leading-snug tracking-tight
+                      line-clamp-2
+                    "
                     >
                       {show.title}
                     </div>
@@ -168,7 +179,7 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
           </div>
         </div>
 
-        {/* ➡ RIGHT BUTTON */}
+        {/* RIGHT */}
         <button
           onClick={() => scrollByCards(1)}
           className="
@@ -177,8 +188,8 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
             w-10 h-10 rounded-full
             bg-black/40 backdrop-blur-md
             hover:bg-black/70
-            opacity-0 group-hover:opacity-100
-            transition-all duration-300
+            opacity-0 group-hover/controls:opacity-100
+            transition
           "
         >
           <HugeiconsIcon icon={ArrowRight01Icon} size={20} />

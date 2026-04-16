@@ -417,9 +417,14 @@ const VideoPlayer = ({
     >
       <div
         className={`relative w-full bg-black rounded-md overflow-hidden ${
-          isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[27/9]"
+          isFullscreen ? "h-screen" : "aspect-[16/9] sm:aspect-[18/9] md:aspect-[21/9] lg:aspect-[24/9] xl:aspect-[27/9]"
         }`}
       >
+        {/* TOP GRADIENT */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none" />
+
+        {/* BOTTOM GRADIENT */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/90 to-transparent z-10 pointer-events-none" />
         <video
           ref={videoRef}
           src={qualities?.[0]?.url}
@@ -481,7 +486,7 @@ const VideoPlayer = ({
         {/* Seek feedback */}
         {seekFeedback && (
           <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
-            <div className="bg-black/75 text-white px-4 py-2 rounded-lg text-lg font-semibold">
+            <div className="bg-black/75 text-white px-4 py-2 rounded-lg text-label">
               {seekFeedback}
             </div>
           </div>

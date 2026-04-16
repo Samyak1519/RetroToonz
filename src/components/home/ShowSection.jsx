@@ -38,10 +38,8 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
       style={{ backgroundColor: bgColor }}
     >
       {/* SECTION TITLE */}
-      <div className="px-4 sm:px-10 mb-3">
-        <h2 className="text-lg sm:text-xl font-semibold text-white">
-          {sectionTitle}
-        </h2>
+      <div className="px-4 sm:px-10 mb-2">
+        <h2 className="text-title text-white">{sectionTitle}</h2>
       </div>
 
       {/* MOBILE */}
@@ -97,7 +95,7 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
               flex items-center justify-center
               bg-black/30 backdrop-blur-md
               border-r border-white/20
-              text-white text-3xl rounded-r-xl
+              text-white text-2xl font-medium rounded-r-xl
             "
           >
             ‹
@@ -115,7 +113,7 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
               flex items-center justify-center
               bg-black/30 backdrop-blur-md
               border-l border-white/20
-              text-white text-3xl rounded-l-xl
+              text-white text-2xl font-medium rounded-l-xl
             "
           >
             ›
