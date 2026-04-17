@@ -46,7 +46,7 @@ function AppRoutes() {
 
       <Route path="/profile" element={<UserProfilePage />} />
       <Route path="/watchlist" element={<WatchlistPage />} />
-      <Route path="/all-show" element={<AllShowsPage />} />
+      <Route path="/all-shows" element={<AllShowsPage />} />
       <Route path="/show/:id" element={<ShowDetailsPage />} />
       <Route path="/watch/:id" element={<VideoPlayerPage />} />
       <Route path="/comingsoon" element={<ComingSoon />} />

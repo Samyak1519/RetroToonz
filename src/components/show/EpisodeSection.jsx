@@ -2,7 +2,9 @@ import { Listbox, Transition } from "@headlessui/react";
 import {
   ArrowDown01Icon,
   CheckmarkCircle02Icon,
+  PlayIcon,
 } from "@hugeicons/core-free-icons";
+
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Fragment, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -113,7 +115,7 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
         </div>
       </div>
 
-      {/* ✅ Tablet now shows 4 cards, no padding added */}
+      {/* ✅ Responsive grid untouched */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {episodes.length === 0 ? (
           <div className="col-span-full text-body text-white/60">
@@ -129,72 +131,95 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
               "/media/posters-desktop/default-poster.jpg";
 
             return (
-              <div
+              <EpisodeCard
                 key={episode.episodeId || index}
-                onClick={() =>
-                  navigate(`/watch/${show.id}?ep=${episode.episodeId}`)
-                }
-                className="group vt-card cursor-pointer rounded-lg overflow-hidden shadow-[0_6px_18px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:scale-[1.04] md:hover:scale-[1.05]"
-              >
-                {/* Thumbnail */}
-                <div
-                  className="relative bg-zinc-800"
-                  style={{ paddingTop: "56.25%" }}
-                >
-                  <img
-                    src={thumb}
-                    alt={episode.title || `Episode ${epNum}`}
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src =
-                        defaultPoster ||
-                        "/media/posters-desktop/default-poster.jpg";
-                    }}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
-                  />
-
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-
-                  {/* Episode badge */}
-                  <div className="absolute top-2 left-2 bg-black/60 px-2 py-0.5 rounded-md text-label text-white">
-                    {epPrefix}
-                  </div>
-
-                  {/* Centered Play Icon */}
-                  <div
-                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                    aria-hidden="true"
-                  >
-                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-transform duration-150 group-hover:scale-110">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        aria-hidden="true"
-                        className="sm:w-5 sm:h-5"
-                      >
-                        <path d="M5 3v18l15-9L5 3z" fill="white" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Title */}
-                <div className="p-2 py-2.5 bg-black/10">
-                  <h3 className="text-heading text-white truncate">
-                    {episode.title || `Episode ${epNum}`}
-                  </h3>
-                  <p className="text-meta text-white/70 truncate mt-1 hidden sm:block">
-                    {episode.description || ""}
-                  </p>
-                </div>
-              </div>
+                episode={episode}
+                index={index}
+                showId={show.id}
+                thumb={thumb}
+                defaultPoster={defaultPoster}
+                navigate={navigate}
+              />
             );
           })
         )}
+      </div>
+    </div>
+  );
+}
+
+function EpisodeCard({
+  episode,
+  showId,
+  index,
+  thumb,
+  defaultPoster,
+  navigate,
+}) {
+  const epNum = episode.episodeNumber ?? index + 1;
+  const epPrefix = `E${String(epNum).padStart(2, "0")}`;
+
+  return (
+    <div
+      onClick={() => navigate(`/watch/${showId}?ep=${episode.episodeId}`)}
+      className="group cursor-pointer 
+                 rounded-2xl overflow-hidden
+                 bg-white/5 p-2 sm:p-2.5
+                 border border-white/10 
+                 backdrop-blur-lg backdrop-saturate-150
+                 transition-all duration-200
+
+                 hover:border-sky-400/50
+                 hover:ring-1 hover:ring-sky-300/50
+                 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
+    >
+      {/* IMAGE */}
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+        <img
+          src={thumb}
+          alt={episode.title || `Episode ${epNum}`}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src =
+              defaultPoster || "/media/posters-desktop/default-poster.jpg";
+          }}
+          loading="lazy"
+          className="w-full h-full object-cover"
+        />
+
+        {/* Softer overlay */}
+        <div className="absolute inset-0 bg-black/30" />
+
+        {/* Play Button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className="bg-black/40 backdrop-blur-lg backdrop-saturate-150
+               border border-white/10  
+               p-2.5 sm:p-3 rounded-full 
+               text-white/80 hover:text-white 
+               hover:bg-black/50 hover:scale-105
+               transition-all duration-200"
+          >
+            <HugeiconsIcon icon={PlayIcon} size={20} />
+          </div>
+        </div>
+
+        {/* Episode Badge */}
+        <div
+          className="absolute top-2 left-2 
+                     bg-black/40 backdrop-blur-md 
+                     border border-white/10
+                     px-2 py-0.5 rounded-md text-[10px] sm:text-xs text-white"
+        >
+          {epPrefix}
+        </div>
+      </div>
+
+      {/* TITLE */}
+      <div className="mt-1.5">
+        <h4 className="text-xs sm:text-sm text-white truncate">
+          {episode.title || `Episode ${epNum}`}
+        </h4>
       </div>
     </div>
   );

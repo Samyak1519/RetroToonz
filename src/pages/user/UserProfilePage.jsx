@@ -63,10 +63,7 @@ const UserProfilePage = () => {
             </div>
 
             {/* PROFILE CARD */}
-            <div
-              className="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 p-6 md:p-8 rounded-2xl 
-bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl"
-            >
+            <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl">
               {/* 🔥 Subtle Gradient Glow */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/5 via-transparent to-cyan-500/5 pointer-events-none" />
 
@@ -95,8 +92,6 @@ bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl"
                   <p className="text-sm text-gray-400 mt-2 max-w-md">
                     Cartoon lover • Nostalgia mode ON 🎬
                   </p>
-
-                  
                 </div>
               </div>
 
