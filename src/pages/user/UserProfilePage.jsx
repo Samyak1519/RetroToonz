@@ -45,19 +45,20 @@ const UserProfilePage = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#050b14] via-[#0a1528] to-[#04080f] text-white">
       <Header />
 
-      <main className="flex-grow">
-        <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[1800px] mx-auto">
+      <main className="flex-grow relative">
+        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[1800px] mx-auto relative">
           {/* HEADER */}
           <section className="mb-10">
             <div className="flex items-center gap-4 mb-8">
               <button
                 onClick={() => navigate(-1)}
-                className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 transition"
+                className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 text-white transition-all"
+                aria-label="Go back"
               >
                 <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
               </button>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/80">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/80 tracking-tight">
                 My Account
               </h1>
             </div>
@@ -160,7 +161,7 @@ function Row({ title, description, children }) {
 
   return (
     <div className="mb-10 relative">
-      <h3 className="text-xl sm:text-2xl font-bold text-yellow-400">{title}</h3>
+      <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">{title}</h3>
       <p className="text-gray-400 text-sm mb-4">{description}</p>
 
       <button

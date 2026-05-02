@@ -1,11 +1,15 @@
-import { ArrowDown01Icon, ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowDown01Icon,
+  ArrowLeft01Icon,
+  FavouriteIcon,
+  Tick02Icon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/layout/Footer.jsx";
 import Header from "../../components/layout/Header.jsx";
-import ShowCard from "../../components/show/ShowCard.jsx";
 
 import showsDataRaw from "../../data/Shows.json";
 
@@ -59,6 +63,74 @@ function firstLetterKey(title) {
   return /[A-Z]/.test(ch) ? ch : "#";
 }
 
+/* ---------------- CARD COMPONENT ---------------- */
+function Card({ show, navigate }) {
+  const [isInWatchlist, setIsInWatchlist] = useState(false);
+
+  const handleWatchlist = (e) => {
+    e.stopPropagation();
+    setIsInWatchlist((prev) => !prev);
+  };
+
+  return (
+    <div
+      onClick={() => navigate(`/show/${show.id}`)}
+      className="relative cursor-pointer
+           bg-white/5 p-1 sm:p-2 rounded-2xl
+                 border border-white/10 
+                 overflow-hidden
+                 transition-all duration-200
+
+                 hover:border-sky-400/60
+                 hover:ring-1 hover:ring-sky-300/60
+                 hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
+    >
+      {/* WATCHLIST BUTTON */}
+      <button
+        onClick={handleWatchlist}
+        className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center 
+                   rounded-full 
+                   bg-gradient-to-b from-white/20 to-white/5 
+                   bg-black/50 backdrop-blur-lg backdrop-saturate-150
+                   border border-white/10 
+                   shadow-[0_6px_24px_rgba(0,0,0,0.7)] 
+                   text-white/70 hover:text-white 
+                   hover:bg-black/60 hover:scale-110
+                   transition-all duration-200"
+      >
+        <HugeiconsIcon
+          icon={isInWatchlist ? Tick02Icon : FavouriteIcon}
+          size={16}
+        />
+      </button>
+
+      {/* IMAGE */}
+      <div className="relative w-full aspect-[2/3] sm:aspect-video rounded-xl overflow-hidden group">
+        <picture>
+          {/* Mobile Poster */}
+          <source media="(max-width: 640px)" srcSet={show.thumbnailMobile} />
+
+          {/* Default (Desktop) */}
+          <img
+            src={show.thumbnail}
+            alt={show.title}
+            className="w-full h-full object-cover transition-transform "
+          />
+        </picture>
+      </div>
+
+      {/* CONTENT */}
+      <div className="mt-1.5 sm:mt-2 px-1.5 sm:px-0">
+        <h4 className="text-sm font-medium truncate">{show.title}</h4>
+
+        {/* YEAR (instead of description) */}
+        <p className="text-xs text-gray-400 mt-1">{show.year || "—"}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- PAGE ---------------- */
 export default function AllShowsPage() {
   const navigate = useNavigate();
   const [activeTag, setActiveTag] = useState("All");
@@ -118,121 +190,96 @@ export default function AllShowsPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeTag, sortBy]);
 
-  const total = filtered.length;
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#05060b] to-[#0f0a24] text-white font-nunito selection:bg-cyan-500/30">
       <Header />
 
       <main className="flex-grow relative">
-        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 max-w-[1800px] mx-auto relative">
-          {/* Header Section */}
+        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[2000px] mx-auto relative">
+          {/* Header */}
           <div className="flex items-center gap-4 mb-8">
+            {/* Back Button */}
             <button
               onClick={() => navigate(-1)}
-              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full text-white transition-all border border-white/10"
-              aria-label="Go back"
+              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 text-white"
             >
-              <HugeiconsIcon icon={ArrowLeft01Icon} size={24} />
+              <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
             </button>
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight">
+
+            {/* Title */}
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
               All Shows
             </h1>
+
             <div className="flex-1" />
+
             <div className="hidden md:block">
               <div className="relative">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white/5 border border-white/10 text-white text-sm px-5 py-2.5 rounded-full pr-12 min-w-[180px] focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition cursor-pointer"
+                  className="appearance-none bg-white/5 border border-white/10 text-white text-sm px-5 py-2.5 rounded-full pr-12"
                 >
                   <option value="title-asc">Title (A → Z)</option>
                   <option value="title-desc">Title (Z → A)</option>
                   <option value="year-desc">Newest First</option>
                   <option value="year-asc">Oldest First</option>
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
+
+                <div className="absolute inset-y-0 right-4 flex items-center text-gray-400">
                   <HugeiconsIcon icon={ArrowDown01Icon} size={18} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="md:pl-2">
-            <div className="text-gray-400 mb-6 text-sm sm:text-base leading-relaxed">
-              <p>
-                Browse our full vault of nostalgia. Filter by genre or sort by
-                era.
-              </p>
-              <p className="text-cyan-400/60 font-medium">
-                Grouped alphabetically.
-              </p>
-            </div>
-
-            {/* Tags section */}
-            <div className="mb-8">
-              <div className="flex items-center overflow-x-auto hide-scrollbar gap-2 pb-4">
-                {tags.map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setActiveTag(t)}
-                    className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all border ${
-                      activeTag === t
-                        ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black border-transparent shadow-[0_0_20px_rgba(34,211,238,0.3)]"
-                        : "bg-white/5 text-gray-300 border-white/5 hover:border-white/20 hover:bg-white/10"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Grid Content */}
-            <div className="space-y-16 mb-24">
-              {grouped.map(({ letter, shows }) => (
-                <section key={letter} className="group">
-                  <div className="flex items-center gap-6 mb-8">
-                    <div className="text-3xl font-black text-white group-hover:text-cyan-400 transition-colors">
-                      {letter}
-                    </div>
-                    <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/5 to-transparent" />
-                    <div className="text-xs font-bold text-gray-600 bg-white/5 px-3 py-1 rounded-md">
-                      {shows.length} SHOWS
-                    </div>
-                  </div>
-
-                  {/* FIX: px-6 on mobile for more space.
-                    lg:grid-cols-4 for Image 1.
-                    xl:grid-cols-5 for Image 2.
-                  */}
-                  <div className="px-6 sm:px-0">
-                    <div
-                      className="grid grid-cols-2 gap-x-4 gap-y-6 
-                                    sm:grid-cols-2 sm:gap-x-6 
-                                    md:grid-cols-3 md:gap-x-6 md:gap-y-10 
-                                    lg:grid-cols-4 lg:gap-x-8   
-                                    xl:grid-cols-5"
-                    >
-                      {shows.map((s) => (
-                        <div
-                          key={s.id}
-                          className="transition-transform duration-300 hover:scale-[1.03]"
-                        >
-                          {/* We apply cinematic aspect ratio classes here */}
-                          <div className="aspect-[2/3] lg:aspect-video overflow-hidden rounded-xl border border-white/10 shadow-lg group">
-                            <ShowCard
-                              {...s}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </section>
+          {/* Tags */}
+          <div className="mb-8">
+            <div className="flex items-center overflow-x-auto hide-scrollbar gap-2 pb-4">
+              {tags.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setActiveTag(t)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border ${
+                    activeTag === t
+                      ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black border-transparent"
+                      : "bg-white/5 text-gray-300 border-white/5"
+                  }`}
+                >
+                  {t}
+                </button>
               ))}
             </div>
+          </div>
+
+          {/* GRID */}
+          <div className="space-y-16 mb-24">
+            {grouped.map(({ letter, shows }) => (
+              <section key={letter}>
+                <div className="flex items-center gap-6 mb-5">
+                  <h3 className="text-2xl sm:text-2xl font-semibold text-yellow-300">
+                    {letter}
+                  </h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/5 to-transparent" />
+                  <div className="text-xs font-bold text-gray-600 bg-white/5 px-3 py-1 rounded-md">
+                    {shows.length} SHOWS
+                  </div>
+                </div>
+
+                <div className="px-0 sm:px-0">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-6 md:gap-y-8 lg:grid-cols-4 lg:gap-x-6 xl:grid-cols-4 2xl:grid-cols-5">
+                    {shows.map((s) => (
+                      <div
+                        key={s.id}
+                        className="transition-transform duration-300 hover:scale-[1.03]"
+                      >
+                        <Card show={s} navigate={navigate} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            ))}
           </div>
         </div>
       </main>
@@ -245,11 +292,6 @@ export default function AllShowsPage() {
           scrollbar-width: none;
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
-        
-        select option {
-          background-color: #05060b;
-          color: white;
-        }
       `}</style>
     </div>
   );

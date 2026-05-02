@@ -1,16 +1,16 @@
 // src/pages/user/UserProfilePage.jsx
 
 import {
-    AddCircleIcon,
-    ArrowLeft01Icon,
-    ArrowRight01Icon,
-    DashboardSquare01Icon,
-    Cancel01Icon,
-    Edit02Icon,
-    Home02Icon,
-    PlayIcon,
-    PlayListAddIcon,
-    UserIcon,
+  AddCircleIcon,
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+  DashboardSquare01Icon,
+  Cancel01Icon,
+  Edit02Icon,
+  Home02Icon,
+  PlayIcon,
+  PlayListAddIcon,
+  UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef, useState } from "react";
@@ -51,6 +51,7 @@ const UserProfilePage = () => {
 
       <main className="flex-grow">
         <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[1800px] mx-auto">
+          
           {/* HEADER */}
           <section className="mb-10">
             <div className="flex items-center gap-4 mb-8">
@@ -61,16 +62,14 @@ const UserProfilePage = () => {
                 <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
               </button>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/80">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
                 My Account
               </h1>
             </div>
 
             {/* PROFILE CARD */}
             <div
-              className="relative flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-8 rounded-2xl 
-bg-gradient-to-br from-white/5 via-white/5 to-transparent 
-border border-white/10 backdrop-blur-xl shadow-xl"
+              className="relative flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-white/5 via-white/5 to-transparent border border-white/10 backdrop-blur-xl shadow-xl"
             >
               {/* LEFT */}
               <div className="flex items-center gap-6 md:gap-8 w-full">

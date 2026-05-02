@@ -66,7 +66,7 @@ function ShowDetailsPage() {
                 transition
               "
             >
-              <HugeiconsIcon icon={ArrowLeft01Icon} size={22} />
+              <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
             </button>
 
             <picture>
