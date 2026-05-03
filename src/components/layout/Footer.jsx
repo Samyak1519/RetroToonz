@@ -22,7 +22,7 @@ function Footer() {
             <div className="space-y-2">
               <h4 className="text-heading text-white">Company</h4>
               <Link
-                to="/about"
+                to="/about-us"
                 className="block text-white/60 hover:text-cyan-300"
               >
                 About Us
@@ -117,7 +117,7 @@ function Footer() {
             <div className="space-y-2">
               <h4 className="text-heading text-white">Company</h4>
               <Link
-                to="/about"
+                to="/about-us"
                 className="block text-white/60 hover:text-cyan-300"
               >
                 About Us

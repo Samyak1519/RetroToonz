@@ -81,14 +81,7 @@ export default function VideoPlayerEpisodes({
       <div className="relative">
         <div
           ref={scrollerRef}
-          className="
-      grid gap-4
-      grid-cols-2
-      sm:grid-cols-3
-      md:grid-cols-4
-      xl:grid-cols-5
-      auto-rows-fr
-    "
+          className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 auto-rows-fr"
         >
           {season.episodes.map((ep) => {
             const num =
@@ -106,18 +99,12 @@ export default function VideoPlayerEpisodes({
                   setActiveEpisode(ep.id || ep.episodeNumber);
                   onSelectEpisode?.(ep.episodeId ?? ep.episodeNumber ?? ep.id);
                 }}
-                className={`
-            group relative w-full
-            bg-white/5 p-2 rounded-xl
-            border border-white/10
-            overflow-hidden cursor-pointer
-            transition-all duration-300 ease-out
-
-            ${
-              isActive
-                ? "ring-1 ring-cyan-300/60 border-cyan-300/40 scale-[1.02]"
-                : "hover:border-sky-400/60 hover:ring-1 hover:ring-sky-300/60 hover:scale-[1.02]"
-            }
+                className={`group relative w-full bg-white/5 p-2 rounded-xl border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 ease-out
+                  ${
+                    isActive
+                      ? "ring-1 ring-cyan-300/60 border-cyan-300/40 scale-[1.02]"
+                      : "hover:border-sky-400/60 hover:ring-1 hover:ring-sky-300/60 hover:scale-[1.02]"
+                  }
           `}
               >
                 {/* IMAGE */}
@@ -133,23 +120,8 @@ export default function VideoPlayerEpisodes({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
 
                   {/* PLAY OVERLAY */}
-                  <div
-                    className="
-              absolute inset-0 flex items-center justify-center
-              bg-black/40
-              opacity-100 sm:opacity-0 sm:group-hover:opacity-100
-              transition duration-300
-            "
-                  >
-                    <div
-                      className="
-                bg-black/50 backdrop-blur-lg border border-white/10
-                p-3 rounded-full
-                flex items-center justify-center
-                transition-all duration-200
-                hover:bg-black/60 hover:scale-110
-              "
-                    >
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition duration-300">
+                    <div className="bg-black/50 backdrop-blur-lg border border-white/10 p-3 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-black/60 hover:scale-110">
                       <HugeiconsIcon
                         icon={PlayIcon}
                         className="text-white/80 group-hover:text-white"
@@ -159,16 +131,7 @@ export default function VideoPlayerEpisodes({
                   </div>
 
                   {/* EP BADGE */}
-                  <div
-                    className="
-              absolute top-2 left-2
-              px-2 py-0.5 rounded-md
-              text-[10px] font-medium
-              bg-black/60 backdrop-blur-md
-              border border-white/10
-              text-white
-            "
-                  >
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[11px] font-medium bg-black/50 backdrop-blur-md border border-white/10 text-white">
                     E{num}
                   </div>
                 </div>

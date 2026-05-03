@@ -164,11 +164,11 @@ function EpisodeCard({
       onClick={() => navigate(`/watch/${showId}?ep=${episode.episodeId}`)}
       className="group cursor-pointer 
                  rounded-2xl overflow-hidden
-                 bg-white/5 p-2 sm:p-2.5
+                 bg-white/5 p-0.5 sm:p-2
                  border border-white/10 
                  backdrop-blur-lg backdrop-saturate-150
                  transition-all duration-200
-
+                 
                  hover:border-sky-400/50
                  hover:ring-1 hover:ring-sky-300/50
                  hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
@@ -216,7 +216,7 @@ function EpisodeCard({
       </div>
 
       {/* TITLE */}
-      <div className="mt-1.5">
+      <div className="mt-1.5 ml-0.5">
         <h4 className="text-xs sm:text-sm text-white truncate">
           {episode.title || `Episode ${epNum}`}
         </h4>

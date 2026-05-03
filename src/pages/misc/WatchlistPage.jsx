@@ -15,7 +15,7 @@ function WatchlistPage() {
       <Header />
 
       <main className="flex-grow relative">
-        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[2000px] mx-auto relative">
+        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-8 max-w-[2000px] mx-auto relative">
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
             {/* Back Button */}
