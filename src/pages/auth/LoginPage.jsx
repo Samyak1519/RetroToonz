@@ -138,7 +138,7 @@ export default function AuthPage() {
                 placeholder="Email or Username"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -146,7 +146,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button
@@ -216,7 +216,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -224,7 +224,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button

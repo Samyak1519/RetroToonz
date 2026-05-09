@@ -157,7 +157,7 @@ export default function AuthPage() {
                 placeholder="Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400  rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400  rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -166,7 +166,7 @@ export default function AuthPage() {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -175,7 +175,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -184,7 +184,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button
@@ -255,7 +255,7 @@ export default function AuthPage() {
                 placeholder="Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -264,7 +264,7 @@ export default function AuthPage() {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -273,7 +273,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -282,7 +282,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button
