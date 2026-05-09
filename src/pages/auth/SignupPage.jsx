@@ -139,12 +139,12 @@ export default function AuthPage() {
 
           {/* Right Section */}
           <motion.div
-            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 my-16 border border-white/10"
+            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 my-22 border border-white/10"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-semibold mb-6 text-center text-emerald-100">
+            <h2 className="text-2xl font-semibold mb-6 text-center text-emerald-100">
               Create an account
             </h2>
 
@@ -157,7 +157,7 @@ export default function AuthPage() {
                 placeholder="Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400  rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
 
               <input
@@ -166,7 +166,7 @@ export default function AuthPage() {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
 
               <input
@@ -175,7 +175,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
 
               <input
@@ -184,12 +184,12 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFD166]"
               />
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#EF476F] to-[#FF6B6B] text-white py-3 rounded-lg hover:from-[#FF5C8A] hover:to-[#FF8DAA] transition font-medium shadow-md shadow-[#EF476F]/30"
+                className="w-full bg-gradient-to-r from-[#EF476F] to-[#FF6B6B] text-white py-2.5 rounded-lg hover:from-[#FF5C8A] hover:to-[#FF8DAA] transition font-medium shadow-md shadow-[#EF476F]/30"
               >
                 Sign Up
               </button>
@@ -203,19 +203,9 @@ export default function AuthPage() {
 
             {/* Social Buttons */}
             <div className="flex flex-col space-y-3">
-              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-2.5 hover:bg-white/10 transition">
                 <img src="/logos/google-icon.png" className="w-5 h-5" />
                 Continue with Google
-              </button>
-
-              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <img src="/logos/facebook-logo.png" className="w-5 h-5" />
-                Continue with Facebook
-              </button>
-
-              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
-                <img src="/logos/apple-logo.png" className="w-5 h-5 invert" />
-                Continue with Apple
               </button>
             </div>
 
