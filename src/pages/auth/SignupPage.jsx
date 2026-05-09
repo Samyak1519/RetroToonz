@@ -139,7 +139,7 @@ export default function AuthPage() {
 
           {/* Right Section */}
           <motion.div
-            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 my-22 border border-white/10"
+            className="w-full md:w-[420px] bg-[#1b1f3a]/10 backdrop-blur-xl text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)] p-8 mt-22 mb-6 border border-white/10"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -203,7 +203,7 @@ export default function AuthPage() {
 
             {/* Social Buttons */}
             <div className="flex flex-col space-y-3">
-              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-2.5 hover:bg-white/10 transition">
+              <button className="flex items-center justify-center gap-2.5 w-full border border-white/20 rounded-lg py-2.5 hover:bg-white/10 transition">
                 <img src="/logos/google-icon.png" className="w-5 h-5" />
                 Continue with Google
               </button>
@@ -255,7 +255,7 @@ export default function AuthPage() {
                 placeholder="Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -264,7 +264,7 @@ export default function AuthPage() {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -273,7 +273,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -282,7 +282,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button

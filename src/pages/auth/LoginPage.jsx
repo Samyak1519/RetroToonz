@@ -165,7 +165,7 @@ export default function AuthPage() {
 
             {/* Social Login Buttons */}
             <div className="flex flex-col space-y-3">
-              <button className="flex items-center justify-center gap-2 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
+              <button className="flex items-center justify-center gap-2.5 w-full border border-white/20 rounded-lg py-3 hover:bg-white/10 transition">
                 <img src="/logos/google-icon.png" className="w-5 h-5" />
                 Continue with Google
               </button>
@@ -216,7 +216,7 @@ export default function AuthPage() {
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <input
@@ -224,7 +224,7 @@ export default function AuthPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
+                className="w-full border border-white/20 bg-transparent text-white placeholder-gray-400 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#6495ED]"
               />
 
               <button

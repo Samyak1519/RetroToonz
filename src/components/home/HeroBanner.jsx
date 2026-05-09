@@ -123,12 +123,20 @@ function HeroBanner({ shows = [] }) {
             <div className="flex flex-col gap-1">
               <span className="text-label text-white/80">Watch</span>
 
-              <span className="text-display text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+              <span className="sm:text-5xl text-2xl font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
                 {show.title}
               </span>
             </div>
           </h1>
 
+          {/* Description */}
+          {descriptionLines.length > 0 && (
+            <div className="text-body text-white/80 mb-3">
+              <p className="m-0 leading-relaxed max-w-full md:max-w-[50vw] line-clamp-2 md:line-clamp-3">
+                {descriptionLines.join(" ")}
+              </p>
+            </div>
+          )}
           {/* Tags */}
           {show.tags?.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3">
@@ -139,17 +147,6 @@ function HeroBanner({ shows = [] }) {
                 >
                   {tag}
                 </span>
-              ))}
-            </div>
-          )}
-
-          {/* Description */}
-          {descriptionLines.length > 0 && (
-            <div className="text-body text-white/80 mb-5">
-              {descriptionLines.map((line, idx) => (
-                <p key={idx} className="m-0">
-                  {line}
-                </p>
               ))}
             </div>
           )}
@@ -189,16 +186,39 @@ function HeroBanner({ shows = [] }) {
           </div>
 
           {/* 🔥 CENTERED INDICATOR */}
-          <div className="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-40">
-            {shows.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === index ? "w-3 bg-white" : "w-1.5 bg-white/40"
-                }`}
-              />
-            ))}
+          <div className="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-40">
+            {shows.length <= 4 ? (
+              // Normal mode (4 or less)
+              shows.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === index
+                      ? "w-4 h-1.5 bg-white"
+                      : "w-1.5 h-1.5 bg-white/40"
+                  }`}
+                />
+              ))
+            ) : (
+              // Infinite / Netflix style mode
+              <>
+                {Array.from({ length: 4 }).map((_, i) => {
+                  const activeDot = index % 4;
+
+                  return (
+                    <button
+                      key={i}
+                      className={`rounded-full transition-all duration-300 ${
+                        i === activeDot
+                          ? "w-4 h-1.5 bg-white"
+                          : "w-1.5 h-1.5 bg-white/40"
+                      }`}
+                    />
+                  );
+                })}
+              </>
+            )}
           </div>
         </div>
       </div>
