@@ -137,13 +137,34 @@ function HeroBanner({ shows = [] }) {
               </p>
             </div>
           )}
+
           {/* Tags */}
           {show.tags?.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3">
-              {show.tags.map((tag, i) => (
+              {show.tags.slice(0, 3).map((tag, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 text-label bg-white/10 border border-white/20 rounded-full backdrop-blur-sm"
+                  className="
+                    px-3 py-1
+                    text-[11px] sm:text-xs
+                    font-medium tracking-wide
+
+                    rounded-full
+                    border border-white/20
+
+                    bg-white/10 backdrop-blur-md
+                    text-white/90
+
+                    shadow-[0_4px_20px_rgba(0,0,0,0.4)]
+
+                    relative
+                    before:absolute before:inset-0 before:rounded-full
+                    before:bg-white/10 before:blur-md before:opacity-0
+                    hover:before:opacity-100
+
+                    transition-all duration-300
+                    hover:bg-white/20 hover:border-white/40 hover:scale-105
+                  "
                 >
                   {tag}
                 </span>
