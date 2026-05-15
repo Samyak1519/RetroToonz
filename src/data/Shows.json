@@ -8,6 +8,10 @@
       "thumbnailMobile": "/media/posters-mobile/ben10-poster-mobile.jpeg",
       "tags": [
         "Action",
+        "Adventure",
+        "Animation",
+        "Family",
+        "Superhero",
         "Sci-Fi"
       ],
       "description": "A young boy named Ben discovers a mysterious alien watch that lets him transform into ten different heroes. With each form offering unique powers, Ben battles villains, saves the world from galactic threats, and learns the true meaning of responsibility.",
@@ -94,7 +98,13 @@
       "thumbnail": "/media/posters-desktop/chhota-bheem-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/chhota-bheem-poster-mobile.jpeg",
       "tags": [
-        "Adventure"
+        "Adventure",
+        "Action",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy",
+        "Hindi"
       ],
       "description": "In the kingdom of Dholakpur, Bheem is a brave and kind-hearted boy with incredible strength. Along with his friends, he takes on villains, monsters, and tricky situations, proving that wisdom and courage always win the day.",
       "duration": "1 hr 32 min",
@@ -191,6 +201,11 @@
       "thumbnail": "/media/posters-desktop/doraemon-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/doraemon-poster-mobile.jpeg",
       "tags": [
+        "Action",
+        "Artificial Intelligence",
+        "Anime",
+        "Cyberpunk",
+        "Time Travel",
         "Sci-Fi",
         "Comedy"
       ],
@@ -279,7 +294,10 @@
       "thumbnailMobile": "/media/posters-mobile/kick-buttowski-poster-mobile.jpeg",
       "tags": [
         "Action",
-        "Comedy"
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Family"
       ],
       "description": "Clarence “Kick” Buttowski dreams of being the world’s greatest daredevil. With fearless stunts, wild challenges, and endless determination, Kick constantly pushes the limits of danger and comedy in his small suburban town.",
       "duration": "1 hr 10 min",
@@ -366,7 +384,11 @@
       "thumbnailMobile": "/media/posters-mobile/kid-vs-kat-poster-mobile.jpeg",
       "tags": [
         "Action",
+        "Adventure",
+        "Animation",
         "Comedy",
+        "Family",
+        "Fantasy",
         "Sci-Fi"
       ],
       "description": "When Coop’s sister adopts a strange hairless cat, life takes a turn for chaos. The cat is actually an evil alien plotting world domination, and Coop becomes the only one who knows the truth—leading to a never-ending battle of wits.",
@@ -442,8 +464,12 @@
       "thumbnail": "/media/posters-desktop/kiteretsu-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/kiteretsu-poster-mobile.jpeg",
       "tags": [
+        "Animation",
+        "Anime",
+        "Adventure",
         "Comedy",
-        "Adventure"
+        "Family",
+        "Sci-Fi"
       ],
       "description": "Kiteretsu is a boy genius who builds amazing inventions inspired by his ancestor’s encyclopedia. Along with his robot friend Korosuke, he explores science, friendship, and wild adventures that mix comedy with clever problem-solving.",
       "duration": "22 min",
@@ -518,8 +544,13 @@
       "thumbnail": "/media/posters-desktop/mickey-mouse-clubhouse-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/mickey-mouse-clubhouse-poster-mobile.jpeg",
       "tags": [
-        "Classic",
-        "Family"
+        "Adventure",
+        "Animal Adventure",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy",
+        "Musical"
       ],
       "description": "Mickey and his friends invite kids into a colorful clubhouse filled with fun, friendship, and problem-solving. Together with Minnie, Donald, Daisy, Goofy, and Pluto, Mickey uses teamwork and creativity to solve everyday challenges in magical ways.",
       "duration": "1 hr 30 min",
@@ -605,8 +636,12 @@
       "thumbnail": "/media/posters-desktop/mr-bean-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/mr-bean-poster-mobile.jpeg",
       "tags": [
+        "Animation",
         "Comedy",
-        "Classic"
+        "Family",
+        "Sitcom",
+        "Sitcom",
+        "Short"
       ],
       "description": "Mr. Bean is eccentric, childlike, and hilariously unpredictable. With little dialogue and plenty of slapstick, he stumbles into ordinary situations that quickly spiral into chaotic misadventures, leaving laughter in his wake.",
       "duration": "1 hr 30 min",
@@ -692,8 +727,12 @@
       "thumbnail": "/media/posters-desktop/ninja-hattori-poster-desktop.png",
       "thumbnailMobile": "/media/posters-mobile/ninja-hattori-poster-mobile.jpeg",
       "tags": [
+        "Action",
         "Adventure",
-        "Action"
+        "Anime",
+        "Comedy",
+        "Family",
+        "Fantasy"
       ],
       "description": "Hattori is a skilled young ninja who comes to live with Kenichi, a mischievous schoolboy. Using his ninja skills, Hattori helps Kenichi with school, friends, and life’s problems, while also battling rival ninjas who threaten peace.",
       "duration": "1 hr 38 min",
@@ -779,7 +818,12 @@
       "thumbnail": "/media/posters-desktop/oggy-and-the-cockroaches-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/oggy-and-the-cockroaches-poster-mobile.jpeg",
       "tags": [
-        "Comedy"
+        "Adventure",
+        "Animal Adventure",
+        "Animation",
+        "Family",
+        "Comedy",
+        "Slapstick"
       ],
       "description": "Oggy, a lazy cat, just wants to relax and enjoy life, but three pesky cockroaches—Joey, Dee Dee, and Marky—never let him. Their endless pranks lead to hilarious chases, over-the-top chaos, and slapstick comedy in every episode.",
       "duration": "1 hr 18 min",
@@ -854,8 +898,15 @@
       "thumbnail": "/media/posters-desktop/perman-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/perman-poster-mobile.jpeg",
       "tags": [
+        "Action",
+        "Adventure",
+        "Anime",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Fantasy",
         "Superhero",
-        "Action"
+        "Sci-Fi"
       ],
       "description": "Mitsuo, a young boy, is chosen to become “Perman,” a superhero who fights crime with special gadgets and powers. Balancing his double life as both a student and a hero, Mitsuo learns the importance of responsibility and courage.",
       "duration": "1 hr 50 min",
@@ -952,8 +1003,14 @@
       "thumbnail": "/media/posters-desktop/phineas-and-ferb-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/phineas-and-ferb-poster-mobile.jpeg",
       "tags": [
+        "Action",
+        "Adventure",
+        "Animation",
+        "Buddy Comedy",
         "Comedy",
-        "Adventure"
+        "Family",
+        "Farce",
+        "Sitcom"
       ],
       "description": "Stepbrothers Phineas and Ferb spend every summer day creating outrageous inventions and wild projects. Meanwhile, their sister Candace tries to expose them, and their pet platypus Perry secretly lives a double life as a spy fighting evil Dr. Doofenshmirtz.",
       "duration": "1 hr 42 min",
@@ -1050,8 +1107,13 @@
       "thumbnail": "/media/posters-desktop/pokemon-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/pokemon-poster-mobile.jpeg",
       "tags": [
+        "Action",
         "Adventure",
-        "Fantasy"
+        "Animal Adventure",
+        "Anime",
+        "Fantasy",
+        "Teen Fantasy",
+        "Quest"
       ],
       "description": "Join Ash Ketchum and his loyal Pikachu as they travel across regions to become Pokémon Masters. Along the way, they meet new friends, battle rivals, discover legendary creatures, and learn that true strength comes from friendship and teamwork.",
       "duration": "2 hr 10 min",
@@ -1137,7 +1199,11 @@
       "thumbnail": "/media/posters-desktop/shaun-the-sheep-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/shaun-the-sheep-poster-mobile.jpeg",
       "tags": [
+        "Animal Adventure",
+        "Animation",
         "Comedy",
+        "Family",
+        "Short",
         "Stop-Motion"
       ],
       "description": "Shaun is a clever sheep who leads his flock into comical adventures on a quiet farm. From mischievous tricks to clever escapes, Shaun’s leadership often drags the farmer and the sheepdog Bitzer into lighthearted chaos.",
@@ -1235,7 +1301,11 @@
       "thumbnail": "/media/posters-desktop/shinchan-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/shinchan-poster-mobile.jpeg",
       "tags": [
-        "Comedy"
+        "Anime",
+        "Animation",
+        "Comedy",
+        "Family",
+        "Satire"
       ],
       "description": "Shinchan is a mischievous five-year-old whose wild antics drive his parents, teachers, and neighbors crazy. With cheeky humor, silly jokes, and unpredictable adventures, he manages to turn every ordinary day into pure comedy.",
       "duration": "1 hr 35 min",
@@ -1409,8 +1479,15 @@
       "thumbnail": "/media/posters-desktop/spongebob-squarepants-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/spongebob-squarepants-poster-mobile.jpeg",
       "tags": [
+        "Animal Adventure",
+        "Animation",
+        "Adventure",
         "Comedy",
-        "Adventure"
+        "Family",
+        "Sitcom",
+        "Slapstick",
+        "Sea Adventure",
+        "Quirkey Comedy"
       ],
       "description": "In the underwater city of Bikini Bottom, SpongeBob works at the Krusty Krab and goes on absurd adventures with his best friend Patrick. From jellyfishing to facing Plankton’s schemes, SpongeBob’s endless optimism makes every day hilariously unpredictable.",
       "duration": "1 hr 28 min",
@@ -1496,8 +1573,11 @@
       "thumbnail": "/media/posters-desktop/strawberry-shortcake-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/strawberry-shortcake-poster-mobile.jpeg",
       "tags": [
+        "Animation",
         "Adventure",
-        "Friendship"
+        "Family",
+        "Friendship",
+        "Musical"
       ],
       "description": "In the sweet and colorful world of Strawberryland, Strawberry Shortcake and her friends go on heartwarming adventures. With lessons in kindness, friendship, and positivity, their journeys are as delightful as the desserts they love.",
       "duration": "1 hr 25 min",
@@ -1572,9 +1652,13 @@
       "thumbnail": "/media/posters-desktop/tom-and-jerry-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-poster-mobile.jpeg",
       "tags": [
+        "Adventure",
+        "Animation",
+        "Animal Adventure",
+        "Cartoon",
         "Comedy",
         "Classic",
-        "Oscar Winner"
+        "Short"
       ],
       "description": "The legendary cat and mouse duo take their rivalry to 17th-century France. As Mouseketeers, Jerry and Tuffy attempt to raid a royal banquet guarded by Tom, leading to a high-stakes swashbuckling adventure.",
       "duration": "7 min",
@@ -1796,8 +1880,11 @@
       "thumbnail": "/media/posters-desktop/tom-and-jerry-tales-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-tales-poster-mobile.jpeg",
       "tags": [
+        "Animal Adventure",
+        "Adventure",
+        "Animation",
         "Comedy",
-        "Classic"
+        "Family"
       ],
       "description": "One of the most iconic rivalries in animation, Tom the cat and Jerry the mouse engage in endless chases, traps, and slapstick comedy. Their timeless battles, filled with clever gags and explosive humor, remain a classic for all ages.",
       "duration": "1 hr 40 min",
