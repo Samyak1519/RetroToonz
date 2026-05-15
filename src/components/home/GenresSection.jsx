@@ -61,7 +61,7 @@ function GenresSection({ genres, onSelectGenre, selectedGenre }) {
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className="hidden sm:block px-4 sm:px-10">
+      <div className="hidden sm:block px-4 sm:px-6">
         <div
           className="
             flex flex-wrap gap-3"

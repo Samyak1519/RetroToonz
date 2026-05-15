@@ -38,7 +38,7 @@ function ShowSection({ sectionTitle, shows = [], bgColor = "#0F0A24" }) {
       style={{ backgroundColor: bgColor }}
     >
       {/* SECTION TITLE */}
-      <div className="px-4 sm:px-10 mb-2">
+      <div className="px-4 sm:px-6 mb-2">
         <h3
           id="Section"
           className="text-xl sm:text-2xl font-semibold text-yellow-300"

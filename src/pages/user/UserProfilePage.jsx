@@ -161,7 +161,9 @@ function Row({ title, description, children }) {
 
   return (
     <div className="mb-10 relative">
-      <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">{title}</h3>
+      <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">
+        {title}
+      </h3>
       <p className="text-gray-400 text-sm mb-4">{description}</p>
 
       <button
@@ -190,9 +192,20 @@ function Row({ title, description, children }) {
 
 /* CARD */
 function Card({ show, progress, onRemove, showDescription, isRecommended }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isRecommended) {
+      navigate(`/show/${show.id}`);   // 👉 Show Details Page
+    } else {
+      navigate(`/watch/${show.id}`);  // 👉 Video Player Page
+    }
+  };
+
   return (
     <div
-      className="relative min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] 
+      onClick={handleClick}
+      className="cursor-pointer relative min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] 
                  bg-white/5 p-2.5 my-1 rounded-2xl 
                  border border-white/10 
                  overflow-hidden
@@ -205,7 +218,10 @@ function Card({ show, progress, onRemove, showDescription, isRecommended }) {
       {/* REMOVE */}
       {onRemove && (
         <button
-          onClick={onRemove}
+          onClick={(e) => {
+            e.stopPropagation(); // 🔥 IMPORTANT (prevents navigation)
+            onRemove();
+          }}
           className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center 
                      rounded-full 
                      bg-gradient-to-b from-white/20 to-white/5 

@@ -10,6 +10,7 @@ import ShowSection from "../../components/home/ShowSection.jsx";
 import Footer from "../../components/layout/Footer.jsx";
 import Header from "../../components/layout/Header.jsx";
 
+import ContinueWatchingRow from "../../components/home/ContinueWatchingRow.jsx";
 import showsData from "../../data/Shows.json";
 
 const posterDesktopDir = "/media/posters-desktop";
@@ -27,10 +28,9 @@ const getGenres = (shows) => {
     });
   });
 
-  // 🔥 keep only meaningful genres
   return Object.entries(count)
-    .filter(([tag, value]) => value >= 2) // remove weak ones
-    .sort((a, b) => b[1] - a[1]) // sort by popularity
+    .filter(([tag, value]) => value >= 2)
+    .sort((a, b) => b[1] - a[1])
     .map(([tag]) => tag);
 };
 
@@ -41,8 +41,7 @@ const normalizePosterPath = (value, preferMobile = false) => {
   if (typeof value === "string" && value.startsWith("/media/")) return value;
 
   const cleaned = value.replace(/^\/+/, "");
-  const parts = cleaned.split("/");
-  const fileName = parts[parts.length - 1];
+  const fileName = cleaned.split("/").pop();
 
   const targetDir = preferMobile ? posterMobileDir : posterDesktopDir;
   return `${targetDir}/${fileName}`;
@@ -50,19 +49,15 @@ const normalizePosterPath = (value, preferMobile = false) => {
 
 const enrich = (arr) =>
   arr.map((show) => {
-    let thumbnail = null;
-    if (show.thumbnail) {
-      thumbnail = show.thumbnail.startsWith("/media/")
-        ? show.thumbnail
-        : normalizePosterPath(show.thumbnail, false);
-    }
+    let thumbnail = show.thumbnail?.startsWith("/media/")
+      ? show.thumbnail
+      : normalizePosterPath(show.thumbnail, false);
 
-    let thumbnailMobile = null;
-    if (show.thumbnailMobile) {
-      thumbnailMobile = show.thumbnailMobile.startsWith("/media/")
-        ? show.thumbnailMobile
-        : normalizePosterPath(show.thumbnailMobile, true);
-    } else if (thumbnail) {
+    let thumbnailMobile = show.thumbnailMobile?.startsWith("/media/")
+      ? show.thumbnailMobile
+      : normalizePosterPath(show.thumbnailMobile, true);
+
+    if (!thumbnailMobile && thumbnail) {
       const filename = thumbnail.split("/").pop();
       thumbnailMobile = `${posterMobileDir}/${filename}`;
     }
@@ -82,27 +77,17 @@ function pickShows(pool, usedCounts, count) {
   const available = shuffle(pool).filter(
     (show) => (usedCounts[show.id] || 0) < 2,
   );
+
   const selected = available.slice(0, count);
+
   selected.forEach((s) => {
     usedCounts[s.id] = (usedCounts[s.id] || 0) + 1;
   });
+
   return selected;
 }
 
-/* ---------------- DATA ---------------- */
-
-const allShows = enrich(showsData.allShows).map(normalizeShow);
-
-const featuredPool = allShows.filter((s) => s.featured);
-const heroSource = featuredPool.length ? featuredPool : allShows;
-const heroShows = shuffle(heroSource).slice(0, 4);
-
-const usedCounts = {};
-heroShows.forEach((s) => {
-  usedCounts[s.id] = (usedCounts[s.id] || 0) + 2;
-});
-
-// ---------- Home Page Sections ----------
+/* ---------------- NORMALIZER ---------------- */
 
 const normalizeShow = (show) => {
   const parseViews = (v) => {
@@ -121,31 +106,47 @@ const normalizeShow = (show) => {
     viewsNum: parseViews(show.views),
     ratingNum: Number(show.rating) || 0,
     yearNum: Number(show.year) || 0,
-
-    // 🔥 smart fallback (based on year)
     addedAt: show.year
       ? new Date(`${show.year}-01-01`)
       : new Date(Date.now() - Math.random() * 10000000000),
   };
 };
 
-// 🔥 TRENDING (popular but slightly shuffled)
+/* ---------------- DATA ---------------- */
+
+const allShows = enrich(showsData.allShows).map(normalizeShow);
+
+const usedCounts = {}; // ✅ FIXED POSITION
+
+const featuredPool = allShows.filter((s) => s.featured);
+const heroSource = featuredPool.length ? featuredPool : allShows;
+const heroShows = shuffle(heroSource).slice(0, 4);
+
+// mark hero as used
+heroShows.forEach((s) => {
+  usedCounts[s.id] = (usedCounts[s.id] || 0) + 2;
+});
+
+// 🔥 CONTINUE WATCHING (mock)
+const continueWatching = pickShows(allShows, usedCounts, 6);
+
+// 🔥 TRENDING
 const trendingShows = shuffle(
   [...allShows].sort((a, b) => b.viewsNum - a.viewsNum).slice(0, 12),
 ).slice(0, 8);
 
-// 🔥 NEWLY ADDED (based on derived date)
+// 🔥 NEWLY ADDED
 const newlyAdded = [...allShows]
   .sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt))
   .slice(0, 6);
 
-// 🔥 RETRO CLASSICS
+// 🔥 RETRO
 const retroClassics = allShows
   .filter((s) => s.yearNum < 2000)
   .sort((a, b) => b.viewsNum - a.viewsNum)
   .slice(0, 6);
 
-// 🔥 COMEDY (best first, not random)
+// 🔥 COMEDY
 const cartoonComedy = allShows
   .filter((s) => s.tags?.includes("Comedy"))
   .sort((a, b) => b.viewsNum - a.viewsNum)
@@ -180,18 +181,20 @@ function HomePage() {
           {/* TRENDING */}
           <ShowSection sectionTitle="Trending Now" shows={trendingShows} />
 
+          {/*  CONTINUE WATCHING  */}
+          <ContinueWatchingRow shows={continueWatching} />
+
           <ShowSection sectionTitle="Newly Added" shows={newlyAdded} />
 
-          {/* ✅ GENRES SECTION */}
+          {/* GENRES */}
           <GenresSection
             genres={genres}
             selectedGenre={selectedGenre}
             onSelectGenre={setSelectedGenre}
           />
 
-          {/* ✅ FILTERED RESULT */}
           {selectedGenre && (
-            <div className=" mt-6 mx-4 sm:mx-10 p-2 rounded-2xl bg-[rgba(255,248,200,0.06)] border border-[rgba(255,248,200,0.15)] shadow-[0_0_40px_rgba(255,248,200,0.08)] animate-fadeIn">
+            <div className="mt-6 mx-4 sm:mx-10 p-2 rounded-2xl bg-[rgba(255,248,200,0.06)] border border-[rgba(255,248,200,0.15)] shadow-[0_0_40px_rgba(255,248,200,0.08)]">
               <ShowSection
                 sectionTitle={`${selectedGenre} Shows`}
                 shows={filteredShows}
