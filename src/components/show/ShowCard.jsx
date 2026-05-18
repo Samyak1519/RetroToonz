@@ -1,7 +1,9 @@
+// src/components/show/ShowCard.jsx
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { FavouriteIcon } from "@hugeicons/core-free-icons";
+import { FavouriteIcon, PlayIcon } from "@hugeicons/core-free-icons";
 
 const defaultPoster = "/Assets/default.jpg";
 
@@ -29,10 +31,9 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
           {/* Hover owner */}
           <div
             className="
-              relative rounded-xl overflow-visible
-              transition-all duration-400 ease-out
-              hover:z-30
-              hover:scale-[1.03]
+              group relative rounded-xl overflow-visible
+              transition-all duration-300 ease-out
+              hover:z-30 hover:scale-[1.04]
               will-change-transform
             "
           >
@@ -42,8 +43,10 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                 relative overflow-hidden rounded-xl
                 bg-neutral-900
                 ring-1 ring-white/10
-                transition-colors duration-300
-                hover:ring-slate-600
+                transition-all duration-300
+                hover:ring-slate-500
+                sm:hover:border-sky-400/60
+                sm:hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]
               "
             >
               {/* Aspect ratio */}
@@ -58,24 +61,47 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                     onError={(e) => (e.target.src = defaultPoster)}
                     className="
                       absolute inset-0 w-full h-full object-cover
-                      transition-[filter] duration-300
-                      hover:brightness-105
-                      hover:contrast-105
+                      transition-all duration-300
+                      sm:group-hover:scale-105
                     "
                   />
                 </picture>
 
-                {/* Cinematic inner shadow */}
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_-48px_64px_rgba(0,0,0,0.75)]" />
+                {/* 🔥 GRADIENT */}
+                {/* Mobile = light | Desktop = stronger (Up Next style) */}
+                <div
+                  className="
+                    absolute inset-0
+                    bg-gradient-to-t from-black/60 via-transparent to-transparent
+                    sm:from-black/80 sm:via-black/20
+                  "
+                />
 
-                {/* Title footer */}
-                <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 via-black/55 to-transparent">
-                  <h3 className="text-heading text-white truncate">{title}</h3>
-
-                  <p className="text-meta text-white/70">{year}</p>
+                {/* 🔥 PLAY BUTTON (Desktop only like Up Next) */}
+                <div
+                  className="
+                    hidden sm:flex
+                    absolute inset-0 items-center justify-center
+                    bg-black/40
+                    opacity-0 group-hover:opacity-100
+                    transition
+                  "
+                >
+                  <div
+                    className="
+                      bg-black/50 backdrop-blur-lg border border-white/10
+                      p-3 rounded-full
+                      flex items-center justify-center
+                      text-white/90
+                      transition-all duration-200
+                      hover:scale-110
+                    "
+                  >
+                    <HugeiconsIcon icon={PlayIcon} size={20} />
+                  </div>
                 </div>
 
-                {/* Wishlist / Favourite */}
+                {/* Wishlist */}
                 <button
                   onClick={toggleShortlist}
                   className="
@@ -101,6 +127,26 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
                     `}
                   />
                 </button>
+
+                {/* 🔥 TITLE + YEAR */}
+                {/* Mobile = compact | Desktop = Up Next style spacing */}
+                <div
+                  className="
+                    absolute bottom-0 left-0 right-0
+                    px-3 py-2
+                    bg-gradient-to-t from-black/80 via-black/40 to-transparent
+                  "
+                >
+                  <h3 className="text-xs sm:text-sm font-semibold text-white truncate">
+                    {title}
+                  </h3>
+
+                  {year && (
+                    <p className="text-[10px] sm:text-[12px] text-gray-300">
+                      {year}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

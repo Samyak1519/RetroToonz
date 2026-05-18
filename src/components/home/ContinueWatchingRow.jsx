@@ -103,18 +103,18 @@ function Card({ show, index }) {
                  hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
     >
       {/* IMAGE */}
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden ">
         <img
           src={show.thumbnail}
           alt={show.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
 
         {/* GRADIENT */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {/* PLAY */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 ">
           <div
             className="bg-gradient-to-b from-white/20 to-white/10 
                        bg-black/50 backdrop-blur-lg backdrop-saturate-150
