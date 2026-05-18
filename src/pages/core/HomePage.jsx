@@ -177,7 +177,7 @@ function HomePage() {
           <HeroBanner shows={heroShows} />
         </div>
 
-        <div className="pb-5 mt-3 sm:px-5">
+        <div className="pb-5 mt-3">
           {/* TRENDING */}
           <ShowSection sectionTitle="Trending Now" shows={trendingShows} />
 

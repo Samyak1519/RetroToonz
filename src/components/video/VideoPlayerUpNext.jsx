@@ -9,20 +9,20 @@ import { Link } from "react-router-dom";
 
 const DEFAULT_POSTER = "/media/extras/default.jpg";
 
+/* ✅ CLEAN PATH */
 function cleanPath(p) {
   if (!p) return null;
   const s = p.replace(/\/{2,}/g, "/");
   return s.startsWith("/") ? s : `/${s}`;
 }
 
+/* ✅ POSTER LOGIC (FIXED) */
 function getPosterUrls(show = {}) {
   const rawDesktop = show.thumbnail || show.poster || null;
   const rawMobile = show.thumbnailMobile || show.posterMobile || null;
 
   const jsonDesktop = cleanPath(rawDesktop);
   const jsonMobile = cleanPath(rawMobile);
-
-  const looksLikeMedia = (p) => !!p && p.startsWith("/media/");
 
   const id = (show.id || "").toString().trim();
   const slug = id ? id.replace(/\s+/g, "-").toLowerCase() : null;
@@ -32,17 +32,11 @@ function getPosterUrls(show = {}) {
     : null;
 
   const guessedMobile = slug
-    ? `/media/posters-mobile/${slug}-poster-mobile.jpeg`
+    ? `/media/posters-mobile/${slug}-poster-mobile.jpg`
     : null;
 
-  const desktop =
-    (looksLikeMedia(jsonDesktop) ? jsonDesktop : guessedDesktop) ||
-    DEFAULT_POSTER;
-
-  const mobile =
-    (looksLikeMedia(jsonMobile) ? jsonMobile : guessedMobile) ||
-    desktop ||
-    DEFAULT_POSTER;
+  const desktop = jsonDesktop || guessedDesktop || DEFAULT_POSTER;
+  const mobile = jsonMobile || guessedMobile || desktop || DEFAULT_POSTER;
 
   return { desktop, mobile };
 }
@@ -72,7 +66,7 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
   return (
     <section className="pb-10">
       {/* TITLE */}
-      <h2 className="text-title font-semibold tracking-tight text-white mb-2 px-1">
+      <h2 className="text-title font-semibold tracking-tight text-yellow-300 mb-2 px-1">
         Up Next
       </h2>
 
@@ -113,27 +107,30 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                   className="
                     group relative flex-shrink-0
                     rounded-xl overflow-hidden
-                    bg-white/5 border border-white/10
+                    bg-black/20 backdrop-blur-sm
+                    border border-white/10
                     transition-all duration-300
                     hover:scale-[1.05] hover:border-sky-400/60
                   "
                   style={{
-                    flex: "0 0 45%", // mobile
+                    flex: "0 0 42%", // 🔥 better mobile width
                     scrollSnapAlign: "start",
                   }}
                 >
                   {/* IMAGE */}
-                  <div className="relative w-full aspect-video bg-zinc-800 ">
+                  <div className="relative w-full aspect-[2/3] sm:aspect-video bg-zinc-800">
                     <picture>
-                      <source srcSet={desktop} media="(min-width:640px)" />
+                      {/* Desktop */}
+                      <source srcSet={desktop} media="(min-width: 640px)" />
+
+                      {/* Mobile */}
                       <img
-                        src={mobile || desktop}
+                        src={mobile}
                         alt={show.title || ""}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = DEFAULT_POSTER;
+                          e.currentTarget.src = DEFAULT_POSTER;
                         }}
                       />
                     </picture>
@@ -144,19 +141,19 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                     {/* PLAY OVERLAY */}
                     <div
                       className="
-                      absolute inset-0 flex items-center justify-center
-                      bg-black/40
-                      opacity-0 group-hover:opacity-100
-                      transition
-                    "
+                        absolute inset-0 flex items-center justify-center
+                        bg-black/40
+                        opacity-0 group-hover:opacity-100
+                        transition
+                      "
                     >
                       <div
                         className="
-                        bg-black/50 backdrop-blur-lg border border-white/10
-                        p-3 rounded-full
-                        flex items-center justify-center
-                        transition hover:scale-110
-                      "
+                          bg-black/50 backdrop-blur-lg border border-white/10
+                          p-3 rounded-full
+                          flex items-center justify-center
+                          transition hover:scale-110
+                        "
                       >
                         <HugeiconsIcon icon={PlayIcon} size={20} />
                       </div>
@@ -165,10 +162,11 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                     {/* TITLE */}
                     <div
                       className="
-                      absolute bottom-2 left-3 right-3
-                      text-white text-sm sm:text-[15px] font-semibold leading-snug tracking-tight
-                      line-clamp-2
-                    "
+                        absolute bottom-2 left-3 right-3
+                        text-white text-sm sm:text-[15px] font-semibold
+                        leading-snug tracking-tight
+                        line-clamp-2
+                      "
                     >
                       {show.title}
                     </div>

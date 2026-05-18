@@ -241,10 +241,10 @@ function Card({ show, progress, onRemove, showDescription, isRecommended }) {
         <img
           src={show.thumbnail}
           alt={show.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
 
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
           <div
             className="bg-gradient-to-b from-white/20 to-white/10 
                        bg-black/50 backdrop-blur-lg backdrop-saturate-150
