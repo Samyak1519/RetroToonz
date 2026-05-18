@@ -93,7 +93,7 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
           className="overflow-x-auto scrollbar-hide scroll-smooth"
         >
           <div
-            className="flex gap-4 items-stretch py-3"
+            className="flex gap-2 items-stretch py-3"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {upcoming.map((show, i) => {
@@ -113,12 +113,12 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
                     hover:scale-[1.05] hover:border-sky-400/60
                   "
                   style={{
-                    flex: "0 0 42%", // 🔥 better mobile width
+                    flex: "0 0 40%", // 🔥 better mobile width
                     scrollSnapAlign: "start",
                   }}
                 >
                   {/* IMAGE */}
-                  <div className="relative w-full aspect-[2/3] sm:aspect-video bg-zinc-800">
+                  <div className="relative w-full aspect-2/3 sm:aspect-video bg-zinc-800">
                     <picture>
                       {/* Desktop */}
                       <source srcSet={desktop} media="(min-width: 640px)" />
