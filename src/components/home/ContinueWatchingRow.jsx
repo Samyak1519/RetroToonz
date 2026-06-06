@@ -134,7 +134,7 @@ function Card({ show, index }) {
             {show.title}
           </h4>
 
-          <span className="text-[11px] text-gray-300 whitespace-nowrap">
+          <span className="text-[10px] text-gray-300 whitespace-nowrap">
             S{season} • E{episode}
           </span>
         </div>
@@ -149,7 +149,7 @@ function Card({ show, index }) {
           />
         </div>
 
-        <span className="text-[11px] text-gray-400 whitespace-nowrap">
+        <span className="text-[10px] text-gray-400 whitespace-nowrap">
           {timeLeft}m left
         </span>
       </div>

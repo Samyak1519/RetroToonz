@@ -109,7 +109,7 @@ function ShowDetailsPage() {
               </div>
 
               {/* ACTIONS */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
                 {/* ❤️ Wishlist */}
                 <button onClick={toggleShortlist}>
                   <HugeiconsIcon
@@ -136,7 +136,7 @@ function ShowDetailsPage() {
                   }}
                   className="bg-purple-600 hover:bg-purple-700 p-3 sm:p-4 rounded-full shadow-md transition"
                 >
-                  <HugeiconsIcon icon={PlayIcon} size={20} />
+                  <HugeiconsIcon icon={PlayIcon} size={26} />
                 </button>
               </div>
             </div>
@@ -146,7 +146,7 @@ function ShowDetailsPage() {
               {show.tags?.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-label rounded-full bg-white/70 text-black"
+                  className="px-2.5 py-1 text-label rounded-full bg-white/70 text-black"
                 >
                   {tag}
                 </span>

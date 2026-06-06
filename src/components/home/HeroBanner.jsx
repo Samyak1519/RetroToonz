@@ -109,7 +109,7 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Reduced Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent z-20" />
 
         {/* Bottom fade */}
         <div className="absolute inset-0 z-30 pointer-events-none">
@@ -117,7 +117,7 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 lg:px-10 pb-16 sm:pb-20 lg:pb-24 z-30">
+        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 lg:px-10 pb-6 sm:pb-6 md:pb-8 z-30">
           {/* Title */}
           <h1 className="mb-3 w-full">
             <div className="flex flex-col gap-1">
@@ -132,7 +132,7 @@ function HeroBanner({ shows = [] }) {
           {/* Description */}
           {descriptionLines.length > 0 && (
             <div className="text-body text-white/80 mb-3">
-              <p className="m-0 leading-relaxed max-w-full md:max-w-[50vw] line-clamp-2 md:line-clamp-3">
+              <p className="m-0 leading-relaxed max-w-full md:max-w-[60vw] line-clamp-2 md:line-clamp-3">
                 {descriptionLines.join(" ")}
               </p>
             </div>
@@ -145,8 +145,8 @@ function HeroBanner({ shows = [] }) {
                 <span
                   key={i}
                   className="
-                    px-3 py-1
-                    text-[11px] sm:text-xs
+                    px-2.5 py-1
+                    text-[10px] sm:text-xs
                     font-medium tracking-wide
 
                     rounded-full
