@@ -1,3 +1,5 @@
+// src/layout/Header.jsx
+
 import {
   ArrowDown01Icon,
   Cancel01Icon,
@@ -165,7 +167,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`px-3 sm:px-7 fixed w-full top-0 left-0 z-100 ${headerHeightClasses}`}
+        className={`fixed w-full top-0 left-0 z-100 ${headerHeightClasses}`}
         aria-label="Main header"
       >
         {/* background */}
@@ -179,7 +181,7 @@ export default function Header() {
         </div>
 
         {/* row */}
-        <div className="relative z-20 flex items-center justify-between px-3 sm:px-7 h-full text-white">
+        <div className="relative z-20 flex items-center justify-between px-4 sm:px-6 lg:px-10 h-full text-white">
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <div

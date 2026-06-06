@@ -117,7 +117,7 @@ function HeroBanner({ shows = [] }) {
         </div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 md:px-14 pb-8 sm:pb-8 md:pb-10 z-30">
+        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 lg:px-10 pb-16 sm:pb-20 lg:pb-24 z-30">
           {/* Title */}
           <h1 className="mb-3 w-full">
             <div className="flex flex-col gap-1">

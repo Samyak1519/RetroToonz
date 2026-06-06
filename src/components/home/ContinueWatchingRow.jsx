@@ -21,7 +21,7 @@ function ContinueWatchingRow({ shows = [] }) {
   if (!shows.length) return null;
 
   return (
-    <div className=" relative px-4 sm:px-6">
+    <div className="relative px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-yellow-300">
         Continue Watching
@@ -33,7 +33,7 @@ function ContinueWatchingRow({ shows = [] }) {
       {/* LEFT ARROW */}
       <button
         onClick={() => scroll("left")}
-        className="hidden md:flex absolute left-0 top-3/5 -translate-y-1/2 z-20
+        className="hidden md:flex absolute left-2 lg:left-4 top-3/5 -translate-y-1/2 z-20
              w-10 h-10 items-center justify-center
              rounded-full
              bg-black/40 backdrop-blur-md
@@ -48,7 +48,7 @@ function ContinueWatchingRow({ shows = [] }) {
       {/* RIGHT ARROW */}
       <button
         onClick={() => scroll("right")}
-        className="hidden md:flex absolute right-0 top-3/5 -translate-y-1/2 z-20
+        className="hidden md:flex absolute right-2 lg:right-4 top-3/5 -translate-y-1/2 z-20
              w-10 h-10 items-center justify-center
              rounded-full
              bg-black/40 backdrop-blur-md

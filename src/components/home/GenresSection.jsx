@@ -8,7 +8,7 @@ function GenresSection({ genres, onSelectGenre, selectedGenre }) {
   return (
     <div id="genre-section" className="mb-4">
       {/* TITLE */}
-      <div className="px-4 sm:px-10 mb-4 flex items-center justify-between">
+      <div className="px-4 sm:px-6 lg:px-10 mb-4 flex items-center justify-between">
         <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">
           Genres
         </h3>
@@ -61,7 +61,7 @@ function GenresSection({ genres, onSelectGenre, selectedGenre }) {
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className="hidden sm:block px-4 sm:px-6">
+      <div className="hidden sm:block px-4 sm:px-6 lg:px-10">
         <div
           className="
             flex flex-wrap gap-3"

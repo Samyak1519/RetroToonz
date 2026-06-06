@@ -27,7 +27,7 @@ function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
   return (
     <Link to={`/show/${id}`} aria-label={`Open ${title}`}>
       <article className="relative flex-shrink-0">
-        <div className="w-[38vw] sm:w-full">
+        <div className="w-full">
           {/* Hover owner */}
           <div
             className="
