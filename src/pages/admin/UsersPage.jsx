@@ -159,7 +159,7 @@ export default function UsersPage() {
           <button
             key={type}
             onClick={() => setFilter(type)}
-            className={`px-3 py-1.5 rounded-lg text-sm transition ${
+            className={`px-2.5 py-1.5 rounded-lg text-sm transition ${
               filter === type
                 ? "bg-indigo-500/20 text-indigo-400"
                 : "bg-white/5 text-gray-400 hover:bg-white/10"

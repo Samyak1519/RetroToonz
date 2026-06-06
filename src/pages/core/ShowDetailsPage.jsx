@@ -44,7 +44,7 @@ function ShowDetailsPage() {
   const firstEpisodeId = show.seasons?.[0]?.episodes?.[0]?.episodeId;
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-slate-950 text-white">
       <Header />
 
       <main className="flex-grow">
@@ -82,7 +82,7 @@ function ShowDetailsPage() {
               />
             </picture>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-black/30 to-transparent" />
           </div>
 
           {/* 🎯 CONTENT */}
@@ -109,7 +109,7 @@ function ShowDetailsPage() {
               </div>
 
               {/* ACTIONS */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
                 {/* ❤️ Wishlist */}
                 <button onClick={toggleShortlist}>
                   <HugeiconsIcon
@@ -136,7 +136,7 @@ function ShowDetailsPage() {
                   }}
                   className="bg-purple-600 hover:bg-purple-700 p-3 sm:p-4 rounded-full shadow-md transition"
                 >
-                  <HugeiconsIcon icon={PlayIcon} size={20} />
+                  <HugeiconsIcon icon={PlayIcon} size={26} />
                 </button>
               </div>
             </div>
@@ -146,7 +146,7 @@ function ShowDetailsPage() {
               {show.tags?.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-label rounded-full bg-white text-black"
+                  className="px-2.5 py-1 text-label rounded-full bg-white/70 text-black"
                 >
                   {tag}
                 </span>
@@ -154,7 +154,7 @@ function ShowDetailsPage() {
             </div>
 
             {/* DESCRIPTION */}
-            <p className="text-body text-gray-200 mb-6">
+            <p className="text-body text-gray-400 mb-6">
               {show.description ||
                 "Add something meaningful here about characters, story or nostalgia!"}
             </p>

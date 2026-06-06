@@ -150,7 +150,7 @@ export default function VideoPlayerEpisodes({
                   </div>
 
                   {/* EP BADGE */}
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[11px] font-medium bg-black/50 backdrop-blur-md border border-white/10 text-white">
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-medium bg-black/50 backdrop-blur-md border border-white/10 text-white">
                     E{num}
                   </div>
                 </div>

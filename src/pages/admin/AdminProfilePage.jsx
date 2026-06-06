@@ -51,7 +51,6 @@ const UserProfilePage = () => {
 
       <main className="flex-grow">
         <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-10 max-w-[1800px] mx-auto">
-          
           {/* HEADER */}
           <section className="mb-10">
             <div className="flex items-center gap-4 mb-8">
@@ -68,9 +67,7 @@ const UserProfilePage = () => {
             </div>
 
             {/* PROFILE CARD */}
-            <div
-              className="relative flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-white/5 via-white/5 to-transparent border border-white/10 backdrop-blur-xl shadow-xl"
-            >
+            <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-white/5 via-white/5 to-transparent border border-white/10 backdrop-blur-xl shadow-xl">
               {/* LEFT */}
               <div className="flex items-center gap-6 md:gap-8 w-full">
                 {/* Avatar */}
@@ -168,7 +165,7 @@ const UserProfilePage = () => {
       hover:bg-white/10 hover:border-white/20 
       transition-all duration-200"
                 >
-                  <p className="text-[11px] uppercase tracking-wider text-gray-400">
+                  <p className="text-[10px] uppercase tracking-wider text-gray-400">
                     {item.label}
                   </p>
 

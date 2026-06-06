@@ -45,7 +45,7 @@ export default function VideoPlayerShowInfo({ currentShow, currentEpisode }) {
             <span
               key={i}
               className="
-              px-3 py-1
+              px-2.5 py-1
               text-meta
               bg-white/10
               border border-white/10

@@ -51,9 +51,9 @@ function EpisodeSection({ show, posterDesktop, posterMobile, defaultPoster }) {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-14">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-white">Episodes</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold text-white">Episodes</h2>
 
         <div className="w-44 text-label">
           <Listbox value={selectedSeason} onChange={setSelectedSeason}>
