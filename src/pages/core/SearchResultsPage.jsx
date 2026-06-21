@@ -19,7 +19,11 @@ const allShows = enrich(showsData.allShows);
 
 function SearchResultsPage() {
   const navigate = useNavigate();
-  const query = new URLSearchParams(useLocation().search).get("q") || "";
+
+  const params = new URLSearchParams(useLocation().search);
+
+  const query = params.get("q") || "";
+  const section = params.get("section") || "";
 
   const searchResults = allShows.filter((show) =>
     show.title.toLowerCase().includes(query.toLowerCase()),
@@ -41,17 +45,17 @@ function SearchResultsPage() {
             </button>
 
             <div>
-              <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">
-                Search Results
+              <p className="text-xs sm:text-sm text-gray-400 lowercase tracking-wide">
+                Search Results for
               </p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
-                {query ? `"${query}"` : "All Shows"}
+              <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
+                {query ? `"${query}"` : section ? section : "All Shows"}
               </h2>
             </div>
           </div>
 
           {/* 🔍 Results */}
-          {query && (
+          {(query || section) && (
             <>
               {searchResults.length ? (
                 <div className="mb-12">
@@ -60,17 +64,15 @@ function SearchResultsPage() {
                     {searchResults.length !== 1 && "s"} found
                   </p>
 
-                  <div className="max-w-[900px]">
-                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                      {searchResults.map((show) => (
-                        <div
-                          key={show.id}
-                          className="transition-transform duration-300 hover:scale-[1.03]"
-                        >
-                          <ShowCard {...show} />
-                        </div>
-                      ))}
-                    </div>
+                  <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    {searchResults.map((show) => (
+                      <div
+                        key={show.id}
+                        className="transition-transform duration-300 hover:scale-[1.03]"
+                      >
+                        <ShowCard {...show} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               ) : (
@@ -88,9 +90,9 @@ function SearchResultsPage() {
           <div className="h-[1px] bg-white/10 mb-12" />
 
           {/* 🎬 Recommended */}
-          <h2 className="text-lg sm:text-xl font-semibold mb-6">
+          <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-5">
             Recommended Shows
-          </h2>
+          </h3>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {[...allShows]

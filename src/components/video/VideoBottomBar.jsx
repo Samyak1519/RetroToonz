@@ -1,6 +1,8 @@
 // src/components/VideoBottomBar.jsx
 
 import {
+  ArrowLeftDoubleIcon,
+  ArrowRightDoubleIcon,
   ArrowShrinkIcon,
   Backward01Icon,
   Forward01Icon,
@@ -41,7 +43,7 @@ export default function VideoBottomBar({
       className="absolute left-0 right-0 bottom-0 z-30 px-4 sm:px-8 md:px-12 pb-3 sm:pb-4 md:pb-6 pt-3 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto"
     >
       {/* progress row */}
-      <div className="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6 px-1">
+      <div className="flex items-center gap-2 mb-1 sm:mb-4 lg:mb-6 px-1">
         <span className="text-meta text-white w-12 text-left select-none">
           {formatTime(value)}
         </span>
@@ -77,9 +79,9 @@ export default function VideoBottomBar({
                 goToPreviousEpisode();
             }}
             aria-label="Previous episode"
-            className="flex items-center gap-2 px-4 py-2 text-label hover:bg-white/20 transition"
+            className="flex items-center gap-2 px-3 py-1.5 text-label hover:bg-white/20 transition"
           >
-            <HugeiconsIcon icon={Backward01Icon} size={20} />
+            <HugeiconsIcon icon={ArrowLeftDoubleIcon} size={20} />
             <span className="hidden sm:inline text-label">Prev</span>
           </button>
 
@@ -91,10 +93,10 @@ export default function VideoBottomBar({
               if (typeof goToNextEpisode === "function") goToNextEpisode();
             }}
             aria-label="Next episode"
-            className="flex items-center gap-2 px-4 py-2 text-label hover:bg-white/20 transition"
+            className="flex items-center gap-2 px-3 py-1.5 text-label hover:bg-white/20 transition"
           >
             <span className="hidden sm:inline text-label">Next</span>
-            <HugeiconsIcon icon={Forward01Icon} size={20} />
+            <HugeiconsIcon icon={ArrowRightDoubleIcon} size={20} />
           </button>
         </div>
 

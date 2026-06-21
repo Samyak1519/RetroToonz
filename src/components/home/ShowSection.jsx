@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import ShowCard from "../show/ShowCard.jsx";
 
-function ShowSection({ sectionTitle, shows = [] }) {
+function ShowSection({ sectionTitle, sectionKey, shows = [] }) {
   const scrollRef = useRef(null);
 
   const scroll = (dir) => {
@@ -32,15 +32,13 @@ function ShowSection({ sectionTitle, shows = [] }) {
         </h3>
 
         <Link
-          to={`/category/${sectionTitle.toLowerCase().replace(/\s+/g, "-")}`}
-          className="group flex items-center gap-1.5 text-white/80 hover:text-yellow-300 text-sm sm:text-base font-medium transition-all duration-200    hover:underline underline-offset-4"
+          to={`/search?section=${sectionKey}`}
+          className="group flex items-center gap-1.5 text-white/80 hover:text-yellow-200 text-sm sm:text-base font-medium  transition-all"
         >
-          <span>Show more</span>
-          <HugeiconsIcon
-            icon={ArrowRight01Icon}
-            size={16}
-            className="transition-transform duration-200 group-hover:translate-x-1"
-          />
+          <span className="hover:underline underline-offset-4">Show more</span>
+          <span className="transition-transform duration-200 group-hover:translate-x-1">
+            →
+          </span>
         </Link>
       </div>
 
