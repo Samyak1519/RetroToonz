@@ -131,26 +131,26 @@ heroShows.forEach((s) => {
 const continueWatching = pickShows(allShows, usedCounts, 6);
 
 // 🔥 TRENDING
-const trendingShows = shuffle(
-  [...allShows].sort((a, b) => b.viewsNum - a.viewsNum).slice(0, 12),
-).slice(0, 8);
+const allTrendingShows = [...allShows].sort((a, b) => b.viewsNum - a.viewsNum);
 
-// 🔥 NEWLY ADDED
-const newlyAdded = [...allShows]
-  .sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt))
-  .slice(0, 6);
+const allNewlyAdded = [...allShows].sort(
+  (a, b) => new Date(b.addedAt) - new Date(a.addedAt),
+);
 
-// 🔥 RETRO
-const retroClassics = allShows
+const allRetroClassics = allShows
   .filter((s) => s.yearNum < 2000)
-  .sort((a, b) => b.viewsNum - a.viewsNum)
-  .slice(0, 6);
+  .sort((a, b) => b.viewsNum - a.viewsNum);
 
-// 🔥 COMEDY
-const cartoonComedy = allShows
+const allCartoonComedy = allShows
   .filter((s) => s.tags?.includes("Comedy"))
-  .sort((a, b) => b.viewsNum - a.viewsNum)
-  .slice(0, 6);
+  .sort((a, b) => b.viewsNum - a.viewsNum);
+
+/* Homepage rows */
+
+const trendingShows = allTrendingShows.slice(0, 8);
+const newlyAdded = allNewlyAdded.slice(0, 6);
+const retroClassics = allRetroClassics.slice(0, 6);
+const cartoonComedy = allCartoonComedy.slice(0, 6);
 
 /* ================= COMPONENT ================= */
 
@@ -178,15 +178,24 @@ function HomePage() {
         </div>
 
         <div className="pb-5 mt-3">
-          {/* TRENDING */}
-          <ShowSection sectionTitle="Trending Now" shows={trendingShows} />
+          {/* 1. TRENDING */}
+          <ShowSection
+            sectionTitle="Trending Now"
+            sectionKey="trending"
+            shows={trendingShows}
+          />
 
-          {/*  CONTINUE WATCHING  */}
+          {/* 2. CONTINUE WATCHING  */}
           <ContinueWatchingRow shows={continueWatching} />
 
-          <ShowSection sectionTitle="Newly Added" shows={newlyAdded} />
+          {/* 3. Newly Added rows */}
+          <ShowSection
+            sectionTitle="Newly Added"
+            sectionKey="newly-added"
+            shows={newlyAdded}
+          />
 
-          {/* GENRES */}
+          {/* 4. GENRES Row*/}
           <GenresSection
             genres={genres}
             selectedGenre={selectedGenre}
@@ -202,8 +211,19 @@ function HomePage() {
             </div>
           )}
 
-          <ShowSection sectionTitle="Retro Classics" shows={retroClassics} />
-          <ShowSection sectionTitle="Cartoon Comedy" shows={cartoonComedy} />
+          {/* 5. Retro Classics Row */}
+          <ShowSection
+            sectionTitle="Retro Classics"
+            sectionKey="retro-classics"
+            shows={retroClassics}
+          />
+
+          {/* 6. Cartoon Comedy Row */}
+          <ShowSection
+            sectionTitle="Cartoon Comedy"
+            sectionKey="cartoon-comedy"
+            shows={cartoonComedy}
+          />
         </div>
 
         <RandomPlayButton />

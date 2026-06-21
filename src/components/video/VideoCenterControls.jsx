@@ -38,7 +38,7 @@ export default function VideoCenterControls({
         </div>
       )}
 
-      <div className="pointer-events-auto flex items-center gap-8 sm:gap-12">
+      <div className="pointer-events-auto flex items-center gap-10 sm:gap-16">
         {/* Rewind */}
         <button
           onClick={(e) => {
@@ -56,7 +56,7 @@ export default function VideoCenterControls({
             e.stopPropagation();
             togglePlayPause?.();
           }}
-          className={`${glassBtn} p-4`}
+          className={`${glassBtn} p-3.5`}
         >
           {isPlaying ? (
             <HugeiconsIcon icon={PauseIcon} size={20} />

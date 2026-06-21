@@ -1,7 +1,7 @@
 import {
-  ArrowDown01Icon,
   ArrowLeft01Icon,
   FavouriteIcon,
+  FilterMailIcon,
   Tick02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -135,6 +135,7 @@ export default function AllShowsPage() {
   const navigate = useNavigate();
   const [activeTag, setActiveTag] = useState("All");
   const [sortBy, setSortBy] = useState("title-asc");
+  const [sortOpen, setSortOpen] = useState(false);
 
   const tags = useMemo(() => {
     const s = new Set();
@@ -190,16 +191,24 @@ export default function AllShowsPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeTag, sortBy]);
 
+  const sortOptions = [
+    { value: "title-asc", label: "Title (A → Z)" },
+    { value: "title-desc", label: "Title (Z → A)" },
+    { value: "year-desc", label: "Newest First" },
+    { value: "year-asc", label: "Oldest First" },
+  ];
+
+  const selectedSort =
+    sortOptions.find((option) => option.value === sortBy)?.label || "Sort";
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#05060b] to-[#0f0a24] text-white font-nunito selection:bg-cyan-500/30">
       <Header />
 
       <main className="flex-grow relative">
         <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-8 max-w-[2000px] mx-auto relative">
-        
-          {/* Header */}  
+          {/* Header */}
           <div className="flex items-center gap-4 mb-8">
-           
             {/* Back Button */}
             <button
               onClick={() => navigate(-1)}
@@ -209,29 +218,47 @@ export default function AllShowsPage() {
             </button>
 
             {/* Title */}
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
-              All Shows
-            </h1>
+            <div>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
+                All Shows
+              </h1>
+
+              <p className="text-sm text-gray-400 mt-1">
+                {filtered.length} Shows
+              </p>
+            </div>
 
             <div className="flex-1" />
 
-            <div className="hidden md:block">
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white/5 border border-white/10 text-white text-sm px-5 py-2.5 rounded-full pr-12"
-                >
-                  <option value="title-asc">Title (A → Z)</option>
-                  <option value="title-desc">Title (Z → A)</option>
-                  <option value="year-desc">Newest First</option>
-                  <option value="year-asc">Oldest First</option>
-                </select>
+            <div className="hidden md:block relative">
+              <button
+                onClick={() => setSortOpen(!sortOpen)}
+                className=" flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-sm text-white hover:bg-white/10 transition-all"
+              >
+                <span>Sort</span>
+                <HugeiconsIcon icon={FilterMailIcon} size={18} />
+              </button>
 
-                <div className="absolute inset-y-0 right-4 flex items-center text-gray-400">
-                  <HugeiconsIcon icon={ArrowDown01Icon} size={18} />
+              {sortOpen && (
+                <div className="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-2xl border border-white/10 bg-[#111827] backdrop-blur-xl shadow-2xl z-50">
+                  {sortOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setSortBy(option.value);
+                        setSortOpen(false);
+                      }}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm hover:bg-white/5 transition"
+                    >
+                      <span>{option.label}</span>
+
+                      {sortBy === option.value && (
+                        <HugeiconsIcon icon={Tick02Icon} size={16} />
+                      )}
+                    </button>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
