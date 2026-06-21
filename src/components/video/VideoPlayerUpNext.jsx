@@ -66,7 +66,7 @@ export default function VideoPlayerUpNext({ allShows = [], currentIndex = 0 }) {
   return (
     <section className="pb-10">
       {/* TITLE */}
-      <h2 className="text-title font-semibold tracking-tight text-yellow-300 mb-2 px-1">
+      <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-2 px-1">
         Up Next
       </h2>
 

@@ -419,7 +419,7 @@ const VideoPlayer = ({
         className={`relative w-full bg-black rounded-md overflow-hidden ${
           isFullscreen
             ? "h-screen"
-            : "aspect-[16/9] sm:aspect-[18/9] md:aspect-[21/9] lg:aspect-[24/9] xl:aspect-[27/9]"
+            : "aspect-[16/9] sm:aspect-[18/9] md:aspect-[21/9] lg:aspect-[24/9] xl:aspect-[26/9]"
         }`}
       >
         {showControls && (

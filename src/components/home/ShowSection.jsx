@@ -23,10 +23,10 @@ function ShowSection({ sectionTitle, shows = [] }) {
   if (!shows.length) return null;
 
   return (
-    <section className="relative py-6 overflow-visible">
+    <section className="relative py-5 overflow-visible">
       {/* TITLE */}
       <div className="px-4 sm:px-6 lg:px-10 mb-3">
-        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">
+        <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
           {sectionTitle}
         </h3>
       </div>

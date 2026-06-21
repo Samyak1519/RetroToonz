@@ -59,9 +59,9 @@ export default function VideoCenterControls({
           className={`${glassBtn} p-4`}
         >
           {isPlaying ? (
-            <HugeiconsIcon icon={PauseIcon} className="w-5 h-5" />
+            <HugeiconsIcon icon={PauseIcon} size={20} />
           ) : (
-            <HugeiconsIcon icon={PlayIcon} className="w-5 h-5" />
+            <HugeiconsIcon icon={PlayIcon} size={20} />
           )}
         </button>
 
