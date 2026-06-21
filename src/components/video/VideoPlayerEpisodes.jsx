@@ -77,7 +77,7 @@ export default function VideoPlayerEpisodes({
     <section className="w-full mb-8">
       {/* HEADER */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-title font-semibold tracking-tight text-yellow-300 mb-2 px-1">
+        <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-2 px-1">
           Episodes
         </h2>
 

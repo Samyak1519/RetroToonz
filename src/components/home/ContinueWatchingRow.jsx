@@ -23,7 +23,7 @@ function ContinueWatchingRow({ shows = [] }) {
   return (
     <div className="relative px-4 sm:px-6 lg:px-10">
       {/* Header */}
-      <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-yellow-300">
+      <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
         Continue Watching
       </h3>
       <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">

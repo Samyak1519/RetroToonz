@@ -68,22 +68,20 @@ export default function VideoTopBar({
         {/* Back button */}
         <button
           onClick={handleBack}
-          className="p-2 sm:p-3 mr-e rounded-full hover:bg-white/10 transition flex items-center"
+          className="p-2 sm:p-3 mr-e rounded-full hover:bg-white/40 transition flex items-center"
           aria-label={isFullscreen ? "Exit Fullscreen" : "Back to show"}
           onMouseDown={(e) => e.stopPropagation()}
         >
-          <HugeiconsIcon icon={ArrowLeft02Icon} className="w-5 h-5" />
+          <HugeiconsIcon icon={ArrowLeft02Icon} size={20} />
         </button>
 
         {/* Info Overlay (Visible in Fullscreen or Mobile) */}
-        <div className="flex items-center gap-3 truncate min-w-0">
+        <div className="flex items-center gap-5 truncate min-w-0">
           <div className="text-heading text-white truncate min-w-0">
             <span>{showTitle}</span>
             {episodeNumber && (
               <span className="text-white/80 text-body">
-                {" "}
-                : E{episodeNumber}
-                {episodeTitle ? ` "${episodeTitle}"` : ""}
+                <br />E{episodeNumber} :{episodeTitle ? ` ${episodeTitle}` : ""}
               </span>
             )}
           </div>
@@ -104,9 +102,9 @@ export default function VideoTopBar({
             aria-label={isMuted ? "Unmute" : "Mute"}
           >
             {isMuted || volume === 0 ? (
-              <HugeiconsIcon icon={VolumeMuteIcon} className="w-5 h-5" />
+              <HugeiconsIcon icon={VolumeMuteIcon} size={20} />
             ) : (
-              <HugeiconsIcon icon={VolumeHighIcon} className="w-5 h-5" />
+              <HugeiconsIcon icon={VolumeHighIcon} size={20} />
             )}
           </button>
         </div>

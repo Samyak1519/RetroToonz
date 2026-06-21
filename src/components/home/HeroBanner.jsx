@@ -1,7 +1,12 @@
+import {
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+  InformationCircleIcon,
+  PlayIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { PlayIcon, InformationCircleIcon } from "@hugeicons/core-free-icons";
 
 const DEFAULT_POSTER = "/Assets/default.jpg";
 
@@ -24,18 +29,28 @@ function HeroBanner({ shows = [] }) {
   useEffect(() => {
     const m = window.matchMedia("(max-width: 640px)");
     const onChange = (e) => setIsMobile(e.matches);
+
     m.addEventListener?.("change", onChange);
-    if (!m.addEventListener) m.addListener(onChange);
+
+    if (!m.addEventListener) {
+      m.addListener(onChange);
+    }
+
     return () => {
       m.removeEventListener?.("change", onChange);
-      if (!m.removeEventListener) m.removeListener(onChange);
+
+      if (!m.removeEventListener) {
+        m.removeListener(onChange);
+      }
     };
   }, []);
 
   useEffect(() => {
     if (!shows.length) return;
+
     const interval = setInterval(() => {
       setSlideIn(false);
+
       setTimeout(() => {
         setIndex((prev) => (prev + 1) % shows.length);
         setSlideIn(true);
@@ -46,41 +61,26 @@ function HeroBanner({ shows = [] }) {
   }, [shows.length]);
 
   if (!shows.length) return null;
+
   const show = shows[index];
 
   const handleStartWatching = () => navigate(`/watch/${show.id}`);
   const handleMoreInfo = () => navigate(`/show/${show.id}`);
 
-  const formatDescription = (text = "", wordsPerLine = 10, maxLines = 3) => {
-    const words = text.trim().split(/\s+/).filter(Boolean);
-    const lines = [];
-
-    for (let i = 0; i < maxLines; i++) {
-      const start = i * wordsPerLine;
-      const end = start + wordsPerLine;
-      if (start >= words.length) break;
-
-      let lineWords = words.slice(start, end);
-
-      if (i === maxLines - 1 && words.length > end) {
-        const lastIdx = lineWords.length - 1;
-        lineWords[lastIdx] = `${lineWords[lastIdx]}...`;
-      }
-
-      lines.push(lineWords.join(" "));
-    }
-
-    return lines;
+  const handlePrev = () => {
+    setIndex((prev) => (prev - 1 + shows.length) % shows.length);
   };
 
-  const descriptionLines = isMobile
-    ? formatDescription(show.description, 8, 2)
-    : formatDescription(show.description, 10, 3);
+  const handleNext = () => {
+    setIndex((prev) => (prev + 1) % shows.length);
+  };
+
+  const descriptionText = show.description || "";
 
   return (
     <div className="relative w-full overflow-hidden text-white">
       <div className="relative w-full aspect-[3/4] sm:aspect-[15/9] lg:aspect-[21/9]">
-        {/* Background (Right → Left) */}
+        {/* Background */}
         <div
           key={show.id}
           className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform ${
@@ -96,6 +96,7 @@ function HeroBanner({ shows = [] }) {
                 media="(max-width: 640px)"
               />
             )}
+
             <img
               src={normalizePath(show.thumbnail)}
               alt={show.title}
@@ -108,20 +109,22 @@ function HeroBanner({ shows = [] }) {
           </picture>
         </div>
 
-        {/* Reduced Gradient */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent z-20" />
 
-        {/* Bottom fade */}
+        {/* Bottom Fade */}
         <div className="absolute inset-0 z-30 pointer-events-none">
           <div className="w-full h-full bg-gradient-to-t from-[#0F0A24] via-[#0F0A24]/40 to-transparent" />
         </div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 lg:px-10 pb-6 sm:pb-6 md:pb-8 z-30">
+        <div className="absolute inset-0 flex flex-col justify-end items-start px-4 sm:px-6 lg:px-10 pb-10 sm:pb-6 md:pb-8 z-30">
           {/* Title */}
           <h1 className="mb-3 w-full">
             <div className="flex flex-col gap-1">
-              <span className="text-label text-white/80">Watch</span>
+              <span className="text-label lg:text-base text-white/80">
+                Watch
+              </span>
 
               <span className="sm:text-5xl text-2xl font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
                 {show.title}
@@ -130,14 +133,13 @@ function HeroBanner({ shows = [] }) {
           </h1>
 
           {/* Description */}
-          {descriptionLines.length > 0 && (
-            <div className="text-body text-white/80 mb-3">
-              <p className="m-0 leading-relaxed max-w-full md:max-w-[60vw] line-clamp-2 md:line-clamp-3">
-                {descriptionLines.join(" ")}
+          {descriptionText && (
+            <div className="text-white/80 mb-3">
+              <p className=" m-0 leading-relaxed text-sm lg:text-medium max-w-full lg:max-w-[50vw] line-clamp-2 lg:line-clamp-3">
+                {descriptionText}
               </p>
             </div>
           )}
-
           {/* Tags */}
           {show.tags?.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3">
@@ -148,20 +150,15 @@ function HeroBanner({ shows = [] }) {
                     px-2.5 py-1
                     text-[10px] sm:text-xs
                     font-medium tracking-wide
-
                     rounded-full
                     border border-white/20
-
                     bg-white/10 backdrop-blur-md
                     text-white/90
-
                     shadow-[0_4px_20px_rgba(0,0,0,0.4)]
-
                     relative
                     before:absolute before:inset-0 before:rounded-full
                     before:bg-white/10 before:blur-md before:opacity-0
                     hover:before:opacity-100
-
                     transition-all duration-300
                     hover:bg-white/20 hover:border-white/40 hover:scale-105
                   "
@@ -172,19 +169,11 @@ function HeroBanner({ shows = [] }) {
             </div>
           )}
 
-          {/* 🔥 PREMIUM BUTTONS (RESTORED) */}
-          <div className="flex items-center gap-3">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-2 lg:gap-4">
             <button
               onClick={handleStartWatching}
-              className="
-                group relative inline-flex items-center gap-2 
-                text-white px-4 py-2.5 rounded-full 
-                bg-gradient-to-r from-cyan-500 to-blue-600 
-                hover:from-blue-600 hover:to-cyan-500
-                shadow-md transition-all duration-300 
-                hover:scale-105 active:scale-95
-                text-label
-              "
+              className="group relative inline-flex items-center gap-2 text-white  px-4 py-2.5  lg:px-5 lg:py-3  rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 shadow-md  transition-all duration-300  hover:scale-105 active:scale-95 text-sm lg:text-sm font-medium"
             >
               <span className="absolute inline-flex h-9 w-9 rounded-full bg-cyan-400 opacity-20 group-hover:animate-ping -z-10" />
               <HugeiconsIcon icon={PlayIcon} size={20} />
@@ -194,52 +183,72 @@ function HeroBanner({ shows = [] }) {
             <button
               onClick={handleMoreInfo}
               className="
-                flex items-center justify-center 
-                w-10 h-10 rounded-full 
-                bg-white/20 hover:bg-white/30 
+                flex items-center justify-center
+                w-12 h-12
+                rounded-full
+                bg-white/20 hover:bg-white/30
                 backdrop-blur-md border border-white/20
                 transition-all duration-300
+                hover:scale-105
               "
               title="More Info"
             >
-              <HugeiconsIcon icon={InformationCircleIcon} size={18} />
+              <HugeiconsIcon icon={InformationCircleIcon} size={20} />
             </button>
           </div>
 
-          {/* 🔥 CENTERED INDICATOR */}
-          <div className="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-40">
-            {shows.length <= 4 ? (
-              // Normal mode (4 or less)
-              shows.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setIndex(i)}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === index
-                      ? "w-4 h-1.5 bg-white"
-                      : "w-1.5 h-1.5 bg-white/40"
-                  }`}
-                />
-              ))
-            ) : (
-              // Infinite / Netflix style mode
-              <>
-                {Array.from({ length: 4 }).map((_, i) => {
-                  const activeDot = index % 4;
+          {/* Desktop Navigation */}
+          <button
+            onClick={handlePrev}
+            className="
+              hidden lg:flex
+              absolute left-6 top-1/2 -translate-y-1/2
+              w-14 h-14
+              items-center justify-center
+              rounded-full
+              bg-black/20
+              hover:bg-black/50
+              backdrop-blur-sm
+              transition-all duration-300
+              hover:scale-110
+              z-40
+            "
+          >
+            <HugeiconsIcon icon={ArrowLeft01Icon} size={28} />
+          </button>
 
-                  return (
-                    <button
-                      key={i}
-                      className={`rounded-full transition-all duration-300 ${
-                        i === activeDot
-                          ? "w-4 h-1.5 bg-white"
-                          : "w-1.5 h-1.5 bg-white/40"
-                      }`}
-                    />
-                  );
-                })}
-              </>
-            )}
+          <button
+            onClick={handleNext}
+            className="
+              hidden lg:flex
+              absolute right-6 top-1/2 -translate-y-1/2
+              w-14 h-14
+              items-center justify-center
+              rounded-full
+              bg-black/20
+              hover:bg-black/50
+              backdrop-blur-sm
+              transition-all duration-300
+              hover:scale-110
+              z-40
+            "
+          >
+            <HugeiconsIcon icon={ArrowRight01Icon} size={28} />
+          </button>
+
+          {/* Indicators */}
+          <div className="absolute bottom-2 lg:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-40">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === index % 5
+                    ? "w-5 h-2 bg-white"
+                    : "w-1.5 h-1.5 bg-white/40"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -247,10 +256,14 @@ function HeroBanner({ shows = [] }) {
       {/* Animation */}
       <style>
         {`
-        @keyframes slowZoom {
-          from { transform: scale(1.05); }
-          to { transform: scale(1.1); }
-        }
+          @keyframes slowZoom {
+            from {
+              transform: scale(1.05);
+            }
+            to {
+              transform: scale(1.1);
+            }
+          }
         `}
       </style>
     </div>

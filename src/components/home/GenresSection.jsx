@@ -9,7 +9,7 @@ function GenresSection({ genres, onSelectGenre, selectedGenre }) {
     <div id="genre-section" className="mb-4">
       {/* TITLE */}
       <div className="px-4 sm:px-6 lg:px-10 mb-4 flex items-center justify-between">
-        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-300">
+        <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
           Genres
         </h3>
 

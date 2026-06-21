@@ -42,7 +42,7 @@ export default function VideoBottomBar({
     >
       {/* progress row */}
       <div className="flex items-center gap-2 mb-3 sm:mb-4 lg:mb-6 px-1">
-        <span className="text-meta text-white/80 w-12 text-left select-none">
+        <span className="text-meta text-white w-12 text-left select-none">
           {formatTime(value)}
         </span>
 
@@ -62,7 +62,7 @@ export default function VideoBottomBar({
           onTouchStart={(e) => e.stopPropagation()}
         />
 
-        <span className="text-meta text-white/80 w-12 text-right select-none">
+        <span className="text-meta text-white w-12 text-right select-none">
           {formatTime(duration)}
         </span>
       </div>
@@ -79,7 +79,7 @@ export default function VideoBottomBar({
             aria-label="Previous episode"
             className="flex items-center gap-2 px-4 py-2 text-label hover:bg-white/20 transition"
           >
-            <HugeiconsIcon icon={Backward01Icon} size={14} />
+            <HugeiconsIcon icon={Backward01Icon} size={20} />
             <span className="hidden sm:inline text-label">Prev</span>
           </button>
 
@@ -94,7 +94,7 @@ export default function VideoBottomBar({
             className="flex items-center gap-2 px-4 py-2 text-label hover:bg-white/20 transition"
           >
             <span className="hidden sm:inline text-label">Next</span>
-            <HugeiconsIcon icon={Forward01Icon} size={14} />
+            <HugeiconsIcon icon={Forward01Icon} size={20} />
           </button>
         </div>
 
@@ -108,9 +108,9 @@ export default function VideoBottomBar({
           className="p-2 rounded-full hover:bg-white/10 transition"
         >
           {isFullscreen ? (
-            <HugeiconsIcon icon={ArrowShrinkIcon} className="w-5 h-5" />
+            <HugeiconsIcon icon={ArrowShrinkIcon} size={20} />
           ) : (
-            <HugeiconsIcon icon={FullscreenIcon} className="w-5 h-5" />
+            <HugeiconsIcon icon={FullscreenIcon} size={20} />
           )}
         </button>
       </div>

@@ -141,8 +141,8 @@ export default function Header() {
     navigate(path);
   };
 
-  const headerHeightClasses = "h-16 sm:h-20";
-  const spacerClasses = "h-14 sm:h-16";
+  const headerHeightClasses = "h-16";
+  const spacerClasses = "h-16";
 
   const portalRoot =
     typeof document !== "undefined"
@@ -172,16 +172,18 @@ export default function Header() {
       >
         {/* background */}
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ease-out ${
-            isScrolled ? "opacity-100" : "opacity-0"
-          }`}
+          className={`
+    absolute inset-0
+    transition-opacity duration-300
+    ${isScrolled ? "opacity-100" : "opacity-0"}
+  `}
           aria-hidden="true"
         >
-          <div className="w-full h-full bg-gradient-to-r from-black/80 to-gray-900/70 backdrop-blur-md shadow-md" />
+          <div className="h-full w-full bg-[#070318]/85 backdrop-blur-md border-b border-white/5" />
         </div>
 
         {/* row */}
-        <div className="relative z-20 flex items-center justify-between px-4 sm:px-6 lg:px-10 h-full text-white">
+        <div className="  relative z-20  h-16  flex items-center justify-between px-4 sm:px-6 lg:px-10 text-white">
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <div

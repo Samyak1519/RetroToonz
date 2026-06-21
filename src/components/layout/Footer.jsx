@@ -59,7 +59,7 @@ function Footer() {
             <img
               src="https://buymeachai.ezee.li/assets/images/chai.png"
               alt="chai"
-              className="w-6 h-6"
+              size={20}
             />
             <span
               className="text-xl text-black/80 font-semibold"

@@ -194,7 +194,7 @@ function HomePage() {
           />
 
           {selectedGenre && (
-            <div className="mt-6 mx-4 sm:mx-10 p-2 rounded-2xl bg-[rgba(255,248,200,0.06)] border border-[rgba(255,248,200,0.15)] shadow-[0_0_40px_rgba(255,248,200,0.08)]">
+            <div className="mt-5 mx-4 sm:mx-10 p-2 rounded-2xl bg-[rgba(255,248,200,0.06)] border border-[rgba(255,248,200,0.15)] shadow-[0_0_40px_rgba(255,248,200,0.08)]">
               <ShowSection
                 sectionTitle={`${selectedGenre} Shows`}
                 shows={filteredShows}
