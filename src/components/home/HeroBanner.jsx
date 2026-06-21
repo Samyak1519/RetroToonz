@@ -184,7 +184,7 @@ function HeroBanner({ shows = [] }) {
               onClick={handleMoreInfo}
               className="
                 flex items-center justify-center
-                w-12 h-12
+                w-11 h-11
                 rounded-full
                 bg-white/20 hover:bg-white/30
                 backdrop-blur-md border border-white/20

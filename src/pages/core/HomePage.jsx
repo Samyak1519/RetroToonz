@@ -120,7 +120,7 @@ const usedCounts = {}; // ✅ FIXED POSITION
 
 const featuredPool = allShows.filter((s) => s.featured);
 const heroSource = featuredPool.length ? featuredPool : allShows;
-const heroShows = shuffle(heroSource).slice(0, 4);
+const heroShows = shuffle(heroSource);
 
 // mark hero as used
 heroShows.forEach((s) => {
