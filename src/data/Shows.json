@@ -5,7 +5,7 @@
       "title": "Ben 10",
       "year": "2005",
       "thumbnail": "/media/posters-desktop/ben10-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/ben10-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/ben10-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -96,7 +96,7 @@
       "title": "Chhota Bheem",
       "year": "2008",
       "thumbnail": "/media/posters-desktop/chhota-bheem-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/chhota-bheem-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/chhota-bheem-poster-mobile.jpg",
       "tags": [
         "Adventure",
         "Action",
@@ -199,7 +199,7 @@
       "title": "Doraemon",
       "year": "2005",
       "thumbnail": "/media/posters-desktop/doraemon-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/doraemon-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/doraemon-poster-mobile.jpg",
       "tags": [
         "Action",
         "Artificial Intelligence",
@@ -291,7 +291,7 @@
       "title": "Kick Buttowski",
       "year": "2010",
       "thumbnail": "/media/posters-desktop/kick-buttowski-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/kick-buttowski-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/kick-buttowski-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -381,7 +381,7 @@
       "title": "Kid vs Kat",
       "year": "2008",
       "thumbnail": "/media/posters-desktop/kid-vs-kat-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/kid-vs-kat-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/kid-vs-kat-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -462,7 +462,7 @@
       "title": "Kiteretsu",
       "year": "1988",
       "thumbnail": "/media/posters-desktop/kiteretsu-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/kiteretsu-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/kiteretsu-poster-mobile.jpg",
       "tags": [
         "Animation",
         "Anime",
@@ -542,7 +542,7 @@
       "title": "Mickey Mouse Clubhouse",
       "year": "1928",
       "thumbnail": "/media/posters-desktop/mickey-mouse-clubhouse-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/mickey-mouse-clubhouse-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/mickey-mouse-clubhouse-poster-mobile.jpg",
       "tags": [
         "Adventure",
         "Animal Adventure",
@@ -634,7 +634,7 @@
       "title": "Mr. Bean",
       "year": "1990",
       "thumbnail": "/media/posters-desktop/mr-bean-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/mr-bean-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/mr-bean-poster-mobile.jpg",
       "tags": [
         "Animation",
         "Comedy",
@@ -724,8 +724,8 @@
       "id": "ninja-hattori",
       "title": "Ninja Hattori",
       "year": "1981",
-      "thumbnail": "/media/posters-desktop/ninja-hattori-poster-desktop.png",
-      "thumbnailMobile": "/media/posters-mobile/ninja-hattori-poster-mobile.jpeg",
+      "thumbnail": "/media/posters-desktop/ninja-hattori-poster-desktop.jpg",
+      "thumbnailMobile": "/media/posters-mobile/ninja-hattori-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -816,7 +816,7 @@
       "title": "Oggy and the Cockroaches",
       "year": "1998",
       "thumbnail": "/media/posters-desktop/oggy-and-the-cockroaches-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/oggy-and-the-cockroaches-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/oggy-and-the-cockroaches-poster-mobile.jpg",
       "tags": [
         "Adventure",
         "Animal Adventure",
@@ -896,7 +896,7 @@
       "title": "Perman",
       "year": "1983",
       "thumbnail": "/media/posters-desktop/perman-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/perman-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/perman-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -1001,7 +1001,7 @@
       "title": "Phineas and Ferb",
       "year": "2007",
       "thumbnail": "/media/posters-desktop/phineas-and-ferb-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/phineas-and-ferb-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/phineas-and-ferb-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -1105,7 +1105,7 @@
       "title": "Pokemon",
       "year": "2003",
       "thumbnail": "/media/posters-desktop/pokemon-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/pokemon-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/pokemon-poster-mobile.jpg",
       "tags": [
         "Action",
         "Adventure",
@@ -1197,7 +1197,7 @@
       "title": "Shaun the Sheep",
       "year": "2007",
       "thumbnail": "/media/posters-desktop/shaun-the-sheep-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/shaun-the-sheep-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/shaun-the-sheep-poster-mobile.jpg",
       "tags": [
         "Animal Adventure",
         "Animation",
@@ -1299,7 +1299,7 @@
       "title": "Shinchan",
       "year": "2006",
       "thumbnail": "/media/posters-desktop/shinchan-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/shinchan-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/shinchan-poster-mobile.jpg",
       "tags": [
         "Anime",
         "Animation",
@@ -1477,7 +1477,7 @@
       "title": "SpongeBob Square Pants",
       "year": "1999",
       "thumbnail": "/media/posters-desktop/spongebob-squarepants-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/spongebob-squarepants-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/spongebob-squarepants-poster-mobile.jpg",
       "tags": [
         "Animal Adventure",
         "Animation",
@@ -1571,7 +1571,7 @@
       "title": "Strawberry Shortcake",
       "year": "2009",
       "thumbnail": "/media/posters-desktop/strawberry-shortcake-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/strawberry-shortcake-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/strawberry-shortcake-poster-mobile.jpg",
       "tags": [
         "Animation",
         "Adventure",
@@ -1650,7 +1650,7 @@
       "title": "Tom and Jerry",
       "year": "1952",
       "thumbnail": "/media/posters-desktop/tom-and-jerry-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-poster-mobile.jpg",
       "tags": [
         "Adventure",
         "Animation",
@@ -1878,7 +1878,7 @@
       "title": "Tom and Jerry Tales",
       "year": "2006",
       "thumbnail": "/media/posters-desktop/tom-and-jerry-tales-poster-desktop.jpg",
-      "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-tales-poster-mobile.jpeg",
+      "thumbnailMobile": "/media/posters-mobile/tom-and-jerry-tales-poster-mobile.jpg",
       "tags": [
         "Animal Adventure",
         "Adventure",
