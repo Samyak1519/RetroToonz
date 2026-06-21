@@ -1,9 +1,10 @@
 // src/components/home/ShowSection.jsx
 
-import { useRef } from "react";
-import ShowCard from "../show/ShowCard.jsx";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import ShowCard from "../show/ShowCard.jsx";
 
 function ShowSection({ sectionTitle, shows = [] }) {
   const scrollRef = useRef(null);
@@ -25,10 +26,22 @@ function ShowSection({ sectionTitle, shows = [] }) {
   return (
     <section className="relative py-5 overflow-visible">
       {/* TITLE */}
-      <div className="px-4 sm:px-6 lg:px-10 mb-3">
+      <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 mb-3">
         <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
           {sectionTitle}
         </h3>
+
+        <Link
+          to={`/category/${sectionTitle.toLowerCase().replace(/\s+/g, "-")}`}
+          className="group flex items-center gap-1.5 text-white/80 hover:text-yellow-300 text-sm sm:text-base font-medium transition-all duration-200    hover:underline underline-offset-4"
+        >
+          <span>Show more</span>
+          <HugeiconsIcon
+            icon={ArrowRight01Icon}
+            size={16}
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          />
+        </Link>
       </div>
 
       <div className="relative overflow-visible">
