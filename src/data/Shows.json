@@ -197,7 +197,7 @@
     {
       "id": "doraemon",
       "title": "Doraemon",
-      "year": "2005",
+      "year": "1979",
       "thumbnail": "/media/posters-desktop/doraemon-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/doraemon-poster-mobile.jpg",
       "tags": [
@@ -218,38 +218,38 @@
         {
           "seasonNumber": 1,
           "title": "Season 1",
-          "year": "2005",
+          "year": "1979",
           "episodes": [
             {
               "episodeId": "doraemon-s1-e1",
               "episodeNumber": 1,
-              "title": "Gadget Troubles",
-              "synopsis": "Doraemon uses a new gadget and things go haywire.",
+              "title": "All the Way From the Country of the Future",
+              "synopsis": " Doraemon bursts out of Nobita's desk drawer, surprising Nobita and his pet, while introducing himself as a robotic cat sent to improve Nobita's clumsy, unlucky life.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/doraemon_s1e1.jpg",
-              "videoUrl": "/media/episodes/doraemon/season-01/doraemon-s01-e01.mp4",
+              "videoUrl": "/media/episodes/doraemon/season-01/doraemon e01.mkv",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "doraemon-s1-e2",
               "episodeNumber": 2,
-              "title": "Time Travel Trouble",
-              "synopsis": "A time-travel mistake sends Nobita into the past.",
+              "title": "The Mountain Echo Recorder",
+              "synopsis": "Doraemon helps Nobita by providing the Echo Mountain gadget to record his voice. Nobita uses it to trick the bully Gian into keeping his word, causing typical comedic chaos before being forced to do his homework.",
               "duration": null,
-              "thumbnail": "/media/posters-desktop/doraemon_s1e2.jpg",
-              "videoUrl": "/media/episodes/doraemon/season-01/doraemon-s01-e02.mp4",
+              "thumbnail": "/media/posters-desktop/doraemon_s1.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-01/doraemon e02.mkv",
               "subtitles": [],
               "isPlayable": true
             },
             {
               "episodeId": "doraemon-s1-e3",
               "episodeNumber": 3,
-              "title": "Gadget Mixup",
-              "synopsis": "A gadget swap causes unexpected chaos.",
+              "title": "Tomorrow's Newspaper",
+              "synopsis": "Doraemon gives Nobita a futuristic gadget that prints tomorrow's newspaper. When Nobita uses it to dodge getting tested on material he hasn't studied, but his impending failures eventually backfire.",
               "duration": null,
-              "thumbnail": "/media/posters-desktop/doraemon_s1e3.jpg",
-              "videoUrl": "/media/episodes/doraemon/season-01/doraemon-s01-e03.mp4",
+              "thumbnail": "/media/posters-desktop/doraemon_s1.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-01/doraemon e03.mkv",
               "subtitles": [],
               "isPlayable": true
             }
@@ -261,24 +261,75 @@
           "year": "2006",
           "episodes": [
             {
-              "episodeId": "doraemon-s2-e1",
-              "episodeNumber": 1,
-              "title": "The Lost Robot",
-              "synopsis": "Doraemon's memory card goes missing and chaos ensues.",
+              "episodeId": "doraemon-s2-e26",
+              "episodeNumber": 26,
+              "title": "Time Changing Machine",
+              "synopsis": "The gadget allows users to swap an area through time. They will have to specify the area they wish to swap by drawing around it using a chalk. They will then have to use the dial on the right to adjust the time they wish to swap and then pressing the second button on the left to swap.",
               "duration": null,
-              "thumbnail": "/media/posters-desktop/doraemon_s2e1.jpg",
-              "videoUrl": "/media/episodes/doraemon/season-02/doraemon-s02-e01.mp4",
+              "thumbnail": "/media/posters-desktop/doraemon_s2.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-02/doraemon e26.mkv",
               "subtitles": [],
               "isPlayable": true
             },
             {
-              "episodeId": "doraemon-s2-e2",
-              "episodeNumber": 2,
-              "title": "Gadget Carnival",
-              "synopsis": "A gadget festival gets out of hand with crazy inventions.",
+              "episodeId": "doraemon-s2-e29",
+              "episodeNumber": 29,
+              "title": "The Anything Crane Game",
+              "synopsis": "In this classic segment, Doraemon uses the Anything Crane Game gadget to rescue his cat girlfriend, Mi-chan. Later, Suneo asks to borrow the gadget to retrieve his baseball, which got stuck in Mr. Kaminari's strict garden.",
               "duration": null,
-              "thumbnail": "/media/posters-desktop/doraemon_s2e2.jpg",
-              "videoUrl": "/media/episodes/doraemon/season-02/doraemon-s02-e02.mp4",
+              "thumbnail": "/media/posters-desktop/doraemon_s2.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-02/doraemon e29.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s2-e33",
+              "episodeNumber": 33,
+              "title": "Police Dog Nose",
+              "synopsis": "Doraemon equips Nobita with a gadget that attaches to the nose to help him track items or follow the trails of other characters by their scent.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/doraemon_s2.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-02/doraemon e33.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s2-e46",
+              "episodeNumber": 46,
+              "title": "Star Making Hammer and Catching Net",
+              "synopsis": " Nobita and Doraemon use these special future gadgets to literally catch real shooting stars right out of the night sky, bringing them down to Earth to create a beautiful and glowing star collection.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/doraemon_s2.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-02/doraemon e46.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 3,
+          "title": "Season 3",
+          "year": "2007",
+          "episodes": [
+            {
+              "episodeId": "doraemon-s3-e5",
+              "episodeNumber": 5,
+              "title": "Fairytale Land Admission Tickets",
+              "synopsis": "These ticket can be used to enter fairytale land in the 22nd century. When users enter the fairytale land entrance, they will transform into animals according to their personalities. Then you can play there as much as you like!.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/doraemon_s3.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-03/doraemon e05.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "doraemon-s3-e27",
+              "episodeNumber": 27,
+              "title": "Practical Mini Car Set",
+              "synopsis": "In this classic episode, Doraemon gives Nobita a special set of toy cars. When the user speaks the name of a specific vehicle into the car and presses its button, it magically transforms into a life-sized, functioning version of that vehicle.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/doraemon_s3.jpg",
+              "videoUrl": "/media/episodes/doraemon/season-03/doraemon e05.mkv",
               "subtitles": [],
               "isPlayable": true
             }
