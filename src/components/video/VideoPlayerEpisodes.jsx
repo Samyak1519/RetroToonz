@@ -76,18 +76,18 @@ export default function VideoPlayerEpisodes({
   return (
     <section className="w-full mb-8">
       {/* HEADER */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-2 px-1">
+      <div className="mb-4">
+        <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-3 px-1">
           Episodes
         </h2>
 
         {normalizedSeasons.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide py-1">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
             {normalizedSeasons.map((s, i) => (
               <button
                 key={i}
                 onClick={() => setActiveSeason(i)}
-                className={`flex-shrink-0 text-label px-4 py-1.5 rounded-full transition ${
+                className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm transition ${
                   i === activeSeason
                     ? "bg-white/20 border border-white/20 text-white"
                     : "bg-white/10 backdrop-blur-md text-white/70 hover:bg-white/20"

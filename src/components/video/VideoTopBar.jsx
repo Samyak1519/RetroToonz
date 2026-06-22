@@ -75,16 +75,29 @@ export default function VideoTopBar({
           <HugeiconsIcon icon={ArrowLeft02Icon} size={20} />
         </button>
 
-        {/* Info Overlay (Visible in Fullscreen or Mobile) */}
-        <div className="flex items-center gap-5 truncate min-w-0">
-          <div className="text-heading text-white truncate min-w-0">
-            <span>{showTitle}</span>
-            {episodeNumber && (
-              <span className="text-white/80 text-body">
-                <br />E{episodeNumber} :{episodeTitle ? ` ${episodeTitle}` : ""}
-              </span>
-            )}
-          </div>
+        {/* Info Overlay */}
+        <div className="min-w-0 text-white">
+          {isFullscreen ? (
+            <>
+              <div className="text-heading truncate">{showTitle}</div>
+
+              {episodeNumber && (
+                <div className="text-body text-white/70 truncate">
+                  E{episodeNumber}
+                  {episodeTitle ? ` · ${episodeTitle}` : ""}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="hidden sm:block">
+              {episodeNumber && (
+                <div className="text-body truncate">
+                  E{episodeNumber}
+                  {episodeTitle ? ` · ${episodeTitle}` : ""}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
