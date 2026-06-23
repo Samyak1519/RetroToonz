@@ -1446,7 +1446,7 @@
     {
       "id": "shinchan",
       "title": "Shinchan",
-      "year": "2006",
+      "year": "1996",
       "thumbnail": "/media/posters-desktop/shinchan-poster-desktop.jpg",
       "thumbnailMobile": "/media/posters-mobile/shinchan-poster-mobile.jpg",
       "tags": [
@@ -1463,123 +1463,6 @@
       "views": "30k",
       "seasons": [
         {
-          "seasonNumber": 1,
-          "title": "Season 1",
-          "year": "2006",
-          "episodes": [
-            {
-              "episodeId": "shinchan-s01-e01",
-              "episodeNumber": 1,
-              "title": "Classroom Chaos",
-              "synopsis": "Shinchan's antics spark chaos in class and the teacher struggles to keep order.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e01.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e02",
-              "episodeNumber": 2,
-              "title": "Playground Pranks",
-              "synopsis": "Shinchan pulls pranks on his classmates at the playground with hilarious results.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e02.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e03",
-              "episodeNumber": 3,
-              "title": "Messed Up Meal",
-              "synopsis": "A simple family meal turns into a culinary disaster thanks to Shinchan's mischief.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e03.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e04",
-              "episodeNumber": 4,
-              "title": "Birthday Blunder",
-              "synopsis": "Shinchan tries to plan a surprise for a friend but everything goes off the rails.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e04.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e05",
-              "episodeNumber": 5,
-              "title": "Doggy Daze",
-              "synopsis": "Shinchan befriends a stray dog and drags the family into a series of dog-related troubles.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e05.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e06",
-              "episodeNumber": 6,
-              "title": "Shopping Spree",
-              "synopsis": "A trip to the shop becomes a wild adventure when Shinchan decides to 'help' with the shopping.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e06.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e07",
-              "episodeNumber": 7,
-              "title": "Toy Trouble",
-              "synopsis": "Shinchan's newest toy causes more trouble than fun for the whole neighborhood.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e07.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e08",
-              "episodeNumber": 8,
-              "title": "Grandpa's Secret",
-              "synopsis": "Shinchan uncovers a surprising secret about his grandfather that leads to an unexpected adventure.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e08.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e09",
-              "episodeNumber": 9,
-              "title": "Hide and Seek Havoc",
-              "synopsis": "What starts as a game of hide-and-seek quickly escalates into town-wide mayhem.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e09.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "shinchan-s01-e10",
-              "episodeNumber": 10,
-              "title": "Camping Catastrophe",
-              "synopsis": "A family camping trip becomes a series of calamities thanks to Shinchan's antics.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/shinchan_s01.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-01/shinchan-s01-e10.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            }
-          ]
-        },
-        {
           "seasonNumber": 2,
           "title": "Season 2",
           "year": "2007",
@@ -1591,7 +1474,7 @@
               "synopsis": "A family holiday goes awry when Shinchan insists on doing everything his own way.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/shinchan_s02.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-02/shinchan-s02-e01.mp4",
+              "videoUrl": "/media/episodes/shinchan/season-02/shinchan e01.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1602,7 +1485,7 @@
               "synopsis": "Shinchan stages a neighborhood show that spirals into chaotic entertainment.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/shinchan_s02.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-02/shinchan-s02-e02.mp4",
+              "videoUrl": "/media/episodes/shinchan/season-02/shinchan e02.mp4",
               "subtitles": [],
               "isPlayable": true
             },
@@ -1613,7 +1496,47 @@
               "synopsis": "Shinchan brings home an unusual pet and the family must adapt to the new addition.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/shinchan_s02.jpg",
-              "videoUrl": "/media/episodes/shinchan/season-02/shinchan-s02-e03.mp4",
+              "videoUrl": "/media/episodes/shinchan/season-02/shinchan e03.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        },
+        {
+          "seasonNumber": 4,
+          "title": "Season 4",
+          "year": "2009",
+          "episodes": [
+            {
+              "episodeId": "shinchan-s04-e07",
+              "episodeNumber": 7,
+              "title": "Will Mom Buy Me Steaks?!!",
+              "synopsis": "Shinchan finds himself in another hilarious adventure full of mischief and laughter.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/shinchan_s04.jpg",
+              "videoUrl": "/media/episodes/shinchan/season-04/shinchan e07.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s04-e19",
+              "episodeNumber": 19,
+              "title": "Someone's Got a Boyfriend",
+              "synopsis": "A simple day turns chaotic when Shinchan's antics get out of control.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/shinchan_s04.jpg",
+              "videoUrl": "/media/episodes/shinchan/season-04/shinchan e19.mkv",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "shinchan-s04-e42",
+              "episodeNumber": 42,
+              "title": "Main Banunga Park Ka Hero",
+              "synopsis": "Shin-chan decides to step up as the self-proclaimed hero of his local neighborhood park, leading to his usual hilarious antics while interacting with his friends and Kasukabe residents.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/shinchan_s04.jpg",
+              "videoUrl": "/media/episodes/shinchan/season-04/shinchan e42.mkv",
               "subtitles": [],
               "isPlayable": true
             }
