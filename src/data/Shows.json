@@ -338,6 +338,88 @@
       ]
     },
     {
+      "id": "hagemaru",
+      "title": "Hagemaru",
+      "year": "1988",
+      "thumbnail": "/media/posters-desktop/hagemaru-poster-desktop.jpg",
+      "thumbnailMobile": "/media/posters-mobile/hagemaru-poster-mobile.jpg",
+      "tags": [
+        "Comedy",
+        "Animation",
+        "Family",
+        "Kids"
+      ],
+      "description": "Meet Hagemaru, a mischievous and hilarious young boy whose clever tricks, funny adventures, and obsession with saving money constantly land him in amusing situations. Packed with humor and heart, Hagemaru's everyday life is anything but ordinary.",
+      "duration": "1 hr 35 min",
+      "language": "Hindi",
+      "rating": "8.0",
+      "views": "1k",
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "1988",
+          "episodes": [
+            {
+              "episodeId": "hagemaru-s01-e03",
+              "episodeNumber": 3,
+              "title": "Episode 3",
+              "synopsis": "Hagemaru gets into another hilarious adventure filled with clever tricks and comedy.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e03.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "hagemaru-s01-e07",
+              "episodeNumber": 7,
+              "title": "Episode 7",
+              "synopsis": "Hagemaru's money-saving antics lead to unexpected chaos and laughter.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e07.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "hagemaru-s01-e11",
+              "episodeNumber": 11,
+              "title": "Episode 11",
+              "synopsis": "A new challenge pushes Hagemaru's creativity and mischief to the limit.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e11.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "hagemaru-s01-e15",
+              "episodeNumber": 15,
+              "title": "Episode 15",
+              "synopsis": "Hagemaru's plans take an unexpected turn in this comedy-filled episode.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e15.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "hagemaru-s01-e17",
+              "episodeNumber": 17,
+              "title": "Episode 17",
+              "synopsis": "Another classic Hagemaru adventure packed with laughs and surprises.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e17.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "kick-buttowski",
       "title": "Kick Buttowski",
       "year": "2010",
@@ -935,6 +1017,55 @@
               "duration": null,
               "thumbnail": "/media/posters-desktop/oggy_s02.jpg",
               "videoUrl": "/media/episodes/oggy/season-02/oggy-and-the-cockroaches-S02E02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oswald",
+      "title": "Oswald",
+      "year": "2001",
+      "thumbnail": "/media/posters-desktop/oswald-poster-desktop.jpg",
+      "thumbnailMobile": "/media/posters-mobile/oswald-poster-mobile.jpg",
+      "tags": [
+        "Animation",
+        "Comedy",
+        "Family",
+        "Kids"
+      ],
+      "description": "Oswald is a gentle and kind-hearted blue octopus who lives in a colorful world with his loyal pet dog, Weenie. Together with his friends, Oswald experiences fun-filled adventures that teach valuable lessons about friendship, kindness, and curiosity.",
+      "duration": "45 min",
+      "language": "Hindi",
+      "rating": "7.9",
+      "views": "1k",
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2001",
+          "episodes": [
+            {
+              "episodeId": "oswald-s01-e01",
+              "episodeNumber": 1,
+              "title": "Episode 1",
+              "synopsis": "Oswald and Weenie embark on a delightful adventure in Big City.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/oswald_s01.jpg",
+              "videoUrl": "/media/episodes/oswald/season-01/oswald-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oswald-s01-e02",
+              "episodeNumber": 2,
+              "title": "Episode 2",
+              "synopsis": "A simple day turns into a memorable adventure for Oswald and his friends.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/oswald_s01.jpg",
+              "videoUrl": "/media/episodes/oswald/season-01/oswald-s01-e02.mp4",
               "subtitles": [],
               "isPlayable": true
             }
