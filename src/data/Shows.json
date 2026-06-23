@@ -1025,6 +1025,55 @@
       ]
     },
     {
+      "id": "oswald",
+      "title": "Oswald",
+      "year": "2001",
+      "thumbnail": "/media/posters-desktop/oswald-poster-desktop.jpg",
+      "thumbnailMobile": "/media/posters-mobile/oswald-poster-mobile.jpg",
+      "tags": [
+        "Animation",
+        "Comedy",
+        "Family",
+        "Kids"
+      ],
+      "description": "Oswald is a gentle and kind-hearted blue octopus who lives in a colorful world with his loyal pet dog, Weenie. Together with his friends, Oswald experiences fun-filled adventures that teach valuable lessons about friendship, kindness, and curiosity.",
+      "duration": "45 min",
+      "language": "Hindi",
+      "rating": "7.9",
+      "views": "1k",
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "year": "2001",
+          "episodes": [
+            {
+              "episodeId": "oswald-s01-e01",
+              "episodeNumber": 1,
+              "title": "Episode 1",
+              "synopsis": "Oswald and Weenie embark on a delightful adventure in Big City.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/oswald_s01.jpg",
+              "videoUrl": "/media/episodes/oswald/season-01/oswald-s01-e01.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            },
+            {
+              "episodeId": "oswald-s01-e02",
+              "episodeNumber": 2,
+              "title": "Episode 2",
+              "synopsis": "A simple day turns into a memorable adventure for Oswald and his friends.",
+              "duration": null,
+              "thumbnail": "/media/posters-desktop/oswald_s01.jpg",
+              "videoUrl": "/media/episodes/oswald/season-01/oswald-s01-e02.mp4",
+              "subtitles": [],
+              "isPlayable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "perman",
       "title": "Perman",
       "year": "1983",
