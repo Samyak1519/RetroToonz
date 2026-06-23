@@ -361,57 +361,24 @@
           "year": "1988",
           "episodes": [
             {
-              "episodeId": "hagemaru-s01-e03",
-              "episodeNumber": 3,
-              "title": "Episode 3",
-              "synopsis": "Hagemaru gets into another hilarious adventure filled with clever tricks and comedy.",
+              "episodeId": "hagemaru-s01-e01",
+              "episodeNumber": 1,
+              "title": "Hagemaru Was Born",
+              "synopsis": "The story follows the origins of Hagemaru Hageda. It hilariously showcases how his miser parents brought him into the world and instantly started finding absurd, money-saving tricks to raise him.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
-              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e03.mp4",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e01.mkv",
               "subtitles": [],
               "isPlayable": true
             },
             {
-              "episodeId": "hagemaru-s01-e07",
-              "episodeNumber": 7,
-              "title": "Episode 7",
-              "synopsis": "Hagemaru's money-saving antics lead to unexpected chaos and laughter.",
+              "episodeId": "hagemaru-s01-e02",
+              "episodeNumber": 2,
+              "title": "Hagemaru's Mom is a Miser",
+              "synopsis": "Hagemaru, the family’s extreme miserly nature takes center stage as they go to great lengths to save money on daily expenses. They devise quirky 'formulas' to avoid spending money, such as trying to get free food deliveries and tricking the newspaper vendor.",
               "duration": null,
               "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
-              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e07.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "hagemaru-s01-e11",
-              "episodeNumber": 11,
-              "title": "Episode 11",
-              "synopsis": "A new challenge pushes Hagemaru's creativity and mischief to the limit.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
-              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e11.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "hagemaru-s01-e15",
-              "episodeNumber": 15,
-              "title": "Episode 15",
-              "synopsis": "Hagemaru's plans take an unexpected turn in this comedy-filled episode.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
-              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e15.mp4",
-              "subtitles": [],
-              "isPlayable": true
-            },
-            {
-              "episodeId": "hagemaru-s01-e17",
-              "episodeNumber": 17,
-              "title": "Episode 17",
-              "synopsis": "Another classic Hagemaru adventure packed with laughs and surprises.",
-              "duration": null,
-              "thumbnail": "/media/posters-desktop/hagemaru_s01.jpg",
-              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e17.mp4",
+              "videoUrl": "/media/episodes/hagemaru/season-01/hagemaru e02.mkv",
               "subtitles": [],
               "isPlayable": true
             }
