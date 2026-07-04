@@ -5,7 +5,7 @@ import {
   PlayIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const DEFAULT_POSTER = "/Assets/default.jpg";
@@ -19,12 +19,43 @@ function HeroBanner({ shows = [] }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [slideIn, setSlideIn] = useState(true);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
 
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined"
       ? window.matchMedia("(max-width: 640px)").matches
       : false,
   );
+
+  const handleTouchStart = (e) => {
+    if (!isMobile) return;
+
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!isMobile) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+
+    const deltaX = endX - touchStartX.current;
+    const deltaY = endY - touchStartY.current;
+
+    // User is scrolling vertically
+    if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+    // Ignore tiny swipes
+    if (Math.abs(deltaX) < 50) return;
+
+    if (deltaX < 0) {
+      handleNext(); // Swipe Left
+    } else {
+      handlePrev(); // Swipe Right
+    }
+  };
 
   useEffect(() => {
     const m = window.matchMedia("(max-width: 640px)");
@@ -78,7 +109,11 @@ function HeroBanner({ shows = [] }) {
   const descriptionText = show.description || "";
 
   return (
-    <div className="relative w-full overflow-hidden text-white">
+    <div
+      className="relative w-full overflow-hidden text-white"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="relative w-full aspect-[3/4] sm:aspect-[15/9] lg:aspect-[21/9]">
         {/* Background */}
         <div
