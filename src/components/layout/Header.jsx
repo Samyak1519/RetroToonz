@@ -183,7 +183,13 @@ export default function Header() {
         </div>
 
         {/* row */}
-        <div className="  relative z-20  h-16  flex items-center justify-between px-4 sm:px-6 lg:px-10 text-white">
+        <div
+          className="relative z-20 flex items-center justify-between px-4 sm:px-6 lg:px-10 text-white"
+          style={{
+            height: "calc(64px + env(safe-area-inset-top, 0px))",
+            paddingTop: "env(safe-area-inset-top, 0px)",
+          }}
+        >
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <div
