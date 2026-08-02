@@ -11,8 +11,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 export default function EpisodesPage() {
   const shows = Array.isArray(showsData) ? showsData : showsData.allShows || [];
 
-
-  // 🔥 Extract episodes from shows
+  // Extract episodes from shows
   const initialEpisodes = shows.flatMap((show) =>
     (show.seasons || []).flatMap((season) =>
       (season.episodes || []).map((ep, index) => ({
@@ -39,11 +38,12 @@ export default function EpisodesPage() {
     season: "",
     episode: "",
     title: "",
+    video: "",
   });
 
   const [showDropdownOpen, setShowDropdownOpen] = useState(false);
 
-  // 🔒 Lock scroll
+  // Lock scroll
   useEffect(() => {
     document.body.style.overflow = isModalOpen ? "hidden" : "auto";
   }, [isModalOpen]);
@@ -55,12 +55,12 @@ export default function EpisodesPage() {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
-  // 🔍 Search filter
+  // Search filter
   const filteredEpisodes = episodes.filter((ep) =>
     `${ep.title} ${ep.showTitle}`.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // ➕ Add
+  // Add
   const handleAdd = () => {
     setEditingEpisode(null);
     setFormData({
@@ -69,30 +69,40 @@ export default function EpisodesPage() {
       season: "",
       episode: "",
       title: "",
+      video: "",
     });
     setIsModalOpen(true);
   };
 
-  // ✏️ Edit
+  // Edit
   const handleEdit = (ep) => {
     setEditingEpisode(ep);
-    setFormData(ep);
+
+    setFormData({
+      showId: ep.showId || "",
+      showTitle: ep.showTitle || "",
+      season: ep.season || "",
+      episode: ep.episode || "",
+      title: ep.title || "",
+      video: ep.video || "",
+    });
+
     setIsModalOpen(true);
   };
 
-  // 🗑 Delete
+  // Delete
   const handleDelete = (id) => {
     setEpisodes(episodes.filter((e) => e.id !== id));
   };
 
-  // 🔄 Change
+  // Change
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
   };
 
-  // ✅ Submit
+  // Submit
   const handleSubmit = () => {
     if (editingEpisode) {
       setEpisodes(
@@ -140,7 +150,7 @@ export default function EpisodesPage() {
         </span>
       </div>
 
-      {/* 📊 Table */}
+      {/* Table */}
       <div className="rounded-2xl bg-black/50 border border-white/10 overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-white/5 text-gray-400">
@@ -207,7 +217,7 @@ export default function EpisodesPage() {
         </table>
       </div>
 
-      {/* 🔥 MODAL */}
+      {/* MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
           <div
@@ -292,21 +302,46 @@ export default function EpisodesPage() {
               />
             </div>
 
-            {/* 🔥 Live Preview */}
-            <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-              <p className="text-xs text-gray-400 mb-2">Live Preview</p>
+            <div>
+              <p className="text-xs text-gray-400 mb-2">Episode Video</p>
 
-              <p className="text-sm text-indigo-300 font-medium">
-                {formData.showTitle || "Show Name"}
-              </p>
+              <div
+                className="border border-dashed bg-white/5 border-white/10 rounded-xl p-4 text-center cursor-pointer hover:border-indigo-500 transition"
+                onClick={() =>
+                  document.getElementById("episodeVideoInput").click()
+                }
+              >
+                {formData.video ? (
+                  <video
+                    src={formData.video}
+                    className="w-full h-40 rounded-lg object-cover"
+                    controls
+                  />
+                ) : (
+                  <p className="text-sm text-gray-500">
+                    Drag & drop or click to upload episode
+                  </p>
+                )}
+              </div>
 
-              <p className="text-xs text-gray-400">
-                S{formData.season || "0"} • E{formData.episode || "0"}
-              </p>
+              <input
+                id="episodeVideoInput"
+                type="file"
+                accept="video/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files[0];
 
-              <p className="text-sm">
-                {formData.title || "Episode title preview"}
-              </p>
+                  if (file) {
+                    const url = URL.createObjectURL(file);
+
+                    setFormData({
+                      ...formData,
+                      video: url,
+                    });
+                  }
+                }}
+              />
             </div>
 
             {/* Actions */}
