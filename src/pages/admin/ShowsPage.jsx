@@ -18,27 +18,37 @@ export default function ShowsPage() {
     title: "",
     description: "",
     thumbnail: "",
+    desktopPoster: "",
+    mobilePoster: "",
   });
 
-  // 🔥 Open Add Modal
+  // Add Modal
   const handleAdd = () => {
     setEditingShow(null);
-    setFormData({ title: "", description: "", thumbnail: "" });
+    setFormData({
+      title: "",
+      description: "",
+      thumbnail: "",
+      desktopPoster: "",
+      mobilePoster: "",
+    });
     setIsModalOpen(true);
   };
 
-  // 🔥 Open Edit Modal
+  // Edit Modal
   const handleEdit = (show) => {
     setEditingShow(show);
     setFormData({
       title: show.title || "",
       description: show.description || "",
       thumbnail: show.thumbnail || "",
+      desktopPoster: show.desktopPoster || "",
+      mobilePoster: show.mobilePoster || "",
     });
     setIsModalOpen(true);
   };
 
-  // 🔄 Handle Change
+  // Handle Change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -46,7 +56,7 @@ export default function ShowsPage() {
     });
   };
 
-  // ✅ Save / Update
+  // Save / Update
   const handleSubmit = () => {
     if (editingShow) {
       // Update
@@ -68,7 +78,7 @@ export default function ShowsPage() {
 
   return (
     <div className="space-y-6 text-white">
-      {/* 🔥 Header */}
+      {/* Header */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-semibold">Shows</h1>
@@ -85,7 +95,7 @@ export default function ShowsPage() {
         </button>
       </div>
 
-      {/* 📊 Table */}
+      {/* Table */}
       <div className="rounded-2xl bg-black/50 border border-white/10 overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-white/5 text-gray-400">
@@ -124,7 +134,7 @@ export default function ShowsPage() {
                 {/* Actions */}
                 <td className="px-4 py-4 text-center">
                   <div className="flex items-center justify-center gap-2">
-                    {/* ✏️ Edit */}
+                    {/* Edit */}
                     <button
                       onClick={() => handleEdit(show)}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs 
@@ -152,27 +162,30 @@ export default function ShowsPage() {
         </table>
       </div>
 
-      {/* 🔥 MODAL */}
+      {/* MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-black/90 border border-white/10 rounded-2xl p-6 w-full max-w-lg space-y-6 shadow-xl">
-            {/* 🔥 Title */}
+            {/* Title */}
             <h2 className="text-xl font-semibold tracking-tight">
               {editingShow ? "Update Show" : "Create New Show"}
             </h2>
 
             {/* 🖼 THUMBNAIL UPLOAD */}
+
             <div>
-              <p className="text-sm text-gray-400 mb-2">Thumbnail</p>
+              <p className="text-sm text-gray-400 mb-2">Desktop Poster</p>
 
               <div
                 className="border border-dashed bg-gray-950 border-white/20 rounded-xl p-4 text-center cursor-pointer hover:border-indigo-400 transition"
-                onClick={() => document.getElementById("thumbInput").click()}
+                onClick={() =>
+                  document.getElementById("desktopPosterInput").click()
+                }
               >
-                {formData.thumbnail ? (
+                {formData.desktopPoster ? (
                   <img
-                    src={formData.thumbnail}
-                    alt="preview"
+                    src={formData.desktopPoster}
+                    alt="Desktop Poster"
                     className="w-full h-32 object-cover rounded-md"
                   />
                 ) : (
@@ -183,7 +196,7 @@ export default function ShowsPage() {
               </div>
 
               <input
-                id="thumbInput"
+                id="desktopPosterInput"
                 type="file"
                 accept="image/*"
                 className="hidden"
@@ -191,13 +204,58 @@ export default function ShowsPage() {
                   const file = e.target.files[0];
                   if (file) {
                     const url = URL.createObjectURL(file);
-                    setFormData({ ...formData, thumbnail: url });
+
+                    setFormData({
+                      ...formData,
+                      desktopPoster: url,
+                    });
                   }
                 }}
               />
             </div>
 
-            {/* 🏷 SHOW NAME */}
+            <div>
+              <p className="text-sm text-gray-400 mb-2">Mobile Poster</p>
+
+              <div
+                className="border border-dashed bg-gray-950 border-white/20 rounded-xl p-4 text-center cursor-pointer hover:border-indigo-400 transition"
+                onClick={() =>
+                  document.getElementById("mobilePosterInput").click()
+                }
+              >
+                {formData.mobilePoster ? (
+                  <img
+                    src={formData.mobilePoster}
+                    alt="Mobile Poster"
+                    className="w-full h-32 object-cover rounded-md"
+                  />
+                ) : (
+                  <p className="text-sm text-gray-500">
+                    Drag & drop or click to upload
+                  </p>
+                )}
+              </div>
+
+              <input
+                id="mobilePosterInput"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const url = URL.createObjectURL(file);
+
+                    setFormData({
+                      ...formData,
+                      mobilePoster: url,
+                    });
+                  }
+                }}
+              />
+            </div>
+
+            {/* SHOW NAME */}
             <div>
               <label className="text-sm text-gray-400 block mb-1">
                 Show Name
@@ -211,7 +269,7 @@ export default function ShowsPage() {
               />
             </div>
 
-            {/* 📝 DESCRIPTION */}
+            {/* DESCRIPTION */}
             <div>
               <label className="text-sm text-gray-400 block mb-1">
                 Description
@@ -226,7 +284,7 @@ export default function ShowsPage() {
               />
             </div>
 
-            {/* 🔘 ACTIONS */}
+            {/* ACTIONS */}
             <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setIsModalOpen(false)}
