@@ -105,7 +105,7 @@ function Card({ show, index }) {
       {/* IMAGE */}
       <div className="relative w-full aspect-video rounded-xl overflow-hidden ">
         <img
-          src={show.thumbnail}
+          src={show.backdrop || "/media/extras/default.jpg"}
           alt={show.title}
           className="w-full h-full object-cover "
         />

@@ -196,9 +196,9 @@ function Card({ show, progress, onRemove, showDescription, isRecommended }) {
 
   const handleClick = () => {
     if (isRecommended) {
-      navigate(`/show/${show.id}`);   // 👉 Show Details Page
+      navigate(`/show/${show.id}`); // 👉 Show Details Page
     } else {
-      navigate(`/watch/${show.id}`);  // 👉 Video Player Page
+      navigate(`/watch/${show.id}`); // 👉 Video Player Page
     }
   };
 
@@ -239,7 +239,7 @@ function Card({ show, progress, onRemove, showDescription, isRecommended }) {
       {/* IMAGE */}
       <div className="relative w-full aspect-video rounded-xl overflow-hidden">
         <img
-          src={show.thumbnail}
+          src={show.backdrop || "/media/extras/default.jpg"}
           alt={show.title}
           className="w-full h-full object-cover "
         />

@@ -1,184 +1,331 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-
 import { PlayIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useEffect, useMemo, useState } from "react";
+
+const DEFAULT_THUMBNAIL = "/media/extras/default.jpg";
+
+const normalizePath = (path) => {
+  if (typeof path !== "string") {
+    return null;
+  }
+
+  const value = path.trim();
+
+  if (!value) {
+    return null;
+  }
+
+  return value.startsWith("/") ? value : `/${value}`;
+};
+
+const getEpisodeThumbnail = (episode, showBackdrop) => {
+  const episodeThumbnail = normalizePath(episode?.thumbnail);
+  const episodeBackdrop = normalizePath(episode?.backdrop);
+  const fallbackBackdrop = normalizePath(showBackdrop);
+
+  return episodeThumbnail || episodeBackdrop || DEFAULT_THUMBNAIL;
+};
 
 export default function VideoPlayerEpisodes({
   seasons,
+  showBackdrop,
+  activeEpisodeId,
   onSelectEpisode,
-  posterDesktop,
-  defaultPoster = "/media/posters-desktop/default-poster.jpg",
-  currentShow,
 }) {
   const normalizedSeasons = useMemo(() => {
-    if (Array.isArray(seasons) && seasons.length) return seasons;
+    if (Array.isArray(seasons) && seasons.length) {
+      return seasons;
+    }
+
     return [
       {
         seasonNumber: 1,
-        episodes: Array.from({ length: 8 }).map((_, i) => ({
-          id: `ep-${i + 1}`,
-          episodeNumber: i + 1,
-          title: `Episode ${i + 1} Title`,
-          description: "Short episode description goes here...",
-          thumbnail: null,
-        })),
+        episodes: [],
       },
     ];
   }, [seasons]);
 
   const [activeSeason, setActiveSeason] = useState(0);
-  const [activeEpisode, setActiveEpisode] = useState(null);
-
-  // 🔥 NEW
+  const [activeEpisode, setActiveEpisode] = useState(activeEpisodeId ?? null);
   const [showAll, setShowAll] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const checkScreen = () => {
-      setIsDesktop(window.innerWidth >= 640);
-    };
-
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  const season = normalizedSeasons[activeSeason] || { episodes: [] };
-  const scrollerRef = useRef(null);
+    setActiveEpisode(activeEpisodeId ?? null);
+  }, [activeEpisodeId]);
 
   useEffect(() => {
-    scrollerRef.current?.scrollTo({ left: 0, behavior: "smooth" });
-    setShowAll(false); // reset when season changes
+    setShowAll(false);
   }, [activeSeason]);
 
-  const normalizePath = (p) => (p ? (p.startsWith("/") ? p : `/${p}`) : null);
-
-  const getThumb = (ep) =>
-    posterDesktop
-      ? normalizePath(posterDesktop)
-      : ep?.thumbnail
-        ? normalizePath(ep.thumbnail)
-        : defaultPoster;
-
-  const handleImgError = (e) => {
-    e.currentTarget.onerror = null;
-    e.currentTarget.src = defaultPoster;
+  const season = normalizedSeasons[activeSeason] || {
+    episodes: [],
   };
 
-  // 🔥 CORE LOGIC
-  const visibleCount = isDesktop ? 10 : 6;
+  const episodes = Array.isArray(season.episodes) ? season.episodes : [];
 
-  const visibleEpisodes = showAll
-    ? season.episodes
-    : season.episodes.slice(0, visibleCount);
+  const visibleCount = 10;
+
+  const visibleEpisodes = showAll ? episodes : episodes.slice(0, visibleCount);
+
+  const handleSelectEpisode = (episode) => {
+    const episodeId = episode.episodeId ?? episode.id ?? episode.episodeNumber;
+
+    if (!episodeId) return;
+
+    setActiveEpisode(episodeId);
+    onSelectEpisode?.(episodeId);
+  };
 
   return (
-    <section className="w-full mb-8">
-      {/* HEADER */}
+    <section className="mb-8 w-full">
+      {/* Header */}
       <div className="mb-4">
-        <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-3 px-1">
+        <h2 className="mb-3 px-1 text-xl font-semibold text-yellow-300 md:text-2xl">
           Episodes
         </h2>
 
+        {/* Season selector */}
         {normalizedSeasons.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-            {normalizedSeasons.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveSeason(i)}
-                className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm transition ${
-                  i === activeSeason
-                    ? "bg-white/20 border border-white/20 text-white"
-                    : "bg-white/10 backdrop-blur-md text-white/70 hover:bg-white/20"
-                }`}
-              >
-                Season {s.seasonNumber ?? i + 1}
-              </button>
-            ))}
+          <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1">
+            {normalizedSeasons.map((seasonItem, index) => {
+              const isActive = index === activeSeason;
+
+              return (
+                <button
+                  key={seasonItem.seasonNumber ?? index}
+                  type="button"
+                  onClick={() => setActiveSeason(index)}
+                  className={`
+                    flex-shrink-0
+                    rounded-full
+                    border
+                    px-4
+                    py-1.5
+                    text-sm
+                    font-medium
+                    transition-all
+                    duration-200
+                    ${
+                      isActive
+                        ? "border-white/20 bg-white/20 text-white shadow-sm"
+                        : "border-transparent bg-white/10 text-white/70 backdrop-blur-md hover:border-white/10 hover:bg-white/15 hover:text-white"
+                    }
+                  `}
+                >
+                  Season {seasonItem.seasonNumber ?? index + 1}
+                </button>
+              );
+            })}
           </div>
         )}
       </div>
 
-      {/* EPISODES GRID */}
-      <div className="relative">
-        <div
-          ref={scrollerRef}
-          className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 auto-rows-fr"
-        >
-          {visibleEpisodes.map((ep) => {
-            const num =
-              ep.episodeNumber ??
-              parseInt(String(ep.id).replace(/\D/g, ""), 10) ??
-              0;
+      {/* Episode cards */}
+      <div
+        className="
+          grid
+          grid-cols-2
+          gap-3
+          sm:grid-cols-3
+          sm:gap-4
+          md:grid-cols-4
+          lg:grid-cols-5
+        "
+      >
+        {visibleEpisodes.map((episode, index) => {
+          const parsedNumber = parseInt(
+            String(episode.id ?? "").replace(/\D/g, ""),
+            10,
+          );
 
-            const thumb = getThumb(ep);
-            const isActive = activeEpisode === (ep.id || ep.episodeNumber);
+          const episodeNumber =
+            episode.episodeNumber ??
+            (Number.isNaN(parsedNumber) ? index + 1 : parsedNumber);
 
-            return (
+          const episodeId = episode.episodeId ?? episode.id ?? episodeNumber;
+          const thumbnail = getEpisodeThumbnail(episode, showBackdrop);
+          const isActive = activeEpisode === episodeId;
+
+          return (
+            <button
+              key={episodeId}
+              type="button"
+              onClick={() => handleSelectEpisode(episode)}
+              className={`
+                group
+                flex
+                min-w-0
+                flex-col
+                overflow-hidden
+                rounded-xl
+                border
+                bg-white/[0.045]
+                p-2
+                text-left
+                transition-all
+                duration-200
+                ${
+                  isActive
+                    ? "border-cyan-300/50 bg-cyan-300/[0.06] ring-1 ring-cyan-300/50"
+                    : "border-white/10 hover:border-white/20 hover:bg-white/[0.07] hover:ring-1 hover:ring-sky-300/30"
+                }
+              `}
+            >
+              {/* 16:9 thumbnail */}
               <div
-                key={ep.id ?? num}
-                onClick={() => {
-                  setActiveEpisode(ep.id || ep.episodeNumber);
-                  onSelectEpisode?.(ep.episodeId ?? ep.episodeNumber ?? ep.id);
-                }}
-                className={`group relative w-full bg-white/5 p-2 rounded-xl border border-white/10 overflow-hidden cursor-pointer transition-all duration-300
-                  ${
-                    isActive
-                      ? "ring-1 ring-cyan-300/60 border-cyan-300/40 scale-[1.02]"
-                      : "hover:border-sky-400/60 hover:ring-1 hover:ring-sky-300/60 hover:scale-[1.02]"
-                  }
-                `}
+                className="
+                  relative
+                  aspect-video
+                  w-full
+                  overflow-hidden
+                  rounded-lg
+                  bg-black/30
+                "
               >
-                {/* IMAGE */}
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                  <img
-                    src={thumb}
-                    alt={ep.title}
-                    onError={handleImgError}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                <img
+                  src={thumbnail}
+                  alt={episode.title || `Episode ${episodeNumber}`}
+                  loading="lazy"
+                  onError={(event) => {
+                    console.error("Episode thumbnail failed:", {
+                      episodeId: episode.episodeId,
+                      title: episode.title,
+                      thumbnail: episode.thumbnail,
+                      backdrop: episode.backdrop,
+                      showBackdrop,
+                      resolvedThumbnail: thumbnail,
+                    });
 
-                  {/* GRADIENT */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                    event.currentTarget.onerror = null;
+                    event.currentTarget.src = DEFAULT_THUMBNAIL;
+                  }}
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                    transition-transform
+                    duration-300
+                    group-hover:scale-[1.03]
+                  "
+                />
 
-                  {/* PLAY */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
-                    <div className="bg-black/50 backdrop-blur-lg border border-white/10 p-3 rounded-full flex items-center justify-center transition hover:scale-110">
-                      <HugeiconsIcon icon={PlayIcon} size={20} />
-                    </div>
-                  </div>
+                {/* Bottom gradient */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/65
+                    via-black/5
+                    to-transparent
+                  "
+                />
 
-                  {/* EP BADGE */}
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-medium bg-black/50 backdrop-blur-md border border-white/10 text-white">
-                    E{num}
-                  </div>
+                {/* Episode number */}
+                <div
+                  className="
+                    absolute
+                    left-2
+                    top-2
+                    rounded-md
+                    border
+                    border-white/15
+                    bg-black/60
+                    px-2
+                    py-0.5
+                    text-[10px]
+                    font-semibold
+                    leading-4
+                    text-white
+                    backdrop-blur-md
+                  "
+                >
+                  E{episodeNumber}
                 </div>
 
-                {/* TITLE */}
-                <div className="mt-2 px-1">
-                  <h4 className="text-body text-white truncate leading-tight">
-                    {ep.title || `Episode ${num}`}
-                  </h4>
+                {/* Play overlay */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    items-center
+                    justify-center
+                    bg-black/25
+                    opacity-100
+                    transition-all
+                    duration-200
+                    sm:opacity-0
+                    sm:group-hover:bg-black/35
+                    sm:group-hover:opacity-100
+                  "
+                >
+                  <span
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-white/20
+                      bg-black/55
+                      text-white
+                      shadow-lg
+                      backdrop-blur-md
+                      transition-transform
+                      duration-200
+                      group-hover:scale-110
+                    "
+                  >
+                    <HugeiconsIcon icon={PlayIcon} size={19} />
+                  </span>
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Episode title */}
+              <div className="px-1 pt-1">
+                <h4
+                  className="
+                    truncate
+                    text-sm
+                    font-medium
+                    leading-5
+                    text-white
+                  "
+                >
+                  {episode.title || `Episode ${episodeNumber}`}
+                </h4>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
-      {/* 🔥 SHOW MORE BUTTON */}
-      {season.episodes.length > visibleCount && (
-        <div className="flex justify-center mt-4">
+      {/* Show More / Show Less */}
+      {episodes.length > visibleCount && (
+        <div className="mt-5 flex justify-center">
           <button
-            onClick={() => setShowAll((prev) => !prev)}
+            type="button"
+            onClick={() => setShowAll((previous) => !previous)}
             className="
-              px-5 py-2 rounded-full
-              bg-white/10 backdrop-blur-md
-              border border-white/10
-              text-sm text-white/80
-              hover:bg-white/20 hover:text-white
-              transition-all duration-200
+              rounded-full
+              border
+              border-white/10
+              bg-white/10
+              px-5
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              backdrop-blur-md
+              transition-all
+              duration-200
+              hover:border-white/20
+              hover:bg-white/15
+              hover:text-white
             "
           >
             {showAll ? "Show Less" : "Show More"}
@@ -186,14 +333,14 @@ export default function VideoPlayerEpisodes({
         </div>
       )}
 
-      {/* SCROLLBAR HIDE */}
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
+      <style>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </section>

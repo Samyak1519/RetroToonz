@@ -189,7 +189,7 @@ function RecommendedCard({ show }) {
     >
       <div className="relative w-full aspect-video rounded-xl overflow-hidden">
         <img
-          src={show.thumbnail}
+          src={show.backdrop || "/media/extras/default.jpg"}
           alt={show.title}
           className="w-full h-full object-cover"
         />
@@ -203,9 +203,7 @@ function RecommendedCard({ show }) {
 
         {/* Title */}
         <div className="absolute bottom-2 left-3 right-3">
-          <h4 className="text-sm font-semibold truncate">
-            {show.title}
-          </h4>
+          <h4 className="text-sm font-semibold truncate">{show.title}</h4>
         </div>
       </div>
 

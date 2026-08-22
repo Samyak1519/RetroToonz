@@ -1,152 +1,192 @@
-// src/components/show/ShowCard.jsx
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { HugeiconsIcon } from "@hugeicons/react";
+
 import { FavouriteIcon, PlayIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
-const defaultPoster = "/Assets/default.jpg";
+const DEFAULT_POSTER = "/media/extras/default.jpg";
 
-const normalizePath = (p) => {
-  if (!p) return null;
-  return p.startsWith("/") ? p : `/Assets/${p}`;
-};
-
-function ShowCard({ id, title, year, thumbnail, thumbnailMobile }) {
+function ShowCard({ id, title, year, poster, linkToWatch = false }) {
   const [isShortlisted, setIsShortlisted] = useState(false);
 
-  const toggleShortlist = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsShortlisted((s) => !s);
+  const toggleShortlist = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setIsShortlisted((current) => !current);
   };
 
-  const desktopPoster = normalizePath(thumbnail) || defaultPoster;
-  const mobilePoster = normalizePath(thumbnailMobile) || desktopPoster;
+  const posterSrc = poster || DEFAULT_POSTER;
+  const destination = linkToWatch ? `/watch/${id}` : `/show/${id}`;
 
   return (
-    <Link to={`/show/${id}`} aria-label={`Open ${title}`}>
-      <article className="relative flex-shrink-0">
-        <div className="w-full">
-          {/* Hover owner */}
+    <Link
+      to={destination}
+      aria-label={`${linkToWatch ? "Watch" : "Open"} ${title}`}
+      className="block w-full"
+    >
+      <article className="relative w-full">
+        <div
+          className="
+            group
+            relative
+            overflow-visible
+            rounded-xl
+            transition-all
+            duration-300
+            ease-out
+            hover:z-30
+            hover:scale-[1.04]
+          "
+        >
           <div
             className="
-              group relative rounded-xl overflow-visible
-              transition-all duration-300 ease-out
-              hover:z-30 hover:scale-[1.04]
-              will-change-transform
+              relative
+              overflow-hidden
+              rounded-xl
+              bg-neutral-900
+              ring-1
+              ring-white/10
+              transition-all
+              duration-300
+              sm:group-hover:ring-sky-400/60
+              sm:group-hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]
             "
           >
-            {/* Card surface */}
-            <div
-              className="
-                relative overflow-hidden rounded-xl
-                bg-neutral-900
-                ring-1 ring-white/10
-                transition-all duration-300
-                hover:ring-slate-500
-                sm:hover:border-sky-400/60
-                sm:hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]
-              "
-            >
-              {/* Aspect ratio */}
-              <div className="pt-[150%] sm:pt-[56.25%] relative">
-                {/* Poster */}
-                <picture>
-                  <source media="(min-width:640px)" srcSet={desktopPoster} />
-                  <img
-                    src={mobilePoster}
-                    alt={title}
-                    loading="lazy"
-                    onError={(e) => (e.target.src = defaultPoster)}
-                    className="
-                      absolute inset-0 w-full h-full object-cover
-                      transition-all duration-300
-                      sm:group-hover:scale-105
-                    "
-                  />
-                </picture>
+            <div className="relative aspect-[2/3] w-full">
+              <img
+                src={posterSrc}
+                alt={title}
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = DEFAULT_POSTER;
+                }}
+                className="
+                  absolute
+                  inset-0
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-300
+                  sm:group-hover:scale-105
+                "
+              />
 
-                {/* 🔥 GRADIENT */}
-                {/* Mobile = light | Desktop = stronger (Up Next style) */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/80
+                  via-black/20
+                  to-transparent
+                "
+              />
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  hidden
+                  items-center
+                  justify-center
+                  bg-black/30
+                  opacity-0
+                  transition-opacity
+                  duration-200
+                  sm:flex
+                  sm:group-hover:opacity-100
+                "
+              >
                 <div
                   className="
-                    absolute inset-0
-                    bg-gradient-to-t from-black/60 via-transparent to-transparent
-                    sm:from-black/80 sm:via-black/20
-                  "
-                />
-
-                {/* 🔥 PLAY BUTTON (Desktop only like Up Next) */}
-                <div
-                  className="
-                    hidden sm:flex
-                    absolute inset-0 items-center justify-center
-                    bg-black/40
-                    opacity-0 group-hover:opacity-100
-                    transition
-                  "
-                >
-                  <div
-                    className="
-                      bg-black/50 backdrop-blur-lg border border-white/10
-                      p-3 rounded-full
-                      flex items-center justify-center
-                      text-white/90
-                      transition-all duration-200
-                      hover:scale-110
-                    "
-                  >
-                    <HugeiconsIcon icon={PlayIcon} size={20} />
-                  </div>
-                </div>
-
-                {/* Wishlist */}
-                <button
-                  onClick={toggleShortlist}
-                  className="
-                    absolute top-2 right-2 z-20
-                    w-7 h-7 sm:w-8 sm:h-8
                     rounded-full
-                    bg-black/30 backdrop-blur-md
-                    border border-white/20
-                    flex items-center justify-center
-                    transition-all duration-200
-                    hover:bg-black/40 hover:border-white/30
+                    border
+                    border-white/10
+                    bg-black/50
+                    p-3
+                    text-white
+                    backdrop-blur-lg
+                    transition-transform
+                    duration-200
+                    hover:scale-110
                   "
                 >
-                  <HugeiconsIcon
-                    icon={FavouriteIcon}
-                    className={`
-                      w-4 h-4 transition-all duration-200
-                      ${
-                        isShortlisted
-                          ? "text-red-600 scale-110 drop-shadow-[0_0_6px_rgba(248,113,113,0.6)]"
-                          : "text-white"
-                      }
-                    `}
-                  />
-                </button>
-
-                {/* 🔥 TITLE + YEAR */}
-                {/* Mobile = compact | Desktop = Up Next style spacing */}
-                <div
-                  className="
-                    absolute bottom-0 left-0 right-0
-                    px-3 py-2
-                    bg-gradient-to-t from-black/80 via-black/40 to-transparent
-                  "
-                >
-                  <h3 className="text-xs sm:text-sm font-semibold text-white truncate">
-                    {title}
-                  </h3>
-
-                  {year && (
-                    <p className="text-[10px] sm:text-[12px] text-gray-300">
-                      {year}
-                    </p>
-                  )}
+                  <HugeiconsIcon icon={PlayIcon} size={20} />
                 </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={toggleShortlist}
+                aria-label={
+                  isShortlisted
+                    ? `Remove ${title} from favourites`
+                    : `Add ${title} to favourites`
+                }
+                className="
+                  absolute
+                  right-2
+                  top-2
+                  z-20
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/20
+                  bg-black/30
+                  text-white
+                  backdrop-blur-md
+                  transition-all
+                  duration-200
+                  hover:bg-black/50
+                "
+              >
+                <HugeiconsIcon
+                  icon={FavouriteIcon}
+                  size={17}
+                  className={isShortlisted ? "text-red-400" : "text-white/80"}
+                />
+              </button>
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  bottom-0
+                  left-0
+                  right-0
+                  z-10
+                  bg-gradient-to-t
+                  from-black/90
+                  via-black/50
+                  to-transparent
+                  px-3
+                  pb-2
+                  pt-8
+                "
+              >
+                <h3
+                  className="
+                    truncate
+                    text-xs
+                    font-semibold
+                    text-white
+                    sm:text-sm
+                  "
+                >
+                  {title}
+                </h3>
+
+                {year && (
+                  <p className="text-[10px] text-gray-300 sm:text-xs">{year}</p>
+                )}
               </div>
             </div>
           </div>
