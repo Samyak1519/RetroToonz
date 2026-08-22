@@ -119,7 +119,7 @@ export default function ShowsPage() {
                 <td className="px-4 py-4">
                   <div className="flex items-center gap-3">
                     <img
-                      src={show.thumbnail}
+                      src={show.backdrop || "/media/extras/default.jpg"}
                       className="w-20 h-12 object-cover rounded-md border border-white/10"
                     />
                     <span className="font-medium text-md">{show.title}</span>

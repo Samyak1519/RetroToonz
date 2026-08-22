@@ -1,3 +1,5 @@
+// src/pages/SearchResultsPage.jsx
+
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,7 +9,7 @@ import Header from "../../components/layout/Header.jsx";
 import ShowCard from "../../components/show/ShowCard.jsx";
 import showsData from "../../data/Shows.json";
 
-// ✅ Correct thumbnail handling (NO path breaking)
+// Correct thumbnail handling
 const enrich = (arr) =>
   arr.map((show) => ({
     ...show,
@@ -16,6 +18,19 @@ const enrich = (arr) =>
   }));
 
 const allShows = enrich(showsData.allShows);
+
+/* ----- FORMAT SEARCH / SECTION TITLE ----- */
+
+const formatTitle = (value) => {
+  if (!value) return "All Shows";
+
+  return value
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase()
+    .replace(/^./, (char) => char.toUpperCase());
+};
 
 function SearchResultsPage() {
   const navigate = useNavigate();
@@ -29,56 +44,99 @@ function SearchResultsPage() {
     show.title.toLowerCase().includes(query.toLowerCase()),
   );
 
+  // What the page is showing results for
+  const resultsTitle = formatTitle(query || section);
+
   return (
-    <div className="flex flex-col min-h-screen text-white bg-gray-950">
+    <div className="flex min-h-screen flex-col bg-gray-950 text-white">
       <Header />
 
-      <main className="flex-grow pb-5">
-        <div className="px-4 sm:px-7 md:px-10 lg:px-16 max-w-[1800px] mx-auto py-6">
-          {/* 🔝 Header */}
-          <div className="flex items-center gap-4 mb-12">
+      <main className="flex-grow pb-10">
+        {/* MAIN CONTENT */}
+        <div className="mx-auto w-full max-w-[1800px] px-4 py-6 sm:px-7 md:px-10 lg:px-16">
+          {/* ================= HEADER ================= */}
+          <div className="mb-10 flex items-start gap-4">
+            {/* BACK BUTTON */}
             <button
               onClick={() => navigate(-1)}
-              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 transition"
+              aria-label="Go back"
+              className="
+                mt-1
+                flex-shrink-0
+                rounded-full
+                border border-white/10
+                bg-white/5
+                p-2.5
+                transition-all duration-200
+                hover:bg-white/10
+                hover:scale-105
+              "
             >
               <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
             </button>
 
+            {/* TITLE + RESULT COUNT */}
             <div>
-              <p className="text-xs sm:text-sm text-gray-400 lowercase tracking-wide">
-                Search Results for
-              </p>
-              <h2 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
-                {query ? `"${query}"` : section ? section : "All Shows"}
-              </h2>
+              <h3
+                className="
+                  text-xl
+                  font-bold
+                  text-yellow-300
+                  sm:text-xl
+                  md:text-2xl
+                "
+              >
+                {resultsTitle}
+              </h3>
+
+              {(query || section) && (
+                <p className="mt-1 text-xs text-gray-400">
+                  {searchResults.length} result
+                  {searchResults.length !== 1 && "s"} found
+                </p>
+              )}
             </div>
           </div>
 
-          {/* 🔍 Results */}
+          {/* ================= SEARCH RESULTS ================= */}
           {(query || section) && (
             <>
               {searchResults.length ? (
-                <div className="mb-12">
-                  <p className="text-sm text-gray-400 mb-4">
-                    {searchResults.length} result
-                    {searchResults.length !== 1 && "s"} found
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <section className="mb-14">
+                  {/* POSTER GRID */}
+                  <div
+                    className="
+                      flex
+                      flex-wrap
+                      justify-center
+                      sm:justify-start
+                      gap-6
+                    "
+                  >
                     {searchResults.map((show) => (
                       <div
                         key={show.id}
-                        className="transition-transform duration-300 hover:scale-[1.03]"
+                        className="
+                          w-[40vw]
+                          max-w-[180px]
+                          flex-shrink-0
+
+                          sm:w-[180px]
+                          md:w-[190px]
+                          lg:w-[200px]
+                          xl:w-[210px]
+                        "
                       >
                         <ShowCard {...show} />
                       </div>
                     ))}
                   </div>
-                </div>
+                </section>
               ) : (
-                <div className="text-center py-20">
-                  <p className="text-gray-400 text-lg mb-2">No results found</p>
-                  <p className="text-gray-500 text-sm">
+                <div className="py-20 text-center">
+                  <p className="mb-2 text-lg text-gray-400">No results found</p>
+
+                  <p className="text-sm text-gray-500">
                     Try searching something else
                   </p>
                 </div>
@@ -86,27 +144,55 @@ function SearchResultsPage() {
             </>
           )}
 
-          {/* Divider */}
-          <div className="h-[1px] bg-white/10 mb-12" />
+          {/* ================= DIVIDER ================= */}
+          <div className="mb-12 h-px w-full bg-white/10" />
 
-          {/* 🎬 Recommended */}
-          <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300 mb-5">
-            Recommended Shows
-          </h3>
+          {/* ================= RECOMMENDED ================= */}
+          <section>
+            <h3
+              className="
+                mb-5
+                text-xl
+                font-semibold
+                text-yellow-300
+                md:text-2xl
+              "
+            >
+              Recommended Shows
+            </h3>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {[...allShows]
-              .sort(() => 0.5 - Math.random())
-              .slice(0, 6)
-              .map((show) => (
-                <div
-                  key={show.id}
-                  className="transition-transform duration-300 hover:scale-[1.03]"
-                >
-                  <ShowCard {...show} />
-                </div>
-              ))}
-          </div>
+            {/* RECOMMENDED POSTERS */}
+            <div
+              className="
+                flex
+                flex-wrap
+                justify-center
+                sm:justify-start
+                gap-6
+              "
+            >
+              {[...allShows]
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 6)
+                .map((show) => (
+                  <div
+                    key={show.id}
+                    className="
+                      w-[40vw]
+                      max-w-[180px]
+                      flex-shrink-0
+
+                      sm:w-[180px]
+                      md:w-[190px]
+                      lg:w-[200px]
+                      xl:w-[210px]
+                    "
+                  >
+                    <ShowCard {...show} />
+                  </div>
+                ))}
+            </div>
+          </section>
         </div>
       </main>
 

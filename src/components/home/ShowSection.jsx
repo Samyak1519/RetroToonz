@@ -1,22 +1,27 @@
-// src/components/home/ShowSection.jsx
-
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+
 import ShowCard from "../show/ShowCard.jsx";
 
-function ShowSection({ sectionTitle, sectionKey, shows = [] }) {
+function ShowSection({
+  sectionTitle,
+  sectionKey,
+  shows = [],
+  linkToWatch = false,
+  showMore = true,
+}) {
   const scrollRef = useRef(null);
 
-  const scroll = (dir) => {
+  const scroll = (direction) => {
     if (!scrollRef.current) return;
 
-    const el = scrollRef.current;
-    const amount = Math.min(el.clientWidth * 0.8, 900);
+    const element = scrollRef.current;
+    const amount = Math.min(element.clientWidth * 0.8, 900);
 
-    el.scrollBy({
-      left: dir === "left" ? -amount : amount,
+    element.scrollBy({
+      left: direction === "left" ? -amount : amount,
       behavior: "smooth",
     });
   };
@@ -24,100 +29,146 @@ function ShowSection({ sectionTitle, sectionKey, shows = [] }) {
   if (!shows.length) return null;
 
   return (
-    <section className="relative py-5 overflow-visible">
-      {/* TITLE */}
-      <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 mb-3">
-        <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-yellow-300">
+    <section className="relative overflow-visible py-5">
+      <div className="mb-3 flex items-center justify-between px-4 sm:px-6 lg:px-10">
+        <h3 className="text-lg font-bold text-yellow-300 sm:text-lg md:text-xl">
           {sectionTitle}
         </h3>
 
-        <Link
-          to={`/search?section=${sectionKey}`}
-          className="group flex items-center gap-1.5 text-white/80 hover:text-yellow-200 text-sm sm:text-base font-medium  transition-all"
-        >
-          <span className="hover:underline underline-offset-4">Show more</span>
-          <span className="transition-transform duration-200 group-hover:translate-x-1">
-            →
-          </span>
-        </Link>
+        {showMore && sectionKey && (
+          <Link
+            to={`/search?section=${sectionKey}`}
+            className="
+              group
+              flex
+              items-center
+              gap-1.5
+              text-sm
+              font-medium
+              text-white/80
+              transition-all
+              hover:text-yellow-200
+              sm:text-base
+            "
+          >
+            <span className="underline-offset-4 hover:underline">
+              Show more
+            </span>
+
+            <span className="transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        )}
       </div>
 
-      <div className="relative overflow-visible">
-        {/* LEFT BUTTON */}
+      <div className="group/row relative overflow-visible">
         <button
+          type="button"
           onClick={() => scroll("left")}
+          aria-label={`Scroll ${sectionTitle} left`}
           className="
-            hidden sm:flex
-            absolute left-2 lg:left-4
-            top-1/2 -translate-y-1/2
+            absolute
+            left-2
+            top-1/2
             z-50
-            w-10 h-10
-            items-center justify-center
+            hidden
+            h-10
+            w-10
+            -translate-y-1/2
+            items-center
+            justify-center
             rounded-full
-            bg-black/40 backdrop-blur-md
-            border border-white/10
+            border
+            border-white/10
+            bg-black/40
             text-white/70
-            hover:text-white
-            hover:bg-black/60
+            opacity-0
+            pointer-events-none
+            backdrop-blur-md
+            transition-all
+            duration-200
+            group-hover/row:pointer-events-auto
+            group-hover/row:opacity-100
             hover:scale-110
-            transition-all duration-200
+            hover:bg-black/60
+            hover:text-white
+            sm:flex
+            lg:left-4
           "
         >
           <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
         </button>
 
-        {/* RIGHT BUTTON */}
         <button
+          type="button"
           onClick={() => scroll("right")}
+          aria-label={`Scroll ${sectionTitle} right`}
           className="
-            hidden sm:flex
-            absolute right-2 lg:right-4
-            top-1/2 -translate-y-1/2
+            absolute
+            right-2
+            top-1/2
             z-50
-            w-10 h-10
-            items-center justify-center
+            hidden
+            h-10
+            w-10
+            -translate-y-1/2
+            items-center
+            justify-center
             rounded-full
-            bg-black/40 backdrop-blur-md
-            border border-white/10
+            border
+            border-white/10
+            bg-black/40
             text-white/70
-            hover:text-white
-            hover:bg-black/60
+            opacity-0
+            pointer-events-none
+            backdrop-blur-md
+            transition-all
+            duration-200
+            group-hover/row:pointer-events-auto
+            group-hover/row:opacity-100
             hover:scale-110
-            transition-all duration-200
+            hover:bg-black/60
+            hover:text-white
+            sm:flex
+            lg:right-4
           "
         >
           <HugeiconsIcon icon={ArrowRight01Icon} size={18} />
         </button>
 
-        {/* ROW */}
         <div
           ref={scrollRef}
           className="
             flex
-            gap-1.5
-            sm:gap-3
+            gap-3
             overflow-x-auto
             pb-2
             scrollbar-hide
             scroll-smooth
+            sm:gap-4
+            lg:gap-4
+            xl:gap-[18px]
           "
         >
-          {shows.map((s, index) => (
+          {shows.map((show, index) => (
             <div
-              key={s.id}
+              key={show.id}
               className={`
                 flex-shrink-0
                 w-[40vw]
-                sm:w-56
-                md:w-60
-                lg:w-64
-                xl:w-72
+                max-w-[180px]
+
+                sm:w-[180px]
+                md:w-[190px]
+                lg:w-[200px]
+                xl:w-[210px]
 
                 ${index === 0 ? "ml-4 sm:ml-6 lg:ml-10" : ""}
                 ${index === shows.length - 1 ? "mr-4 sm:mr-6 lg:mr-10" : ""}
               `}
             >
-              <ShowCard {...s} />
+              <ShowCard {...show} linkToWatch={linkToWatch} />
             </div>
           ))}
         </div>

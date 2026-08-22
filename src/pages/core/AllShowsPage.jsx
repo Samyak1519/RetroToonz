@@ -1,6 +1,5 @@
 import {
   ArrowLeft01Icon,
-  FavouriteIcon,
   FilterMailIcon,
   Tick02Icon,
 } from "@hugeicons/core-free-icons";
@@ -10,237 +9,283 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/layout/Footer.jsx";
 import Header from "../../components/layout/Header.jsx";
+import ShowCard from "../../components/show/ShowCard.jsx";
 
-import showsDataRaw from "../../data/Shows.json";
+import showsData from "../../data/Shows.json";
 
-// --- Media Directories ---
 const posterDesktopDir = "/media/posters-desktop";
 const posterMobileDir = "/media/posters-mobile";
 const extrasDir = "/media/extras";
 
-// --- Data Normalization ---
 const normalizePosterPath = (value, preferMobile = false) => {
   if (!value) return null;
-  if (typeof value === "string" && value.startsWith("/media/")) return value;
-  const cleaned = value.replace(/^\/+/, "");
-  const parts = cleaned.split("/");
-  const fileName = parts[parts.length - 1];
+
+  if (typeof value === "string" && value.startsWith("/media/")) {
+    return value;
+  }
+
+  const cleaned = String(value).replace(/^\/+/, "");
+  const fileName = cleaned.split("/").pop();
+
   const targetDir = preferMobile ? posterMobileDir : posterDesktopDir;
+
   return `${targetDir}/${fileName}`;
 };
 
-const normalizeShows = (arr) =>
-  (arr || []).map((s) => {
-    const desktopThumb = s.thumbnail
-      ? s.thumbnail.startsWith("/media/")
-        ? s.thumbnail
-        : normalizePosterPath(s.thumbnail, false)
+const normalizeShows = (shows) =>
+  (shows || []).map((show) => {
+    const desktopThumbnail = show.thumbnail
+      ? show.thumbnail.startsWith("/media/")
+        ? show.thumbnail
+        : normalizePosterPath(show.thumbnail, false)
       : null;
 
-    let mobileThumb = null;
-    if (s.thumbnailMobile) {
-      mobileThumb = s.thumbnailMobile.startsWith("/media/")
-        ? s.thumbnailMobile
-        : normalizePosterPath(s.thumbnailMobile, true);
-    } else if (desktopThumb) {
-      const filename = desktopThumb.split("/").pop();
-      mobileThumb = `${posterMobileDir}/${filename}`;
+    let mobileThumbnail = null;
+
+    if (show.thumbnailMobile) {
+      mobileThumbnail = show.thumbnailMobile.startsWith("/media/")
+        ? show.thumbnailMobile
+        : normalizePosterPath(show.thumbnailMobile, true);
+    } else if (desktopThumbnail) {
+      const fileName = desktopThumbnail.split("/").pop();
+      mobileThumbnail = `${posterMobileDir}/${fileName}`;
     }
 
     return {
-      ...s,
-      title: s.title || "Untitled",
-      thumbnail: desktopThumb || `${extrasDir}/default.jpg`,
-      thumbnailMobile: mobileThumb || `${extrasDir}/default.jpg`,
+      ...show,
+      title: show.title || "Untitled",
+      thumbnail: desktopThumbnail || `${extrasDir}/default.jpg`,
+      thumbnailMobile: mobileThumbnail || `${extrasDir}/default.jpg`,
     };
   });
 
-const allShows = normalizeShows(showsDataRaw.allShows || []);
+const allShows = normalizeShows(showsData.allShows || []);
 
-function firstLetterKey(title) {
+const getLetter = (title) => {
   if (!title) return "#";
-  const ch = title.trim().charAt(0).toUpperCase();
-  return /[A-Z]/.test(ch) ? ch : "#";
-}
 
-/* ---------------- CARD COMPONENT ---------------- */
-function Card({ show, navigate }) {
-  const [isInWatchlist, setIsInWatchlist] = useState(false);
+  const firstCharacter = title.trim().charAt(0).toUpperCase();
 
-  const handleWatchlist = (e) => {
-    e.stopPropagation();
-    setIsInWatchlist((prev) => !prev);
-  };
+  return /[A-Z]/.test(firstCharacter) ? firstCharacter : "#";
+};
 
-  return (
-    <div
-      onClick={() => navigate(`/show/${show.id}`)}
-      className="relative cursor-pointer
-           bg-white/5 p-1 sm:p-2 rounded-2xl
-                 border border-white/10 
-                 overflow-hidden
-                 transition-all duration-200
-
-                 hover:border-sky-400/60
-                 hover:ring-1 hover:ring-sky-300/60
-                 hover:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
-    >
-      {/* WATCHLIST BUTTON */}
-      <button
-        onClick={handleWatchlist}
-        className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center 
-                   rounded-full 
-                   bg-gradient-to-b from-white/20 to-white/5 
-                   bg-black/50 backdrop-blur-lg backdrop-saturate-150
-                   border border-white/10 
-                   shadow-[0_6px_24px_rgba(0,0,0,0.7)] 
-                   text-white/70 hover:text-white 
-                   hover:bg-black/60 hover:scale-110
-                   transition-all duration-200"
-      >
-        <HugeiconsIcon
-          icon={isInWatchlist ? Tick02Icon : FavouriteIcon}
-          size={16}
-        />
-      </button>
-
-      {/* IMAGE */}
-      <div className="relative w-full aspect-[2/3] sm:aspect-video rounded-xl overflow-hidden group">
-        <picture>
-          {/* Mobile Poster */}
-          <source media="(max-width: 640px)" srcSet={show.thumbnailMobile} />
-
-          {/* Default (Desktop) */}
-          <img
-            src={show.thumbnail}
-            alt={show.title}
-            className="w-full h-full object-cover transition-transform "
-          />
-        </picture>
-      </div>
-
-      {/* CONTENT */}
-      <div className="mt-1.5 sm:mt-2 px-1.5 sm:px-0">
-        <h4 className="text-sm font-medium truncate">{show.title}</h4>
-
-        {/* YEAR (instead of description) */}
-        <p className="text-xs text-gray-400 mt-1">{show.year || "—"}</p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------- PAGE ---------------- */
-export default function AllShowsPage() {
+function AllShowsPage() {
   const navigate = useNavigate();
+
   const [activeTag, setActiveTag] = useState("All");
   const [sortBy, setSortBy] = useState("title-asc");
   const [sortOpen, setSortOpen] = useState(false);
 
   const tags = useMemo(() => {
-    const s = new Set();
-    allShows.forEach((sh) => {
-      if (Array.isArray(sh.tags)) sh.tags.forEach((t) => s.add(t));
+    const tagSet = new Set();
+
+    allShows.forEach((show) => {
+      if (!Array.isArray(show.tags)) return;
+
+      show.tags.forEach((tag) => {
+        tagSet.add(tag);
+      });
     });
-    return ["All", ...Array.from(s).sort()];
+
+    return ["All", ...Array.from(tagSet).sort()];
   }, []);
 
-  const filtered = useMemo(() => {
-    const list = allShows.filter((show) => {
-      if (
-        activeTag !== "All" &&
-        (!Array.isArray(show.tags) || !show.tags.includes(activeTag))
-      ) {
-        return false;
-      }
-      return true;
+  const filteredShows = useMemo(() => {
+    const filtered = allShows.filter((show) => {
+      if (activeTag === "All") return true;
+
+      return Array.isArray(show.tags) && show.tags.includes(activeTag);
     });
 
-    return [...list].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       switch (sortBy) {
         case "title-asc":
           return a.title.localeCompare(b.title);
+
         case "title-desc":
           return b.title.localeCompare(a.title);
+
         case "year-asc":
-          return (parseInt(a.year) || 0) - (parseInt(b.year) || 0);
+          return (Number(a.year) || 0) - (Number(b.year) || 0);
+
         case "year-desc":
-          return (parseInt(b.year) || 0) - (parseInt(a.year) || 0);
+          return (Number(b.year) || 0) - (Number(a.year) || 0);
+
         default:
           return 0;
       }
     });
   }, [activeTag, sortBy]);
 
-  const grouped = useMemo(() => {
-    const map = {};
-    for (const s of filtered) {
-      const key = firstLetterKey(s.title);
-      if (!map[key]) map[key] = [];
-      map[key].push(s);
-    }
-    const keys = Object.keys(map).sort((a, b) => {
+  const groupedShows = useMemo(() => {
+    const groups = {};
+
+    filteredShows.forEach((show) => {
+      const letter = getLetter(show.title);
+
+      if (!groups[letter]) {
+        groups[letter] = [];
+      }
+
+      groups[letter].push(show);
+    });
+
+    const letters = Object.keys(groups).sort((a, b) => {
       if (a === "#") return 1;
       if (b === "#") return -1;
+
       return a.localeCompare(b);
     });
-    return keys.map((k) => ({ letter: k, shows: map[k] }));
-  }, [filtered]);
+
+    return letters.map((letter) => ({
+      letter,
+      shows: groups[letter],
+    }));
+  }, [filteredShows]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [activeTag, sortBy]);
 
   const sortOptions = [
-    { value: "title-asc", label: "Title (A → Z)" },
-    { value: "title-desc", label: "Title (Z → A)" },
-    { value: "year-desc", label: "Newest First" },
-    { value: "year-asc", label: "Oldest First" },
+    {
+      value: "title-asc",
+      label: "Title (A → Z)",
+    },
+    {
+      value: "title-desc",
+      label: "Title (Z → A)",
+    },
+    {
+      value: "year-desc",
+      label: "Newest First",
+    },
+    {
+      value: "year-asc",
+      label: "Oldest First",
+    },
   ];
 
-  const selectedSort =
-    sortOptions.find((option) => option.value === sortBy)?.label || "Sort";
-
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#05060b] to-[#0f0a24] text-white font-nunito selection:bg-cyan-500/30">
+    <div
+      className="
+        flex
+        min-h-screen
+        flex-col
+        bg-gradient-to-b
+        from-[#05060b]
+        to-[#0f0a24]
+        font-nunito
+        text-white
+      "
+    >
       <Header />
 
-      <main className="flex-grow relative">
-        <div className="px-4 sm:px-7 md:px-10 lg:px-16 py-6 sm:py-8 max-w-[2000px] mx-auto relative">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            {/* Back Button */}
+      <main className="flex-grow">
+        <div
+          className="
+            mx-auto
+            w-full
+            max-w-[2000px]
+            px-4
+            py-6
+            sm:px-7
+            sm:py-8
+            md:px-10
+            lg:px-16
+          "
+        >
+          <div className="mb-8 flex items-center gap-4">
             <button
               onClick={() => navigate(-1)}
-              className="bg-white/5 hover:bg-white/10 p-2.5 rounded-full border border-white/10 text-white"
+              aria-label="Go back"
+              className="
+                flex
+                h-11
+                w-11
+                flex-shrink-0
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-white/10
+                bg-white/5
+                text-white
+                transition-all
+                duration-200
+                hover:scale-105
+                hover:bg-white/10
+              "
             >
               <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
             </button>
 
-            {/* Title */}
             <div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
+              <h3
+                className="
+                  text-xl
+                  font-bold
+                  text-yellow-300
+                  sm:text-xl
+                  md:text-2xl
+                "
+              >
                 All Shows
-              </h1>
+              </h3>
 
-              <p className="text-sm text-gray-400 mt-1">
-                {filtered.length} Shows
+              <p className="mt-1 text-sm text-gray-400">
+                {filteredShows.length} Shows
               </p>
             </div>
 
             <div className="flex-1" />
 
-            <div className="hidden md:block relative">
+            <div className="relative hidden md:block">
               <button
-                onClick={() => setSortOpen(!sortOpen)}
-                className=" flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-sm text-white hover:bg-white/10 transition-all"
+                onClick={() => setSortOpen((open) => !open)}
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/5
+                  px-5
+                  py-2.5
+                  text-sm
+                  text-white
+                  transition-all
+                  duration-200
+                  hover:bg-white/10
+                "
               >
                 <span>Sort</span>
+
                 <HugeiconsIcon icon={FilterMailIcon} size={18} />
               </button>
 
               {sortOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-2xl border border-white/10 bg-[#111827] backdrop-blur-xl shadow-2xl z-50">
+                <div
+                  className="
+                    absolute
+                    right-0
+                    top-full
+                    z-50
+                    mt-2
+                    w-56
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-[#111827]
+                    shadow-2xl
+                    backdrop-blur-xl
+                  "
+                >
                   {sortOptions.map((option) => (
                     <button
                       key={option.value}
@@ -248,7 +293,18 @@ export default function AllShowsPage() {
                         setSortBy(option.value);
                         setSortOpen(false);
                       }}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm hover:bg-white/5 transition"
+                      className="
+                        flex
+                        w-full
+                        items-center
+                        justify-between
+                        px-4
+                        py-3
+                        text-sm
+                        text-white
+                        transition
+                        hover:bg-white/5
+                      "
                     >
                       <span>{option.label}</span>
 
@@ -262,50 +318,121 @@ export default function AllShowsPage() {
             </div>
           </div>
 
-          {/* Tags */}
-          <div className="mb-8">
-            <div className="flex items-center overflow-x-auto hide-scrollbar gap-2 pb-4">
-              {tags.map((t) => (
+          <div className="mb-10">
+            <div
+              className="
+                scrollbar-hide
+                flex
+                items-center
+                gap-2
+                overflow-x-auto
+                pb-4
+              "
+            >
+              {tags.map((tag) => (
                 <button
-                  key={t}
-                  onClick={() => setActiveTag(t)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border ${
-                    activeTag === t
-                      ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-black border-transparent"
-                      : "bg-white/5 text-gray-300 border-white/5"
-                  }`}
+                  key={tag}
+                  onClick={() => setActiveTag(tag)}
+                  className={`
+                    flex-shrink-0
+                    whitespace-nowrap
+                    rounded-full
+                    border
+                    px-5
+                    py-2
+                    text-sm
+                    font-medium
+                    transition-all
+                    duration-200
+
+                    ${
+                      activeTag === tag
+                        ? "border-transparent bg-gradient-to-r from-cyan-400 to-blue-500 text-black"
+                        : "border-white/5 bg-white/5 text-gray-300 hover:bg-white/10"
+                    }
+                  `}
                 >
-                  {t}
+                  {tag}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* GRID */}
-          <div className="space-y-16 mb-24">
-            {grouped.map(({ letter, shows }) => (
+          <div className="space-y-12 pb-24">
+            {groupedShows.map(({ letter, shows }) => (
               <section key={letter}>
-                <div className="flex items-center gap-6 mb-5">
-                  <h3 className="text-2xl sm:text-2xl font-semibold text-yellow-300">
+                <div
+                  className="
+                    mb-6
+                    flex
+                    items-center
+                    gap-4
+                    sm:gap-6
+                  "
+                >
+                  <h2
+                    className="
+                      flex-shrink-0
+                      text-2xl
+                      font-semibold
+                      text-yellow-300
+                    "
+                  >
                     {letter}
-                  </h3>
-                  <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/5 to-transparent" />
-                  <div className="text-xs font-bold text-gray-600 bg-white/5 px-3 py-1 rounded-md">
-                    {shows.length} SHOWS
-                  </div>
+                  </h2>
+
+                  <div
+                    className="
+                      h-px
+                      flex-1
+                      bg-gradient-to-r
+                      from-white/20
+                      via-white/5
+                      to-transparent
+                    "
+                  />
+
+                  <span
+                    className="
+                      flex-shrink-0
+                      rounded-md
+                      bg-white/5
+                      px-3
+                      py-1
+                      text-[10px]
+                      font-bold
+                      text-gray-600
+                      sm:text-xs
+                    "
+                  >
+                    {shows.length} {shows.length === 1 ? "SHOW" : "SHOWS"}
+                  </span>
                 </div>
 
-                <div className="px-0 sm:px-0">
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-6 md:gap-y-8 lg:grid-cols-4 lg:gap-x-6 xl:grid-cols-4 2xl:grid-cols-5">
-                    {shows.map((s) => (
-                      <div
-                        key={s.id}
-                        className="transition-transform duration-300 hover:scale-[1.03]"
-                      >
-                        <Card show={s} navigate={navigate} />
-                      </div>
-                    ))}
-                  </div>
+                <div
+                  className="
+                    flex
+                    flex-wrap
+                    gap-6
+                  "
+                >
+                  {shows.map((show) => (
+                    <div
+                      key={show.id}
+                      className="
+                        w-[40vw]
+                        max-w-[180px]
+                        flex-shrink-0
+
+                        sm:w-[180px]
+                        md:w-[190px]
+                        lg:w-[200px]
+                        xl:w-[210px]
+                      "
+                    >
+                      <ShowCard {...show} />
+                    </div>
+                  ))}
                 </div>
               </section>
             ))}
@@ -316,12 +443,17 @@ export default function AllShowsPage() {
       <Footer />
 
       <style>{`
-        .hide-scrollbar {
+        .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
       `}</style>
     </div>
   );
 }
+
+export default AllShowsPage;
