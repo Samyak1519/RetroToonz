@@ -23,7 +23,31 @@ const getEpisodeThumbnail = (episode, showBackdrop) => {
   const episodeBackdrop = normalizePath(episode?.backdrop);
   const fallbackBackdrop = normalizePath(showBackdrop);
 
-  return episodeThumbnail || episodeBackdrop || DEFAULT_THUMBNAIL;
+  return (
+    episodeThumbnail || episodeBackdrop || fallbackBackdrop || DEFAULT_THUMBNAIL
+  );
+};
+
+// New: handles runtime load failures, not just missing fields
+const handleThumbnailError = (event, showBackdrop) => {
+  const img = event.currentTarget;
+  const stage = img.dataset.fallbackStage || "primary";
+  const fallbackBackdrop = normalizePath(showBackdrop);
+
+  if (
+    stage === "primary" &&
+    fallbackBackdrop &&
+    img.src !== window.location.origin + fallbackBackdrop
+  ) {
+    // primary thumbnail failed to load -> try the show's backdrop
+    img.dataset.fallbackStage = "backdrop";
+    img.src = fallbackBackdrop;
+    return;
+  }
+
+  // backdrop also failed (or there wasn't one) -> final fallback
+  img.onerror = null;
+  img.src = DEFAULT_THUMBNAIL;
 };
 
 export default function VideoPlayerEpisodes({
@@ -186,27 +210,9 @@ export default function VideoPlayerEpisodes({
                   src={thumbnail}
                   alt={episode.title || `Episode ${episodeNumber}`}
                   loading="lazy"
-                  onError={(event) => {
-                    console.error("Episode thumbnail failed:", {
-                      episodeId: episode.episodeId,
-                      title: episode.title,
-                      thumbnail: episode.thumbnail,
-                      backdrop: episode.backdrop,
-                      showBackdrop,
-                      resolvedThumbnail: thumbnail,
-                    });
-
-                    event.currentTarget.onerror = null;
-                    event.currentTarget.src = DEFAULT_THUMBNAIL;
-                  }}
-                  className="
-                    h-full
-                    w-full
-                    object-cover
-                    transition-transform
-                    duration-300
-                    group-hover:scale-[1.03]
-                  "
+                  data-fallback-stage="primary"
+                  onError={(event) => handleThumbnailError(event, showBackdrop)}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                 />
 
                 {/* Bottom gradient */}
